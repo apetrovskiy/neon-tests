@@ -37,28 +37,60 @@ def prepare_account(operator, faucet, web3_client):
 
     pass
 
-'''
-Whitelisted client accesses faucet
-Whitelisted client requests balance
-Whitelisted client sends tokens
-Whitelisted client is able to receive transferred tokens
-Whitelisted client is able to receive SPL token
-Whitelisted client is able to connect to Neonpass
-Whitelisted client's balance could be supplied with tokens by Airdropper
-'''
 
 @allure.story("Whitelist")
 class TestWhitelist():
     class TestAllowedClient():
+        '''
+        Whitelisted client accesses faucet
+        Whitelisted client requests balance
+        Whitelisted client sends tokens
+        Whitelisted client is able to receive transferred tokens
+        Whitelisted client is able to receive SPL token
+        Whitelisted client is able to connect to Neonpass
+        Whitelisted client's balance could be supplied with tokens by Airdropper
+        '''
         pass
     
     class TestDeniedClient():
+        '''
+        Non-whitelisted client accesses faucet
+        Denied client accesses faucet
+        Non-whitelisted client requests balance
+        Denied client requests balance
+        Non-whitelisted client sends tokens
+        Denied client sends tokens
+        Non-whitelisted client is able to receive transferred tokens
+        Denied client is able to receive transferred tokens
+        Non-whitelisted client is able to receive SPL token
+        Denied client is able to receive SPL token
+        Non-whitelisted client is able to connect to Neonpass
+        Denied client is able to connect to Neonpass
+        Non-whitelisted client's balance could not be supplied with tokens by Airdropper
+        Denied client's balance could not be supplied with tokens by Airdropper
+        '''
         pass
     
     class TestAllowedContract():
+        '''
+        Whitelisted client accesses a whitelisted contract
+        Whitelisted client deploys a whitelisted contract
+        Whitelisted client deletes a whitelisted contract
+        Whitelisted client runs a whitelisted contract, which in turn deploys a non-whitelisted contract
+        Whitelisted client runs a whitelisted contract, which in turn deploys a whitelisted contract
+        '''
         pass
     
     class TestDeniedContract():
+        '''
+        Whitelisted client accesses a non-whitelisted contract
+        Whitelisted client deploys a non-whitelisted contract
+        Whitelisted client deletes a non-whitelisted contract
+        Whitelisted client accesses a denied (prohibited) contract
+        Whitelisted client deploys a denied contract
+        Whitelisted client deletes a denied contract
+        Whitelisted client runs a whitelisted contract, which in turn deploys a non-whitelisted contract
+        '''
         pass
 
 
