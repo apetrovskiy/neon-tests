@@ -8,7 +8,6 @@ import allure
 
 # from ..base import BaseTests
 
-
 # SOL_PRICE = 100
 # NEON_PRICE = 0.25
 
@@ -50,8 +49,27 @@ class TestWhitelist():
         Whitelisted client is able to connect to Neonpass
         Whitelisted client's balance could be supplied with tokens by Airdropper
         '''
-        pass
-    
+        def test_allowed_client_is_able_to_access_faucet():
+            pass
+
+        def test_allowed_client_is_able_to_request_balance():
+            pass
+
+        def test_allowed_client_is_able_to_send_tokens():
+            pass
+
+        def test_allowed_client_is_able_to_receive_transferred_tokens():
+            pass
+
+        def test_allowed_client_is_able_to_receive_spl_token():
+            pass
+
+        def test_allowed_client_is_able_to_connect_to_neonpass():
+            pass
+
+        def test_allowed_client_is_able_to_be_supplied_by_airdropper():
+            pass
+
     class TestDeniedClient():
         '''
         Non-whitelisted client accesses faucet
@@ -69,8 +87,28 @@ class TestWhitelist():
         Non-whitelisted client's balance could not be supplied with tokens by Airdropper
         Denied client's balance could not be supplied with tokens by Airdropper
         '''
-        pass
-    
+        def test_denied_client_does_not_access_faucet():
+            pass
+
+        def test_denied_client_fails_to_request_balance():
+            pass
+
+        def test_denied_client_fails_to_send_tokens():
+            pass
+
+        def test_denied_client_fails_to_receive_transferred_tokens():
+            pass
+
+        def test_denied_client_fails_to_receive_spl_token():
+            pass
+
+        def test_denied_client_fails_to_connect_to_neonpass():
+            pass
+
+        def test_denied_client_is_never_supplied_by_airdropper():
+            # Note: airdropper works only with transactions, there should not be transactions for denied clients
+            pass
+
     class TestAllowedContract():
         '''
         Whitelisted client accesses a whitelisted contract
@@ -80,7 +118,7 @@ class TestWhitelist():
         Whitelisted client runs a whitelisted contract, which in turn deploys a whitelisted contract
         '''
         pass
-    
+
     class TestDeniedContract():
         '''
         Whitelisted client accesses a non-whitelisted contract
@@ -92,7 +130,6 @@ class TestWhitelist():
         Whitelisted client runs a whitelisted contract, which in turn deploys a non-whitelisted contract
         '''
         pass
-
 
 
 '''
