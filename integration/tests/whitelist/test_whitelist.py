@@ -1,19 +1,5 @@
-# import pathlib
-# import time
-# from decimal import Decimal, getcontext
-
-import pytest
-# import solcx
 import allure
-
-# from ..base import BaseTests
-
-# SOL_PRICE = 100
-# NEON_PRICE = 0.25
-
-# LAMPORT_PER_SOL = 1000000000
-# DECIMAL_CONTEXT = getcontext()
-# DECIMAL_CONTEXT.prec = 9
+import pytest
 
 
 @pytest.fixture(scope="class")
