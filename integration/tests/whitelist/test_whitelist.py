@@ -39,24 +39,31 @@ class TestWhitelist():
         Whitelisted client's balance could be supplied with tokens by Airdropper
         '''
         def test_allowed_client_is_able_to_access_faucet():
+            '''Whitelisted client accesses faucet'''
             pass
 
         def test_allowed_client_is_able_to_request_balance():
+            '''Whitelisted client requests balance'''
             pass
 
         def test_allowed_client_is_able_to_send_tokens():
+            '''Whitelisted client sends tokens'''
             pass
 
         def test_allowed_client_is_able_to_receive_transferred_tokens():
+            '''Whitelisted client is able to receive transferred tokens'''
             pass
 
         def test_allowed_client_is_able_to_receive_spl_token():
+            '''Whitelisted client is able to receive SPL token'''
             pass
 
         def test_allowed_client_is_able_to_connect_to_neonpass():
+            '''Whitelisted client is able to connect to Neonpass'''
             pass
 
         def test_allowed_client_is_able_to_be_supplied_by_airdropper():
+            '''Whitelisted client's balance could be supplied with tokens by Airdropper'''
             pass
 
     class TestDeniedClient():
@@ -77,23 +84,32 @@ class TestWhitelist():
         Denied client's balance could not be supplied with tokens by Airdropper
         '''
         def test_denied_client_does_not_access_faucet():
+            '''Denied client accesses faucet'''
             pass
 
         def test_denied_client_fails_to_request_balance():
+            '''Denied client requests balance'''
             pass
 
         def test_denied_client_fails_to_send_tokens():
+            '''Denied client sends tokens'''
             pass
 
         def test_denied_client_fails_to_receive_transferred_tokens():
+            '''Denied client is able to receive transferred tokens'''
             pass
 
         def test_denied_client_fails_to_receive_spl_token():
+            '''Denied client is able to receive SPL token'''
             pass
 
         def test_denied_client_fails_to_connect_to_neonpass():
+            '''Denied client is able to connect to Neonpass'''
             pass
 
+        @pytest.mark.skip(
+            'airdropper works only with transactions, there should not be transactions for denied clients'
+        )
         def test_denied_client_is_never_supplied_by_airdropper():
             # Note: airdropper works only with transactions, there should not be transactions for denied clients
             pass
