@@ -1,6 +1,9 @@
 import allure
 import pytest
 
+ALLOWED_CLIENTS = []
+DENIED_CLIENTS = []
+
 
 @pytest.fixture(scope="class")
 def prepare_account(operator, faucet, web3_client):
