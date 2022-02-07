@@ -37,9 +37,30 @@ def prepare_account(operator, faucet, web3_client):
 
     pass
 
+'''
+Whitelisted client accesses faucet
+Whitelisted client requests balance
+Whitelisted client sends tokens
+Whitelisted client is able to receive transferred tokens
+Whitelisted client is able to receive SPL token
+Whitelisted client is able to connect to Neonpass
+Whitelisted client's balance could be supplied with tokens by Airdropper
+'''
+
 @allure.story("Whitelist")
 class TestWhitelist():
-    pass
+    class TestAllowedClient():
+        pass
+    
+    class TestDeniedClient():
+        pass
+    
+    class TestAllowedContract():
+        pass
+    
+    class TestDeniedContract():
+        pass
+
 
 
 '''
