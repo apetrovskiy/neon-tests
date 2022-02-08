@@ -6,7 +6,8 @@ import subprocess
 # JOBS_NUMBER = int(os.environ.get("JOBS_NUMBER", 8))
 
 # print(f"Jobs count: {JOBS_NUMBER}")
-tests = subprocess.check_output("find \"test\" -name '*.js'", shell=True).decode().splitlines()
+tests = subprocess.check_output("find \"test\" -name '*.js'",
+                                shell=True).decode().splitlines()
 
 # chunk_size = len(tests) / JOBS_NUMBER
 
@@ -23,4 +24,6 @@ out = []
 
 command = " ".join(["\"%s\"" % c for c in out])
 
-subprocess.check_call("parallel --jobs %s ./rrrun.sh {} ::: %s" % (JOBS_NUMBER, command), shell=True)
+subprocess.check_call("parallel --jobs %s ./rrrun.sh {} ::: %s" %
+                      (JOBS_NUMBER, command),
+                      shell=True)
