@@ -1,0 +1,393 @@
+{
+  "uid" : "1a10903ee5e006eb",
+  "name" : "test_verify_faucet_work_multiple_requests",
+  "fullName" : "integration.tests.basic.test_single_client_activity.TestSingleClient#test_verify_faucet_work_multiple_requests",
+  "historyId" : "5829e4b19281c1fb36b882434a232e39",
+  "time" : {
+    "start" : 1645090802148,
+    "stop" : 1645090803544,
+    "duration" : 1396
+  },
+  "description" : "Verify faucet work (request drop for several accounts): double request",
+  "descriptionHtml" : "<p>Verify faucet work (request drop for several accounts): double request</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError",
+  "statusTrace" : "self = <integration.tests.basic.test_single_client_activity.TestSingleClient object at 0x7f519f3eeac0>\n\n    @allure.step(\n        \"test: verify faucet work (request drop for several accounts): double request\"\n    )\n    def test_verify_faucet_work_multiple_requests(self):\n        '''Verify faucet work (request drop for several accounts): double request'''\n        for _ in range(10):\n            account = self.create_account()\n            self.request_faucet(account.address, FIRST_FAUCET_REQUEST_AMOUNT)\n            self.request_faucet(account.address, SECOND_FAUCET_REQUEST_AMOUNT)\n>           self.assert_amount(\n                account.address,\n                FIRST_FAUCET_REQUEST_AMOUNT + SECOND_FAUCET_REQUEST_AMOUNT)\n\nintegration/tests/basic/test_single_client_activity.py:129: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_single_client_activity.TestSingleClient object at 0x7f519f3eeac0>\naddress = '0x558017D5f1B4b94f695f81Fe42834C9406f05536', amount = 8\n\n    @allure.step(\"checking balance\")\n    def assert_amount(self, address: str, amount: int):\n        balance = self.get_balance(address)\n>       assert balance == amount\nE       AssertionError\n\nintegration/tests/basic/helper_methods.py:32: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1645090799046,
+      "stop" : 1645090799046,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1645090799047,
+      "stop" : 1645090799048,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1645090799048,
+      "stop" : 1645090800064,
+      "duration" : 1016
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1645090800064,
+      "stop" : 1645090800064,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1645090800064,
+      "stop" : 1645090800066,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645090800066,
+      "stop" : 1645090800066,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1645090800066,
+      "stop" : 1645090800066,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645090802147,
+      "stop" : 1645090802147,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1645090802147,
+      "stop" : 1645090802147,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "testStage" : {
+    "description" : "Verify faucet work (request drop for several accounts): double request",
+    "status" : "failed",
+    "statusMessage" : "AssertionError",
+    "statusTrace" : "self = <integration.tests.basic.test_single_client_activity.TestSingleClient object at 0x7f519f3eeac0>\n\n    @allure.step(\n        \"test: verify faucet work (request drop for several accounts): double request\"\n    )\n    def test_verify_faucet_work_multiple_requests(self):\n        '''Verify faucet work (request drop for several accounts): double request'''\n        for _ in range(10):\n            account = self.create_account()\n            self.request_faucet(account.address, FIRST_FAUCET_REQUEST_AMOUNT)\n            self.request_faucet(account.address, SECOND_FAUCET_REQUEST_AMOUNT)\n>           self.assert_amount(\n                account.address,\n                FIRST_FAUCET_REQUEST_AMOUNT + SECOND_FAUCET_REQUEST_AMOUNT)\n\nintegration/tests/basic/test_single_client_activity.py:129: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_single_client_activity.TestSingleClient object at 0x7f519f3eeac0>\naddress = '0x558017D5f1B4b94f695f81Fe42834C9406f05536', amount = 8\n\n    @allure.step(\"checking balance\")\n    def assert_amount(self, address: str, amount: int):\n        balance = self.get_balance(address)\n>       assert balance == amount\nE       AssertionError\n\nintegration/tests/basic/helper_methods.py:32: AssertionError",
+    "steps" : [ {
+      "name" : "test: verify faucet work (request drop for several accounts): double request",
+      "time" : {
+        "start" : 1645090802148,
+        "stop" : 1645090803544,
+        "duration" : 1396
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_single_client_activity.py\", line 129, in test_verify_faucet_work_multiple_requests\n    self.assert_amount(\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helper_methods.py\", line 32, in assert_amount\n    assert balance == amount\n",
+      "steps" : [ {
+        "name" : "creating a new account",
+        "time" : {
+          "start" : 1645090802148,
+          "stop" : 1645090802152,
+          "duration" : 4
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "requesting faucet",
+        "time" : {
+          "start" : 1645090802152,
+          "stop" : 1645090802781,
+          "duration" : 629
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "wallet",
+          "value" : "'0x558017D5f1B4b94f695f81Fe42834C9406f05536'"
+        }, {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true,
+        "stepsCount" : 0
+      }, {
+        "name" : "requesting faucet",
+        "time" : {
+          "start" : 1645090802782,
+          "stop" : 1645090803411,
+          "duration" : 629
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "wallet",
+          "value" : "'0x558017D5f1B4b94f695f81Fe42834C9406f05536'"
+        }, {
+          "name" : "amount",
+          "value" : "3"
+        } ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true,
+        "stepsCount" : 0
+      }, {
+        "name" : "checking balance",
+        "time" : {
+          "start" : 1645090803411,
+          "stop" : 1645090803543,
+          "duration" : 132
+        },
+        "status" : "failed",
+        "statusMessage" : "AssertionError\n",
+        "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helper_methods.py\", line 32, in assert_amount\n    assert balance == amount\n",
+        "steps" : [ {
+          "name" : "getting balance of account",
+          "time" : {
+            "start" : 1645090803411,
+            "stop" : 1645090803543,
+            "duration" : 132
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "address",
+            "value" : "'0x558017D5f1B4b94f695f81Fe42834C9406f05536'"
+          } ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true,
+          "stepsCount" : 0
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "address",
+          "value" : "'0x558017D5f1B4b94f695f81Fe42834C9406f05536'"
+        }, {
+          "name" : "amount",
+          "value" : "8"
+        } ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "hasContent" : true,
+        "stepsCount" : 1
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 5
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 6
+  },
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1645090803557,
+      "stop" : 1645090803557,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: single user tests"
+  }, {
+    "name" : "story",
+    "value" : "Basic"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_single_client_activity"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestSingleClient"
+  }, {
+    "name" : "host",
+    "value" : "fv-az129-201"
+  }, {
+    "name" : "thread",
+    "value" : "1914-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_single_client_activity"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "6811189fb3ddb972",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254-Basic-integration-tests-for-transactions-and-accounts/52//#testresult/6811189fb3ddb972",
+        "status" : "broken",
+        "statusDetails" : "NameError: name 'FIRST_FAUCET_REQUEST_AMOUNT' is not defined",
+        "time" : {
+          "start" : 1645090188452,
+          "stop" : 1645090188456,
+          "duration" : 4
+        }
+      }, {
+        "uid" : "566947981a78ce6f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254-Basic-integration-tests-for-transactions-and-accounts/51//#testresult/566947981a78ce6f",
+        "status" : "broken",
+        "statusDetails" : "NameError: name 'FIRST_FAUCET_REQUEST_AMOUNT' is not defined",
+        "time" : {
+          "start" : 1645090012195,
+          "stop" : 1645090012200,
+          "duration" : 5
+        }
+      }, {
+        "uid" : "666ebda471c12dfc",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254-Basic-integration-tests-for-transactions-and-accounts/50//#testresult/666ebda471c12dfc",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1645089340025,
+          "stop" : 1645089341524,
+          "duration" : 1499
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "1a10903ee5e006eb.json",
+  "parameterValues" : [ ]
+}
