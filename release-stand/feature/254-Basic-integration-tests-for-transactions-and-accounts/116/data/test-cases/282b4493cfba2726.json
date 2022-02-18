@@ -1,0 +1,577 @@
+{
+  "uid" : "282b4493cfba2726",
+  "name" : "test_send_more_than_exist_on_account_neon[10]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_more_than_exist_on_account_neon",
+  "historyId" : "7c18cff9faa0c0d4a8730c575b629fdb",
+  "time" : {
+    "start" : 1645201004941,
+    "stop" : 1645201006778,
+    "duration" : 1837
+  },
+  "description" : "Send more than exist on account: neon",
+  "descriptionHtml" : "<p>Send more than exist on account: neon</p>\n",
+  "status" : "broken",
+  "statusMessage" : "AttributeError: 'ValueError' object has no attribute 'value'",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f585954b0d0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f5859620130>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7f5859620850>\namount = 10, gas = 100000000, gas_price = 0\nmessage = 'The account balance is less than required'\n\n    @allure.step(\"processing transaction\")\n    def process_transaction(self,\n                            sender_account: Account,\n                            recipient_account: Account,\n                            amount: int,\n                            gas: int = GAS,\n                            gas_price: int = GAS_PRICE,\n                            message: str = \"\"):\n        try:\n            # with pytest.raises(ValueError) as error_info:\n            #     self.web3_client.send_neon(sender_account, recipient_account,\n            #                                amount, gas, gas_price)\n            #     print(error_info)\n            # assert message in str(error_info.value)\n    \n>           self.web3_client.send_neon(sender_account, recipient_account,\n                                       amount, gas, gas_price)\n\nintegration/tests/basic/helper_methods.py:56: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.web3client.NeonWeb3Client object at 0x7f585998b100>\nfrom_ = <eth_account.signers.local.LocalAccount object at 0x7f5859620130>\nto = <eth_account.signers.local.LocalAccount object at 0x7f5859620850>\namount = 10, gas = 100000000, gas_price = 1000000000000000000\n\n    def send_neon(\n        self,\n        from_: eth_account.signers.local.LocalAccount,\n        to: tp.Union[str, eth_account.signers.local.LocalAccount],\n        amount: tp.Union[int, float, Decimal],\n        gas: int = 100000000,\n        gas_price: tp.Optional[int] = None,\n    ) -> web3.types.TxReceipt:\n        to_addr = to if isinstance(to, str) else to.address\n        gas_price = gas_price or self.gas_price()\n        transaction = {\n            \"to\": to_addr,\n            \"value\": web3.Web3.toWei(amount, \"ether\"),\n            \"chainId\": self._chain_id,\n            \"gasPrice\": gas_price or self.gas_price(),\n            \"gas\": gas,\n            \"nonce\": self._web3.eth.get_transaction_count(from_.address),\n        }\n    \n        signed_tx = self._web3.eth.account.sign_transaction(transaction, from_.key)\n>       tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n\nutils/web3client.py:61: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.eth.Eth object at 0x7f585998b610>\ntransaction = HexBytes('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a027...db2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0')\n\n    def send_raw_transaction(self, transaction: Union[HexStr, bytes]) -> HexBytes:\n>       return self._send_raw_transaction(transaction)\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:783: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nargs = (HexBytes('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a02...2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0'),)\nkwargs = {}, method_str = 'eth_sendRawTransaction'\nparams = ('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a027a2d94ef68db2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0',)\nresponse_formatters = (Compose(<function apply_formatter_if at 0x7f585f672e50>, <function to_hexbytes at 0x7f585b9c48b0>), <cyfunction identity at 0x7f585e8fbee0>, <cyfunction identity at 0x7f585e8fbee0>)\nresult_formatters = Compose(<function apply_formatter_if at 0x7f585f672e50>, <function to_hexbytes at 0x7f585b9c48b0>)\nerror_formatters = <cyfunction identity at 0x7f585e8fbee0>\nnull_result_formatters = <cyfunction identity at 0x7f585e8fbee0>\n\n    def caller(*args: Any, **kwargs: Any) -> Union[TReturn, LogFilter]:\n        try:\n            (method_str, params), response_formatters = method.process_params(module, *args, **kwargs)  # noqa: E501\n        except _UseExistingFilter as err:\n            return LogFilter(eth_module=module, filter_id=err.filter_id)\n        result_formatters, error_formatters, null_result_formatters = response_formatters\n>       result = w3.manager.request_blocking(method_str,\n                                             params,\n                                             error_formatters,\n                                             null_result_formatters)\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f585998b1c0>\nmethod = 'eth_sendRawTransaction'\nparams = ('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a027a2d94ef68db2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0',)\nerror_formatters = <cyfunction identity at 0x7f585e8fbee0>\nnull_result_formatters = <cyfunction identity at 0x7f585e8fbee0>\n\n    def request_blocking(\n        self,\n        method: Union[RPCEndpoint, Callable[..., RPCEndpoint]],\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        \"\"\"\n        Make a synchronous request using the provider\n        \"\"\"\n        response = self._make_request(method, params)\n>       return self.formatted_response(response,\n                                       params,\n                                       error_formatters,\n                                       null_result_formatters)\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f585998b1c0>\nresponse = {'error': {'code': -32000, 'message': 'The account balance is less than required: Account e87bdd4b6fef4744ac1a4807ccca...00000000; value = 10000000000000000000; required_balance = 100000010000000000000000000; '}, 'id': 31, 'jsonrpc': '2.0'}\nparams = ('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a027a2d94ef68db2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0',)\nerror_formatters = <cyfunction identity at 0x7f585e8fbee0>\nnull_result_formatters = <cyfunction identity at 0x7f585e8fbee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'The account balance is less than required: Account e87bdd4b6fef4744ac1a4807ccca0f854b86c0ea; balance = 5000000000000000000; gasPrice = 1000000000000000000; gasLimit = 100000000; fee = 100000000000000000000000000; value = 10000000000000000000; required_balance = 100000010000000000000000000; '}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f585954b0d0>\namount = 10\n\n    @allure.step(\"test: send more than exist on account: neon\")\n    @pytest.mark.parametrize(\"amount\", WRONG_TRANSFER_AMOUNT_DATA)\n    def test_send_more_than_exist_on_account_neon(self, amount: Union[int,\n                                                                      float]):\n        '''Send more than exist on account: neon'''\n        sender_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n>       self.check_value_error_if_less_than_required(sender_account,\n                                                     recipient_account, amount)\n\nintegration/tests/basic/test_transfers.py:49: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helper_methods.py:105: in check_value_error_if_less_than_required\n    self.process_transaction(sender_account, recipient_account, amount,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f585954b0d0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f5859620130>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7f5859620850>\namount = 10, gas = 100000000, gas_price = 0\nmessage = 'The account balance is less than required'\n\n    @allure.step(\"processing transaction\")\n    def process_transaction(self,\n                            sender_account: Account,\n                            recipient_account: Account,\n                            amount: int,\n                            gas: int = GAS,\n                            gas_price: int = GAS_PRICE,\n                            message: str = \"\"):\n        try:\n            # with pytest.raises(ValueError) as error_info:\n            #     self.web3_client.send_neon(sender_account, recipient_account,\n            #                                amount, gas, gas_price)\n            #     print(error_info)\n            # assert message in str(error_info.value)\n    \n            self.web3_client.send_neon(sender_account, recipient_account,\n                                       amount, gas, gas_price)\n    \n        except ValueError as error_info:\n            print(error_info)\n            assert \"The account balance is less than required\" in str(\n>               error_info.value)\nE           AttributeError: 'ValueError' object has no attribute 'value'\n\nintegration/tests/basic/helper_methods.py:62: AttributeError",
+  "flaky" : true,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1645200969990,
+      "stop" : 1645200969990,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1645200969990,
+      "stop" : 1645200969991,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1645200969991,
+      "stop" : 1645200970978,
+      "duration" : 987
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1645200970978,
+      "stop" : 1645200970979,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1645200970978,
+      "stop" : 1645200970978,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1645200970980,
+      "stop" : 1645200970980,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645200997245,
+      "stop" : 1645200999511,
+      "duration" : 2266
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1645200997245,
+        "stop" : 1645200997249,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0xa8b48B509aCb476705a3095Ef59A1A867CcB767f",
+      "time" : {
+        "start" : 1645200997249,
+        "stop" : 1645200998080,
+        "duration" : 831
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 976987959.5608184 NEON 1358.90150404 SOL",
+      "time" : {
+        "start" : 1645200999511,
+        "stop" : 1645200999511,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645201004941,
+      "stop" : 1645201004941,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1645201004941,
+      "stop" : 1645201004941,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send more than exist on account: neon",
+    "status" : "broken",
+    "statusMessage" : "AttributeError: 'ValueError' object has no attribute 'value'",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f585954b0d0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f5859620130>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7f5859620850>\namount = 10, gas = 100000000, gas_price = 0\nmessage = 'The account balance is less than required'\n\n    @allure.step(\"processing transaction\")\n    def process_transaction(self,\n                            sender_account: Account,\n                            recipient_account: Account,\n                            amount: int,\n                            gas: int = GAS,\n                            gas_price: int = GAS_PRICE,\n                            message: str = \"\"):\n        try:\n            # with pytest.raises(ValueError) as error_info:\n            #     self.web3_client.send_neon(sender_account, recipient_account,\n            #                                amount, gas, gas_price)\n            #     print(error_info)\n            # assert message in str(error_info.value)\n    \n>           self.web3_client.send_neon(sender_account, recipient_account,\n                                       amount, gas, gas_price)\n\nintegration/tests/basic/helper_methods.py:56: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.web3client.NeonWeb3Client object at 0x7f585998b100>\nfrom_ = <eth_account.signers.local.LocalAccount object at 0x7f5859620130>\nto = <eth_account.signers.local.LocalAccount object at 0x7f5859620850>\namount = 10, gas = 100000000, gas_price = 1000000000000000000\n\n    def send_neon(\n        self,\n        from_: eth_account.signers.local.LocalAccount,\n        to: tp.Union[str, eth_account.signers.local.LocalAccount],\n        amount: tp.Union[int, float, Decimal],\n        gas: int = 100000000,\n        gas_price: tp.Optional[int] = None,\n    ) -> web3.types.TxReceipt:\n        to_addr = to if isinstance(to, str) else to.address\n        gas_price = gas_price or self.gas_price()\n        transaction = {\n            \"to\": to_addr,\n            \"value\": web3.Web3.toWei(amount, \"ether\"),\n            \"chainId\": self._chain_id,\n            \"gasPrice\": gas_price or self.gas_price(),\n            \"gas\": gas,\n            \"nonce\": self._web3.eth.get_transaction_count(from_.address),\n        }\n    \n        signed_tx = self._web3.eth.account.sign_transaction(transaction, from_.key)\n>       tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n\nutils/web3client.py:61: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.eth.Eth object at 0x7f585998b610>\ntransaction = HexBytes('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a027...db2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0')\n\n    def send_raw_transaction(self, transaction: Union[HexStr, bytes]) -> HexBytes:\n>       return self._send_raw_transaction(transaction)\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:783: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nargs = (HexBytes('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a02...2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0'),)\nkwargs = {}, method_str = 'eth_sendRawTransaction'\nparams = ('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a027a2d94ef68db2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0',)\nresponse_formatters = (Compose(<function apply_formatter_if at 0x7f585f672e50>, <function to_hexbytes at 0x7f585b9c48b0>), <cyfunction identity at 0x7f585e8fbee0>, <cyfunction identity at 0x7f585e8fbee0>)\nresult_formatters = Compose(<function apply_formatter_if at 0x7f585f672e50>, <function to_hexbytes at 0x7f585b9c48b0>)\nerror_formatters = <cyfunction identity at 0x7f585e8fbee0>\nnull_result_formatters = <cyfunction identity at 0x7f585e8fbee0>\n\n    def caller(*args: Any, **kwargs: Any) -> Union[TReturn, LogFilter]:\n        try:\n            (method_str, params), response_formatters = method.process_params(module, *args, **kwargs)  # noqa: E501\n        except _UseExistingFilter as err:\n            return LogFilter(eth_module=module, filter_id=err.filter_id)\n        result_formatters, error_formatters, null_result_formatters = response_formatters\n>       result = w3.manager.request_blocking(method_str,\n                                             params,\n                                             error_formatters,\n                                             null_result_formatters)\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f585998b1c0>\nmethod = 'eth_sendRawTransaction'\nparams = ('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a027a2d94ef68db2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0',)\nerror_formatters = <cyfunction identity at 0x7f585e8fbee0>\nnull_result_formatters = <cyfunction identity at 0x7f585e8fbee0>\n\n    def request_blocking(\n        self,\n        method: Union[RPCEndpoint, Callable[..., RPCEndpoint]],\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        \"\"\"\n        Make a synchronous request using the provider\n        \"\"\"\n        response = self._make_request(method, params)\n>       return self.formatted_response(response,\n                                       params,\n                                       error_formatters,\n                                       null_result_formatters)\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f585998b1c0>\nresponse = {'error': {'code': -32000, 'message': 'The account balance is less than required: Account e87bdd4b6fef4744ac1a4807ccca...00000000; value = 10000000000000000000; required_balance = 100000010000000000000000000; '}, 'id': 31, 'jsonrpc': '2.0'}\nparams = ('0xf87280880de0b6b3a76400008405f5e10094155c00b0defffb0aed47460fc69d7fd2078c189d888ac7230489e8000080820101a027a2d94ef68db2b479534902d2c302de02ed03a9a394cb23819dd3b626d5d0809f9fecac70a59e1e5260f7b5a58f2f752a8bc6fd7f29456d3b6031863a1f48c0',)\nerror_formatters = <cyfunction identity at 0x7f585e8fbee0>\nnull_result_formatters = <cyfunction identity at 0x7f585e8fbee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'The account balance is less than required: Account e87bdd4b6fef4744ac1a4807ccca0f854b86c0ea; balance = 5000000000000000000; gasPrice = 1000000000000000000; gasLimit = 100000000; fee = 100000000000000000000000000; value = 10000000000000000000; required_balance = 100000010000000000000000000; '}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f585954b0d0>\namount = 10\n\n    @allure.step(\"test: send more than exist on account: neon\")\n    @pytest.mark.parametrize(\"amount\", WRONG_TRANSFER_AMOUNT_DATA)\n    def test_send_more_than_exist_on_account_neon(self, amount: Union[int,\n                                                                      float]):\n        '''Send more than exist on account: neon'''\n        sender_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n>       self.check_value_error_if_less_than_required(sender_account,\n                                                     recipient_account, amount)\n\nintegration/tests/basic/test_transfers.py:49: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helper_methods.py:105: in check_value_error_if_less_than_required\n    self.process_transaction(sender_account, recipient_account, amount,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f585954b0d0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f5859620130>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7f5859620850>\namount = 10, gas = 100000000, gas_price = 0\nmessage = 'The account balance is less than required'\n\n    @allure.step(\"processing transaction\")\n    def process_transaction(self,\n                            sender_account: Account,\n                            recipient_account: Account,\n                            amount: int,\n                            gas: int = GAS,\n                            gas_price: int = GAS_PRICE,\n                            message: str = \"\"):\n        try:\n            # with pytest.raises(ValueError) as error_info:\n            #     self.web3_client.send_neon(sender_account, recipient_account,\n            #                                amount, gas, gas_price)\n            #     print(error_info)\n            # assert message in str(error_info.value)\n    \n            self.web3_client.send_neon(sender_account, recipient_account,\n                                       amount, gas, gas_price)\n    \n        except ValueError as error_info:\n            print(error_info)\n            assert \"The account balance is less than required\" in str(\n>               error_info.value)\nE           AttributeError: 'ValueError' object has no attribute 'value'\n\nintegration/tests/basic/helper_methods.py:62: AttributeError",
+    "steps" : [ {
+      "name" : "test: send more than exist on account: neon",
+      "time" : {
+        "start" : 1645201004942,
+        "stop" : 1645201006778,
+        "duration" : 1836
+      },
+      "status" : "broken",
+      "statusMessage" : "AttributeError: 'ValueError' object has no attribute 'value'\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transfers.py\", line 49, in test_send_more_than_exist_on_account_neon\n    self.check_value_error_if_less_than_required(sender_account,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helper_methods.py\", line 105, in check_value_error_if_less_than_required\n    self.process_transaction(sender_account, recipient_account, amount,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helper_methods.py\", line 62, in process_transaction\n    error_info.value)\n",
+      "steps" : [ {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1645201004942,
+          "stop" : 1645201005612,
+          "duration" : 670
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1645201004942,
+            "stop" : 1645201004945,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1645201004945,
+            "stop" : 1645201005612,
+            "duration" : 667
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0xe87bdD4b6Fef4744aC1A4807CCCa0F854B86C0Ea'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1645201005612,
+          "stop" : 1645201006284,
+          "duration" : 672
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1645201005612,
+            "stop" : 1645201005617,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1645201005617,
+            "stop" : 1645201006284,
+            "duration" : 667
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x155c00B0deFFfB0aEd47460FC69D7fd2078C189d'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "checking less than required",
+        "time" : {
+          "start" : 1645201006285,
+          "stop" : 1645201006778,
+          "duration" : 493
+        },
+        "status" : "broken",
+        "statusMessage" : "AttributeError: 'ValueError' object has no attribute 'value'\n",
+        "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helper_methods.py\", line 105, in check_value_error_if_less_than_required\n    self.process_transaction(sender_account, recipient_account, amount,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helper_methods.py\", line 62, in process_transaction\n    error_info.value)\n",
+        "steps" : [ {
+          "name" : "processing transaction",
+          "time" : {
+            "start" : 1645201006285,
+            "stop" : 1645201006777,
+            "duration" : 492
+          },
+          "status" : "broken",
+          "statusMessage" : "AttributeError: 'ValueError' object has no attribute 'value'\n",
+          "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helper_methods.py\", line 62, in process_transaction\n    error_info.value)\n",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "sender_account",
+            "value" : "<eth_account.signers.local.LocalAccount object at 0x7f5859620130>"
+          }, {
+            "name" : "recipient_account",
+            "value" : "<eth_account.signers.local.LocalAccount object at 0x7f5859620850>"
+          }, {
+            "name" : "amount",
+            "value" : "10"
+          }, {
+            "name" : "gas",
+            "value" : "100000000"
+          }, {
+            "name" : "gas_price",
+            "value" : "0"
+          }, {
+            "name" : "message",
+            "value" : "'The account balance is less than required'"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "sender_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f5859620130>"
+        }, {
+          "name" : "recipient_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f5859620850>"
+        }, {
+          "name" : "amount",
+          "value" : "10"
+        }, {
+          "name" : "gas",
+          "value" : "100000000"
+        }, {
+          "name" : "gas_price",
+          "value" : "0"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "amount",
+        "value" : "10"
+      } ],
+      "stepsCount" : 8,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "5fe926b1359ffc6b",
+      "name" : "stdout",
+      "source" : "5fe926b1359ffc6b.txt",
+      "type" : "text/plain",
+      "size" : 323
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 9,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1645201012471,
+      "stop" : 1645201013271,
+      "duration" : 800
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 976984904.5608184 NEON 1358.83546716 SOL",
+      "time" : {
+        "start" : 1645201013108,
+        "stop" : 1645201013108,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1645201013271,
+        "stop" : 1645201013271,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1645201013273,
+      "stop" : 1645201013274,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az269-832"
+  }, {
+    "name" : "thread",
+    "value" : "1700-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "10"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "8a8ef6da0cd1eeb",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254-Basic-integration-tests-for-transactions-and-accounts/115//#testresult/8a8ef6da0cd1eeb",
+        "status" : "broken",
+        "statusDetails" : "AttributeError: 'ValueError' object has no attribute 'value'",
+        "time" : {
+          "start" : 1645200860233,
+          "stop" : 1645200862075,
+          "duration" : 1842
+        }
+      }, {
+        "uid" : "90b4499698e567a3",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254-Basic-integration-tests-for-transactions-and-accounts/114//#testresult/90b4499698e567a3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645200712661,
+          "stop" : 1645200714569,
+          "duration" : 1908
+        }
+      }, {
+        "uid" : "954e087a7a60c8b6",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254-Basic-integration-tests-for-transactions-and-accounts/113//#testresult/954e087a7a60c8b6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645200519186,
+          "stop" : 1645200521114,
+          "duration" : 1928
+        }
+      }, {
+        "uid" : "d78f7ad6b9016fd3",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254-Basic-integration-tests-for-transactions-and-accounts/112//#testresult/d78f7ad6b9016fd3",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = -5, actual balance = 5",
+        "time" : {
+          "start" : 1645199888355,
+          "stop" : 1645199889957,
+          "duration" : 1602
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "282b4493cfba2726.json",
+  "parameterValues" : [ "10" ]
+}
