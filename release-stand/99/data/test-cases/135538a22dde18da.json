@@ -1,0 +1,533 @@
+{
+  "uid" : "135538a22dde18da",
+  "name" : "test_send_more_than_exist_on_account_neon",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_more_than_exist_on_account_neon",
+  "historyId" : "4879ab2f0b923f9224c0efdc856b75fc",
+  "time" : {
+    "start" : 1645180414723,
+    "stop" : 1645180416896,
+    "duration" : 2173
+  },
+  "description" : "Send zero: neon",
+  "descriptionHtml" : "<p>Send zero: neon</p>\n",
+  "status" : "broken",
+  "statusMessage" : "ValueError: {'code': -32000, 'message': 'The account balance is less than required: Account 66ca6c788d96e8e584b1ac792ea0f4bd8ac50156; balance = 1000000000000000000000; gasPrice = 1000000000000000000; gasLimit = 100000000; fee = 100000000000000000000000000; value = 0; required_balance = 100000000000000000000000000; '}",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f8107890820>\n\n    @allure.step(\"test: send zero: neon\")\n    def test_send_more_than_exist_on_account_neon(self):\n        '''Send zero: neon'''\n        sender_account = self.create_account()\n        self.request_faucet_neon(sender_account.address, GREAT_AMOUNT)\n        self.assert_amount(sender_account.address, GREAT_AMOUNT)\n    \n        recipient_account = self.create_account()\n        self.request_faucet_neon(recipient_account.address,\n                                 FIRST_FAUCET_REQUEST_AMOUNT)\n        self.assert_amount(recipient_account.address,\n                           FIRST_FAUCET_REQUEST_AMOUNT)\n    \n>       tx_receipt = self.web3_client.send_neon(sender_account,\n                                                recipient_account, 0)\n\nintegration/tests/basic/test_transfers.py:101: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nutils/web3client.py:61: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f8107ba7340>\nresponse = {'error': {'code': -32000, 'message': 'The account balance is less than required: Account 66ca6c788d96e8e584b1ac792ea0...100000000000000000000000000; value = 0; required_balance = 100000000000000000000000000; '}, 'id': 31, 'jsonrpc': '2.0'}\nparams = ('0xf86b80880de0b6b3a76400008405f5e100946c3415953351d0a548d1140ae2fbead901d655be8080820101a0e1aa62c0c9801428eed583d908006552e20454bbfdb7e0398a2a6d0b1f8d797ea06167f117e31bec7d376e47d22dea35d2d6fef64a07fb1de8130f3ddccf72256f',)\nerror_formatters = <cyfunction identity at 0x7f810ca16ee0>\nnull_result_formatters = <cyfunction identity at 0x7f810ca16ee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'The account balance is less than required: Account 66ca6c788d96e8e584b1ac792ea0f4bd8ac50156; balance = 1000000000000000000000; gasPrice = 1000000000000000000; gasLimit = 100000000; fee = 100000000000000000000000000; value = 0; required_balance = 100000000000000000000000000; '}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1645180384467,
+      "stop" : 1645180384468,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1645180384467,
+      "stop" : 1645180384467,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1645180384468,
+      "stop" : 1645180385476,
+      "duration" : 1008
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1645180385476,
+      "stop" : 1645180385476,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1645180385476,
+      "stop" : 1645180385478,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1645180385478,
+      "stop" : 1645180385478,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645180410261,
+      "stop" : 1645180412535,
+      "duration" : 2274
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1645180410261,
+        "stop" : 1645180410266,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x7D42144fAab124DC9533334909fc37f0F55e8e36",
+      "time" : {
+        "start" : 1645180410266,
+        "stop" : 1645180411099,
+        "duration" : 833
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 977040462.5581094 NEON 1361.80499984 SOL",
+      "time" : {
+        "start" : 1645180412535,
+        "stop" : 1645180412535,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1645180414722,
+      "stop" : 1645180414722,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645180414722,
+      "stop" : 1645180414722,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send zero: neon",
+    "status" : "broken",
+    "statusMessage" : "ValueError: {'code': -32000, 'message': 'The account balance is less than required: Account 66ca6c788d96e8e584b1ac792ea0f4bd8ac50156; balance = 1000000000000000000000; gasPrice = 1000000000000000000; gasLimit = 100000000; fee = 100000000000000000000000000; value = 0; required_balance = 100000000000000000000000000; '}",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f8107890820>\n\n    @allure.step(\"test: send zero: neon\")\n    def test_send_more_than_exist_on_account_neon(self):\n        '''Send zero: neon'''\n        sender_account = self.create_account()\n        self.request_faucet_neon(sender_account.address, GREAT_AMOUNT)\n        self.assert_amount(sender_account.address, GREAT_AMOUNT)\n    \n        recipient_account = self.create_account()\n        self.request_faucet_neon(recipient_account.address,\n                                 FIRST_FAUCET_REQUEST_AMOUNT)\n        self.assert_amount(recipient_account.address,\n                           FIRST_FAUCET_REQUEST_AMOUNT)\n    \n>       tx_receipt = self.web3_client.send_neon(sender_account,\n                                                recipient_account, 0)\n\nintegration/tests/basic/test_transfers.py:101: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nutils/web3client.py:61: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f8107ba7340>\nresponse = {'error': {'code': -32000, 'message': 'The account balance is less than required: Account 66ca6c788d96e8e584b1ac792ea0...100000000000000000000000000; value = 0; required_balance = 100000000000000000000000000; '}, 'id': 31, 'jsonrpc': '2.0'}\nparams = ('0xf86b80880de0b6b3a76400008405f5e100946c3415953351d0a548d1140ae2fbead901d655be8080820101a0e1aa62c0c9801428eed583d908006552e20454bbfdb7e0398a2a6d0b1f8d797ea06167f117e31bec7d376e47d22dea35d2d6fef64a07fb1de8130f3ddccf72256f',)\nerror_formatters = <cyfunction identity at 0x7f810ca16ee0>\nnull_result_formatters = <cyfunction identity at 0x7f810ca16ee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'The account balance is less than required: Account 66ca6c788d96e8e584b1ac792ea0f4bd8ac50156; balance = 1000000000000000000000; gasPrice = 1000000000000000000; gasLimit = 100000000; fee = 100000000000000000000000000; value = 0; required_balance = 100000000000000000000000000; '}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+    "steps" : [ {
+      "name" : "test: send zero: neon",
+      "time" : {
+        "start" : 1645180414723,
+        "stop" : 1645180416895,
+        "duration" : 2172
+      },
+      "status" : "broken",
+      "statusMessage" : "ValueError: {'code': -32000, 'message': 'The account balance is less than required: Account 66ca6c788d96e8e584b1ac792ea0f4bd8ac50156; balance = 1000000000000000000000; gasPrice = 1000000000000000000; gasLimit = 100000000; fee = 100000000000000000000000000; value = 0; required_balance = 100000000000000000000000000; '}\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transfers.py\", line 101, in test_send_more_than_exist_on_account_neon\n    tx_receipt = self.web3_client.send_neon(sender_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 61, in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py\", line 783, in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py\", line 57, in caller\n    result = w3.manager.request_blocking(method_str,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py\", line 198, in request_blocking\n    return self.formatted_response(response,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py\", line 171, in formatted_response\n    raise ValueError(response[\"error\"])\n",
+      "steps" : [ {
+        "name" : "creating a new account",
+        "time" : {
+          "start" : 1645180414723,
+          "stop" : 1645180414727,
+          "duration" : 4
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "requesting faucet for Neon",
+        "time" : {
+          "start" : 1645180414728,
+          "stop" : 1645180415393,
+          "duration" : 665
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "wallet",
+          "value" : "'0x66Ca6C788d96E8e584B1Ac792EA0F4BD8ac50156'"
+        }, {
+          "name" : "amount",
+          "value" : "1000"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "checking balance",
+        "time" : {
+          "start" : 1645180415393,
+          "stop" : 1645180415559,
+          "duration" : 166
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "getting balance of account",
+          "time" : {
+            "start" : 1645180415394,
+            "stop" : 1645180415559,
+            "duration" : 165
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "address",
+            "value" : "'0x66Ca6C788d96E8e584B1Ac792EA0F4BD8ac50156'"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "comparing expected and actual balance",
+          "time" : {
+            "start" : 1645180415559,
+            "stop" : 1645180415559,
+            "duration" : 0
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "expected",
+            "value" : "1000"
+          }, {
+            "name" : "actual",
+            "value" : "Decimal('1000')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "address",
+          "value" : "'0x66Ca6C788d96E8e584B1Ac792EA0F4BD8ac50156'"
+        }, {
+          "name" : "expected_amount",
+          "value" : "1000"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account",
+        "time" : {
+          "start" : 1645180415559,
+          "stop" : 1645180415563,
+          "duration" : 4
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "requesting faucet for Neon",
+        "time" : {
+          "start" : 1645180415563,
+          "stop" : 1645180416229,
+          "duration" : 666
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "wallet",
+          "value" : "'0x6c3415953351d0a548D1140ae2fBEAD901d655be'"
+        }, {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "checking balance",
+        "time" : {
+          "start" : 1645180416229,
+          "stop" : 1645180416395,
+          "duration" : 166
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "getting balance of account",
+          "time" : {
+            "start" : 1645180416229,
+            "stop" : 1645180416395,
+            "duration" : 166
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "address",
+            "value" : "'0x6c3415953351d0a548D1140ae2fBEAD901d655be'"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "comparing expected and actual balance",
+          "time" : {
+            "start" : 1645180416395,
+            "stop" : 1645180416395,
+            "duration" : 0
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "expected",
+            "value" : "5"
+          }, {
+            "name" : "actual",
+            "value" : "Decimal('5')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "address",
+          "value" : "'0x6c3415953351d0a548D1140ae2fBEAD901d655be'"
+        }, {
+          "name" : "expected_amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 10,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 11,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1645180416921,
+      "stop" : 1645180417725,
+      "duration" : 804
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 977038452.5581094 NEON 1361.78613216 SOL",
+      "time" : {
+        "start" : 1645180417559,
+        "stop" : 1645180417559,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1645180417725,
+        "stop" : 1645180417725,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1645180417727,
+      "stop" : 1645180417727,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az269-832"
+  }, {
+    "name" : "thread",
+    "value" : "1697-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "135538a22dde18da.json",
+  "parameterValues" : [ ]
+}
