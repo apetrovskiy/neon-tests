@@ -1,0 +1,502 @@
+{
+  "uid" : "fd3ceecfaf4318b8",
+  "name" : "test_send_more_than_exist_on_account_neon[10.1]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_more_than_exist_on_account_neon",
+  "historyId" : "55202fdeb4b55f961d79428061197c87",
+  "time" : {
+    "start" : 1645189879527,
+    "stop" : 1645189880798,
+    "duration" : 1271
+  },
+  "description" : "Send more than exist on account: neon",
+  "descriptionHtml" : "<p>Send more than exist on account: neon</p>\n",
+  "status" : "broken",
+  "statusMessage" : "TypeError: check_value_error_if_less_than_required() missing 2 required positional arguments: 'gas' and 'gas_price'",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f5d7fc8bd90>\namount = 10.1\n\n    @allure.step(\"test: send more than exist on account: neon\")\n    @pytest.mark.parametrize(\"amount\", TRANSFER_AMOUNT_DATA)\n    def test_send_more_than_exist_on_account_neon(self, amount):\n        '''Send more than exist on account: neon'''\n        # sender_account = self.create_account()\n        # self.request_faucet_neon(sender_account.address,\n        #                          FIRST_FAUCET_REQUEST_AMOUNT)\n        # self.assert_amount(sender_account.address, FIRST_FAUCET_REQUEST_AMOUNT)\n        sender_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        # recipient_account = self.create_account()\n        # self.request_faucet_neon(recipient_account.address,\n        #                          FIRST_FAUCET_REQUEST_AMOUNT)\n        # self.assert_amount(recipient_account.address,\n        #                    FIRST_FAUCET_REQUEST_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        # with pytest.raises(ValueError) as error_info:\n        #     self.transfer_neon(sender_account,recipient_account,amount)\n        # assert \"The account balance is less than required\" in str(error_info.value)\n>       self.check_value_error_if_less_than_required(sender_account,\n                                                     recipient_account, amount)\nE       TypeError: check_value_error_if_less_than_required() missing 2 required positional arguments: 'gas' and 'gas_price'\n\nintegration/tests/basic/test_transfers.py:72: TypeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1645189849331,
+      "stop" : 1645189849331,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1645189849331,
+      "stop" : 1645189849332,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1645189849332,
+      "stop" : 1645189850257,
+      "duration" : 925
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1645189850257,
+      "stop" : 1645189850257,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1645189850257,
+      "stop" : 1645189850259,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1645189850259,
+      "stop" : 1645189850259,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645189873201,
+      "stop" : 1645189875278,
+      "duration" : 2077
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1645189873201,
+        "stop" : 1645189873205,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x1aA565aee0042dAa4d9790083649C1B182458334",
+      "time" : {
+        "start" : 1645189873205,
+        "stop" : 1645189873968,
+        "duration" : 763
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 977022464.5608184 NEON 1360.26976084 SOL",
+      "time" : {
+        "start" : 1645189875278,
+        "stop" : 1645189875278,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1645189879526,
+      "stop" : 1645189879526,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645189879526,
+      "stop" : 1645189879526,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send more than exist on account: neon",
+    "status" : "broken",
+    "statusMessage" : "TypeError: check_value_error_if_less_than_required() missing 2 required positional arguments: 'gas' and 'gas_price'",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f5d7fc8bd90>\namount = 10.1\n\n    @allure.step(\"test: send more than exist on account: neon\")\n    @pytest.mark.parametrize(\"amount\", TRANSFER_AMOUNT_DATA)\n    def test_send_more_than_exist_on_account_neon(self, amount):\n        '''Send more than exist on account: neon'''\n        # sender_account = self.create_account()\n        # self.request_faucet_neon(sender_account.address,\n        #                          FIRST_FAUCET_REQUEST_AMOUNT)\n        # self.assert_amount(sender_account.address, FIRST_FAUCET_REQUEST_AMOUNT)\n        sender_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        # recipient_account = self.create_account()\n        # self.request_faucet_neon(recipient_account.address,\n        #                          FIRST_FAUCET_REQUEST_AMOUNT)\n        # self.assert_amount(recipient_account.address,\n        #                    FIRST_FAUCET_REQUEST_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        # with pytest.raises(ValueError) as error_info:\n        #     self.transfer_neon(sender_account,recipient_account,amount)\n        # assert \"The account balance is less than required\" in str(error_info.value)\n>       self.check_value_error_if_less_than_required(sender_account,\n                                                     recipient_account, amount)\nE       TypeError: check_value_error_if_less_than_required() missing 2 required positional arguments: 'gas' and 'gas_price'\n\nintegration/tests/basic/test_transfers.py:72: TypeError",
+    "steps" : [ {
+      "name" : "test: send more than exist on account: neon",
+      "time" : {
+        "start" : 1645189879527,
+        "stop" : 1645189880798,
+        "duration" : 1271
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: check_value_error_if_less_than_required() missing 2 required positional arguments: 'gas' and 'gas_price'\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transfers.py\", line 72, in test_send_more_than_exist_on_account_neon\n    self.check_value_error_if_less_than_required(sender_account,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n",
+      "steps" : [ {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1645189879527,
+          "stop" : 1645189880161,
+          "duration" : 634
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1645189879527,
+            "stop" : 1645189879530,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1645189879531,
+            "stop" : 1645189880161,
+            "duration" : 630
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x0DA1F695AEB30Ab4ba270f642ca1fEe6b7b809d1'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1645189880161,
+          "stop" : 1645189880797,
+          "duration" : 636
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1645189880161,
+            "stop" : 1645189880166,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1645189880166,
+            "stop" : 1645189880797,
+            "duration" : 631
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x4798da292D402B57D4aF0c8e33a4D96e12865Af3'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "checking less than required",
+        "time" : {
+          "start" : 1645189880798,
+          "stop" : 1645189880798,
+          "duration" : 0
+        },
+        "status" : "broken",
+        "statusMessage" : "TypeError: check_value_error_if_less_than_required() missing 2 required positional arguments: 'gas' and 'gas_price'\n",
+        "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "sender_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f5d7fc3a670>"
+        }, {
+          "name" : "recipient_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f5d7fc3a7c0>"
+        }, {
+          "name" : "amount",
+          "value" : "10.1"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "amount",
+        "value" : "10.1"
+      } ],
+      "stepsCount" : 7,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 8,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1645189882080,
+      "stop" : 1645189882846,
+      "duration" : 766
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 977021419.5608184 NEON 1360.22259164 SOL",
+      "time" : {
+        "start" : 1645189882715,
+        "stop" : 1645189882715,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1645189882846,
+        "stop" : 1645189882846,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1645189882847,
+      "stop" : 1645189882848,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az173-605"
+  }, {
+    "name" : "thread",
+    "value" : "1852-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "10.1"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "1815b47913ace52d",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254-Basic-integration-tests-for-transactions-and-accounts/102//#testresult/1815b47913ace52d",
+        "status" : "broken",
+        "statusDetails" : "AttributeError: 'TestTransfer' object has no attribute 'request_faucet'",
+        "time" : {
+          "start" : 1645183552646,
+          "stop" : 1645183552651,
+          "duration" : 5
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "fd3ceecfaf4318b8.json",
+  "parameterValues" : [ "10.1" ]
+}
