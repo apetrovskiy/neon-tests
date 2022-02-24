@@ -26,8 +26,8 @@ class TestTransfer(BasicHelpers):
         self.transfer_neon(sender_account,
                            recipient_account,
                            amount,
-                           gas=10_000,
-                           gas_price=1_000_000_000)
+                           gas=None, # 10_000,
+                           gas_price=None) # 1_000_000_000)
 
         self.assert_sender_amount(sender_account.address,
                                   GREAT_AMOUNT - amount)
