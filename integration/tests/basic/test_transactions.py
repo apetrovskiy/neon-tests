@@ -1,5 +1,6 @@
 import allure
 import pytest
+from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
 from integration.tests.basic.helpers.helper_methods import FIRST_FAUCET_REQUEST_AMOUNT, GREAT_AMOUNT, BasicHelpers
@@ -34,7 +35,6 @@ class TestRpcCallsTransactions(BasicHelpers):
         "test: verify implemented rpc calls work eth_getTransactionCount")
     def test_rpc_call_eth_getTransactionCount(self):
         """Verify implemented rpc calls work eth_getTransactionCount"""
-        # ["0x407d73d8a49eeb85d32cf465507dd71d507100c1","latest"]
         sender_account = self.create_account_with_balance(GREAT_AMOUNT)
         recipient_account = self.create_account_with_balance(
             FIRST_FAUCET_REQUEST_AMOUNT)
@@ -49,7 +49,7 @@ class TestRpcCallsTransactions(BasicHelpers):
         #                           GREAT_AMOUNT - SAMPLE_AMOUNT)
         # self.assert_recipient_amount(recipient_account.address,
         #                              FIRST_FAUCET_REQUEST_AMOUNT + SAMPLE_AMOUNT)
-        params = [sender_account.address, "latest"]  # TODO: enum
+        params = [sender_account.address, Tag.LATEST.value]  # TODO: enum
         model = RpcRequestFactory.get_trx_count(params=[params])
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
