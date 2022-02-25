@@ -39,11 +39,12 @@ class TestRpcCallsTransactions(BasicHelpers):
         recipient_account = self.create_account_with_balance(
             FIRST_FAUCET_REQUEST_AMOUNT)
 
-        self.transfer_neon(sender_account,
-                           recipient_account,
-                           SAMPLE_AMOUNT,
-                           gas=None, # 10_000,
-                           gas_price=None) # 1_000_000_000)
+        self.transfer_neon(
+            sender_account,
+            recipient_account,
+            SAMPLE_AMOUNT,
+            gas=0,  # 10_000,
+            gas_price=0)  # 1_000_000_000)
 
         # self.assert_sender_amount(sender_account.address,
         #                           GREAT_AMOUNT - SAMPLE_AMOUNT)
