@@ -1,0 +1,416 @@
+{
+  "uid" : "f213391b64ce811b",
+  "name" : "test_send_neon_to_exist_account",
+  "fullName" : "integration.tests.economy.test_economics.TestEconomics#test_send_neon_to_exist_account",
+  "historyId" : "07ec4851a3f9619fb95689b62d62e710",
+  "time" : {
+    "start" : 1645789475742,
+    "stop" : 1645789482642,
+    "duration" : 6900
+  },
+  "description" : "Verify how many cost neon send to use who was already initialized",
+  "descriptionHtml" : "<p>Verify how many cost neon send to use who was already initialized</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert -66666666 == 586\n +  where -66666666 = int(((935214734628238898 - 935215734628238898) / 15000))",
+  "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7fbf4cb25b80>\n\n    @pytest.mark.only_stands\n    def test_send_neon_to_exist_account(self):\n        \"\"\"Verify how many cost neon send to use who was already initialized\"\"\"\n        acc2 = self.web3_client.create_account()\n        self.web3_client.send_neon(self.acc, acc2, 1)\n    \n        assert self.web3_client.get_balance(acc2) == 1\n    \n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n        tx = self.web3_client.send_neon(self.acc, acc2, 5)\n    \n        assert self.web3_client.get_balance(acc2) == 6\n    \n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n        assert sol_balance_before > sol_balance_after, \"Operator balance after send tx doesn't changed\"\n>       self.assert_tx_gasused(neon_balance_before, tx)\n\nintegration/tests/economy/test_economics.py:105: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.economy.test_economics.TestEconomics object at 0x7fbf4cb25b80>\nbalance_before = 935215734628238898\ntransaction = AttributeDict({'transactionHash': HexBytes('0xe3828389415a94b10a0bac1b03568a1baa639c1e2fd19e8a69c9d16b269c5e00'), 'tra...0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')})\n\n    @allure.step(\"Verify operator get full gas for TX\")\n    def assert_tx_gasused(self, balance_before, transaction):\n        gas_price = int(self.web3_client.gas_price() / 1000000000)\n        balance = self.operator.get_neon_balance()\n        assert transaction[\"gasUsed\"] == transaction[\"cumulativeGasUsed\"]\n>       assert int((balance - balance_before) / transaction[\"gasUsed\"]) == gas_price\nE       assert -66666666 == 586\nE        +  where -66666666 = int(((935214734628238898 - 935215734628238898) / 15000))\n\nintegration/tests/economy/test_economics.py:50: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1645789465261,
+      "stop" : 1645789465261,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1645789465261,
+      "stop" : 1645789465263,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1645789465263,
+      "stop" : 1645789466281,
+      "duration" : 1018
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1645789466281,
+      "stop" : 1645789466282,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1645789466282,
+      "stop" : 1645789466283,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1645789466283,
+      "stop" : 1645789466283,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "install_solcx_versions",
+    "time" : {
+      "start" : 1645789466283,
+      "stop" : 1645789467896,
+      "duration" : 1613
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_price",
+    "time" : {
+      "start" : 1645789467897,
+      "stop" : 1645789468066,
+      "duration" : 169
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "SOL price 88.913765$",
+      "time" : {
+        "start" : 1645789468066,
+        "stop" : 1645789468066,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645789468066,
+      "stop" : 1645789470816,
+      "duration" : 2750
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1645789468066,
+        "stop" : 1645789468077,
+        "duration" : 11
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x8F6f3860A192516Da2dF8642bdB2d3dA888fc672",
+      "time" : {
+        "start" : 1645789468077,
+        "stop" : 1645789469234,
+        "duration" : 1157
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 935215734.6282389 NEON 2058.6371666 SOL",
+      "time" : {
+        "start" : 1645789470816,
+        "stop" : 1645789470816,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1645789475741,
+      "stop" : 1645789475741,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1645789475741,
+      "stop" : 1645789475741,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify how many cost neon send to use who was already initialized",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert -66666666 == 586\n +  where -66666666 = int(((935214734628238898 - 935215734628238898) / 15000))",
+    "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7fbf4cb25b80>\n\n    @pytest.mark.only_stands\n    def test_send_neon_to_exist_account(self):\n        \"\"\"Verify how many cost neon send to use who was already initialized\"\"\"\n        acc2 = self.web3_client.create_account()\n        self.web3_client.send_neon(self.acc, acc2, 1)\n    \n        assert self.web3_client.get_balance(acc2) == 1\n    \n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n        tx = self.web3_client.send_neon(self.acc, acc2, 5)\n    \n        assert self.web3_client.get_balance(acc2) == 6\n    \n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n        assert sol_balance_before > sol_balance_after, \"Operator balance after send tx doesn't changed\"\n>       self.assert_tx_gasused(neon_balance_before, tx)\n\nintegration/tests/economy/test_economics.py:105: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.economy.test_economics.TestEconomics object at 0x7fbf4cb25b80>\nbalance_before = 935215734628238898\ntransaction = AttributeDict({'transactionHash': HexBytes('0xe3828389415a94b10a0bac1b03568a1baa639c1e2fd19e8a69c9d16b269c5e00'), 'tra...0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')})\n\n    @allure.step(\"Verify operator get full gas for TX\")\n    def assert_tx_gasused(self, balance_before, transaction):\n        gas_price = int(self.web3_client.gas_price() / 1000000000)\n        balance = self.operator.get_neon_balance()\n        assert transaction[\"gasUsed\"] == transaction[\"cumulativeGasUsed\"]\n>       assert int((balance - balance_before) / transaction[\"gasUsed\"]) == gas_price\nE       assert -66666666 == 586\nE        +  where -66666666 = int(((935214734628238898 - 935215734628238898) / 15000))\n\nintegration/tests/economy/test_economics.py:50: AssertionError",
+    "steps" : [ {
+      "name" : "Verify operator get full gas for TX",
+      "time" : {
+        "start" : 1645789481755,
+        "stop" : 1645789482641,
+        "duration" : 886
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: assert -66666666 == 586\n +  where -66666666 = int(((935214734628238898 - 935215734628238898) / 15000))\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/economy/test_economics.py\", line 50, in assert_tx_gasused\n    assert int((balance - balance_before) / transaction[\"gasUsed\"]) == gas_price\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "balance_before",
+        "value" : "935215734628238898"
+      }, {
+        "name" : "transaction",
+        "value" : "AttributeDict({'transactionHash': HexBytes('0xe3828389415a94b10a0bac1b03568a1baa639c1e2fd19e8a69c9d16b269c5e00'), 'transactionIndex': 0, 'blockHash': HexBytes('0xd0f526ebe117dd3c62cef497afc80dd783219db154dbb68c54818fb82ae39377'), 'blockNumber': 3023124, 'from': '0x8F6f3860A192516Da2dF8642bdB2d3dA888fc672', 'to': '0x5ae38a4DFA3e96647a9ce430462Ce6C9A8bCC667', 'gasUsed': 15000, 'cumulativeGasUsed': 15000, 'contractAddress': None, 'logs': [], 'status': 1, 'logsBloom': HexBytes('0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')})"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1645789505181,
+      "stop" : 1645789505811,
+      "duration" : 630
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 935210579.6306566 NEON 2058.42197444 SOL",
+      "time" : {
+        "start" : 1645789505680,
+        "stop" : 1645789505680,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 890.047611972 NEON",
+      "time" : {
+        "start" : 1645789505811,
+        "stop" : 1645789505811,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1645789505814,
+      "stop" : 1645789505814,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Operator economy"
+  }, {
+    "name" : "tag",
+    "value" : "only_stands"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.economy"
+  }, {
+    "name" : "suite",
+    "value" : "test_economics"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestEconomics"
+  }, {
+    "name" : "host",
+    "value" : "fv-az173-695"
+  }, {
+    "name" : "thread",
+    "value" : "1703-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.economy.test_economics"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "3f012ef3b35c133a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/7//#testresult/3f012ef3b35c133a",
+        "status" : "broken",
+        "statusDetails" : "requests.exceptions.JSONDecodeError: [Errno Expecting value] <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n: 0",
+        "time" : {
+          "start" : 1645775430544,
+          "stop" : 1645775430544,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ "only_stands" ]
+  },
+  "source" : "f213391b64ce811b.json",
+  "parameterValues" : [ ]
+}
