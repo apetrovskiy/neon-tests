@@ -28,7 +28,7 @@ class TestTransfer(BasicHelpers):
             recipient_account,
             amount,
             gas=0,  # 10_000,
-            gas_price=0)  # 1_000_000_000)
+            gas_price=self.web3_client.gas_price()) # 0)  # 1_000_000_000)
 
         self.assert_sender_amount(sender_account.address,
                                   GREAT_AMOUNT - amount)
