@@ -69,7 +69,7 @@ class BasicHelpers(BaseTests):
                       recipient_account: Account,
                       amount: int,
                       gas: Optional[int] = 0,
-                      gas_price: Optional[int] = None) -> web3.types.TxReceipt:
+                      gas_price: Optional[int] = 0) -> web3.types.TxReceipt:
         return self.process_transaction(sender_account, recipient_account,
                                         amount, gas, gas_price,
                                         "InvalidInstructionData")
@@ -81,7 +81,7 @@ class BasicHelpers(BaseTests):
             recipient_account: Account,
             amount: int,
             gas: Optional[int] = 0,
-            gas_price: Optional[int] = None) -> web3.types.TxReceipt:
+            gas_price: Optional[int] = 0) -> web3.types.TxReceipt:
         return self.process_transaction(sender_account, recipient_account,
                                         amount, gas, gas_price, "aaa")
 
@@ -92,7 +92,7 @@ class BasicHelpers(BaseTests):
             recipient_account: Account,
             amount: int,
             gas: Optional[int] = 0,
-            gas_price: Optional[int] = None) -> web3.types.TxReceipt:
+            gas_price: Optional[int] = 0) -> web3.types.TxReceipt:
         return self.process_transaction(
             sender_account, recipient_account, amount, gas, gas_price,
             "The account balance is less than required")
