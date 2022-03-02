@@ -59,7 +59,8 @@ class BasicHelpers(BaseTests):
 
         with pytest.raises(Exception) as error_info:
             self.web3_client.send_neon(sender_account, recipient_account,
-                                       amount, gas, gas_price)
+                                       amount)
+                                    #    , gas, gas_price)
         print(error_info)
         assert message in str(error_info)
         # except ValueError as error_info:
