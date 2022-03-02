@@ -52,6 +52,7 @@ class BasicHelpers(BaseTests):
                             amount: int,
                             message: str = "") -> web3.types.TxReceipt:
 
+        tx: web3.types.TxReceipt
         with pytest.raises(Exception) as error_info:
             tx = self.web3_client.send_neon(sender_account, recipient_account,
                                             amount)
