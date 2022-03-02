@@ -1,0 +1,384 @@
+{
+  "uid" : "fa4346531b251594",
+  "name" : "test_deploy_contract_to_exist_unpayed",
+  "fullName" : "integration.tests.economy.test_economics.TestEconomics#test_deploy_contract_to_exist_unpayed",
+  "historyId" : "33e606011b08caf98458aa691e9300f1",
+  "time" : {
+    "start" : 1646236656842,
+    "stop" : 1646236669505,
+    "duration" : 12663
+  },
+  "status" : "broken",
+  "statusMessage" : "ValueError: {\"code\": -32002, \"message\": \"Transaction simulation failed: Error processing Instruction 2: custom program error: 0x5\", \"data\": {\"accounts\": null, \"err\": {\"InstructionError\": [2, {\"Custom\": 5}]}, \"logs\": [\"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io invoke [1]\", \"Program 11111111111111111111111111111111 invoke [2]\", \"Program 11111111111111111111111111111111 success\", \"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [2]\", \"Program log: Transfer 2039280 lamports to the associated token account\", \"Program 11111111111111111111111111111111 invoke [3]\", \"Program 11111111111111111111111111111111 success\", \"Program log: Allocate space for the associated token account\", \"Program 11111111111111111111111111111111 invoke [3]\", \"Program 11111111111111111111111111111111 success\", \"Program log: Assign the associated token account to the SPL Token program\", \"Program 11111111111111111111111111111111 invoke [3]\", \"Program 11111111111111111111111111111111 success\", \"Program log: Initialize the associated token account\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]\", \"Program log: Instruction: InitializeAccount\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 3920 of 465476 compute units\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success\", \"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 25134 of 486009 compute units\", \"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success\", \"Program log: Total memory occupied: 1414\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io consumed 40603 of 500000 compute units\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io success\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io invoke [1]\", \"Program 11111111111111111111111111111111 invoke [2]\", \"Program 11111111111111111111111111111111 success\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]\", \"Program log: Instruction: Transfer\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 3402 of 435472 compute units\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success\", \"Program log: program/src/token.rs:250\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io consumed 75056 of 500000 compute units\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io failed: custom program error: 0x5\"]}}",
+  "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7fc3ed935820>\n\n    def test_deploy_contract_to_exist_unpayed(self):\n        acc2 = self.web3_client.create_account()\n        self.web3_client.send_neon(self.acc, acc2, 50)\n    \n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n    \n        nonce = self.web3_client.eth.get_transaction_count(acc2.address)\n        contract_address = self.web3_client.toChecksumAddress(self.web3_client.keccak(rlp.encode((bytes.fromhex(acc2.address[2:]), nonce)))[-20:].hex())\n    \n>       self.web3_client.send_neon(acc2, contract_address, 1, gas=1)\n\nintegration/tests/economy/test_economics.py:695: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nutils/web3client.py:64: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7fc3ed835160>\nresponse = {'error': '{\"code\": -32002, \"message\": \"Transaction simulation failed: Error processing Instruction 2: custom program ...ogram 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io failed: custom program error: 0x5\"]}}', 'id': 322, 'jsonrpc': '2.0'}\nparams = ('0xf86c80859c41edc6400194c27372da1e74751e174750978ba91f5ed73bc78e880de0b6b3a764000080820101a0ca80a19d241d3406b0269a03de1c179e17c81cb85f94bc854555f6cb8f395243a02813667072c6746d4f1ac8f529278957ce3ed021aeabe5d2047c625f2355d5ea',)\nerror_formatters = <cyfunction identity at 0x7fc3f2c05ee0>\nnull_result_formatters = <cyfunction identity at 0x7fc3f2c05ee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {\"code\": -32002, \"message\": \"Transaction simulation failed: Error processing Instruction 2: custom program error: 0x5\", \"data\": {\"accounts\": null, \"err\": {\"InstructionError\": [2, {\"Custom\": 5}]}, \"logs\": [\"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io invoke [1]\", \"Program 11111111111111111111111111111111 invoke [2]\", \"Program 11111111111111111111111111111111 success\", \"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [2]\", \"Program log: Transfer 2039280 lamports to the associated token account\", \"Program 11111111111111111111111111111111 invoke [3]\", \"Program 11111111111111111111111111111111 success\", \"Program log: Allocate space for the associated token account\", \"Program 11111111111111111111111111111111 invoke [3]\", \"Program 11111111111111111111111111111111 success\", \"Program log: Assign the associated token account to the SPL Token program\", \"Program 11111111111111111111111111111111 invoke [3]\", \"Program 11111111111111111111111111111111 success\", \"Program log: Initialize the associated token account\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]\", \"Program log: Instruction: InitializeAccount\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 3920 of 465476 compute units\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success\", \"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 25134 of 486009 compute units\", \"Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success\", \"Program log: Total memory occupied: 1414\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io consumed 40603 of 500000 compute units\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io success\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io invoke [1]\", \"Program 11111111111111111111111111111111 invoke [2]\", \"Program 11111111111111111111111111111111 success\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]\", \"Program log: Instruction: Transfer\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 3402 of 435472 compute units\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success\", \"Program log: program/src/token.rs:250\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io consumed 75056 of 500000 compute units\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io failed: custom program error: 0x5\"]}}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646236040115,
+      "stop" : 1646236040115,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646236040116,
+      "stop" : 1646236040117,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646236040117,
+      "stop" : 1646236041183,
+      "duration" : 1066
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646236041183,
+      "stop" : 1646236041183,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646236041183,
+      "stop" : 1646236041183,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646236041183,
+      "stop" : 1646236041184,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "install_solcx_versions",
+    "time" : {
+      "start" : 1646236041184,
+      "stop" : 1646236042035,
+      "duration" : 851
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646236041184,
+      "stop" : 1646236041184,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_price",
+    "time" : {
+      "start" : 1646236042036,
+      "stop" : 1646236042550,
+      "duration" : 514
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "SOL price 102.038836$",
+      "time" : {
+        "start" : 1646236042550,
+        "stop" : 1646236042550,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646236042550,
+      "stop" : 1646236073986,
+      "duration" : 31436
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646236042550,
+        "stop" : 1646236042563,
+        "duration" : 13
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x52cFAA35A333686E529575FFfF6307652d759763",
+      "time" : {
+        "start" : 1646236042563,
+        "stop" : 1646236043746,
+        "duration" : 1183
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 1047966363.3459393 NEON 13293.30951412 SOL",
+      "time" : {
+        "start" : 1646236073986,
+        "stop" : 1646236073986,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646236656841,
+      "stop" : 1646236656841,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646236656841,
+      "stop" : 1646236656841,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "setup_sol_cost",
+    "time" : {
+      "start" : 1646236656841,
+      "stop" : 1646236656841,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1646236703909,
+      "stop" : 1646236713793,
+      "duration" : 9884
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 1047966287.77943 NEON 13291.75771544 SOL",
+      "time" : {
+        "start" : 1646236713625,
+        "stop" : 1646236713625,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 432.264357916 NEON",
+      "time" : {
+        "start" : 1646236713793,
+        "stop" : 1646236713793,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646236713799,
+      "stop" : 1646236713800,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Operator economy"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.economy"
+  }, {
+    "name" : "suite",
+    "value" : "test_economics"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestEconomics"
+  }, {
+    "name" : "host",
+    "value" : "fv-az453-222"
+  }, {
+    "name" : "thread",
+    "value" : "1675-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.economy.test_economics"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "fa4346531b251594.json",
+  "parameterValues" : [ ]
+}
