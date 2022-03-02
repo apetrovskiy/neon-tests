@@ -47,8 +47,8 @@ class BasicHelpers(BaseTests):
                             sender_account: Account,
                             recipient_account: Account,
                             amount: int,
-                            gas: Optional[int] = 0,
-                            gas_price: Optional[int] = None,
+                            # gas: Optional[int] = 0,
+                            # gas_price: Optional[int] = None,
                             message: str = ""):
         # try:
         # with pytest.raises(ValueError) as error_info:
@@ -77,7 +77,8 @@ class BasicHelpers(BaseTests):
         #   gas: Optional[int] = 0,
         #   gas_price: Optional[int] = None) -> web3.types.TxReceipt:
         self.process_transaction(sender_account, recipient_account, amount,
-                                 gas, gas_price, "InvalidInstructionData")
+                                #  gas, gas_price, 
+                                 "InvalidInstructionData")
 
     @allure.step("transferring 0 tokens")
     def transfer_zero_neon(self, sender_account: Account,
@@ -86,7 +87,8 @@ class BasicHelpers(BaseTests):
         # gas: Optional[int] = 0,
         # gas_price: Optional[int] = None) -> web3.types.TxReceipt:
         self.process_transaction(sender_account, recipient_account, amount,
-                                 gas, gas_price, "aaa")
+                                #  gas, gas_price, 
+                                 "aaa")
 
     @allure.step("checking less than required")
     def check_value_error_if_less_than_required(
@@ -95,7 +97,7 @@ class BasicHelpers(BaseTests):
         # gas: Optional[int] = 0,
         # gas_price: Optional[int] = None):
         self.process_transaction(sender_account, recipient_account, amount,
-                                 gas, gas_price,
+                                #  gas, gas_price,
                                  "The account balance is less than required")
 
     def compare_balance(self, expected: int, actual: int, message: str):
