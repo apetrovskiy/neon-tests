@@ -13,6 +13,8 @@ SECOND_FAUCET_REQUEST_AMOUNT = 3
 GREAT_AMOUNT = 1_000
 DEFAULT_TRANSFER_AMOUNT = 3
 
+WAITING_FOR_MS = "waiting for MS"
+
 
 class BasicHelpers(BaseTests):
     jsonrpc_requester: JsonRpcRequester
@@ -74,6 +76,13 @@ class BasicHelpers(BaseTests):
                            amount: int) -> web3.types.TxReceipt:
         return self.process_transaction(sender_account, recipient_account,
                                         amount, "aaa")
+
+    @allure.step("transferring to an invalid address")
+    def transfer_to_invalid_address(self, sender_account: Account,
+                                    recipient_account: Account,
+                                    amount: int) -> web3.types.TxReceipt:
+        return self.process_transaction(sender_account, recipient_account,
+                                        amount, "InvalidAddress")
 
     @allure.step("checking less than required")
     def check_value_error_if_less_than_required(

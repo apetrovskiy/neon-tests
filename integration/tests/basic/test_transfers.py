@@ -2,7 +2,7 @@ from typing import Union
 import allure
 import pytest
 from integration.tests.basic.helpers.helper_methods import DEFAULT_TRANSFER_AMOUNT, FIRST_FAUCET_REQUEST_AMOUNT, \
-    GREAT_AMOUNT, \
+    GREAT_AMOUNT, WAITING_FOR_MS, \
     BasicHelpers
 
 NON_EXISTING_ADDRESS = "0xmmmmm"
@@ -53,7 +53,7 @@ class TestTransfer(BasicHelpers):
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT + amount)
 
-    @pytest.mark.skip("waiting for MS")
+    @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step("test: send spl wrapped account from one account to another")
     def test_send_spl_wrapped_account_from_one_account_to_another(self):
         """Send spl wrapped account from one account to another"""
@@ -77,7 +77,7 @@ class TestTransfer(BasicHelpers):
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT)
 
-    @pytest.mark.skip("waiting for MS")
+    @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step(
         "test: send more than exist on account: spl (with different precision)"
     )
@@ -107,7 +107,7 @@ class TestTransfer(BasicHelpers):
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT)
 
-    @pytest.mark.skip("waiting for MS")
+    @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step("test: send zero: spl (with different precision)")
     def test_zero_spl(self):
         """Send zero: spl (with different precision)"""
@@ -134,7 +134,7 @@ class TestTransfer(BasicHelpers):
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT)
 
-    @pytest.mark.skip("waiting for MS")
+    @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step(
         "test: send negative sum from account: spl (with different precision)")
     def test_send_negative_sum_from_account_spl(self):
@@ -154,8 +154,8 @@ class TestTransfer(BasicHelpers):
             FIRST_FAUCET_REQUEST_AMOUNT)
         recipient_address = INVALID_ADDRESS
 
-        self.transfer_zero_neon(sender_account, recipient_address,
-                                DEFAULT_TRANSFER_AMOUNT)
+        self.transfer_to_invalid_address(sender_account, recipient_address,
+                                         DEFAULT_TRANSFER_AMOUNT)
 
         self.assert_sender_amount(sender_account.address,
                                   FIRST_FAUCET_REQUEST_AMOUNT)
@@ -165,10 +165,11 @@ class TestTransfer(BasicHelpers):
         """Send token to a non-existing address"""
         sender_account = self.create_account_with_balance(
             FIRST_FAUCET_REQUEST_AMOUNT)
-        recipient_address = NON_EXISTING_ADDRESS
+        recipient_address = sender_account.address.replace('1', '2').replace(
+            '3', '4')
 
-        self.transfer_zero_neon(sender_account, recipient_address,
-                                DEFAULT_TRANSFER_AMOUNT)
+        self.transfer_to_invalid_address(sender_account, recipient_address,
+                                         DEFAULT_TRANSFER_AMOUNT)
 
         self.assert_sender_amount(sender_account.address,
                                   FIRST_FAUCET_REQUEST_AMOUNT)
