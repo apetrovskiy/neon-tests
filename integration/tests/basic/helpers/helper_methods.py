@@ -1,3 +1,4 @@
+from tkinter.messagebox import NO
 import allure
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
 import pytest
@@ -43,74 +44,57 @@ class BasicHelpers(BaseTests):
     #     self.faucet.request_sol(wallet, amount=amount)
 
     @allure.step("processing transaction")
-    def process_transaction(
-        self,
-        sender_account: Account,
-        recipient_account: Account,
-        amount: int,
-        # gas: Optional[int] = 0,
-        # gas_price: Optional[int] = None,
-        message: str = ""):
-        # try:
-        # with pytest.raises(ValueError) as error_info:
-        #     self.web3_client.send_neon(sender_account, recipient_account,
-        #                                amount, gas, gas_price)
-        #     print(error_info)
-        # assert message in str(error_info.value)
+    def process_transaction(self,
+                            sender_account: Account,
+                            recipient_account: Account,
+                            amount: int,
+                            gas: Optional[int] = 0,
+                            gas_price: Optional[int] = None,
+                            message: str = "") -> web3.types.TxReceipt:
 
         with pytest.raises(Exception) as error_info:
-            self.web3_client.send_neon(sender_account, recipient_account,
-                                       amount)
-            #    , gas, gas_price)
+            tx = self.web3_client.send_neon(sender_account, recipient_account,
+                                            amount, gas, gas_price)
         print(error_info)
-        assert None != error_info, "Transaction failed"
-        # assert message in str(error_info)
+        if error_info != None:
+            if message:
+                assert message in str(error_info)
+            assert None != error_info, "Transaction failed"
 
-        # except ValueError as error_info:
-        #     print(error_info)
-        #     assert "The account balance is less than required" in str(
-        #         error_info)
-        # except Exception as error_info:
-        #     print(error_info)
-        #     assert 1 == 2, f"Error is not ValueError: {error_info}"
+        return tx
 
     @allure.step("transferring tokens")
-    def transfer_neon(self, sender_account: Account,
+    def transfer_neon(self,
+                      sender_account: Account,
                       recipient_account: Account,
-                      amount: int) -> web3.types.TxReceipt:  # ,
-        #   gas: Optional[int] = 0,
-        #   gas_price: Optional[int] = None) -> web3.types.TxReceipt:
-        self.process_transaction(
-            sender_account,
-            recipient_account,
-            amount,
-            #  gas, gas_price,
-            "InvalidInstructionData")
+                      amount: int,
+                      gas: Optional[int] = 0,
+                      gas_price: Optional[int] = None) -> web3.types.TxReceipt:
+        return self.process_transaction(sender_account, recipient_account,
+                                        amount, gas, gas_price,
+                                        "InvalidInstructionData")
 
     @allure.step("transferring 0 tokens")
-    def transfer_zero_neon(self, sender_account: Account,
-                           recipient_account: Account,
-                           amount: int) -> web3.types.TxReceipt:  # ,
-        # gas: Optional[int] = 0,
-        # gas_price: Optional[int] = None) -> web3.types.TxReceipt:
-        self.process_transaction(
-            sender_account,
-            recipient_account,
-            amount,
-            #  gas, gas_price,
-            "aaa")
+    def transfer_zero_neon(
+            self,
+            sender_account: Account,
+            recipient_account: Account,
+            amount: int,
+            gas: Optional[int] = 0,
+            gas_price: Optional[int] = None) -> web3.types.TxReceipt:
+        return self.process_transaction(sender_account, recipient_account,
+                                        amount, gas, gas_price, "aaa")
 
     @allure.step("checking less than required")
     def check_value_error_if_less_than_required(
-            self, sender_account: Account, recipient_account: Account,
-            amount: int) -> web3.types.TxReceipt:  # ,
-        # gas: Optional[int] = 0,
-        # gas_price: Optional[int] = None):
-        self.process_transaction(
-            sender_account,
-            recipient_account,
-            amount,
-            #  gas, gas_price,
+            self,
+            sender_account: Account,
+            recipient_account: Account,
+            amount: int,
+            gas: Optional[int] = 0,
+            gas_price: Optional[int] = None) -> web3.types.TxReceipt:
+        return self.process_transaction(
+            sender_account, recipient_account, amount, gas, gas_price,
             "The account balance is less than required")
 
     def compare_balance(self, expected: int, actual: int, message: str):

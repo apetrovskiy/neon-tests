@@ -44,13 +44,9 @@ class TestTransfer(BasicHelpers):
         recipient_account = self.create_account_with_balance(
             FIRST_FAUCET_REQUEST_AMOUNT)
 
-        # self.web3_client.send_neon(sender_account, recipient_account, amount)
-        self.transfer_neon(
-            sender_account,
-            recipient_account,
-            amount) #,
-            # gas=0,  # 10_000,
-            # gas_price=self.web3_client.gas_price())  # 0)  # 1_000_000_000)
+        self.transfer_neon(sender_account, recipient_account, amount)  #,
+        # gas=0,  # 10_000,
+        # gas_price=self.web3_client.gas_price())  # 0)  # 1_000_000_000)
 
         self.assert_sender_amount(sender_account.address,
                                   GREAT_AMOUNT - amount)
@@ -104,8 +100,7 @@ class TestTransfer(BasicHelpers):
         recipient_account = self.create_account_with_balance(
             FIRST_FAUCET_REQUEST_AMOUNT)
 
-        self.transfer_zero_neon(sender_account, recipient_account,
-                                DEFAULT_TRANSFER_AMOUNT)
+        self.transfer_zero_neon(sender_account, recipient_account, 0)
 
         self.assert_sender_amount(sender_account.address,
                                   FIRST_FAUCET_REQUEST_AMOUNT)
@@ -152,13 +147,19 @@ class TestTransfer(BasicHelpers):
         """Send negative sum from account: ERC20"""
         pass
 
-    @pytest.mark.skip("not yet done")
     @allure.step("test: send token to an invalid address")
     def test_send_token_to_an_invalid_address(self):
         """Send token to an invalid address"""
-        pass
+        sender_account = self.create_account_with_balance(
+            FIRST_FAUCET_REQUEST_AMOUNT)
+        recipient_address = INVALID_ADDRESS
 
-    @pytest.mark.skip("not yet done")
+        self.transfer_zero_neon(sender_account, recipient_address,
+                                DEFAULT_TRANSFER_AMOUNT)
+
+        self.assert_sender_amount(sender_account.address,
+                                  FIRST_FAUCET_REQUEST_AMOUNT)
+
     @allure.step("test: send token to a non-existing address")
     def test_send_more_token_to_non_existing_address(self):
         """Send token to a non-existing address"""
@@ -166,9 +167,8 @@ class TestTransfer(BasicHelpers):
             FIRST_FAUCET_REQUEST_AMOUNT)
         recipient_address = NON_EXISTING_ADDRESS
 
-        self.transfer_zero_neon(sender_account, recipient_account, -1)
+        self.transfer_zero_neon(sender_account, recipient_address,
+                                DEFAULT_TRANSFER_AMOUNT)
 
         self.assert_sender_amount(sender_account.address,
                                   FIRST_FAUCET_REQUEST_AMOUNT)
-        self.assert_recipient_amount(recipient_account.address,
-                                     FIRST_FAUCET_REQUEST_AMOUNT)
