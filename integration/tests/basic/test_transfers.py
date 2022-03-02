@@ -14,6 +14,27 @@ TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
 
 @allure.story("Basic: transfer tests")
 class TestTransfer(BasicHelpers):
+    @pytest.mark.only_stands
+    def test_send_neon_to_exist_account(self):
+        """Verify how many cost neon send to use who was already initialized"""
+        acc2 = self.web3_client.create_account()
+        self.web3_client.send_neon(self.acc, acc2, 1)
+
+        assert self.web3_client.get_balance(acc2) == 1
+
+        sol_balance_before = self.operator.get_solana_balance()
+        neon_balance_before = self.operator.get_neon_balance()
+        tx = self.web3_client.send_neon(self.acc, acc2, 5)
+
+        assert self.web3_client.get_balance(acc2) == 6
+
+        sol_balance_after = self.operator.get_solana_balance()
+        neon_balance_after = self.operator.get_neon_balance()
+        assert sol_balance_before > sol_balance_after, "Operator balance after send tx doesn't changed"
+
+        self.assert_profit(sol_balance_before - sol_balance_after,
+                           neon_balance_after - neon_balance_before)
+
     @allure.step("test: send neon from one account to another")
     @pytest.mark.parametrize("amount", TRANSFER_AMOUNT_DATA)
     def test_send_neon_from_one_account_to_another(self, amount: Union[int,
@@ -28,7 +49,7 @@ class TestTransfer(BasicHelpers):
             recipient_account,
             amount,
             gas=0,  # 10_000,
-            gas_price=self.web3_client.gas_price()) # 0)  # 1_000_000_000)
+            gas_price=self.web3_client.gas_price())  # 0)  # 1_000_000_000)
 
         self.assert_sender_amount(sender_account.address,
                                   GREAT_AMOUNT - amount)
