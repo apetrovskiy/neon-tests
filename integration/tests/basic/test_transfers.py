@@ -44,11 +44,11 @@ class TestTransfer(BasicHelpers):
         recipient_account = self.create_account_with_balance(
             FIRST_FAUCET_REQUEST_AMOUNT)
 
-        self.web3_client.send_neon(sender_account, recipient_account, amount)
-        # self.transfer_neon(
-        #     sender_account,
-        #     recipient_account,
-        #     amount) #,
+        # self.web3_client.send_neon(sender_account, recipient_account, amount)
+        self.transfer_neon(
+            sender_account,
+            recipient_account,
+            amount) #,
             # gas=0,  # 10_000,
             # gas_price=self.web3_client.gas_price())  # 0)  # 1_000_000_000)
 
