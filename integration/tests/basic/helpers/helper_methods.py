@@ -71,34 +71,29 @@ class BasicHelpers(BaseTests):
         #     assert 1 == 2, f"Error is not ValueError: {error_info}"
 
     @allure.step("transferring tokens")
-    def transfer_neon(self,
-                      sender_account: Account,
+    def transfer_neon(self, sender_account: Account,
                       recipient_account: Account,
-                      amount: int,
-                      gas: Optional[int] = 0,
-                      gas_price: Optional[int] = None) -> web3.types.TxReceipt:
+                      amount: int) -> web3.types.TxReceipt:  # ,
+        #   gas: Optional[int] = 0,
+        #   gas_price: Optional[int] = None) -> web3.types.TxReceipt:
         self.process_transaction(sender_account, recipient_account, amount,
                                  gas, gas_price, "InvalidInstructionData")
 
     @allure.step("transferring 0 tokens")
-    def transfer_zero_neon(
-            self,
-            sender_account: Account,
-            recipient_account: Account,
-            amount: int,
-            gas: Optional[int] = 0,
-            gas_price: Optional[int] = None) -> web3.types.TxReceipt:
+    def transfer_zero_neon(self, sender_account: Account,
+                           recipient_account: Account,
+                           amount: int) -> web3.types.TxReceipt:  # ,
+        # gas: Optional[int] = 0,
+        # gas_price: Optional[int] = None) -> web3.types.TxReceipt:
         self.process_transaction(sender_account, recipient_account, amount,
                                  gas, gas_price, "aaa")
 
     @allure.step("checking less than required")
     def check_value_error_if_less_than_required(
-            self,
-            sender_account: Account,
-            recipient_account: Account,
-            amount: int,
-            gas: Optional[int] = 0,
-            gas_price: Optional[int] = None):
+            self, sender_account: Account, recipient_account: Account,
+            amount: int) -> web3.types.TxReceipt:  # ,
+        # gas: Optional[int] = 0,
+        # gas_price: Optional[int] = None):
         self.process_transaction(sender_account, recipient_account, amount,
                                  gas, gas_price,
                                  "The account balance is less than required")
