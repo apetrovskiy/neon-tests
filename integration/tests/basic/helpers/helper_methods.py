@@ -100,10 +100,10 @@ class BasicHelpers(BaseTests):
     @allure.step("transferring to an invalid address")
     def transfer_to_invalid_address(
             self, sender_account: Account, recipient_account: Account,
-            amount: int) -> Union[web3.types.TxReceipt, None]:
+            amount: int, message: str) -> Union[web3.types.TxReceipt, None]:
         return self.process_transaction_with_failure(sender_account,
                                                      recipient_account, amount,
-                                                     "InvalidAddress")
+                                                     message)
 
     @allure.step("checking less than required")
     def check_value_error_if_less_than_required(
