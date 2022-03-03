@@ -41,7 +41,7 @@ class TestRpcCallsTransactions(BasicHelpers):
 
         self.transfer_neon(sender_account, recipient_account, SAMPLE_AMOUNT)
 
-        params = [sender_account.address, Tag.LATEST.value]  # TODO: enum
+        params = [sender_account.address, Tag.LATEST.value]
         model = RpcRequestFactory.get_trx_count(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
