@@ -73,7 +73,9 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        #
+        assert actual_result.result == '0x4563918244f40000', AssertMessage.WRONG_AMOUNT
+
+        # TODO: remove
         print(actual_result)
         #
 
