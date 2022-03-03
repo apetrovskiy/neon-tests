@@ -75,9 +75,11 @@ class BasicHelpers(BaseTests):
         with pytest.raises(Exception) as error_info:
             tx = self.web3_client.send_neon(sender_account, recipient_account,
                                             amount)
+
         # TODO: remove
         print(error_info)
         #
+
         if error_info != None:
             if message:
                 assert message in str(error_info)
