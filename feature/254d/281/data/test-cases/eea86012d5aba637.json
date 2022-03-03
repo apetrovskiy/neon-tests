@@ -1,0 +1,467 @@
+{
+  "uid" : "eea86012d5aba637",
+  "name" : "test_send_neon_from_one_account_to_another[0.01]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_neon_from_one_account_to_another",
+  "historyId" : "468859a02cbbf36eb35dac8ca17be612",
+  "time" : {
+    "start" : 1646313895424,
+    "stop" : 1646313895424,
+    "duration" : 0
+  },
+  "description" : "Send neon from one account to another",
+  "descriptionHtml" : "<p>Send neon from one account to another</p>\n",
+  "status" : "broken",
+  "statusMessage" : "IndexError: list index out of range",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7f2e5556e670>\nfaucet = <utils.faucet.Faucet object at 0x7f2e5b4d6220>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7f2e5560cca0>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request 1000 NEON from faucet for {acc.address}\"):\n            faucet.request_neon(acc.address, 1000)\n            assert web3_client.get_balance(acc) == 1000\n>       start_neon_balance = operator.get_neon_balance()\n\nintegration/tests/conftest.py:125: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.operator.Operator object at 0x7f2e5556e670>\n\n    def get_neon_balance(self):\n        balances = []\n        if len(self._operator_neon_rewards_address) > 0:\n            for addr in self._operator_neon_rewards_address:\n                balances.append(self.web3.get_balance(addr))\n        else:\n            for key in self._operator_keys:\n                if self._operator_keys[key] is None:\n                    accounts = self.sol.get_token_accounts_by_owner(\n                        key, TokenAccountOpts(mint=self._neon_token_mint)\n                    )\n>                   self._operator_keys[key] = accounts[\"result\"][\"value\"][0][\"pubkey\"]\nE                   IndexError: list index out of range\n\nutils/operator.py:49: IndexError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : true,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646313862624,
+      "stop" : 1646313862624,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646313862624,
+      "stop" : 1646313862625,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646313862625,
+      "stop" : 1646313863616,
+      "duration" : 991
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646313863617,
+      "stop" : 1646313863617,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646313863617,
+      "stop" : 1646313863617,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646313863617,
+      "stop" : 1646313863617,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646313863618,
+      "stop" : 1646313863618,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646313893886,
+      "stop" : 1646313895411,
+      "duration" : 1525
+    },
+    "status" : "broken",
+    "statusMessage" : "IndexError: list index out of range\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 125, in prepare_account\n    start_neon_balance = operator.get_neon_balance()\n  File \"/home/runner/work/neon-tests/neon-tests/utils/operator.py\", line 49, in get_neon_balance\n    self._operator_keys[key] = accounts[\"result\"][\"value\"][0][\"pubkey\"]\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646313893886,
+        "stop" : 1646313893891,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x295a7B597b6DA68Bb4Afac2605ecBa6F6b7f9F10",
+      "time" : {
+        "start" : 1646313893891,
+        "stop" : 1646313894730,
+        "duration" : 839
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646313895424,
+      "stop" : 1646313895424,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646313895535,
+      "stop" : 1646313895535,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az449-688"
+  }, {
+    "name" : "thread",
+    "value" : "1760-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "0.01"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 21,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 24
+      },
+      "items" : [ {
+        "uid" : "b26bc82302f9d6b2",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/279//#testresult/b26bc82302f9d6b2",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9801037125",
+        "time" : {
+          "start" : 1646292242911,
+          "stop" : 1646292245521,
+          "duration" : 2610
+        }
+      }, {
+        "uid" : "e0ec2ec56526401c",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/277//#testresult/e0ec2ec56526401c",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.980068815",
+        "time" : {
+          "start" : 1646290962770,
+          "stop" : 1646290966255,
+          "duration" : 3485
+        }
+      }, {
+        "uid" : "44ed46e4c049e90d",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/273//#testresult/44ed46e4c049e90d",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9799500645",
+        "time" : {
+          "start" : 1646267639586,
+          "stop" : 1646267642400,
+          "duration" : 2814
+        }
+      }, {
+        "uid" : "6e94418f4d542a66",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/275//#testresult/6e94418f4d542a66",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.980075745",
+        "time" : {
+          "start" : 1646268253276,
+          "stop" : 1646268256687,
+          "duration" : 3411
+        }
+      }, {
+        "uid" : "f3c43d7ab3f148ca",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/271//#testresult/f3c43d7ab3f148ca",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.980059608",
+        "time" : {
+          "start" : 1646266585763,
+          "stop" : 1646266588992,
+          "duration" : 3229
+        }
+      }, {
+        "uid" : "e4789f0ca748375f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/269//#testresult/e4789f0ca748375f",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9800473815",
+        "time" : {
+          "start" : 1646265201032,
+          "stop" : 1646265204375,
+          "duration" : 3343
+        }
+      }, {
+        "uid" : "ad2e0d2ecd6d27f9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/267//#testresult/ad2e0d2ecd6d27f9",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646261570515,
+          "stop" : 1646261572968,
+          "duration" : 2453
+        }
+      }, {
+        "uid" : "4de2349e725a7a85",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/265//#testresult/4de2349e725a7a85",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646260711638,
+          "stop" : 1646260715288,
+          "duration" : 3650
+        }
+      }, {
+        "uid" : "2469ddec0a3e113",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/263//#testresult/2469ddec0a3e113",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646259743166,
+          "stop" : 1646259745089,
+          "duration" : 1923
+        }
+      }, {
+        "uid" : "e961401d12a15a1f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/259//#testresult/e961401d12a15a1f",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646257675878,
+          "stop" : 1646257678720,
+          "duration" : 2842
+        }
+      }, {
+        "uid" : "2294f148582e0216",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/257//#testresult/2294f148582e0216",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646257144586,
+          "stop" : 1646257146596,
+          "duration" : 2010
+        }
+      }, {
+        "uid" : "f588ab3ec6209bbe",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/255//#testresult/f588ab3ec6209bbe",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 1000",
+        "time" : {
+          "start" : 1646256061838,
+          "stop" : 1646256064966,
+          "duration" : 3128
+        }
+      }, {
+        "uid" : "182e166059fbe698",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/253//#testresult/182e166059fbe698",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 1000",
+        "time" : {
+          "start" : 1646255254845,
+          "stop" : 1646255257485,
+          "duration" : 2640
+        }
+      }, {
+        "uid" : "1caf412d46134cbd",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/251//#testresult/1caf412d46134cbd",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 1000",
+        "time" : {
+          "start" : 1646254490580,
+          "stop" : 1646254493925,
+          "duration" : 3345
+        }
+      }, {
+        "uid" : "304303bd13ae3791",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/249//#testresult/304303bd13ae3791",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {\"code\": -32002, \"message\": \"Transaction simulation failed: Error processing Instruction 1: custom program error: 0x5\", \"data\": {\"accounts\": null, \"err\": {\"InstructionError\": [1, {\"Custom\": 5}]}, \"logs\": [\"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io invoke [1]\", \"Program 11111111111111111111111111111111 invoke [2]\", \"Program 11111111111111111111111111111111 success\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]\", \"Program log: Instruction: Transfer\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 3402 of 434695 compute units\", \"Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success\", \"Program log: program/src/token.rs:250\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io consumed 75589 of 500000 compute units\", \"Program 53DfF883gyixYNXnM7s5xhdeyV8mVk9T4i2hGV9vG9io failed: custom program error: 0x5\"]}}",
+        "time" : {
+          "start" : 1646253887515,
+          "stop" : 1646253890547,
+          "duration" : 3032
+        }
+      }, {
+        "uid" : "c5af692034451cfc",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/247//#testresult/c5af692034451cfc",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646246445213,
+          "stop" : 1646246447381,
+          "duration" : 2168
+        }
+      }, {
+        "uid" : "92b522757a01a945",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/245//#testresult/92b522757a01a945",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646244992825,
+          "stop" : 1646244994040,
+          "duration" : 1215
+        }
+      }, {
+        "uid" : "87a4899bf56ecc99",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/243//#testresult/87a4899bf56ecc99",
+        "status" : "broken",
+        "statusDetails" : "NameError: name 'gas' is not defined",
+        "time" : {
+          "start" : 1646243861387,
+          "stop" : 1646243862743,
+          "duration" : 1356
+        }
+      }, {
+        "uid" : "77a4d1968a875481",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/241//#testresult/77a4d1968a875481",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646243200940,
+          "stop" : 1646243203904,
+          "duration" : 2964
+        }
+      }, {
+        "uid" : "de9bb8026708b430",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/239//#testresult/de9bb8026708b430",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646241107946,
+          "stop" : 1646241109841,
+          "duration" : 1895
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "eea86012d5aba637.json",
+  "parameterValues" : [ "0.01" ]
+}

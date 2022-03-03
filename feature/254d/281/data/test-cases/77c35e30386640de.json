@@ -1,0 +1,460 @@
+{
+  "uid" : "77c35e30386640de",
+  "name" : "test_rpc_call_eth_getTransactionCount",
+  "fullName" : "integration.tests.basic.test_transactions.TestRpcCallsTransactions#test_rpc_call_eth_getTransactionCount",
+  "historyId" : "203fb24ab3840d60203239a580c20ac7",
+  "time" : {
+    "start" : 1646313892338,
+    "stop" : 1646313892338,
+    "duration" : 0
+  },
+  "description" : "Verify implemented rpc calls work eth_getTransactionCount",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_getTransactionCount</p>\n",
+  "status" : "broken",
+  "statusMessage" : "IndexError: list index out of range",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7f2e5556e670>\nfaucet = <utils.faucet.Faucet object at 0x7f2e5b4d6220>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7f2e5560cca0>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request 1000 NEON from faucet for {acc.address}\"):\n            faucet.request_neon(acc.address, 1000)\n            assert web3_client.get_balance(acc) == 1000\n>       start_neon_balance = operator.get_neon_balance()\n\nintegration/tests/conftest.py:125: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.operator.Operator object at 0x7f2e5556e670>\n\n    def get_neon_balance(self):\n        balances = []\n        if len(self._operator_neon_rewards_address) > 0:\n            for addr in self._operator_neon_rewards_address:\n                balances.append(self.web3.get_balance(addr))\n        else:\n            for key in self._operator_keys:\n                if self._operator_keys[key] is None:\n                    accounts = self.sol.get_token_accounts_by_owner(\n                        key, TokenAccountOpts(mint=self._neon_token_mint)\n                    )\n>                   self._operator_keys[key] = accounts[\"result\"][\"value\"][0][\"pubkey\"]\nE                   IndexError: list index out of range\n\nutils/operator.py:49: IndexError",
+  "flaky" : true,
+  "newFailed" : false,
+  "newBroken" : true,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646313862624,
+      "stop" : 1646313862624,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646313862624,
+      "stop" : 1646313862625,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646313862625,
+      "stop" : 1646313863616,
+      "duration" : 991
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646313863617,
+      "stop" : 1646313863617,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646313863617,
+      "stop" : 1646313863617,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646313863617,
+      "stop" : 1646313863617,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646313863618,
+      "stop" : 1646313863618,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646313892339,
+      "stop" : 1646313892339,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646313892339,
+      "stop" : 1646313893869,
+      "duration" : 1530
+    },
+    "status" : "broken",
+    "statusMessage" : "IndexError: list index out of range\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 125, in prepare_account\n    start_neon_balance = operator.get_neon_balance()\n  File \"/home/runner/work/neon-tests/neon-tests/utils/operator.py\", line 49, in get_neon_balance\n    self._operator_keys[key] = accounts[\"result\"][\"value\"][0][\"pubkey\"]\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646313892339,
+        "stop" : 1646313892344,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x655Ee7dc163886670A05305527286C79bCf17154",
+      "time" : {
+        "start" : 1646313892344,
+        "stop" : 1646313893184,
+        "duration" : 840
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646313895535,
+      "stop" : 1646313895535,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactions"
+  }, {
+    "name" : "host",
+    "value" : "fv-az449-688"
+  }, {
+    "name" : "thread",
+    "value" : "1760-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 8,
+        "broken" : 12,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 24
+      },
+      "items" : [ {
+        "uid" : "fb4fdeac32609fd7",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/279//#testresult/fb4fdeac32609fd7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646292212198,
+          "stop" : 1646292215782,
+          "duration" : 3584
+        }
+      }, {
+        "uid" : "60d2eac81c25870c",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/277//#testresult/60d2eac81c25870c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646290914600,
+          "stop" : 1646290918063,
+          "duration" : 3463
+        }
+      }, {
+        "uid" : "74a0aaa76596850d",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/273//#testresult/74a0aaa76596850d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646267602153,
+          "stop" : 1646267605065,
+          "duration" : 2912
+        }
+      }, {
+        "uid" : "3e498331886ed768",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/275//#testresult/3e498331886ed768",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646268206778,
+          "stop" : 1646268209638,
+          "duration" : 2860
+        }
+      }, {
+        "uid" : "59ece5c12eee04cd",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/271//#testresult/59ece5c12eee04cd",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: The response type is error response\nassert False\n +  where False = isinstance(JsonRpcErrorResponse(id=88, error={'code': -32000, 'message': \"eth_getTransactionCount() missing 1 required positional argument: 'tag'\"}, jsonrpc='2.0'), JsonRpcResponse)",
+        "time" : {
+          "start" : 1646266546794,
+          "stop" : 1646266550601,
+          "duration" : 3807
+        }
+      }, {
+        "uid" : "707eaad58d1e6ab9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/269//#testresult/707eaad58d1e6ab9",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646265155691,
+          "stop" : 1646265157293,
+          "duration" : 1602
+        }
+      }, {
+        "uid" : "8a4e7201bb4bd014",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/267//#testresult/8a4e7201bb4bd014",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646261541398,
+          "stop" : 1646261543201,
+          "duration" : 1803
+        }
+      }, {
+        "uid" : "871bb10b537cea91",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/265//#testresult/871bb10b537cea91",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'Failed to estimate gas price. Try again later'}",
+        "time" : {
+          "start" : 1646260684444,
+          "stop" : 1646260688096,
+          "duration" : 3652
+        }
+      }, {
+        "uid" : "21723918d27f2e19",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/263//#testresult/21723918d27f2e19",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646259715785,
+          "stop" : 1646259717173,
+          "duration" : 1388
+        }
+      }, {
+        "uid" : "4ce648fa163a5e12",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/259//#testresult/4ce648fa163a5e12",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646257638549,
+          "stop" : 1646257641767,
+          "duration" : 3218
+        }
+      }, {
+        "uid" : "ab2bcf4f63da7d5a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/257//#testresult/ab2bcf4f63da7d5a",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646257117045,
+          "stop" : 1646257119121,
+          "duration" : 2076
+        }
+      }, {
+        "uid" : "1d747d9b585f49e6",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/255//#testresult/1d747d9b585f49e6",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646256015808,
+          "stop" : 1646256017412,
+          "duration" : 1604
+        }
+      }, {
+        "uid" : "6dfb547542f6801d",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/253//#testresult/6dfb547542f6801d",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646255208850,
+          "stop" : 1646255210449,
+          "duration" : 1599
+        }
+      }, {
+        "uid" : "45b9e43e5f4458d",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/251//#testresult/45b9e43e5f4458d",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646254454460,
+          "stop" : 1646254455937,
+          "duration" : 1477
+        }
+      }, {
+        "uid" : "a69438b9d9f4feea",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/249//#testresult/a69438b9d9f4feea",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646253858642,
+          "stop" : 1646253860516,
+          "duration" : 1874
+        }
+      }, {
+        "uid" : "3080ad78c8e23b4b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/247//#testresult/3080ad78c8e23b4b",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646246409550,
+          "stop" : 1646246411033,
+          "duration" : 1483
+        }
+      }, {
+        "uid" : "f79a1e6b4f1ae40b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/245//#testresult/f79a1e6b4f1ae40b",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646244965172,
+          "stop" : 1646244966561,
+          "duration" : 1389
+        }
+      }, {
+        "uid" : "6164c92fd3bc915",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/243//#testresult/6164c92fd3bc915",
+        "status" : "broken",
+        "statusDetails" : "TypeError: transfer_neon() got an unexpected keyword argument 'gas'",
+        "time" : {
+          "start" : 1646243815428,
+          "stop" : 1646243817527,
+          "duration" : 2099
+        }
+      }, {
+        "uid" : "e68f5d6cb26d3a9f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/241//#testresult/e68f5d6cb26d3a9f",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646243173234,
+          "stop" : 1646243175299,
+          "duration" : 2065
+        }
+      }, {
+        "uid" : "a7e129be8f599f67",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254d/239//#testresult/a7e129be8f599f67",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1646241080210,
+          "stop" : 1646241082218,
+          "duration" : 2008
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "77c35e30386640de.json",
+  "parameterValues" : [ ]
+}
