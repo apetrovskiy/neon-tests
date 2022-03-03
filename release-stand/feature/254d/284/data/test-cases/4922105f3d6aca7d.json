@@ -1,0 +1,445 @@
+{
+  "uid" : "4922105f3d6aca7d",
+  "name" : "test_rpc_call_web3_clientVersion",
+  "fullName" : "integration.tests.basic.test_rpc_calls.TestRpcCalls#test_rpc_call_web3_clientVersion",
+  "historyId" : "0fffbfdbdf7aff60e0ad7b7d0cffeb36",
+  "time" : {
+    "start" : 1646324372195,
+    "stop" : 1646324372195,
+    "duration" : 0
+  },
+  "description" : "Verify implemented rpc calls work web3_clientVersion",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work web3_clientVersion</p>\n",
+  "status" : "broken",
+  "statusMessage" : "IndexError: list index out of range",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7f4b3c576670>\nfaucet = <utils.faucet.Faucet object at 0x7f4b424de220>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7f4b3c613ca0>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request 1000 NEON from faucet for {acc.address}\"):\n            faucet.request_neon(acc.address, 1000)\n            assert web3_client.get_balance(acc) == 1000\n>       start_neon_balance = operator.get_neon_balance()\n\nintegration/tests/conftest.py:125: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.operator.Operator object at 0x7f4b3c576670>\n\n    def get_neon_balance(self):\n        balances = []\n        if len(self._operator_neon_rewards_address) > 0:\n            for addr in self._operator_neon_rewards_address:\n                balances.append(self.web3.get_balance(addr))\n        else:\n            for key in self._operator_keys:\n                if self._operator_keys[key] is None:\n                    accounts = self.sol.get_token_accounts_by_owner(\n                        key, TokenAccountOpts(mint=self._neon_token_mint)\n                    )\n>                   self._operator_keys[key] = accounts[\"result\"][\"value\"][0][\"pubkey\"]\nE                   IndexError: list index out of range\n\nutils/operator.py:49: IndexError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646324367001,
+      "stop" : 1646324367003,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646324367001,
+      "stop" : 1646324367001,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646324367003,
+      "stop" : 1646324368278,
+      "duration" : 1275
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646324368279,
+      "stop" : 1646324368279,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646324368279,
+      "stop" : 1646324368279,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646324368279,
+      "stop" : 1646324368279,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646324368279,
+      "stop" : 1646324368279,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646324370616,
+      "stop" : 1646324372166,
+      "duration" : 1550
+    },
+    "status" : "broken",
+    "statusMessage" : "IndexError: list index out of range\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 125, in prepare_account\n    start_neon_balance = operator.get_neon_balance()\n  File \"/home/runner/work/neon-tests/neon-tests/utils/operator.py\", line 49, in get_neon_balance\n    self._operator_keys[key] = accounts[\"result\"][\"value\"][0][\"pubkey\"]\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646324370616,
+        "stop" : 1646324370621,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x898891d3C72cab4Ec38a4403Ce8Ed25Ea460cfE2",
+      "time" : {
+        "start" : 1646324370621,
+        "stop" : 1646324371461,
+        "duration" : 840
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646324372196,
+      "stop" : 1646324372196,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646324400176,
+      "stop" : 1646324400176,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_rpc_calls"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCalls"
+  }, {
+    "name" : "host",
+    "value" : "fv-az447-893"
+  }, {
+    "name" : "thread",
+    "value" : "1755-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_rpc_calls"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 21,
+        "unknown" : 0,
+        "total" : 23
+      },
+      "items" : [ {
+        "uid" : "c3b3616fdfb67ae5",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/282//#testresult/c3b3616fdfb67ae5",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1646313901063,
+          "stop" : 1646313901063,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "8192337f6b49ac7e",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/278//#testresult/8192337f6b49ac7e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646290843285,
+          "stop" : 1646290843420,
+          "duration" : 135
+        }
+      }, {
+        "uid" : "9279845c1d6f2e06",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/274//#testresult/9279845c1d6f2e06",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646267569871,
+          "stop" : 1646267569995,
+          "duration" : 124
+        }
+      }, {
+        "uid" : "bc62cdfdd035a511",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/272//#testresult/bc62cdfdd035a511",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646266532641,
+          "stop" : 1646266532804,
+          "duration" : 163
+        }
+      }, {
+        "uid" : "e56fadc6048eb1d3",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/268//#testresult/e56fadc6048eb1d3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646261536000,
+          "stop" : 1646261536201,
+          "duration" : 201
+        }
+      }, {
+        "uid" : "f35435c73a867f4a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/266//#testresult/f35435c73a867f4a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646260633855,
+          "stop" : 1646260633978,
+          "duration" : 123
+        }
+      }, {
+        "uid" : "825a7365d3675284",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/264//#testresult/825a7365d3675284",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646259676815,
+          "stop" : 1646259676939,
+          "duration" : 124
+        }
+      }, {
+        "uid" : "90c8cffe90ef34c3",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/262//#testresult/90c8cffe90ef34c3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646258315714,
+          "stop" : 1646258315879,
+          "duration" : 165
+        }
+      }, {
+        "uid" : "3d6e78d16dca9dcc",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/260//#testresult/3d6e78d16dca9dcc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646257637163,
+          "stop" : 1646257637364,
+          "duration" : 201
+        }
+      }, {
+        "uid" : "bce4023cb7aaa7ad",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/258//#testresult/bce4023cb7aaa7ad",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646257116527,
+          "stop" : 1646257116692,
+          "duration" : 165
+        }
+      }, {
+        "uid" : "2e7e801442eb82d",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/256//#testresult/2e7e801442eb82d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646255965596,
+          "stop" : 1646255965720,
+          "duration" : 124
+        }
+      }, {
+        "uid" : "df0d6ecdea6a4e3",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/254//#testresult/df0d6ecdea6a4e3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646255151565,
+          "stop" : 1646255151660,
+          "duration" : 95
+        }
+      }, {
+        "uid" : "af1da67feaa4e2c0",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/252//#testresult/af1da67feaa4e2c0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646254449492,
+          "stop" : 1646254449656,
+          "duration" : 164
+        }
+      }, {
+        "uid" : "461c32e5976ee0bb",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/250//#testresult/461c32e5976ee0bb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646253865809,
+          "stop" : 1646253866015,
+          "duration" : 206
+        }
+      }, {
+        "uid" : "b31b88b56b821fb9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/248//#testresult/b31b88b56b821fb9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646246397336,
+          "stop" : 1646246397501,
+          "duration" : 165
+        }
+      }, {
+        "uid" : "568258795ca6df71",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/246//#testresult/568258795ca6df71",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646244993171,
+          "stop" : 1646244993370,
+          "duration" : 199
+        }
+      }, {
+        "uid" : "3f777efc04280aac",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/244//#testresult/3f777efc04280aac",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646243796117,
+          "stop" : 1646243796281,
+          "duration" : 164
+        }
+      }, {
+        "uid" : "6477011b47acc30f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/242//#testresult/6477011b47acc30f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646243166977,
+          "stop" : 1646243167072,
+          "duration" : 95
+        }
+      }, {
+        "uid" : "1af6dd3b89075cc8",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/240//#testresult/1af6dd3b89075cc8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646241058382,
+          "stop" : 1646241058543,
+          "duration" : 161
+        }
+      }, {
+        "uid" : "96be3aed957c386e",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254d/238//#testresult/96be3aed957c386e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646240430674,
+          "stop" : 1646240430809,
+          "duration" : 135
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "4922105f3d6aca7d.json",
+  "parameterValues" : [ ]
+}
