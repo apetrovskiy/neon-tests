@@ -9,6 +9,7 @@ from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
 
 FIRST_FAUCET_REQUEST_AMOUNT = 5
 SECOND_FAUCET_REQUEST_AMOUNT = 3
+FIRST_AMOUNT_IN_RESPONSE = '0x4563918244f40000'
 GREAT_AMOUNT = 1_000
 DEFAULT_TRANSFER_AMOUNT = 3
 
