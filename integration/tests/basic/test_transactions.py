@@ -49,7 +49,7 @@ class TestRpcCallsTransactions(BasicHelpers):
         # self.assert_recipient_amount(recipient_account.address,
         #                              FIRST_FAUCET_REQUEST_AMOUNT + SAMPLE_AMOUNT)
         params = [sender_account.address, Tag.LATEST.value]  # TODO: enum
-        model = RpcRequestFactory.get_trx_count(params=[params])
+        model = RpcRequestFactory.get_trx_count(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
