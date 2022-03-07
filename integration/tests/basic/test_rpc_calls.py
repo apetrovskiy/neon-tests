@@ -113,9 +113,11 @@ class TestRpcCalls(BasicHelpers):
         # TOOD: variants
         params = [
             # json.dumps(
-            GetLogsRequest(fromBlock=Tag.EARLIEST.value,
-                           toBlock=Tag.LATEST.value,
-                           address=sender_account.address)
+            GetLogsRequest(
+                # fromBlock=Tag.EARLIEST.value,
+                fromBlock=Tag.LATEST.value,
+                toBlock=Tag.LATEST.value,
+                address=sender_account.address)
             #                   ,
             #    cls=JsonRpcEncoder)
         ]
