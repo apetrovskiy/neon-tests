@@ -2,7 +2,7 @@ import allure
 import pytest
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
-from integration.tests.basic.helpers.basic_helpers import BasicHelpers
+from integration.tests.basic.helpers.basic_helpers import NOT_YET_DONE, BasicHelpers
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.json_rpc_request_parameters import JsonRpcRequestParams
 '''
@@ -28,7 +28,7 @@ from integration.tests.basic.model.json_rpc_request_parameters import JsonRpcReq
 
 @allure.story("Basic: Json-RPC call tests - blocks")
 class TestRpcCallsBlocks(BasicHelpers):
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_getBlockByHash")
     def test_rpc_call_eth_getBlockByHash(self):
         """Verify implemented rpc calls work eth_getBlockByHash"""
@@ -39,7 +39,7 @@ class TestRpcCallsBlocks(BasicHelpers):
         print(model)
         #
 
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_getBlockByNumber"
                  )
     def test_rpc_call_eth_getBlockByNumber(self):

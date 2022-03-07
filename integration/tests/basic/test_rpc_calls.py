@@ -4,7 +4,7 @@ import pytest
 from typing import Type
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
-from integration.tests.basic.helpers.basic_helpers import FIRST_AMOUNT_IN_RESPONSE, FIRST_FAUCET_REQUEST_AMOUNT, BasicHelpers
+from integration.tests.basic.helpers.basic_helpers import FIRST_AMOUNT_IN_RESPONSE, FIRST_FAUCET_REQUEST_AMOUNT, NOT_YET_DONE, BasicHelpers
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.json_rpc_request_parameters import JsonRpcRequestParams
 from integration.tests.basic.model.tags import Tag
@@ -31,13 +31,13 @@ from integration.tests.basic.model.tags import Tag
 
 @allure.story("Basic: Json-RPC call tests")
 class TestRpcCalls(BasicHelpers):
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_call")
     def test_rpc_call_eth_call(self):
         """Verify implemented rpc calls work eth_call"""
         pass
 
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_estimateGas")
     def test_rpc_call_eth_estimateGas(self):
         """Verify implemented rpc calls work eth_estimateGas"""
@@ -55,7 +55,7 @@ class TestRpcCalls(BasicHelpers):
                           JsonRpcResponse), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_getLogs")
     def test_rpc_call_eth_getLogs(self):
         """Verify implemented rpc calls work eth_getLogs"""
@@ -79,13 +79,13 @@ class TestRpcCalls(BasicHelpers):
         print(actual_result)
         #
 
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_getCode")
     def test_rpc_call_eth_getCode(self):
         """Verify implemented rpc calls work eth_getCode"""
         pass
 
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eht_getStorageAt")
     def test_rpc_call_eht_getStorageAt(self):
         """Verify implemented rpc calls work eht_getStorageAt"""

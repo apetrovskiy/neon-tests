@@ -2,7 +2,7 @@ import allure
 import pytest
 from typing import Union
 from integration.tests.basic.helpers.basic_helpers import DEFAULT_TRANSFER_AMOUNT, FIRST_FAUCET_REQUEST_AMOUNT, \
-    GREAT_AMOUNT, WAITING_FOR_MS, \
+    GREAT_AMOUNT, NOT_YET_DONE, WAITING_FOR_ERC20, WAITING_FOR_MS, \
     BasicHelpers
 
 NON_EXISTING_ADDRESS = "0xmmmmm"
@@ -66,7 +66,7 @@ class TestTransfer(BasicHelpers):
         """Send more than exist on account: spl (with different precision)"""
         pass
 
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(WAITING_FOR_ERC20)
     @allure.step("test: send more than exist on account: ERC20")
     def test_send_more_than_exist_on_account_erc20(self):
         """Send more than exist on account: ERC20"""
@@ -93,8 +93,8 @@ class TestTransfer(BasicHelpers):
         """Send zero: spl (with different precision)"""
         pass
 
-    # @pytest.mark.skip("not yet done")
-    # @pytest.fail("not yest done")
+    # @pytest.mark.skip(NOT_YET_DONE)
+    # @pytest.fail(NOT_YET_DONE)
     @pytest.mark.xfail()
     @allure.step("test: send zero: ERC20")
     def test_zero_erc20(self):
@@ -123,7 +123,7 @@ class TestTransfer(BasicHelpers):
         """Send negative sum from account: spl (with different precision)"""
         pass
 
-    @pytest.mark.skip("not yet done")
+    @pytest.mark.skip(WAITING_FOR_ERC20)
     @allure.step("test: send negative sum from account: ERC20")
     def test_send_negative_sum_from_account_erc20(self):
         """Send negative sum from account: ERC20"""
