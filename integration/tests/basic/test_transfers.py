@@ -93,7 +93,9 @@ class TestTransfer(BasicHelpers):
         """Send zero: spl (with different precision)"""
         pass
 
-    @pytest.mark.skip("not yet done")
+    # @pytest.mark.skip("not yet done")
+    # @pytest.fail("not yest done")
+    @pytest.mark.xfail()
     @allure.step("test: send zero: ERC20")
     def test_zero_erc20(self):
         """Send zero: ERC20"""
