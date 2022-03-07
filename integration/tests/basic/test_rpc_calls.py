@@ -60,11 +60,29 @@ class TestRpcCalls(BasicHelpers):
         assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
         assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
 
-    @pytest.mark.skip(NOT_YET_DONE)
+    # TODO: implement numerous variants
     @allure.step("test: verify implemented rpc calls work eth_estimateGas")
     def test_rpc_call_eth_estimateGas(self):
         """Verify implemented rpc calls work eth_estimateGas"""
-        pass
+        sender_account = self.create_account_with_balance(GREAT_AMOUNT)
+        recipient_account = self.create_account_with_balance(
+            FIRST_FAUCET_REQUEST_AMOUNT)
+
+        # TOOD: variants
+        # params = [
+        #     sender_account.address, recipient_account.address, Tag.LATEST.value
+        # ]
+        params = [
+            CallRequest(from1=sender_account.address,
+                        to=recipient_account.address), Tag.LATEST.value
+        ]
+        model = RpcRequestFactory.get_call(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+        assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
+        assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @allure.step("test: verify implemented rpc calls work eth_gasPrice")
     def test_rpc_call_eth_gasPrice(self):
