@@ -79,8 +79,9 @@ class TestRpcCalls(BasicHelpers):
                            value=hex(1))
         params = [
             # json.dumps(data.__dict__, cls=JsonRpcEncoder)
-            data,
-            Tag.LATEST.value
+            data
+            # ,
+            # Tag.LATEST.value
         ]
         model = RpcRequestFactory.get_estimate_gas(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
