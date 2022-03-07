@@ -1,3 +1,4 @@
+from audioop import add
 import allure
 import json
 import pytest
@@ -46,8 +47,9 @@ class TestRpcCalls(BasicHelpers):
         self.transfer_neon(sender_account, recipient_account, SAMPLE_AMOUNT)
 
         # TOOD: variants
-        data = CallRequest(from1=sender_account.address,
-                           to=recipient_account.address)
+        data = CallRequest(
+            # from1=sender_account.address,
+            to=recipient_account.address)
         params = [
             # json.dumps(data.__dict__, cls=JsonRpcEncoder)
             data,
@@ -73,7 +75,8 @@ class TestRpcCalls(BasicHelpers):
 
         # TOOD: variants
         data = CallRequest(from1=sender_account.address,
-                           to=recipient_account.address)
+                           to=recipient_account.address,
+                           value=hex(1))
         params = [
             # json.dumps(data.__dict__, cls=JsonRpcEncoder)
             data,
@@ -105,11 +108,14 @@ class TestRpcCalls(BasicHelpers):
     @allure.step("test: verify implemented rpc calls work eth_getLogs")
     def test_rpc_call_eth_getLogs(self):
         """Verify implemented rpc calls work eth_getLogs"""
+        # TODO: use contract instead of account
+        sender_account = self.create_account_with_balance(GREAT_AMOUNT)
         # TOOD: variants
         params = [
             # json.dumps(
             GetLogsRequest(fromBlock=Tag.EARLIEST.value,
-                           toBlock=Tag.LATEST.value)
+                           toBlock=Tag.LATEST.value,
+                           address=sender_account.address)
             #                   ,
             #    cls=JsonRpcEncoder)
         ]
