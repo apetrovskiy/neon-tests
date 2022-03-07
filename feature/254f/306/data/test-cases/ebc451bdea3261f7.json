@@ -1,0 +1,595 @@
+{
+  "uid" : "ebc451bdea3261f7",
+  "name" : "test_send_negative_sum_from_account_neon",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_negative_sum_from_account_neon",
+  "historyId" : "b8f842096bc774361fb83c1b6571422c",
+  "time" : {
+    "start" : 1646663596887,
+    "stop" : 1646663598248,
+    "duration" : 1361
+  },
+  "description" : "Send negative sum from account: neon",
+  "descriptionHtml" : "<p>Send negative sum from account: neon</p>\n",
+  "status" : "broken",
+  "statusMessage" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f0e01153b80>\n\n    @allure.step(\"test: send negative sum from account: neon\")\n    def test_send_negative_sum_from_account_neon(self):\n        \"\"\"Send negative sum from account: neon\"\"\"\n        sender_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n>       self.transfer_zero_neon(sender_account, recipient_account, -1)\n\nintegration/tests/basic/test_transfers.py:112: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic_helpers.py:123: in transfer_zero_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic_helpers.py:70: in process_transaction\n    tx = self.web3_client.send_neon(sender_account, recipient_account,\nutils/web3client.py:54: in send_neon\n    \"value\": web3.Web3.toWei(amount, \"ether\"),\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/main.py:205: in toWei\n    return cast(Wei, to_wei(number, unit))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nnumber = -1, unit = 'ether'\n\n    def to_wei(number: Union[int, float, str, decimal.Decimal], unit: str) -> int:\n        \"\"\"\n        Takes a number of a unit and converts it to wei.\n        \"\"\"\n        if unit.lower() not in units:\n            raise ValueError(\n                \"Unknown unit.  Must be one of {0}\".format(\"/\".join(units.keys()))\n            )\n    \n        if is_integer(number) or is_string(number):\n            d_number = decimal.Decimal(value=number)\n        elif isinstance(number, float):\n            d_number = decimal.Decimal(value=str(number))\n        elif isinstance(number, decimal.Decimal):\n            d_number = number\n        else:\n            raise TypeError(\"Unsupported type.  Must be one of integer, float, or string\")\n    \n        s_number = str(number)\n        unit_value = units[unit.lower()]\n    \n        if d_number == decimal.Decimal(0):\n            return 0\n    \n        if d_number < 1 and \".\" in s_number:\n            with localcontext() as ctx:\n                multiplier = len(s_number) - s_number.index(\".\") - 1\n                ctx.prec = multiplier\n                d_number = decimal.Decimal(value=number, context=ctx) * 10 ** multiplier\n            unit_value /= 10 ** multiplier\n    \n        with localcontext() as ctx:\n            ctx.prec = 999\n            result_value = decimal.Decimal(value=d_number, context=ctx) * unit_value\n    \n        if result_value < MIN_WEI or result_value > MAX_WEI:\n>           raise ValueError(\"Resulting wei value must be between 1 and 2**256 - 1\")\nE           ValueError: Resulting wei value must be between 1 and 2**256 - 1\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/eth_utils/currency.py:100: ValueError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646663519215,
+      "stop" : 1646663519215,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646663519215,
+      "stop" : 1646663519216,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646663519216,
+      "stop" : 1646663519851,
+      "duration" : 635
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646663519851,
+      "stop" : 1646663519851,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646663519851,
+      "stop" : 1646663519851,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646663519851,
+      "stop" : 1646663519851,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646663519851,
+      "stop" : 1646663519851,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646663577397,
+      "stop" : 1646663581087,
+      "duration" : 3690
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646663577397,
+        "stop" : 1646663577401,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0xA9c7C5d63774C8Af1897C4E3f166bf2246072a4B",
+      "time" : {
+        "start" : 1646663577401,
+        "stop" : 1646663578104,
+        "duration" : 703
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.002279863208841925575 NEON 74071250.58840236 SOL",
+      "time" : {
+        "start" : 1646663581087,
+        "stop" : 1646663581087,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646663596886,
+      "stop" : 1646663596886,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646663596887,
+      "stop" : 1646663596887,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1646663596887,
+      "stop" : 1646663596887,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send negative sum from account: neon",
+    "status" : "broken",
+    "statusMessage" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f0e01153b80>\n\n    @allure.step(\"test: send negative sum from account: neon\")\n    def test_send_negative_sum_from_account_neon(self):\n        \"\"\"Send negative sum from account: neon\"\"\"\n        sender_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n>       self.transfer_zero_neon(sender_account, recipient_account, -1)\n\nintegration/tests/basic/test_transfers.py:112: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic_helpers.py:123: in transfer_zero_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic_helpers.py:70: in process_transaction\n    tx = self.web3_client.send_neon(sender_account, recipient_account,\nutils/web3client.py:54: in send_neon\n    \"value\": web3.Web3.toWei(amount, \"ether\"),\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/main.py:205: in toWei\n    return cast(Wei, to_wei(number, unit))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nnumber = -1, unit = 'ether'\n\n    def to_wei(number: Union[int, float, str, decimal.Decimal], unit: str) -> int:\n        \"\"\"\n        Takes a number of a unit and converts it to wei.\n        \"\"\"\n        if unit.lower() not in units:\n            raise ValueError(\n                \"Unknown unit.  Must be one of {0}\".format(\"/\".join(units.keys()))\n            )\n    \n        if is_integer(number) or is_string(number):\n            d_number = decimal.Decimal(value=number)\n        elif isinstance(number, float):\n            d_number = decimal.Decimal(value=str(number))\n        elif isinstance(number, decimal.Decimal):\n            d_number = number\n        else:\n            raise TypeError(\"Unsupported type.  Must be one of integer, float, or string\")\n    \n        s_number = str(number)\n        unit_value = units[unit.lower()]\n    \n        if d_number == decimal.Decimal(0):\n            return 0\n    \n        if d_number < 1 and \".\" in s_number:\n            with localcontext() as ctx:\n                multiplier = len(s_number) - s_number.index(\".\") - 1\n                ctx.prec = multiplier\n                d_number = decimal.Decimal(value=number, context=ctx) * 10 ** multiplier\n            unit_value /= 10 ** multiplier\n    \n        with localcontext() as ctx:\n            ctx.prec = 999\n            result_value = decimal.Decimal(value=d_number, context=ctx) * unit_value\n    \n        if result_value < MIN_WEI or result_value > MAX_WEI:\n>           raise ValueError(\"Resulting wei value must be between 1 and 2**256 - 1\")\nE           ValueError: Resulting wei value must be between 1 and 2**256 - 1\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/eth_utils/currency.py:100: ValueError",
+    "steps" : [ {
+      "name" : "test: send negative sum from account: neon",
+      "time" : {
+        "start" : 1646663596887,
+        "stop" : 1646663598248,
+        "duration" : 1361
+      },
+      "status" : "broken",
+      "statusMessage" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transfers.py\", line 112, in test_send_negative_sum_from_account_neon\n    self.transfer_zero_neon(sender_account, recipient_account, -1)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 123, in transfer_zero_neon\n    return self.process_transaction(sender_account, recipient_account,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 70, in process_transaction\n    tx = self.web3_client.send_neon(sender_account, recipient_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 54, in send_neon\n    \"value\": web3.Web3.toWei(amount, \"ether\"),\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/main.py\", line 205, in toWei\n    return cast(Wei, to_wei(number, unit))\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/eth_utils/currency.py\", line 100, in to_wei\n    raise ValueError(\"Resulting wei value must be between 1 and 2**256 - 1\")\n",
+      "steps" : [ {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646663596887,
+          "stop" : 1646663597493,
+          "duration" : 606
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646663596887,
+            "stop" : 1646663596891,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646663596891,
+            "stop" : 1646663597493,
+            "duration" : 602
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0xE24Afc33e70cA19eF84F39F4490d3e8677A36405'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646663597494,
+          "stop" : 1646663598103,
+          "duration" : 609
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646663597494,
+            "stop" : 1646663597499,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646663597499,
+            "stop" : 1646663598103,
+            "duration" : 604
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x20D954815888E3eF7e89fFaFB1a8691443738860'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "transferring 0 tokens",
+        "time" : {
+          "start" : 1646663598103,
+          "stop" : 1646663598247,
+          "duration" : 144
+        },
+        "status" : "broken",
+        "statusMessage" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1\n",
+        "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 123, in transfer_zero_neon\n    return self.process_transaction(sender_account, recipient_account,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 70, in process_transaction\n    tx = self.web3_client.send_neon(sender_account, recipient_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 54, in send_neon\n    \"value\": web3.Web3.toWei(amount, \"ether\"),\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/main.py\", line 205, in toWei\n    return cast(Wei, to_wei(number, unit))\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/eth_utils/currency.py\", line 100, in to_wei\n    raise ValueError(\"Resulting wei value must be between 1 and 2**256 - 1\")\n",
+        "steps" : [ {
+          "name" : "processing transaction",
+          "time" : {
+            "start" : 1646663598103,
+            "stop" : 1646663598247,
+            "duration" : 144
+          },
+          "status" : "broken",
+          "statusMessage" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1\n",
+          "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 70, in process_transaction\n    tx = self.web3_client.send_neon(sender_account, recipient_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 54, in send_neon\n    \"value\": web3.Web3.toWei(amount, \"ether\"),\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/main.py\", line 205, in toWei\n    return cast(Wei, to_wei(number, unit))\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/eth_utils/currency.py\", line 100, in to_wei\n    raise ValueError(\"Resulting wei value must be between 1 and 2**256 - 1\")\n",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "sender_account",
+            "value" : "<eth_account.signers.local.LocalAccount object at 0x7f0e01323f40>"
+          }, {
+            "name" : "recipient_account",
+            "value" : "<eth_account.signers.local.LocalAccount object at 0x7f0e0114ec70>"
+          }, {
+            "name" : "amount",
+            "value" : "-1"
+          }, {
+            "name" : "message",
+            "value" : "'aaa'"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "sender_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f0e01323f40>"
+        }, {
+          "name" : "recipient_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f0e0114ec70>"
+        }, {
+          "name" : "amount",
+          "value" : "-1"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 8,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 9,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1646663600084,
+      "stop" : 1646663603167,
+      "duration" : 3083
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.002279863243048405575 NEON 74071250.54763731 SOL",
+      "time" : {
+        "start" : 1646663603068,
+        "stop" : 1646663603068,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1646663603167,
+        "stop" : 1646663603167,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646663603171,
+      "stop" : 1646663603172,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az182-396"
+  }, {
+    "name" : "thread",
+    "value" : "1730-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 6,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "b17bdf0c3e3a2a9c",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254f/300//#testresult/b17bdf0c3e3a2a9c",
+        "status" : "broken",
+        "statusDetails" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1",
+        "time" : {
+          "start" : 1646652925721,
+          "stop" : 1646652927038,
+          "duration" : 1317
+        }
+      }, {
+        "uid" : "65f1657efcc04b5c",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254f/298//#testresult/65f1657efcc04b5c",
+        "status" : "broken",
+        "statusDetails" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1",
+        "time" : {
+          "start" : 1646648121051,
+          "stop" : 1646648122366,
+          "duration" : 1315
+        }
+      }, {
+        "uid" : "9c13944f0e36ed13",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254f/296//#testresult/9c13944f0e36ed13",
+        "status" : "broken",
+        "statusDetails" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1",
+        "time" : {
+          "start" : 1646646557900,
+          "stop" : 1646646559419,
+          "duration" : 1519
+        }
+      }, {
+        "uid" : "778513ca8e6f8b47",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254f/294//#testresult/778513ca8e6f8b47",
+        "status" : "broken",
+        "statusDetails" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1",
+        "time" : {
+          "start" : 1646643549905,
+          "stop" : 1646643551444,
+          "duration" : 1539
+        }
+      }, {
+        "uid" : "ac3ef28dc1a463ae",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254f/292//#testresult/ac3ef28dc1a463ae",
+        "status" : "broken",
+        "statusDetails" : "ValueError: Resulting wei value must be between 1 and 2**256 - 1",
+        "time" : {
+          "start" : 1646643252747,
+          "stop" : 1646643254247,
+          "duration" : 1500
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ebc451bdea3261f7.json",
+  "parameterValues" : [ ]
+}
