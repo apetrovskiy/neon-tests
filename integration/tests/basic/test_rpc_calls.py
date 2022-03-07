@@ -76,7 +76,7 @@ class TestRpcCalls(BasicHelpers):
             CallRequest(from1=sender_account.address,
                         to=recipient_account.address), Tag.LATEST.value
         ]
-        model = RpcRequestFactory.get_call(params=params)
+        model = RpcRequestFactory.get_estimate_gas(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
@@ -128,11 +128,20 @@ class TestRpcCalls(BasicHelpers):
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         assert actual_result.result == FIRST_AMOUNT_IN_RESPONSE, AssertMessage.WRONG_AMOUNT.value
 
-    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_getCode")
     def test_rpc_call_eth_getCode(self):
         """Verify implemented rpc calls work eth_getCode"""
-        pass
+        # TODO: use contract instead of account?
+        sender_account = self.create_account_with_balance(GREAT_AMOUNT)
+
+        params = [sender_account.address, Tag.LATEST.value]
+        model = RpcRequestFactory.get_code(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+        assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
+        assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eht_getStorageAt")
