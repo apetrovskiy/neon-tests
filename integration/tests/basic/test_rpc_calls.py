@@ -47,14 +47,8 @@ class TestRpcCalls(BasicHelpers):
         self.transfer_neon(sender_account, recipient_account, SAMPLE_AMOUNT)
 
         # TOOD: variants
-        data = CallRequest(
-            # from1=sender_account.address,
-            to=recipient_account.address)
-        params = [
-            # json.dumps(data.__dict__, cls=JsonRpcEncoder)
-            data,
-            Tag.LATEST.value
-        ]
+        data = CallRequest(to=recipient_account.address)
+        params = [data, Tag.LATEST.value]
         model = RpcRequestFactory.get_call(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
@@ -77,12 +71,7 @@ class TestRpcCalls(BasicHelpers):
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address,
                            value=hex(1))
-        params = [
-            # json.dumps(data.__dict__, cls=JsonRpcEncoder)
-            data
-            # ,
-            # Tag.LATEST.value
-        ]
+        params = [data]
         model = RpcRequestFactory.get_estimate_gas(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
@@ -113,21 +102,11 @@ class TestRpcCalls(BasicHelpers):
         sender_account = self.create_account_with_balance(GREAT_AMOUNT)
         # TOOD: variants
         params = [
-            # json.dumps(
-            GetLogsRequest(
-                # fromBlock=Tag.EARLIEST.value,
-                fromBlock=Tag.LATEST.value,
-                toBlock=Tag.LATEST.value,
-                address=sender_account.address)
-            #                   ,
-            #    cls=JsonRpcEncoder)
+            GetLogsRequest(fromBlock=Tag.LATEST.value,
+                           toBlock=Tag.LATEST.value,
+                           address=sender_account.address)
         ]
         model = RpcRequestFactory.get_logs(params=params)
-
-        #
-        print(model)
-        print(json.dumps(model.__dict__, cls=JsonRpcEncoder))
-        #
 
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
