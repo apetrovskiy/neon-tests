@@ -49,7 +49,9 @@ class TestRpcCalls(BasicHelpers):
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address)
         params = [
-            json.dumps(data.__dict__, cls=JsonRpcEncoder), Tag.LATEST.value
+            # json.dumps(data.__dict__, cls=JsonRpcEncoder)
+            data,
+            Tag.LATEST.value
         ]
         model = RpcRequestFactory.get_call(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
@@ -73,7 +75,9 @@ class TestRpcCalls(BasicHelpers):
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address)
         params = [
-            json.dumps(data.__dict__, cls=JsonRpcEncoder), Tag.LATEST.value
+            # json.dumps(data.__dict__, cls=JsonRpcEncoder)
+            data,
+            Tag.LATEST.value
         ]
         model = RpcRequestFactory.get_estimate_gas(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
@@ -103,9 +107,11 @@ class TestRpcCalls(BasicHelpers):
         """Verify implemented rpc calls work eth_getLogs"""
         # TOOD: variants
         params = [
-            json.dumps(GetLogsRequest(fromBlock=Tag.EARLIEST.value,
-                                      toBlock=Tag.LATEST.value),
-                       cls=JsonRpcEncoder)
+            # json.dumps(
+            GetLogsRequest(fromBlock=Tag.EARLIEST.value,
+                           toBlock=Tag.LATEST.value)
+            #                   ,
+            #    cls=JsonRpcEncoder)
         ]
         model = RpcRequestFactory.get_logs(params=params)
 
