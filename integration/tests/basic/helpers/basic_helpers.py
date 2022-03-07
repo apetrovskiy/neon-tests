@@ -17,6 +17,7 @@ WAITING_FOR_MS = "waiting for MS"
 # TODO: remove it later
 WAITING_FOR_ERC20 = "ERC20 is in progress"
 WAITING_FOR_TRX = "Json-RPC not yet done"
+WAITIING_FOR_CONTRACT_SUPPORT = "no contracts are yet done"
 NOT_YET_DONE = "not yet done"
 
 
@@ -70,11 +71,6 @@ class BasicHelpers(BaseTests):
         tx = self.web3_client.send_neon(sender_account, recipient_account,
                                         amount)
 
-        # TODO: remove
-        print("--------------------------------------")
-        print(tx)
-        #
-
         return tx
 
     @allure.step("processing transaction, expecting a failure")
@@ -91,19 +87,10 @@ class BasicHelpers(BaseTests):
             tx = self.web3_client.send_neon(sender_account, recipient_account,
                                             amount)
 
-        # TODO: remove
-        print(error_info)
-        #
-
         if error_info != None:
             if message:
                 assert message in str(error_info)
             assert None != error_info, "Transaction failed"
-
-        # TODO: remove
-        print("--------------------------------------")
-        print(tx)
-        #
 
         return tx
 
