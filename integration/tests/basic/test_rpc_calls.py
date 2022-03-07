@@ -3,6 +3,8 @@ import allure
 import pytest
 from typing import Type
 from integration.tests.basic.helpers.assert_message import AssertMessage
+from integration.tests.basic.model.call_request import CallRequest
+from integration.tests.basic.model.get_logs_request import GetLogsRequest
 from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
 from integration.tests.basic.helpers.basic_helpers import FIRST_AMOUNT_IN_RESPONSE, FIRST_FAUCET_REQUEST_AMOUNT, GREAT_AMOUNT, NOT_YET_DONE, BasicHelpers
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
@@ -43,8 +45,12 @@ class TestRpcCalls(BasicHelpers):
         self.transfer_neon(sender_account, recipient_account, SAMPLE_AMOUNT)
 
         # TOOD: variants
+        # params = [
+        #     sender_account.address, recipient_account.address, Tag.LATEST.value
+        # ]
         params = [
-            sender_account.address, recipient_account.address, Tag.LATEST.value
+            CallRequest(from1=sender_account.address,
+                        to=recipient_account.address), Tag.LATEST.value
         ]
         model = RpcRequestFactory.get_call(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
@@ -72,14 +78,16 @@ class TestRpcCalls(BasicHelpers):
                           JsonRpcResponse), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-    # @pytest.mark.skip(NOT_YET_DONE)
-
     # TOOD: implement variants
     @allure.step("test: verify implemented rpc calls work eth_getLogs")
     def test_rpc_call_eth_getLogs(self):
         """Verify implemented rpc calls work eth_getLogs"""
         # TOOD: variants
-        params = [Tag.EARLIEST.value, Tag.LATEST.value]
+        params = [
+            GetLogsRequest(fromBlock=Tag.EARLIEST.value,
+                           toBlock=Tag.LATEST.value)
+        ]
+        # params = [Tag.EARLIEST.value, Tag.LATEST.value]
         model = RpcRequestFactory.get_logs(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
