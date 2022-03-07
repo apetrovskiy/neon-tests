@@ -75,10 +75,6 @@ class TestRpcCalls(BasicHelpers):
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         assert actual_result.result == FIRST_AMOUNT_IN_RESPONSE, AssertMessage.WRONG_AMOUNT.value
 
-        # TODO: remove
-        print(actual_result)
-        #
-
     @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_getCode")
     def test_rpc_call_eth_getCode(self):

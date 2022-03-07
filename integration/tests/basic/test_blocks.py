@@ -28,16 +28,21 @@ from integration.tests.basic.model.tags import Tag
 12.63.	net_version
 '''
 
-TAGS_TEST_DATA = [(Tag.EARLIEST, False), (Tag.LATEST, True),
+# TODO: fix earliest and penging if possible
+TAGS_TEST_DATA = [(Tag.EARLIEST, True), (Tag.EARLIEST, False),
+                  (Tag.LATEST, True), (Tag.LATEST, False), (Tag.PENDING, True),
                   (Tag.PENDING, False)]
 
 
 @allure.story("Basic: Json-RPC call tests - blocks")
 class TestRpcCallsBlocks(BasicHelpers):
-    @pytest.mark.skip(NOT_YET_DONE)
+
+    # TODO: implement numerous variants
     @allure.step("test: verify implemented rpc calls work eth_getBlockByHash")
     def test_rpc_call_eth_getBlockByHash(self):
         """Verify implemented rpc calls work eth_getBlockByHash"""
+
+        
         model = RpcRequestFactory.get_block_by_hash(
             req_id=1, params=JsonRpcRequestParams())
 
@@ -56,18 +61,12 @@ class TestRpcCallsBlocks(BasicHelpers):
             quantity_tag, full_trx)
         model = RpcRequestFactory.get_block_by_number(params=params)
 
-        # TODO: remove
-        print(model)
-        #
-
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-
-        # TODO: remove
-        print(actual_result)
-        #
+        # assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
+        # assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @allure.step("test: verify implemented rpc calls work eth_blockNumber")
     def test_rpc_call_eth_blockNumber(self):
