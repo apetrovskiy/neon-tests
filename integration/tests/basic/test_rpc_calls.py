@@ -45,12 +45,9 @@ class TestRpcCalls(BasicHelpers):
         self.transfer_neon(sender_account, recipient_account, SAMPLE_AMOUNT)
 
         # TOOD: variants
-        # params = [
-        #     sender_account.address, recipient_account.address, Tag.LATEST.value
-        # ]
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address)
-        params = [json.dumps(data.__dict__), Tag.LATEST.value]
+        params = [json.dump(data.__dict__), Tag.LATEST.value]
         model = RpcRequestFactory.get_call(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
@@ -70,12 +67,9 @@ class TestRpcCalls(BasicHelpers):
             FIRST_FAUCET_REQUEST_AMOUNT)
 
         # TOOD: variants
-        # params = [
-        #     sender_account.address, recipient_account.address, Tag.LATEST.value
-        # ]
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address)
-        params = [json.dumps(data.__dict__), Tag.LATEST.value]
+        params = [json.dump(data.__dict__), Tag.LATEST.value]
         model = RpcRequestFactory.get_estimate_gas(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
@@ -105,7 +99,7 @@ class TestRpcCalls(BasicHelpers):
         # TOOD: variants
         data = GetLogsRequest(fromBlock=Tag.EARLIEST.value,
                               toBlock=Tag.LATEST.value)
-        params = [json.dumps(data.__dict__)]
+        params = [json.dump(data.__dict__)]
         # params = [Tag.EARLIEST.value, Tag.LATEST.value]
         model = RpcRequestFactory.get_logs(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
