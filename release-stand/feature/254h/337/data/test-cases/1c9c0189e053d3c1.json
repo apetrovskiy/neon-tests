@@ -1,0 +1,674 @@
+{
+  "uid" : "1c9c0189e053d3c1",
+  "name" : "test_send_neon_from_one_account_to_another[0.01]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_neon_from_one_account_to_another",
+  "historyId" : "468859a02cbbf36eb35dac8ca17be612",
+  "time" : {
+    "start" : 1646678140509,
+    "stop" : 1646678143403,
+    "duration" : 2894
+  },
+  "description" : "Send neon from one account to another",
+  "descriptionHtml" : "<p>Send neon from one account to another</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817842375",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f7fc15fbe80>\namount = 0.01\n\n    @allure.step(\"test: send neon from one account to another\")\n    @pytest.mark.parametrize(\"amount\", TRANSFER_AMOUNT_DATA)\n    def test_send_neon_from_one_account_to_another(self, amount: Union[int,\n                                                                       float]):\n        \"\"\"Send neon from one account to another\"\"\"\n        sender_account = self.create_account_with_balance(GREAT_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        self.transfer_neon(sender_account, recipient_account, amount)\n    \n>       self.assert_sender_amount(sender_account.address,\n                                  GREAT_AMOUNT - amount)\n\nintegration/tests/basic/test_transfers.py:31: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic_helpers.py:151: in assert_sender_amount\n    self.compare_balance(expected_amount, balance, \"Sender: \")\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f7fc15fbe80>\nexpected = 999.99, actual = Decimal('999.9817842375'), message = 'Sender: '\n\n    @allure.step(\"comparing the balance with expectation\")\n    def compare_balance(self, expected: int, actual: int, message: str):\n        '''Compares the balance with expectation'''\n>       assert actual == expected, message + f\"expected balance = {expected}, actual balance = {actual}\"\nE       AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817842375\n\nintegration/tests/basic/helpers/basic_helpers.py:136: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646678062083,
+      "stop" : 1646678062084,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646678062084,
+      "stop" : 1646678062085,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646678062085,
+      "stop" : 1646678063143,
+      "duration" : 1058
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646678063143,
+      "stop" : 1646678063143,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646678063143,
+      "stop" : 1646678063143,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646678063144,
+      "stop" : 1646678063144,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646678063144,
+      "stop" : 1646678063144,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646678135732,
+      "stop" : 1646678135732,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646678135732,
+      "stop" : 1646678140508,
+      "duration" : 4776
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646678135732,
+        "stop" : 1646678135736,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x9E49504c1d9bB876A315828c2CE8f071280eEB64",
+      "time" : {
+        "start" : 1646678135736,
+        "stop" : 1646678136501,
+        "duration" : 765
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.002279995934672953827 NEON 74071247.20719123 SOL",
+      "time" : {
+        "start" : 1646678140508,
+        "stop" : 1646678140508,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1646678140508,
+      "stop" : 1646678140508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646678140508,
+      "stop" : 1646678140508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send neon from one account to another",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817842375",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f7fc15fbe80>\namount = 0.01\n\n    @allure.step(\"test: send neon from one account to another\")\n    @pytest.mark.parametrize(\"amount\", TRANSFER_AMOUNT_DATA)\n    def test_send_neon_from_one_account_to_another(self, amount: Union[int,\n                                                                       float]):\n        \"\"\"Send neon from one account to another\"\"\"\n        sender_account = self.create_account_with_balance(GREAT_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        self.transfer_neon(sender_account, recipient_account, amount)\n    \n>       self.assert_sender_amount(sender_account.address,\n                                  GREAT_AMOUNT - amount)\n\nintegration/tests/basic/test_transfers.py:31: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic_helpers.py:151: in assert_sender_amount\n    self.compare_balance(expected_amount, balance, \"Sender: \")\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f7fc15fbe80>\nexpected = 999.99, actual = Decimal('999.9817842375'), message = 'Sender: '\n\n    @allure.step(\"comparing the balance with expectation\")\n    def compare_balance(self, expected: int, actual: int, message: str):\n        '''Compares the balance with expectation'''\n>       assert actual == expected, message + f\"expected balance = {expected}, actual balance = {actual}\"\nE       AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817842375\n\nintegration/tests/basic/helpers/basic_helpers.py:136: AssertionError",
+    "steps" : [ {
+      "name" : "test: send neon from one account to another",
+      "time" : {
+        "start" : 1646678140509,
+        "stop" : 1646678143402,
+        "duration" : 2893
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817842375\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transfers.py\", line 31, in test_send_neon_from_one_account_to_another\n    self.assert_sender_amount(sender_account.address,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 151, in assert_sender_amount\n    self.compare_balance(expected_amount, balance, \"Sender: \")\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 136, in compare_balance\n    assert actual == expected, message + f\"expected balance = {expected}, actual balance = {actual}\"\n",
+      "steps" : [ {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646678140509,
+          "stop" : 1646678141149,
+          "duration" : 640
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646678140510,
+            "stop" : 1646678140514,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646678140514,
+            "stop" : 1646678141149,
+            "duration" : 635
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x17d12424a371F8560089b5AE6434A99c32963B9e'"
+          }, {
+            "name" : "amount",
+            "value" : "1000"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "1000"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646678141149,
+          "stop" : 1646678141788,
+          "duration" : 639
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646678141149,
+            "stop" : 1646678141154,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646678141154,
+            "stop" : 1646678141788,
+            "duration" : 634
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x7E52053b68613bAf2dc298c3C9cE8aBEdeEf54E9'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "transferring tokens",
+        "time" : {
+          "start" : 1646678141788,
+          "stop" : 1646678143270,
+          "duration" : 1482
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "processing transaction",
+          "time" : {
+            "start" : 1646678141788,
+            "stop" : 1646678143270,
+            "duration" : 1482
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "sender_account",
+            "value" : "<eth_account.signers.local.LocalAccount object at 0x7f7fc16ea310>"
+          }, {
+            "name" : "recipient_account",
+            "value" : "<eth_account.signers.local.LocalAccount object at 0x7f7fc16174f0>"
+          }, {
+            "name" : "amount",
+            "value" : "0.01"
+          }, {
+            "name" : "message",
+            "value" : "'InvalidInstructionData'"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "sender_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f7fc16ea310>"
+        }, {
+          "name" : "recipient_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f7fc16174f0>"
+        }, {
+          "name" : "amount",
+          "value" : "0.01"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "checking sender's balance",
+        "time" : {
+          "start" : 1646678143270,
+          "stop" : 1646678143402,
+          "duration" : 132
+        },
+        "status" : "failed",
+        "statusMessage" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817842375\n",
+        "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 151, in assert_sender_amount\n    self.compare_balance(expected_amount, balance, \"Sender: \")\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 136, in compare_balance\n    assert actual == expected, message + f\"expected balance = {expected}, actual balance = {actual}\"\n",
+        "steps" : [ {
+          "name" : "getting balance of account",
+          "time" : {
+            "start" : 1646678143270,
+            "stop" : 1646678143402,
+            "duration" : 132
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "address",
+            "value" : "'0x17d12424a371F8560089b5AE6434A99c32963B9e'"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "comparing the balance with expectation",
+          "time" : {
+            "start" : 1646678143402,
+            "stop" : 1646678143402,
+            "duration" : 0
+          },
+          "status" : "failed",
+          "statusMessage" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817842375\n",
+          "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic_helpers.py\", line 136, in compare_balance\n    assert actual == expected, message + f\"expected balance = {expected}, actual balance = {actual}\"\n",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "expected",
+            "value" : "999.99"
+          }, {
+            "name" : "actual",
+            "value" : "Decimal('999.9817842375')"
+          }, {
+            "name" : "message",
+            "value" : "'Sender: '"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "address",
+          "value" : "'0x17d12424a371F8560089b5AE6434A99c32963B9e'"
+        }, {
+          "name" : "expected_amount",
+          "value" : "999.99"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "amount",
+        "value" : "0.01"
+      } ],
+      "stepsCount" : 11,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 12,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1646678161400,
+      "stop" : 1646678165574,
+      "duration" : 4174
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.002279995983949956327 NEON 74071247.16018003 SOL",
+      "time" : {
+        "start" : 1646678165442,
+        "stop" : 1646678165442,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1646678165574,
+        "stop" : 1646678165574,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646678165579,
+      "stop" : 1646678165580,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az129-921"
+  }, {
+    "name" : "thread",
+    "value" : "1763-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "0.01"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 7,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "d743319f6e7c0be2",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254h/335//#testresult/d743319f6e7c0be2",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817762185",
+        "time" : {
+          "start" : 1646677144655,
+          "stop" : 1646677147838,
+          "duration" : 3183
+        }
+      }, {
+        "uid" : "7892f50c0f024c59",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254h/333//#testresult/7892f50c0f024c59",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9817699815",
+        "time" : {
+          "start" : 1646676650388,
+          "stop" : 1646676653471,
+          "duration" : 3083
+        }
+      }, {
+        "uid" : "44442f971d262168",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254h/331//#testresult/44442f971d262168",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9816780105",
+        "time" : {
+          "start" : 1646675919576,
+          "stop" : 1646675922192,
+          "duration" : 2616
+        }
+      }, {
+        "uid" : "694dd9e9c63281b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254h/329//#testresult/694dd9e9c63281b",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9816749415",
+        "time" : {
+          "start" : 1646674365570,
+          "stop" : 1646674368757,
+          "duration" : 3187
+        }
+      }, {
+        "uid" : "cc78c3ceaa6d41bc",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254h/327//#testresult/cc78c3ceaa6d41bc",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.98167509",
+        "time" : {
+          "start" : 1646673721252,
+          "stop" : 1646673723733,
+          "duration" : 2481
+        }
+      }, {
+        "uid" : "b837885e1884030c",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254h/325//#testresult/b837885e1884030c",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Sender: expected balance = 999.99, actual balance = 999.9816909795",
+        "time" : {
+          "start" : 1646672613104,
+          "stop" : 1646672615745,
+          "duration" : 2641
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "1c9c0189e053d3c1.json",
+  "parameterValues" : [ "0.01" ]
+}
