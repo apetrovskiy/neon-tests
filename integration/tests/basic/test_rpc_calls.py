@@ -47,9 +47,9 @@ class TestRpcCalls(BasicHelpers):
         # TOOD: variants
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address)
-        params = [json.dump(data.__dict__), Tag.LATEST.value]
+        params = [data, Tag.LATEST.value]
         model = RpcRequestFactory.get_call(params=params)
-        response = self.jsonrpc_requester.request_json_rpc(model)
+        response = self.jsonrpc_requester.request_json_rpc(json.dumps(model))
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
@@ -69,9 +69,9 @@ class TestRpcCalls(BasicHelpers):
         # TOOD: variants
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address)
-        params = [json.dump(data.__dict__), Tag.LATEST.value]
+        params = [data, Tag.LATEST.value]
         model = RpcRequestFactory.get_estimate_gas(params=params)
-        response = self.jsonrpc_requester.request_json_rpc(model)
+        response = self.jsonrpc_requester.request_json_rpc(json.dumps(model))
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
@@ -97,12 +97,12 @@ class TestRpcCalls(BasicHelpers):
     def test_rpc_call_eth_getLogs(self):
         """Verify implemented rpc calls work eth_getLogs"""
         # TOOD: variants
-        data = GetLogsRequest(fromBlock=Tag.EARLIEST.value,
-                              toBlock=Tag.LATEST.value)
-        params = [json.dump(data.__dict__)]
-        # params = [Tag.EARLIEST.value, Tag.LATEST.value]
+        params = [
+            GetLogsRequest(fromBlock=Tag.EARLIEST.value,
+                           toBlock=Tag.LATEST.value)
+        ]
         model = RpcRequestFactory.get_logs(params=params)
-        response = self.jsonrpc_requester.request_json_rpc(model)
+        response = self.jsonrpc_requester.request_json_rpc(json.dumps(model))
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
