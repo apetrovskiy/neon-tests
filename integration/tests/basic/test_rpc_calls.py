@@ -3,6 +3,7 @@ import json
 import pytest
 from typing import Type
 from integration.tests.basic.helpers.assert_message import AssertMessage
+from integration.tests.basic.helpers.json_rpc_encoder import JsonRpcEncoder
 from integration.tests.basic.model.call_request import CallRequest
 from integration.tests.basic.model.get_logs_request import GetLogsRequest
 from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
@@ -47,9 +48,11 @@ class TestRpcCalls(BasicHelpers):
         # TOOD: variants
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address)
-        params = [data, Tag.LATEST.value]
+        params = [
+            json.dumps(data.__dict__, cls=JsonRpcEncoder), Tag.LATEST.value
+        ]
         model = RpcRequestFactory.get_call(params=params)
-        response = self.jsonrpc_requester.request_json_rpc(json.dumps(model))
+        response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
@@ -69,9 +72,11 @@ class TestRpcCalls(BasicHelpers):
         # TOOD: variants
         data = CallRequest(from1=sender_account.address,
                            to=recipient_account.address)
-        params = [data, Tag.LATEST.value]
+        params = [
+            json.dumps(data.__dict__, cls=JsonRpcEncoder), Tag.LATEST.value
+        ]
         model = RpcRequestFactory.get_estimate_gas(params=params)
-        response = self.jsonrpc_requester.request_json_rpc(json.dumps(model))
+        response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
@@ -98,11 +103,18 @@ class TestRpcCalls(BasicHelpers):
         """Verify implemented rpc calls work eth_getLogs"""
         # TOOD: variants
         params = [
-            GetLogsRequest(fromBlock=Tag.EARLIEST.value,
-                           toBlock=Tag.LATEST.value)
+            json.dumps(GetLogsRequest(fromBlock=Tag.EARLIEST.value,
+                                      toBlock=Tag.LATEST.value),
+                       cls=JsonRpcEncoder)
         ]
         model = RpcRequestFactory.get_logs(params=params)
-        response = self.jsonrpc_requester.request_json_rpc(json.dumps(model))
+
+        #
+        print(model)
+        print(json.dumps(model.__dict__, cls=JsonRpcEncoder))
+        #
+
+        response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
