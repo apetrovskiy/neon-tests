@@ -42,7 +42,6 @@ class TestRpcCallsBlocks(BasicHelpers):
     def test_rpc_call_eth_getBlockByHash(self):
         """Verify implemented rpc calls work eth_getBlockByHash"""
 
-        
         model = RpcRequestFactory.get_block_by_hash(
             req_id=1, params=JsonRpcRequestParams())
 
@@ -57,7 +56,7 @@ class TestRpcCallsBlocks(BasicHelpers):
     def test_rpc_call_eth_getBlockByNumber(self, quantity_tag: Union[int, Tag],
                                            full_trx: bool):
         """Verify implemented rpc calls work eth_getBlockByNumber"""
-        params = RpcRequestParamsFactory.get_block_by_hash(
+        params = RpcRequestParamsFactory.get_block_by_number(
             quantity_tag, full_trx)
         model = RpcRequestFactory.get_block_by_number(params=params)
 

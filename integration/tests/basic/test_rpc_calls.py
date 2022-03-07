@@ -4,10 +4,11 @@ import pytest
 from typing import Type
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
-from integration.tests.basic.helpers.basic_helpers import FIRST_AMOUNT_IN_RESPONSE, FIRST_FAUCET_REQUEST_AMOUNT, NOT_YET_DONE, BasicHelpers
+from integration.tests.basic.helpers.basic_helpers import FIRST_AMOUNT_IN_RESPONSE, FIRST_FAUCET_REQUEST_AMOUNT, GREAT_AMOUNT, NOT_YET_DONE, BasicHelpers
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.json_rpc_request_parameters import JsonRpcRequestParams
 from integration.tests.basic.model.tags import Tag
+from integration.tests.basic.test_transactions import SAMPLE_AMOUNT
 '''
 12.	Verify implemented rpc calls work
 12.1.	eth_getBlockByHash		
@@ -31,11 +32,27 @@ from integration.tests.basic.model.tags import Tag
 
 @allure.story("Basic: Json-RPC call tests")
 class TestRpcCalls(BasicHelpers):
-    @pytest.mark.skip(NOT_YET_DONE)
+    # TODO: implement numerous variants
     @allure.step("test: verify implemented rpc calls work eth_call")
     def test_rpc_call_eth_call(self):
         """Verify implemented rpc calls work eth_call"""
-        pass
+        sender_account = self.create_account_with_balance(GREAT_AMOUNT)
+        recipient_account = self.create_account_with_balance(
+            FIRST_FAUCET_REQUEST_AMOUNT)
+
+        self.transfer_neon(sender_account, recipient_account, SAMPLE_AMOUNT)
+
+        # TOOD: variants
+        params = [
+            sender_account.address, recipient_account.address, Tag.LATEST
+        ]
+        model = RpcRequestFactory.get_call(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+        assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
+        assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @pytest.mark.skip(NOT_YET_DONE)
     @allure.step("test: verify implemented rpc calls work eth_estimateGas")
