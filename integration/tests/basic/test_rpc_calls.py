@@ -56,8 +56,10 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
-        assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     # TODO: implement numerous variants
     @allure.step("test: verify implemented rpc calls work eth_estimateGas")
@@ -79,8 +81,10 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
-        assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @allure.step("test: verify implemented rpc calls work eth_gasPrice")
     def test_rpc_call_eth_gasPrice(self):
@@ -108,8 +112,10 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
-        assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @allure.step("test: verify implemented rpc calls work eth_getBalance")
     def test_rpc_call_eth_getBalance(self):
@@ -137,8 +143,10 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
-        assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @pytest.mark.skip(WAITIING_FOR_CONTRACT_SUPPORT)
     @allure.step("test: verify implemented rpc calls work eht_getStorageAt")
