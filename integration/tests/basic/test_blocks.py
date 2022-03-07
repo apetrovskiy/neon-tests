@@ -28,8 +28,8 @@ from integration.tests.basic.model.tags import Tag
 12.63.	net_version
 '''
 
-TAGS_TEST_DATA = [(Tag.EARLIEST, True), (Tag.LATEST, False),
-                  (Tag.PENDING, True)]
+TAGS_TEST_DATA = [(Tag.EARLIEST, False), (Tag.LATEST, True),
+                  (Tag.PENDING, False)]
 
 
 @allure.story("Basic: Json-RPC call tests - blocks")
@@ -45,7 +45,7 @@ class TestRpcCallsBlocks(BasicHelpers):
         print(model)
         #
 
-    # @pytest.mark.skip(NOT_YET_DONE)
+    # TODO: implement by int
     @pytest.mark.parametrize("quantity_tag,full_trx", TAGS_TEST_DATA)
     @allure.step("test: verify implemented rpc calls work eth_getBlockByNumber"
                  )
