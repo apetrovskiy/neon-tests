@@ -44,7 +44,7 @@ class TestRpcCalls(BasicHelpers):
 
         # TOOD: variants
         params = [
-            sender_account.address, recipient_account.address, Tag.LATEST
+            sender_account.address, recipient_account.address, Tag.LATEST.value
         ]
         model = RpcRequestFactory.get_call(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
@@ -72,11 +72,21 @@ class TestRpcCalls(BasicHelpers):
                           JsonRpcResponse), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-    @pytest.mark.skip(NOT_YET_DONE)
+    # @pytest.mark.skip(NOT_YET_DONE)
+
+    # TOOD: implement variants
     @allure.step("test: verify implemented rpc calls work eth_getLogs")
     def test_rpc_call_eth_getLogs(self):
         """Verify implemented rpc calls work eth_getLogs"""
-        pass
+        # TOOD: variants
+        params = [Tag.EARLIEST.value, Tag.LATEST.value]
+        model = RpcRequestFactory.get_logs(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+        assert actual_result.error != None, AssertMessage.CONTAINS_ERROR
+        assert actual_result.result == None, AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @allure.step("test: verify implemented rpc calls work eth_getBalance")
     def test_rpc_call_eth_getBalance(self):

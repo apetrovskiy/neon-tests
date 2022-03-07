@@ -22,3 +22,10 @@ class RpcRequestParamsFactory:
         with allure.step(ALLURE_PARAMS_BUILT):
             # TODO: implement this
             return []
+
+    @classmethod
+    def get_logs(cls, quantity_tag: Union[int, Tag],
+                 full_trx_object: bool) -> Union[List, JsonRpcRequestParams]:
+        with allure.step(ALLURE_PARAMS_BUILT):
+            # TODO: implement this
+            return []
