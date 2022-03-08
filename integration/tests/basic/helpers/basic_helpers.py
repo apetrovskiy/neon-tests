@@ -171,3 +171,7 @@ class BasicHelpers(BaseTests):
             return data.error == None
         except Exception:
             return True
+
+    @allure.step("calculating gas")
+    def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> float:
+        return tx_receipt.cumulativeGasUsed * 0.001
