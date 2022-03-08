@@ -2,7 +2,7 @@ import allure
 import pytest
 from typing import Union
 from integration.tests.basic.helpers.basic_helpers import DEFAULT_TRANSFER_AMOUNT, FIRST_FAUCET_REQUEST_AMOUNT, \
-    GREAT_AMOUNT, NOT_YET_DONE, WAITING_FOR_ERC20, WAITING_FOR_MS, \
+    GREAT_AMOUNT, NOT_YET_DONE, ROUND_DIGITS, WAITING_FOR_ERC20, WAITING_FOR_MS, \
     BasicHelpers
 
 NON_EXISTING_ADDRESS = "0xmmmmm"
@@ -46,7 +46,7 @@ AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568
             sender_account.address,
             round(
                 GREAT_AMOUNT - amount -
-                self.calculate_trx_gas(tx_receipt=tx_receipt), 3))
+                self.calculate_trx_gas(tx_receipt=tx_receipt), ROUND_DIGITS))
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT + amount)
 
@@ -104,7 +104,7 @@ AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568
             sender_account.address,
             round(
                 FIRST_FAUCET_REQUEST_AMOUNT -
-                self.calculate_trx_gas(tx_receipt=tx_receipt), 3))
+                self.calculate_trx_gas(tx_receipt=tx_receipt), ROUND_DIGITS))
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT)
 

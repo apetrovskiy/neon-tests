@@ -14,6 +14,7 @@ SECOND_FAUCET_REQUEST_AMOUNT = 3
 FIRST_AMOUNT_IN_RESPONSE = '0x4563918244f40000'
 GREAT_AMOUNT = 1_000
 DEFAULT_TRANSFER_AMOUNT = 3
+ROUND_DIGITS = 3
 
 WAITING_FOR_MS = "waiting for MS"
 # TODO: remove it later
@@ -142,19 +143,22 @@ class BasicHelpers(BaseTests):
                       message: str = ""):
         '''Compares balance of an account with expectation'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(expected_amount, balance, message)
+        self.compare_balance(expected_amount, round(balance, ROUND_DIGITS),
+                             message)
 
     @allure.step("checking sender's balance")
     def assert_sender_amount(self, address: str, expected_amount: int):
         '''Checks sender's balance'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(expected_amount, balance, "Sender: ")
+        self.compare_balance(expected_amount, round(balance, ROUND_DIGITS),
+                             "Sender: ")
 
     @allure.step("checking recipient's balance")
     def assert_recipient_amount(self, address: str, expected_amount: int):
         '''Checks recipient's balance'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(expected_amount, balance, "Recipient: ")
+        self.compare_balance(expected_amount, round(balance, ROUND_DIGITS),
+                             "Recipient: ")
 
     @allure.step("checking that the result subobject is present")
     def assert_result_object(self, data: JsonRpcResponse) -> bool:
