@@ -1,0 +1,576 @@
+{
+  "uid" : "45da353c60474ec7",
+  "name" : "test_rpc_call_eth_sendRawTransaction",
+  "fullName" : "integration.tests.basic.test_transactions.TestRpcCallsTransactions#test_rpc_call_eth_sendRawTransaction",
+  "historyId" : "f2266f2fcf46a3382764047e40d95c33",
+  "time" : {
+    "start" : 1646757816578,
+    "stop" : 1646757818807,
+    "duration" : 2229
+  },
+  "description" : "Verify implemented rpc calls work eth_sendRawTransaction",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_sendRawTransaction</p>\n",
+  "status" : "broken",
+  "statusMessage" : "TypeError: fromhex() argument must be str, not HexBytes",
+  "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f81858bbc70>\n\n    @allure.step(\n        \"test: verify implemented rpc calls work eth_sendRawTransaction\")\n    def test_rpc_call_eth_sendRawTransaction(self):\n        \"\"\"Verify implemented rpc calls work eth_sendRawTransaction\"\"\"\n        sender_account = self.create_account_with_balance(GREAT_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        # TODO: chain id\n        transaction = {\n            \"from\":\n            sender_account.address,\n            \"to\":\n            recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(SAMPLE_AMOUNT, \"ether\"),\n            \"chainId\":\n            111,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        #\n        print(transaction)\n        print(sender_account.key)\n        #\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, sender_account.key)\n        # params = [str(signed_tx.rawTransaction)]\n>       params = [bytes.fromhex(signed_tx.rawTransaction).decode('utf-8')]\nE       TypeError: fromhex() argument must be str, not HexBytes\n\nintegration/tests/basic/test_transactions.py:90: TypeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646757725743,
+      "stop" : 1646757725744,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646757725744,
+      "stop" : 1646757725745,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646757725745,
+      "stop" : 1646757726874,
+      "duration" : 1129
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646757726874,
+      "stop" : 1646757726874,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646757726874,
+      "stop" : 1646757726874,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646757726874,
+      "stop" : 1646757726875,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646757726875,
+      "stop" : 1646757726875,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646757805223,
+      "stop" : 1646757811273,
+      "duration" : 6050
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646757805223,
+        "stop" : 1646757805228,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x171267D2C5EA73f88ED0C033562a991F55719681",
+      "time" : {
+        "start" : 1646757805228,
+        "stop" : 1646757806070,
+        "duration" : 842
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.0026435076137451533992 NEON 74070361.22670156 SOL",
+      "time" : {
+        "start" : 1646757811273,
+        "stop" : 1646757811273,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646757816577,
+      "stop" : 1646757816578,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1646757816578,
+      "stop" : 1646757816578,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646757816578,
+      "stop" : 1646757816578,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_sendRawTransaction",
+    "status" : "broken",
+    "statusMessage" : "TypeError: fromhex() argument must be str, not HexBytes",
+    "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f81858bbc70>\n\n    @allure.step(\n        \"test: verify implemented rpc calls work eth_sendRawTransaction\")\n    def test_rpc_call_eth_sendRawTransaction(self):\n        \"\"\"Verify implemented rpc calls work eth_sendRawTransaction\"\"\"\n        sender_account = self.create_account_with_balance(GREAT_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        # TODO: chain id\n        transaction = {\n            \"from\":\n            sender_account.address,\n            \"to\":\n            recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(SAMPLE_AMOUNT, \"ether\"),\n            \"chainId\":\n            111,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        #\n        print(transaction)\n        print(sender_account.key)\n        #\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, sender_account.key)\n        # params = [str(signed_tx.rawTransaction)]\n>       params = [bytes.fromhex(signed_tx.rawTransaction).decode('utf-8')]\nE       TypeError: fromhex() argument must be str, not HexBytes\n\nintegration/tests/basic/test_transactions.py:90: TypeError",
+    "steps" : [ {
+      "name" : "test: verify implemented rpc calls work eth_sendRawTransaction",
+      "time" : {
+        "start" : 1646757816578,
+        "stop" : 1646757818807,
+        "duration" : 2229
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: fromhex() argument must be str, not HexBytes\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transactions.py\", line 90, in test_rpc_call_eth_sendRawTransaction\n    params = [bytes.fromhex(signed_tx.rawTransaction).decode('utf-8')]\n",
+      "steps" : [ {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646757816579,
+          "stop" : 1646757817256,
+          "duration" : 677
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646757816579,
+            "stop" : 1646757816583,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646757816584,
+            "stop" : 1646757817256,
+            "duration" : 672
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0xFE7D567d9853b3A31221bb3A54e7684D658953C9'"
+          }, {
+            "name" : "amount",
+            "value" : "1000"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "1000"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646757817256,
+          "stop" : 1646757817936,
+          "duration" : 680
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646757817256,
+            "stop" : 1646757817263,
+            "duration" : 7
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646757817263,
+            "stop" : 1646757817936,
+            "duration" : 673
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0xF9E0c477D8ACEbD3216F00C713507dF4428af029'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 6,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "eeb2fc9945646982",
+      "name" : "stdout",
+      "source" : "eeb2fc9945646982.txt",
+      "type" : "text/plain",
+      "size" : 310
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1646757818818,
+      "stop" : 1646757824181,
+      "duration" : 5363
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.0026440503739238896692 NEON 74070359.80201128 SOL",
+      "time" : {
+        "start" : 1646757824010,
+        "stop" : 1646757824010,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1646757824180,
+        "stop" : 1646757824181,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646757861293,
+      "stop" : 1646757861293,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactions"
+  }, {
+    "name" : "host",
+    "value" : "fv-az460-113"
+  }, {
+    "name" : "thread",
+    "value" : "1752-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 9,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "fbbab018fe2cf895",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254i/373//#testresult/fbbab018fe2cf895",
+        "status" : "broken",
+        "statusDetails" : "TypeError: fromhex() argument must be str, not HexBytes",
+        "time" : {
+          "start" : 1646755893258,
+          "stop" : 1646755895214,
+          "duration" : 1956
+        }
+      }, {
+        "uid" : "745c99dc13874d75",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254i/371//#testresult/745c99dc13874d75",
+        "status" : "broken",
+        "statusDetails" : "TypeError: fromhex() argument must be str, not HexBytes",
+        "time" : {
+          "start" : 1646751387349,
+          "stop" : 1646751389083,
+          "duration" : 1734
+        }
+      }, {
+        "uid" : "e0407f38395ab28b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254i/369//#testresult/e0407f38395ab28b",
+        "status" : "broken",
+        "statusDetails" : "TypeError: fromhex() argument must be str, not HexBytes",
+        "time" : {
+          "start" : 1646750835519,
+          "stop" : 1646750837736,
+          "duration" : 2217
+        }
+      }, {
+        "uid" : "c80532cd264400ee",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254i/367//#testresult/c80532cd264400ee",
+        "status" : "broken",
+        "statusDetails" : "TypeError: fromhex() argument must be str, not HexBytes",
+        "time" : {
+          "start" : 1646749416217,
+          "stop" : 1646749418497,
+          "duration" : 2280
+        }
+      }, {
+        "uid" : "5ab174254c694709",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254i/365//#testresult/5ab174254c694709",
+        "status" : "broken",
+        "statusDetails" : "TypeError: fromhex() argument must be str, not HexBytes",
+        "time" : {
+          "start" : 1646748976424,
+          "stop" : 1646748978642,
+          "duration" : 2218
+        }
+      }, {
+        "uid" : "3358d4bd19c48b67",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254i/363//#testresult/3358d4bd19c48b67",
+        "status" : "broken",
+        "statusDetails" : "TypeError: fromhex() argument must be str, not HexBytes",
+        "time" : {
+          "start" : 1646747634601,
+          "stop" : 1646747636819,
+          "duration" : 2218
+        }
+      }, {
+        "uid" : "df30a3b874f44925",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254i/361//#testresult/df30a3b874f44925",
+        "status" : "broken",
+        "statusDetails" : "TypeError: fromhex() argument must be str, not HexBytes",
+        "time" : {
+          "start" : 1646747162780,
+          "stop" : 1646747165066,
+          "duration" : 2286
+        }
+      }, {
+        "uid" : "ad882c5f34347131",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254i/359//#testresult/ad882c5f34347131",
+        "status" : "broken",
+        "statusDetails" : "TypeError: fromhex() argument must be str, not HexBytes",
+        "time" : {
+          "start" : 1646742508771,
+          "stop" : 1646742510773,
+          "duration" : 2002
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "45da353c60474ec7.json",
+  "parameterValues" : [ ]
+}
