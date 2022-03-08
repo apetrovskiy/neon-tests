@@ -90,6 +90,13 @@ class TestRpcCallsTransactions(BasicHelpers):
                           JsonRpcResponse), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
+        # self.assert_sender_amount(
+        #     sender_account.address, GREAT_AMOUNT - SAMPLE_AMOUNT -
+        #     self.calculate_trx_gas(tx_receipt=actual_result.result))
+        self.assert_recipient_amount(
+            recipient_account.address,
+            FIRST_FAUCET_REQUEST_AMOUNT + SAMPLE_AMOUNT)
+
     @pytest.mark.skip(NOT_YET_DONE)
     @allure.step(
         "test: verify implemented rpc calls work eth_getTransactionByHash")
