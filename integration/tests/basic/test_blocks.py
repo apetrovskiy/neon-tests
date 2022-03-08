@@ -49,33 +49,17 @@ class TestRpcCallsBlocks(BasicHelpers):
         tx_receipt = self.transfer_neon(sender_account, recipient_account,
                                         SAMPLE_AMOUNT)
 
-        #
-        print("----------------------------------------------------")
-        print(tx_receipt)
-        '''
-----------------------------------------------------
-AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568aadc7f0ba4a981fd494aef9a723345'), 'transactionIndex': 0, 'blockHash': HexBytes('0x33f9147e12a0d264ccc31cf12e4c90010c3c6fd2b370211f337616ba3de87430'), 'blockNumber': 1010220, 'from': '0x98CeE1c921D16ed20B58C8f9d8A3A128492A5f7B', 'to': '0x3E14f865E7332913F1de50d7B5Bb0fA6Cc335359', 'gasUsed': 15000, 'cumulativeGasUsed': 15000, 'contractAddress': None, 'logs': [], 'status': 1, 'logsBloom': HexBytes('0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')})
-:::::::::::::::::::::::::::::::::::::::::::
-        '''
-        print(self.web3_client.gas_price())
-        print(self.web3_client.gas_price() * 15000)
-        print(":::::::::::::::::::::::::::::::::::::::::::")
-        #
-        model = RpcRequestFactory.get_block_by_hash(
-            req_id=1, params=JsonRpcRequestParams())
-
-        # TODO: remove
-        print(model)
-        #
+        params = [tx_receipt.blockHash.hex(), True]
+        model = RpcRequestFactory.get_block_by_hash(params=params)
 
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        # assert self.assert_no_error_object(
-        #     actual_result), AssertMessage.CONTAINS_ERROR
-        # assert self.assert_result_object(
-        #     actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @pytest.mark.parametrize("quantity_tag,full_trx", TAGS_TEST_DATA)
     @allure.step(
@@ -119,10 +103,10 @@ AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        # assert self.assert_no_error_object(
-        #     actual_result), AssertMessage.CONTAINS_ERROR
-        # assert self.assert_result_object(
-        #     actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @allure.step("test: verify implemented rpc calls work eth_blockNumber")
     def test_rpc_call_eth_blockNumber(self):
