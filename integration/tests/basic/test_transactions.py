@@ -90,6 +90,7 @@ class TestRpcCallsTransactions(BasicHelpers):
                           JsonRpcResponse), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
+        # TODO: calculate sender's amount
         # self.assert_sender_amount(
         #     sender_account.address, GREAT_AMOUNT - SAMPLE_AMOUNT -
         #     self.calculate_trx_gas(tx_receipt=actual_result.result))
