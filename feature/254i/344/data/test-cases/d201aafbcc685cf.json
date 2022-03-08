@@ -1,0 +1,537 @@
+{
+  "uid" : "d201aafbcc685cf",
+  "name" : "test_rpc_call_eth_sendRawTransaction",
+  "fullName" : "integration.tests.basic.test_transactions.TestRpcCallsTransactions#test_rpc_call_eth_sendRawTransaction",
+  "historyId" : "f2266f2fcf46a3382764047e40d95c33",
+  "time" : {
+    "start" : 1646723533766,
+    "stop" : 1646723535716,
+    "duration" : 1950
+  },
+  "description" : "Verify implemented rpc calls work eth_sendRawTransaction",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_sendRawTransaction</p>\n",
+  "status" : "broken",
+  "statusMessage" : "TypeError: Object of type HexBytes is not JSON serializable",
+  "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7fe728f9e9a0>\n\n    @allure.step(\n        \"test: verify implemented rpc calls work eth_sendRawTransaction\")\n    def test_rpc_call_eth_sendRawTransaction(self):\n        \"\"\"Verify implemented rpc calls work eth_sendRawTransaction\"\"\"\n        sender_account = self.create_account_with_balance(GREAT_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        # TODO: chain id\n        transaction = {\n            \"from\":\n            sender_account.address,\n            \"to\":\n            recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(SAMPLE_AMOUNT, \"ether\"),\n            \"chainId\":\n            111,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        #\n        print(transaction)\n        print(sender_account.key)\n        #\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, sender_account.key)\n        params = [signed_tx]\n    \n        #\n        print(signed_tx)\n        #\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n>       response = self.jsonrpc_requester.request_json_rpc(model)\n\nintegration/tests/basic/test_transactions.py:96: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/json_rpc_requester.py:20: in request_json_rpc\n    return self._session.post(self._url, json=dataclasses.asdict(data))\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py:577: in post\n    return self.request('POST', url, data=data, json=json, **kwargs)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py:515: in request\n    prep = self.prepare_request(req)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py:443: in prepare_request\n    p.prepare(\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py:321: in prepare\n    self.prepare_body(data, files, json)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py:473: in prepare_body\n    body = complexjson.dumps(json, allow_nan=False)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/__init__.py:234: in dumps\n    return cls(\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py:199: in encode\n    chunks = self.iterencode(o, _one_shot=True)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py:257: in iterencode\n    return _iterencode(o, 0)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <json.encoder.JSONEncoder object at 0x7fe728f9ec70>\no = HexBytes('0xf86e80855d3c37ac00823a9894e73616ebc3805d51ad03aeb0d9436f0d4a748baa884563918244f4000080820102a0d72d9e81cac8c9d092363c1d2b054f81014c499d6cff52e4391b7ce704fbd588a0506661217d5edfb6aa4493b2c52d3f33ab1f346a9b8f8a91402d7c8d72ba7639')\n\n    def default(self, o):\n        \"\"\"Implement this method in a subclass such that it returns\n        a serializable object for ``o``, or calls the base implementation\n        (to raise a ``TypeError``).\n    \n        For example, to support arbitrary iterators, you could\n        implement default like this::\n    \n            def default(self, o):\n                try:\n                    iterable = iter(o)\n                except TypeError:\n                    pass\n                else:\n                    return list(iterable)\n                # Let the base class default method raise the TypeError\n                return JSONEncoder.default(self, o)\n    \n        \"\"\"\n>       raise TypeError(f'Object of type {o.__class__.__name__} '\n                        f'is not JSON serializable')\nE       TypeError: Object of type HexBytes is not JSON serializable\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py:179: TypeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646723463277,
+      "stop" : 1646723463278,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646723463277,
+      "stop" : 1646723463277,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646723463279,
+      "stop" : 1646723464169,
+      "duration" : 890
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646723464169,
+      "stop" : 1646723464170,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646723464170,
+      "stop" : 1646723464170,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646723464170,
+      "stop" : 1646723464170,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646723464170,
+      "stop" : 1646723464170,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646723522653,
+      "stop" : 1646723527413,
+      "duration" : 4760
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646723522653,
+        "stop" : 1646723522657,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x2ef70898c1a58577C10ED1FcF6Af917655d9FECF",
+      "time" : {
+        "start" : 1646723522657,
+        "stop" : 1646723523420,
+        "duration" : 763
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.0024156907476748344694 NEON 74070915.46757671 SOL",
+      "time" : {
+        "start" : 1646723527412,
+        "stop" : 1646723527413,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646723533765,
+      "stop" : 1646723533766,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1646723533766,
+      "stop" : 1646723533766,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646723533766,
+      "stop" : 1646723533766,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_sendRawTransaction",
+    "status" : "broken",
+    "statusMessage" : "TypeError: Object of type HexBytes is not JSON serializable",
+    "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7fe728f9e9a0>\n\n    @allure.step(\n        \"test: verify implemented rpc calls work eth_sendRawTransaction\")\n    def test_rpc_call_eth_sendRawTransaction(self):\n        \"\"\"Verify implemented rpc calls work eth_sendRawTransaction\"\"\"\n        sender_account = self.create_account_with_balance(GREAT_AMOUNT)\n        recipient_account = self.create_account_with_balance(\n            FIRST_FAUCET_REQUEST_AMOUNT)\n    \n        # TODO: chain id\n        transaction = {\n            \"from\":\n            sender_account.address,\n            \"to\":\n            recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(SAMPLE_AMOUNT, \"ether\"),\n            \"chainId\":\n            111,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        #\n        print(transaction)\n        print(sender_account.key)\n        #\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, sender_account.key)\n        params = [signed_tx]\n    \n        #\n        print(signed_tx)\n        #\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n>       response = self.jsonrpc_requester.request_json_rpc(model)\n\nintegration/tests/basic/test_transactions.py:96: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/json_rpc_requester.py:20: in request_json_rpc\n    return self._session.post(self._url, json=dataclasses.asdict(data))\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py:577: in post\n    return self.request('POST', url, data=data, json=json, **kwargs)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py:515: in request\n    prep = self.prepare_request(req)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py:443: in prepare_request\n    p.prepare(\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py:321: in prepare\n    self.prepare_body(data, files, json)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py:473: in prepare_body\n    body = complexjson.dumps(json, allow_nan=False)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/__init__.py:234: in dumps\n    return cls(\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py:199: in encode\n    chunks = self.iterencode(o, _one_shot=True)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py:257: in iterencode\n    return _iterencode(o, 0)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <json.encoder.JSONEncoder object at 0x7fe728f9ec70>\no = HexBytes('0xf86e80855d3c37ac00823a9894e73616ebc3805d51ad03aeb0d9436f0d4a748baa884563918244f4000080820102a0d72d9e81cac8c9d092363c1d2b054f81014c499d6cff52e4391b7ce704fbd588a0506661217d5edfb6aa4493b2c52d3f33ab1f346a9b8f8a91402d7c8d72ba7639')\n\n    def default(self, o):\n        \"\"\"Implement this method in a subclass such that it returns\n        a serializable object for ``o``, or calls the base implementation\n        (to raise a ``TypeError``).\n    \n        For example, to support arbitrary iterators, you could\n        implement default like this::\n    \n            def default(self, o):\n                try:\n                    iterable = iter(o)\n                except TypeError:\n                    pass\n                else:\n                    return list(iterable)\n                # Let the base class default method raise the TypeError\n                return JSONEncoder.default(self, o)\n    \n        \"\"\"\n>       raise TypeError(f'Object of type {o.__class__.__name__} '\n                        f'is not JSON serializable')\nE       TypeError: Object of type HexBytes is not JSON serializable\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py:179: TypeError",
+    "steps" : [ {
+      "name" : "test: verify implemented rpc calls work eth_sendRawTransaction",
+      "time" : {
+        "start" : 1646723533766,
+        "stop" : 1646723535716,
+        "duration" : 1950
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: Object of type HexBytes is not JSON serializable\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transactions.py\", line 96, in test_rpc_call_eth_sendRawTransaction\n    response = self.jsonrpc_requester.request_json_rpc(model)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/json_rpc_requester.py\", line 20, in request_json_rpc\n    return self._session.post(self._url, json=dataclasses.asdict(data))\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 577, in post\n    return self.request('POST', url, data=data, json=json, **kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 515, in request\n    prep = self.prepare_request(req)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 443, in prepare_request\n    p.prepare(\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py\", line 321, in prepare\n    self.prepare_body(data, files, json)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py\", line 473, in prepare_body\n    body = complexjson.dumps(json, allow_nan=False)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/__init__.py\", line 234, in dumps\n    return cls(\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 199, in encode\n    chunks = self.iterencode(o, _one_shot=True)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 257, in iterencode\n    return _iterencode(o, 0)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 179, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n",
+      "steps" : [ {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646723533766,
+          "stop" : 1646723534400,
+          "duration" : 634
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646723533766,
+            "stop" : 1646723533770,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646723533771,
+            "stop" : 1646723534400,
+            "duration" : 629
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x4296F9F2fE595343a4E3c179cD11F264f4b6ffd1'"
+          }, {
+            "name" : "amount",
+            "value" : "1000"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "1000"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646723534400,
+          "stop" : 1646723535037,
+          "duration" : 637
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646723534400,
+            "stop" : 1646723534405,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646723534405,
+            "stop" : 1646723535037,
+            "duration" : 632
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0xe73616eBc3805D51aD03AEb0d9436F0D4a748bAa'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "the model built",
+        "time" : {
+          "start" : 1646723535712,
+          "stop" : 1646723535712,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "requesting Json-RPC",
+        "time" : {
+          "start" : 1646723535712,
+          "stop" : 1646723535715,
+          "duration" : 3
+        },
+        "status" : "broken",
+        "statusMessage" : "TypeError: Object of type HexBytes is not JSON serializable\n",
+        "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/json_rpc_requester.py\", line 20, in request_json_rpc\n    return self._session.post(self._url, json=dataclasses.asdict(data))\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 577, in post\n    return self.request('POST', url, data=data, json=json, **kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 515, in request\n    prep = self.prepare_request(req)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 443, in prepare_request\n    p.prepare(\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py\", line 321, in prepare\n    self.prepare_body(data, files, json)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py\", line 473, in prepare_body\n    body = complexjson.dumps(json, allow_nan=False)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/__init__.py\", line 234, in dumps\n    return cls(\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 199, in encode\n    chunks = self.iterencode(o, _one_shot=True)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 257, in iterencode\n    return _iterencode(o, 0)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 179, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n",
+        "steps" : [ {
+          "name" : "getting response",
+          "time" : {
+            "start" : 1646723535712,
+            "stop" : 1646723535713,
+            "duration" : 1
+          },
+          "status" : "broken",
+          "statusMessage" : "TypeError: Object of type HexBytes is not JSON serializable\n",
+          "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/json_rpc_requester.py\", line 20, in request_json_rpc\n    return self._session.post(self._url, json=dataclasses.asdict(data))\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 577, in post\n    return self.request('POST', url, data=data, json=json, **kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 515, in request\n    prep = self.prepare_request(req)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/sessions.py\", line 443, in prepare_request\n    p.prepare(\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py\", line 321, in prepare\n    self.prepare_body(data, files, json)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/requests/models.py\", line 473, in prepare_body\n    body = complexjson.dumps(json, allow_nan=False)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/__init__.py\", line 234, in dumps\n    return cls(\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 199, in encode\n    chunks = self.iterencode(o, _one_shot=True)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 257, in iterencode\n    return _iterencode(o, 0)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/json/encoder.py\", line 179, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "data",
+          "value" : "JsonRpcRequest(id=29, method='eth_sendRawTransaction', params=[SignedTransaction(rawTransaction=HexBytes('0xf86e80855d3c37ac00823a9894e73616ebc3805d51ad03aeb0d9436f0d4a748baa884563918244f4000080820102a0d72d9e81cac8c9d092363c1d2b054f81014c499d6cff52e4391b7ce704fbd588a0506661217d5edfb6aa4493b2c52d3f33ab1f346a9b8f8a91402d7c8d72ba7639'), hash=HexBytes('0xd24a44885090821ca641ff214262937f2b11cc594343df1e1f73e3d2110f6cf8'), r=97327864538428896215290664311664465969292073431655785458602909716074056111496, s=36365916659545650281599962067765113172651311292704604406123949868370515097145, v=258)], jsonrpc='2.0')"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 9,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "5d55a5f5dd937aee",
+      "name" : "stdout",
+      "source" : "5d55a5f5dd937aee.txt",
+      "type" : "text/plain",
+      "size" : 826
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 10,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1646723535771,
+      "stop" : 1646723539918,
+      "duration" : 4147
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.002416016463019000259 NEON 74070914.46481307 SOL",
+      "time" : {
+        "start" : 1646723539786,
+        "stop" : 1646723539786,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1646723539918,
+        "stop" : 1646723539918,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646723574222,
+      "stop" : 1646723574223,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactions"
+  }, {
+    "name" : "host",
+    "value" : "fv-az173-848"
+  }, {
+    "name" : "thread",
+    "value" : "1767-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "d201aafbcc685cf.json",
+  "parameterValues" : [ ]
+}
