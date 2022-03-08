@@ -43,8 +43,10 @@ AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568
         #
 
         self.assert_sender_amount(
-            sender_account.address, GREAT_AMOUNT - amount -
-            self.calculate_trx_gas(tx_receipt=tx_receipt))
+            sender_account.address,
+            round(
+                GREAT_AMOUNT - amount -
+                self.calculate_trx_gas(tx_receipt=tx_receipt), 3))
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT + amount)
 
@@ -99,8 +101,10 @@ AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568
                                              0)
 
         self.assert_sender_amount(
-            sender_account.address, FIRST_FAUCET_REQUEST_AMOUNT -
-            self.calculate_trx_gas(tx_receipt=tx_receipt))
+            sender_account.address,
+            round(
+                FIRST_FAUCET_REQUEST_AMOUNT -
+                self.calculate_trx_gas(tx_receipt=tx_receipt), 3))
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT)
 
