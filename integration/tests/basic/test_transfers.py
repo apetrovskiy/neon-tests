@@ -2,7 +2,7 @@ import allure
 import pytest
 from typing import Union
 from integration.tests.basic.helpers.basic_helpers import DEFAULT_TRANSFER_AMOUNT, FIRST_FAUCET_REQUEST_AMOUNT, \
-    GREAT_AMOUNT, NOT_YET_DONE, ROUND_DIGITS, WAITING_FOR_ERC20, WAITING_FOR_MS, \
+    GREAT_AMOUNT, NEGATIVE_AMOUNT, NOT_YET_DONE, ROUND_DIGITS, WAITING_FOR_ERC20, WAITING_FOR_MS, \
     BasicHelpers
 
 NON_EXISTING_ADDRESS = "0xmmmmm"
@@ -97,9 +97,7 @@ class TestTransfer(BasicHelpers):
         """Send zero: spl (with different precision)"""
         pass
 
-    # @pytest.mark.skip(NOT_YET_DONE)
-    # @pytest.fail(NOT_YET_DONE)
-    @pytest.mark.xfail()
+    @pytest.mark.xfail(WAITING_FOR_ERC20)
     @allure.step("test: send zero: ERC20")
     def test_zero_erc20(self):
         """Send zero: ERC20"""
@@ -113,7 +111,8 @@ class TestTransfer(BasicHelpers):
         recipient_account = self.create_account_with_balance(
             FIRST_FAUCET_REQUEST_AMOUNT)
 
-        self.transfer_zero_neon(sender_account, recipient_account, -1)
+        self.transfer_negative_neon(sender_account, recipient_account,
+                                    NEGATIVE_AMOUNT)
 
         self.assert_sender_amount(sender_account.address,
                                   FIRST_FAUCET_REQUEST_AMOUNT)
