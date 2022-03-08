@@ -99,7 +99,6 @@ AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568
         # assert self.assert_result_object(
         #     actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
-    @pytest.mark.parametrize("quantity_tag,full_trx", TAGS_TEST_DATA)
     @allure.step(
         "test: verify implemented rpc calls work eth_getBlockByNumber via numbers"
     )
