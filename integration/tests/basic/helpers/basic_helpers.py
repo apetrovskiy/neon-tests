@@ -1,3 +1,4 @@
+from decimal import Decimal
 import allure
 import pytest
 import web3
@@ -14,7 +15,7 @@ SECOND_FAUCET_REQUEST_AMOUNT = 3
 FIRST_AMOUNT_IN_RESPONSE = '0x4563918244f40000'
 GREAT_AMOUNT = 1_000
 DEFAULT_TRANSFER_AMOUNT = 3
-ROUND_DIGITS = 3
+ROUND_DIGITS = 4
 
 WAITING_FOR_MS = "waiting for MS"
 # TODO: remove it later
@@ -37,7 +38,7 @@ class BasicHelpers(BaseTests):
         return self.web3_client.create_account()
 
     @allure.step("getting balance of account")
-    def get_balance(self, address: str) -> int:
+    def get_balance(self, address: str) -> Decimal:
         '''Gets balance of account'''
         return self.web3_client.eth.get_balance(address)
 
@@ -132,33 +133,33 @@ class BasicHelpers(BaseTests):
                                                      "Resulting wei value")
 
     @allure.step("comparing the balance with expectation")
-    def compare_balance(self, expected: int, actual: int, message: str):
+    def compare_balance(self, expected: float, actual: Decimal, message: str):
         '''Compares the balance with expectation'''
-        assert actual == expected, message + f"expected balance = {expected}, actual balance = {actual}"
+        expected_dec = round(expected, ROUND_DIGITS)
+        actual_dec = float(round(actual, ROUND_DIGITS))
+
+        assert actual_dec == expected_dec, message + f"expected balance = {expected_dec}, actual balance = {actual_dec}"
 
     @allure.step("comparing balance of an account with expectation")
     def assert_amount(self,
                       address: str,
-                      expected_amount: int,
+                      expected_amount: float,
                       message: str = ""):
         '''Compares balance of an account with expectation'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(expected_amount, round(balance, ROUND_DIGITS),
-                             message)
+        self.compare_balance(expected_amount, balance, message)
 
     @allure.step("checking sender's balance")
-    def assert_sender_amount(self, address: str, expected_amount: int):
+    def assert_sender_amount(self, address: str, expected_amount: float):
         '''Checks sender's balance'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(expected_amount, round(balance, ROUND_DIGITS),
-                             "Sender: ")
+        self.compare_balance(expected_amount, balance, "Sender: ")
 
     @allure.step("checking recipient's balance")
-    def assert_recipient_amount(self, address: str, expected_amount: int):
+    def assert_recipient_amount(self, address: str, expected_amount: float):
         '''Checks recipient's balance'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(expected_amount, round(balance, ROUND_DIGITS),
-                             "Recipient: ")
+        self.compare_balance(expected_amount, balance, "Recipient: ")
 
     @allure.step("checking that the result subobject is present")
     def assert_result_object(self, data: JsonRpcResponse) -> bool:
@@ -177,6 +178,6 @@ class BasicHelpers(BaseTests):
             return True
 
     @allure.step("calculating gas")
-    def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> float:
+    def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> Decimal:
         return tx_receipt.cumulativeGasUsed * self.web3_client.gas_price(
         ) * 0.000_000_000_000_000_001

@@ -29,24 +29,9 @@ class TestTransfer(BasicHelpers):
         tx_receipt = self.transfer_neon(sender_account, recipient_account,
                                         amount)
 
-        #
-        print("----------------------------------------------------")
-        print(tx_receipt)
-        '''
-----------------------------------------------------
-AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568aadc7f0ba4a981fd494aef9a723345'), 'transactionIndex': 0, 'blockHash': HexBytes('0x33f9147e12a0d264ccc31cf12e4c90010c3c6fd2b370211f337616ba3de87430'), 'blockNumber': 1010220, 'from': '0x98CeE1c921D16ed20B58C8f9d8A3A128492A5f7B', 'to': '0x3E14f865E7332913F1de50d7B5Bb0fA6Cc335359', 'gasUsed': 15000, 'cumulativeGasUsed': 15000, 'contractAddress': None, 'logs': [], 'status': 1, 'logsBloom': HexBytes('0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')})
-:::::::::::::::::::::::::::::::::::::::::::
-        '''
-        print(self.web3_client.gas_price())
-        print(self.web3_client.gas_price() * 15000)
-        print(":::::::::::::::::::::::::::::::::::::::::::")
-        #
-
         self.assert_sender_amount(
-            sender_account.address,
-            round(
-                GREAT_AMOUNT - amount -
-                self.calculate_trx_gas(tx_receipt=tx_receipt), ROUND_DIGITS))
+            sender_account.address, GREAT_AMOUNT - amount -
+            self.calculate_trx_gas(tx_receipt=tx_receipt))
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT + amount)
 
@@ -101,10 +86,8 @@ AttributeDict({'transactionHash': HexBytes('0xdb17af3d719ba9c32ed98741eb4b3fb568
                                              0)
 
         self.assert_sender_amount(
-            sender_account.address,
-            round(
-                FIRST_FAUCET_REQUEST_AMOUNT -
-                self.calculate_trx_gas(tx_receipt=tx_receipt), ROUND_DIGITS))
+            sender_account.address, FIRST_FAUCET_REQUEST_AMOUNT -
+            self.calculate_trx_gas(tx_receipt=tx_receipt))
         self.assert_recipient_amount(recipient_account.address,
                                      FIRST_FAUCET_REQUEST_AMOUNT)
 
