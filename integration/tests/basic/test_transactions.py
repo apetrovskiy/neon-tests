@@ -86,7 +86,7 @@ class TestRpcCallsTransactions(BasicHelpers):
 
         signed_tx = self.web3_client.eth.account.sign_transaction(
             transaction, sender_account.key)
-        params = [str(signed_tx)]
+        params = [signed_tx.rawTransaction]
 
         #
         print(signed_tx)
