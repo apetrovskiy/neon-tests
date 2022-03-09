@@ -65,7 +65,7 @@ class TestRpcCalls(BasicHelpers):
         recipient_account = self.create_account_with_balance()
 
         # TOOD: variants
-        data = CallRequest(from1=sender_account.address,
+        data = CallRequest(from_=sender_account.address,
                            to=recipient_account.address,
                            value=hex(1))
         params = [data]
