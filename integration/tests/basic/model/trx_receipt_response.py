@@ -6,19 +6,6 @@ from typing import Any, List, Union
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class TrxReceiptResponse:
-    # transactionHash: str
-    # transactionIndex: int
-    # blockHash: str
-    # blockNumber: int
-    # from_: str
-    # to: str
-    # cumulativeGasUsed: int
-    # gasUsed: int
-    # contractAddress: Union[str, None]
-    # logs: List[Any]
-    # logsBloom: str
-    # root: Any
-    # status: Union[1, 0]
     transaction_hash: str
     transaction_index: int
     block_hash: str
