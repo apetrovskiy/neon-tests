@@ -98,16 +98,46 @@ class TestRpcCallsTransactions(BasicHelpers):
             recipient_account.address,
             FIRST_FAUCET_REQUEST_AMOUNT + SAMPLE_AMOUNT)
 
-    @pytest.mark.skip(NOT_YET_DONE)
     @allure.step(
         "test: verify implemented rpc calls work eth_getTransactionByHash")
     def test_rpc_call_eth_getTransactionByHash(self):
         """Verify implemented rpc calls work eth_getTransactionByHash"""
-        pass
+        sender_account = self.create_account_with_balance(GREAT_AMOUNT)
+        recipient_account = self.create_account_with_balance(
+            FIRST_FAUCET_REQUEST_AMOUNT)
 
-    @pytest.mark.skip(NOT_YET_DONE)
+        tx_receipt = self.transfer_neon(sender_account, recipient_account,
+                                        SAMPLE_AMOUNT)
+
+        params = [tx_receipt.transactionHash.hex()]
+        model = RpcRequestFactory.get_trx_by_hash(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
+
     @allure.step(
         "test: verify implemented rpc calls work eth_getTransactionReceipt")
     def test_rpc_call_eth_getTransactionReceipt(self):
         """Verify implemented rpc calls work eth_getTransactionReceipt"""
-        pass
+        sender_account = self.create_account_with_balance(GREAT_AMOUNT)
+        recipient_account = self.create_account_with_balance(
+            FIRST_FAUCET_REQUEST_AMOUNT)
+
+        tx_receipt = self.transfer_neon(sender_account, recipient_account,
+                                        SAMPLE_AMOUNT)
+
+        params = [tx_receipt.transactionHash.hex()]
+        model = RpcRequestFactory.get_trx_receipt(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
