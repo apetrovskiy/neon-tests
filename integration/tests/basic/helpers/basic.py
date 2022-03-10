@@ -29,7 +29,7 @@ class BasicTests(BaseTests):
         '''Creates a new account'''
         return self.web3_client.create_account()
 
-    @allure.step("getting balance of account")
+    # TODO: remove it @allure.step("getting balance of account")
     def get_balance(self, address: str) -> Decimal:
         '''Gets balance of account'''
         return self.web3_client.eth.get_balance(address)
@@ -59,12 +59,9 @@ class BasicTests(BaseTests):
     #     self.faucet.request_sol(wallet, amount=amount)
 
     @allure.step("processing transaction")
-    def process_transaction(
-            self,
-            sender_account: Account,
-            recipient_account: Account,
-            amount: int,
-            message: str = "") -> Union[web3.types.TxReceipt, None]:
+    def process_transaction(self, sender_account: Account,
+                            recipient_account: Account,
+                            amount: int) -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction'''
 
         tx = self.web3_client.send_neon(sender_account, recipient_account,
@@ -94,23 +91,23 @@ class BasicTests(BaseTests):
 
         return tx
 
-    # TODO: remote it @allure.step("transferring tokens")
+    # TODO: remove it @allure.step("transferring tokens")
     def transfer_neon(self, sender_account: Account,
                       recipient_account: Account,
                       amount: int) -> Union[web3.types.TxReceipt, None]:
         '''Transers tokens'''
         return self.process_transaction(sender_account, recipient_account,
-                                        amount, "InvalidInstructionData")
+                                        amount)
 
-    # TODO: remote it @allure.step("transferring 0 tokens")
+    # TODO: remove it @allure.step("transferring 0 tokens")
     def transfer_zero_neon(self, sender_account: Account,
                            recipient_account: Account,
                            amount: int) -> Union[web3.types.TxReceipt, None]:
         '''Transfers 0 tokens'''
         return self.process_transaction(sender_account, recipient_account,
-                                        amount, "zero")
+                                        amount)
 
-    # TODO: remote it @allure.step("transferring negative amount of tokens")
+    # TODO: remove it @allure.step("transferring negative amount of tokens")
     def transfer_negative_neon(
             self, sender_account: Account, recipient_account: Account,
             amount: int) -> Union[web3.types.TxReceipt, None]:
@@ -119,7 +116,7 @@ class BasicTests(BaseTests):
             sender_account, recipient_account, amount,
             ErrorMessage.NEGATIVE_VALUE.value)
 
-    # TODO: remote it @allure.step("transferring tokens to an invalid address")
+    # TODO: remove it @allure.step("transferring tokens to an invalid address")
     def transfer_to_invalid_address(
             self, sender_account: Account, recipient_account: Account,
             amount: int, message: str) -> Union[web3.types.TxReceipt, None]:
@@ -128,7 +125,7 @@ class BasicTests(BaseTests):
                                                      recipient_account, amount,
                                                      message)
 
-    # TODO: remote it @allure.step("checking in case the balance is less than required")
+    # TODO: remove it @allure.step("checking in case the balance is less than required")
     def check_value_error_if_less_than_required(
             self, sender_account: Account, recipient_account: Account,
             amount: int) -> Union[web3.types.TxReceipt, None]:
@@ -166,7 +163,7 @@ class BasicTests(BaseTests):
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
         self.compare_balance(expected_amount, balance, "Recipient: ")
 
-    # TODO: remote it @allure.step("checking that the result subobject is present")
+    # TODO: remove it @allure.step("checking that the result subobject is present")
     def assert_result_object(self, data: JsonRpcResponse) -> bool:
         '''Checks that the result subobject is present'''
         try:
@@ -174,7 +171,7 @@ class BasicTests(BaseTests):
         except Exception:
             return False
 
-    # TODO: remote it @allure.step("checking that the error subobject is not present")
+    # TODO: remove it @allure.step("checking that the error subobject is not present")
     def assert_no_error_object(self, data: JsonRpcErrorResponse) -> bool:
         '''Checks that the error subobject is not present'''
         try:
