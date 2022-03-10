@@ -87,17 +87,14 @@ class BasicTests(BaseTests):
                                             amount)
 
         if error_info != None:
-            #
-            print("<<<<<<<<<<<<<<<<<")
-            print(error_info)
-            #
+
             if error_message:
                 assert error_message in str(error_info)
             assert None != error_info, "Transaction failed"
 
         return tx
 
-    @allure.step("transferring tokens")
+    # TODO: remote it @allure.step("transferring tokens")
     def transfer_neon(self, sender_account: Account,
                       recipient_account: Account,
                       amount: int) -> Union[web3.types.TxReceipt, None]:
@@ -105,7 +102,7 @@ class BasicTests(BaseTests):
         return self.process_transaction(sender_account, recipient_account,
                                         amount, "InvalidInstructionData")
 
-    @allure.step("transferring 0 tokens")
+    # TODO: remote it @allure.step("transferring 0 tokens")
     def transfer_zero_neon(self, sender_account: Account,
                            recipient_account: Account,
                            amount: int) -> Union[web3.types.TxReceipt, None]:
@@ -113,7 +110,7 @@ class BasicTests(BaseTests):
         return self.process_transaction(sender_account, recipient_account,
                                         amount, "zero")
 
-    @allure.step("transferring negative amount of tokens")
+    # TODO: remote it @allure.step("transferring negative amount of tokens")
     def transfer_negative_neon(
             self, sender_account: Account, recipient_account: Account,
             amount: int) -> Union[web3.types.TxReceipt, None]:
@@ -122,7 +119,7 @@ class BasicTests(BaseTests):
             sender_account, recipient_account, amount,
             ErrorMessage.NEGATIVE_VALUE.value)
 
-    @allure.step("transferring tokens to an invalid address")
+    # TODO: remote it @allure.step("transferring tokens to an invalid address")
     def transfer_to_invalid_address(
             self, sender_account: Account, recipient_account: Account,
             amount: int, message: str) -> Union[web3.types.TxReceipt, None]:
@@ -131,7 +128,7 @@ class BasicTests(BaseTests):
                                                      recipient_account, amount,
                                                      message)
 
-    @allure.step("checking in case the balance is less than required")
+    # TODO: remote it @allure.step("checking in case the balance is less than required")
     def check_value_error_if_less_than_required(
             self, sender_account: Account, recipient_account: Account,
             amount: int) -> Union[web3.types.TxReceipt, None]:
@@ -169,7 +166,7 @@ class BasicTests(BaseTests):
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
         self.compare_balance(expected_amount, balance, "Recipient: ")
 
-    @allure.step("checking that the result subobject is present")
+    # TODO: remote it @allure.step("checking that the result subobject is present")
     def assert_result_object(self, data: JsonRpcResponse) -> bool:
         '''Checks that the result subobject is present'''
         try:
@@ -177,7 +174,7 @@ class BasicTests(BaseTests):
         except Exception:
             return False
 
-    @allure.step("checking that the error subobject is not present")
+    # TODO: remote it @allure.step("checking that the error subobject is not present")
     def assert_no_error_object(self, data: JsonRpcErrorResponse) -> bool:
         '''Checks that the error subobject is not present'''
         try:
