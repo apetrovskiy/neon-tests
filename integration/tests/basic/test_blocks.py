@@ -41,12 +41,11 @@ class TestRpcCallsBlocks(BaseTransfers):
 
     # TODO: implement numerous variants
     @allure.step("test: verify implemented rpc calls work eth_getBlockByHash")
-    def test_rpc_call_eth_getBlockByHash(self,prepare_accounts):
+    def test_rpc_call_eth_getBlockByHash(self, prepare_accounts):
         """Verify implemented rpc calls work eth_getBlockByHash"""
-        # sender_account = self.create_account_with_balance()
-        # recipient_account = self.create_account_with_balance()
 
-        tx_receipt = self.transfer_neon(self.sender_account, self.recipient_account,
+        tx_receipt = self.transfer_neon(self.sender_account,
+                                        self.recipient_account,
                                         TestInputData.SAMPLE_AMOUNT.value)
 
         params = [tx_receipt.blockHash.hex(), True]
@@ -86,12 +85,11 @@ class TestRpcCallsBlocks(BaseTransfers):
     @allure.step(
         "test: verify implemented rpc calls work eth_getBlockByNumber via numbers"
     )
-    def test_rpc_call_eth_getBlockByNumber_via_numbers(self,prepare_accounts):
+    def test_rpc_call_eth_getBlockByNumber_via_numbers(self, prepare_accounts):
         """Verify implemented rpc calls work eth_getBlockByNumber"""
-        # sender_account = self.create_account_with_balance()
-        # recipient_account = self.create_account_with_balance()
 
-        tx_receipt = self.transfer_neon(self.sender_account, self.recipient_account,
+        tx_receipt = self.transfer_neon(self.sender_account,
+                                        self.recipient_account,
                                         TestInputData.SAMPLE_AMOUNT.value)
 
         params = RpcRequestParamsFactory.get_block_by_number(

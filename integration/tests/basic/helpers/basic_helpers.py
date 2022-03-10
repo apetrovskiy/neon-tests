@@ -20,8 +20,6 @@ WAITIING_FOR_CONTRACT_SUPPORT = "no contracts are yet done"
 
 class BasicHelpers(BaseTests):
     jsonrpc_requester: JsonRpcRequester
-    sender_account: Account
-    recipient_account: Account
 
     @pytest.fixture(autouse=True)
     def prepare_json_rpc_requester(self, jsonrpc_requester: JsonRpcRequester):

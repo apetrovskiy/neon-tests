@@ -4,7 +4,6 @@ from integration.tests.basic.helpers.base_transfers import BaseTransfers
 from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
-from integration.tests.basic.helpers.basic_helpers import BasicHelpers
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.json_rpc_request_parameters import JsonRpcRequestParams
 from integration.tests.basic.test_data.test_input_data import TestInputData
@@ -33,10 +32,8 @@ from integration.tests.basic.test_data.test_input_data import TestInputData
 class TestRpcCallsTransactions(BaseTransfers):
     @allure.step(
         "test: verify implemented rpc calls work eth_getTransactionCount")
-    def test_rpc_call_eth_getTransactionCount(self,prepare_accounts):
+    def test_rpc_call_eth_getTransactionCount(self, prepare_accounts):
         """Verify implemented rpc calls work eth_getTransactionCount"""
-        # sender_account = self.create_account_with_balance()
-        # recipient_account = self.create_account_with_balance()
 
         self.transfer_neon(self.sender_account, self.recipient_account,
                            TestInputData.SAMPLE_AMOUNT.value)
@@ -53,10 +50,8 @@ class TestRpcCallsTransactions(BaseTransfers):
 
     @allure.step(
         "test: verify implemented rpc calls work eth_sendRawTransaction")
-    def test_rpc_call_eth_sendRawTransaction(self,prepare_accounts):
+    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts):
         """Verify implemented rpc calls work eth_sendRawTransaction"""
-        # sender_account = self.create_account_with_balance()
-        # recipient_account = self.create_account_with_balance()
 
         # TODO: chain id
         transaction = {
@@ -73,7 +68,8 @@ class TestRpcCallsTransactions(BaseTransfers):
             "gas":
             0,
             "nonce":
-            self.web3_client.eth.get_transaction_count(self.sender_account.address),
+            self.web3_client.eth.get_transaction_count(
+                self.sender_account.address),
         }
         transaction["gas"] = self.web3_client.eth.estimate_gas(transaction)
 
@@ -102,12 +98,11 @@ class TestRpcCallsTransactions(BaseTransfers):
 
     @allure.step(
         "test: verify implemented rpc calls work eth_getTransactionByHash")
-    def test_rpc_call_eth_getTransactionByHash(self,prepare_accounts):
+    def test_rpc_call_eth_getTransactionByHash(self, prepare_accounts):
         """Verify implemented rpc calls work eth_getTransactionByHash"""
-        # sender_account = self.create_account_with_balance()
-        # recipient_account = self.create_account_with_balance()
 
-        tx_receipt = self.transfer_neon(self.sender_account, self.recipient_account,
+        tx_receipt = self.transfer_neon(self.sender_account,
+                                        self.recipient_account,
                                         TestInputData.SAMPLE_AMOUNT.value)
 
         params = [tx_receipt.transactionHash.hex()]
@@ -123,12 +118,11 @@ class TestRpcCallsTransactions(BaseTransfers):
 
     @allure.step(
         "test: verify implemented rpc calls work eth_getTransactionReceipt")
-    def test_rpc_call_eth_getTransactionReceipt(self,prepare_accounts):
+    def test_rpc_call_eth_getTransactionReceipt(self, prepare_accounts):
         """Verify implemented rpc calls work eth_getTransactionReceipt"""
-        # sender_account = self.create_account_with_balance()
-        # recipient_account = self.create_account_with_balance()
 
-        tx_receipt = self.transfer_neon(self.sender_account, self.recipient_account,
+        tx_receipt = self.transfer_neon(self.sender_account,
+                                        self.recipient_account,
                                         TestInputData.SAMPLE_AMOUNT.value)
 
         params = [tx_receipt.transactionHash.hex()]
