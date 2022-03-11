@@ -43,8 +43,6 @@ class TestRpcCallsTransactions(BasicTests):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        # assert isinstance(actual_result,
-        #                   JsonRpcResponse), AssertMessage.WRONG_TYPE.value
         assert self.assert_is_successful_response(
             actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
@@ -84,15 +82,17 @@ class TestRpcCallsTransactions(BasicTests):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        # assert isinstance(actual_result,
-        #                   JsonRpcResponse), AssertMessage.WRONG_TYPE.value
         assert self.assert_is_successful_response(
             actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
+        # FYI: JsonRpcResponse(id=42, result='0x9609b6c8d6b62019e80229e7cb60032e57ad86d353ed239e923cca5250b86237', jsonrpc='2.0')
+
         # TODO: calculate sender's amount
         # self.assert_sender_amount(
-        #     sender_account.address, TestInputData.FIRST_FAUCET_REQUEST_AMOUNT.value - SAMPLE_AMOUNT -
+        #     self.sender_account.address,
+        #     InputData.FAUCET_1ST_REQUEST_AMOUNT.value -
+        #     InputData.SAMPLE_AMOUNT.value -
         #     self.calculate_trx_gas(tx_receipt=actual_result.result))
         self.assert_recipient_amount(
             self.recipient_account.address,
