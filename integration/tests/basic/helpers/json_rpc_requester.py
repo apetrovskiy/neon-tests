@@ -40,7 +40,8 @@ class JsonRpcRequester:
         if type == None:
             return json_rpc_response
         # subobject = type(**json_rpc_response.result)
-        subobject = type.from_json(json_rpc_response.result)
+        # subobject = type.from_json(self.stringify(json_rpc_response.result).replace("'","\""))
+        subobject = type.from_dict(json_rpc_response.result)
         json_rpc_response.result = subobject
         return json_rpc_response
 

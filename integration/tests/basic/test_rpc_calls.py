@@ -76,6 +76,11 @@ class TestRpcCalls(BasicTests):
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
+        #
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.")
+        print(actual_result)
+        #
+
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         assert self.assert_no_error_object(
             actual_result), AssertMessage.CONTAINS_ERROR

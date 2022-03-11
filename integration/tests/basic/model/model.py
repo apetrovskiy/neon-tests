@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from dataclasses_json import LetterCase, dataclass_json
 from time import time
-from typing import Any, List, Union
+from typing import Any, List, Optional, Union
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
@@ -58,25 +58,25 @@ class JsonRpcErrorResponse:
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class BlockByResponse:
-    number: Union[int, None]
-    hash: Union[str, None]
-    parent_hash: str
-    nonce: Union[int, None]
-    sha3_uncles: str
-    logs_bloom: Union[str, None]
-    transactions_root: Any
-    state_root: Any
-    receipts_root: Any
-    miner: str
-    difficulty: int
-    total_dificulty: int
-    extra_data: Any
-    size: int
-    gas_limit: int
-    gas_used: int
-    timestamp: time
-    transactions: List[Any]
-    uncles: List[str]
+    number: Optional[Union[int, None]]
+    hash: Optional[Union[str, None]]
+    parent_hash: Optional[str]
+    nonce: Optional[Union[int, None]]
+    sha3_uncles: Optional[str]
+    logs_bloom: Optional[Union[str, None]]
+    transactions_root: Optional[Any]
+    state_root: Optional[Any]
+    receipts_root: Optional[Any]
+    miner: Optional[str]
+    difficulty: Optional[int]
+    total_dificulty: Optional[int]
+    extra_data: Optional[Any]
+    size: Optional[int]
+    gas_limit: Optional[int]
+    gas_used: Optional[int]
+    timestamp: Optional[time]
+    transactions: Optional[List[Any]]
+    uncles: Optional[List[str]]
 
 
 # TODO: used only once
