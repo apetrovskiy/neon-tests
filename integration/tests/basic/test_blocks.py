@@ -111,6 +111,8 @@ class TestRpcCallsBlocks(BasicTests):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert isinstance(actual_result,
-                          JsonRpcResponse), AssertMessage.WRONG_TYPE.value
+        # assert isinstance(actual_result,
+        #                   JsonRpcResponse), AssertMessage.WRONG_TYPE.value
+        assert self.assert_is_successful_response(
+            actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value

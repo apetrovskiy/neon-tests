@@ -6,6 +6,7 @@ from _pytest.config import Config
 from eth_account import Account
 from typing import Optional, Union
 from integration.tests.base import BaseTests
+from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
 from integration.tests.basic.model.model import JsonRpcErrorResponse, JsonRpcResponse
@@ -48,8 +49,8 @@ class BasicTests(BaseTests):
 
     @allure.step("creating a new account with balance")
     def create_account_with_balance(
-        self,
-        amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value
+            self,
+            amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value
     ) -> Account:
         '''Creates a new account with balance'''
         account = self.create_account()
@@ -182,6 +183,11 @@ class BasicTests(BaseTests):
             return data.error == None
         except Exception:
             return True
+
+    def assert_is_successful_response(
+            self, actual_result: Union[JsonRpcResponse,
+                                       JsonRpcErrorResponse]) -> bool:
+        return isinstance(actual_result, JsonRpcResponse)
 
     @allure.step("calculating gas")
     def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> Decimal:
