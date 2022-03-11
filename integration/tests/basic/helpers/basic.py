@@ -67,9 +67,11 @@ class BasicTests(BaseTests):
     #     self.faucet.request_sol(wallet, amount=amount)
 
     @allure.step("processing transaction")
-    def process_transaction(self, sender_account: Account,
-                            recipient_account: Account,
-                            amount: int) -> Union[web3.types.TxReceipt, None]:
+    def process_transaction(
+            self,
+            sender_account: Account,
+            recipient_account: Account,
+            amount: float = 0.0) -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction'''
 
         tx = self.web3_client.send_neon(sender_account, recipient_account,
