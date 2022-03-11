@@ -1,0 +1,673 @@
+{
+  "uid" : "e2ab26dffaea56a",
+  "name" : "test_rpc_call_eth_call",
+  "fullName" : "integration.tests.basic.test_rpc_calls.TestRpcCalls#test_rpc_call_eth_call",
+  "historyId" : "d90d4db35cc07c352c6ab08bf8cb84cc",
+  "time" : {
+    "start" : 1646980042181,
+    "stop" : 1646980045024,
+    "duration" : 2843
+  },
+  "description" : "Verify implemented rpc calls work eth_call",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_call</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>>(JsonRpcErrorResponse(id=60, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>.assert_no_error_object",
+  "statusTrace" : "self = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>\n\n    @allure.step(\"test: verify implemented rpc calls work eth_call\")\n    def test_rpc_call_eth_call(self):\n        \"\"\"Verify implemented rpc calls work eth_call\"\"\"\n        sender_account = self.create_account_with_balance()\n        recipient_account = self.create_account_with_balance()\n    \n        self.transfer_neon(sender_account, recipient_account,\n                           TestInputData.SAMPLE_AMOUNT.value)\n    \n        # TOOD: variants\n        data = CallRequest(to=recipient_account.address)\n        params = [data, Tag.LATEST.value]\n        model = RpcRequestFactory.get_call(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_no_error_object(\n            actual_result), AssertMessage.CONTAINS_ERROR\nE       AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nE       assert False\nE        +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>>(JsonRpcErrorResponse(id=60, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>.assert_no_error_object\n\nintegration/tests/basic/test_rpc_calls.py:58: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1646980020465,
+      "stop" : 1646980020466,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1646980020465,
+      "stop" : 1646980020465,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1646980020466,
+      "stop" : 1646980021366,
+      "duration" : 900
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1646980021366,
+      "stop" : 1646980021366,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1646980021367,
+      "stop" : 1646980021367,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1646980021367,
+      "stop" : 1646980021367,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1646980021367,
+      "stop" : 1646980021367,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1646980037372,
+      "stop" : 1646980037373,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646980037373,
+      "stop" : 1646980042180,
+      "duration" : 4807
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1646980037373,
+        "stop" : 1646980037377,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x1c198Cca8e80864B851ef7ceb961e082f306F22A",
+      "time" : {
+        "start" : 1646980037377,
+        "stop" : 1646980038137,
+        "duration" : 760
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.0027710479081866074736 NEON 74066811.93665807 SOL",
+      "time" : {
+        "start" : 1646980042180,
+        "stop" : 1646980042180,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1646980042181,
+      "stop" : 1646980042181,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1646980042181,
+      "stop" : 1646980042181,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_call",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>>(JsonRpcErrorResponse(id=60, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>.assert_no_error_object",
+    "statusTrace" : "self = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>\n\n    @allure.step(\"test: verify implemented rpc calls work eth_call\")\n    def test_rpc_call_eth_call(self):\n        \"\"\"Verify implemented rpc calls work eth_call\"\"\"\n        sender_account = self.create_account_with_balance()\n        recipient_account = self.create_account_with_balance()\n    \n        self.transfer_neon(sender_account, recipient_account,\n                           TestInputData.SAMPLE_AMOUNT.value)\n    \n        # TOOD: variants\n        data = CallRequest(to=recipient_account.address)\n        params = [data, Tag.LATEST.value]\n        model = RpcRequestFactory.get_call(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_no_error_object(\n            actual_result), AssertMessage.CONTAINS_ERROR\nE       AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nE       assert False\nE        +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>>(JsonRpcErrorResponse(id=60, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>.assert_no_error_object\n\nintegration/tests/basic/test_rpc_calls.py:58: AssertionError",
+    "steps" : [ {
+      "name" : "test: verify implemented rpc calls work eth_call",
+      "time" : {
+        "start" : 1646980042181,
+        "stop" : 1646980045023,
+        "duration" : 2842
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>>(JsonRpcErrorResponse(id=60, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f6453ab6100>.assert_no_error_object\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_rpc_calls.py\", line 58, in test_rpc_call_eth_call\n    assert self.assert_no_error_object(\n",
+      "steps" : [ {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646980042182,
+          "stop" : 1646980042822,
+          "duration" : 640
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646980042182,
+            "stop" : 1646980042186,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646980042186,
+            "stop" : 1646980042822,
+            "duration" : 636
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x3C340aD9Ca4e2Ba1682EBc2aC251ED56d9A4FF85'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1646980042822,
+          "stop" : 1646980043461,
+          "duration" : 639
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1646980042823,
+            "stop" : 1646980042827,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1646980042827,
+            "stop" : 1646980043461,
+            "duration" : 634
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x6B6e4Fd4C67CF8D5642A1A7B083EDbE74DB62EB8'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "processing transaction",
+        "time" : {
+          "start" : 1646980043462,
+          "stop" : 1646980044897,
+          "duration" : 1435
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "sender_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f64536d0310>"
+        }, {
+          "name" : "recipient_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7f64536d4760>"
+        }, {
+          "name" : "amount",
+          "value" : "4"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "the model built",
+        "time" : {
+          "start" : 1646980044897,
+          "stop" : 1646980044897,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "requesting Json-RPC",
+        "time" : {
+          "start" : 1646980044897,
+          "stop" : 1646980045023,
+          "duration" : 126
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "getting response",
+          "time" : {
+            "start" : 1646980044897,
+            "stop" : 1646980045023,
+            "duration" : 126
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "data",
+          "value" : "JsonRpcRequest(id=60, method='eth_call', params=[CallRequest(from_=None, to='0x6B6e4Fd4C67CF8D5642A1A7B083EDbE74DB62EB8', gas=None, gas_price=None, value=None, data=None), 'latest'], jsonrpc='2.0')"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "deserializing response from JSON",
+        "time" : {
+          "start" : 1646980045023,
+          "stop" : 1646980045023,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "showing as JSON",
+          "time" : {
+            "start" : 1646980045023,
+            "stop" : 1646980045023,
+            "duration" : 0
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "data",
+            "value" : "{'jsonrpc': '2.0', 'id': 60, 'error': {'code': -32000, 'message': 'Missing data'}}"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "deserialized",
+          "time" : {
+            "start" : 1646980045023,
+            "stop" : 1646980045023,
+            "duration" : 0
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "response",
+          "value" : "<Response [200]>"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 13,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 14,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1646980052337,
+      "stop" : 1646980056500,
+      "duration" : 4163
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.0027710479081866074736 NEON 74066811.90221919 SOL",
+      "time" : {
+        "start" : 1646980056375,
+        "stop" : 1646980056375,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1646980056500,
+        "stop" : 1646980056500,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1646980226982,
+      "stop" : 1646980226983,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_rpc_calls"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCalls"
+  }, {
+    "name" : "host",
+    "value" : "fv-az129-1"
+  }, {
+    "name" : "thread",
+    "value" : "1825-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_rpc_calls"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 7,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "ec7da5052e670eab",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254o/453//#testresult/ec7da5052e670eab",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f4e45081a90>>(JsonRpcErrorResponse(id=6, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f4e45081a90>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f4e45081a90>.assert_no_error_object",
+        "time" : {
+          "start" : 1646930605116,
+          "stop" : 1646930608321,
+          "duration" : 3205
+        }
+      }, {
+        "uid" : "bb07f357d03a75f4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254o/451//#testresult/bb07f357d03a75f4",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f37fc172130>>(JsonRpcErrorResponse(id=10, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f37fc172130>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f37fc172130>.assert_no_error_object",
+        "time" : {
+          "start" : 1646927379418,
+          "stop" : 1646927381851,
+          "duration" : 2433
+        }
+      }, {
+        "uid" : "2b016ebfe23431b4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254o/449//#testresult/2b016ebfe23431b4",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f27d93e3790>>(JsonRpcErrorResponse(id=35, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f27d93e3790>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f27d93e3790>.assert_no_error_object",
+        "time" : {
+          "start" : 1646924752015,
+          "stop" : 1646924754797,
+          "duration" : 2782
+        }
+      }, {
+        "uid" : "1df87b6e16bb084b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254o/447//#testresult/1df87b6e16bb084b",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f33efc9b850>>(JsonRpcErrorResponse(id=86, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f33efc9b850>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f33efc9b850>.assert_no_error_object",
+        "time" : {
+          "start" : 1646924144222,
+          "stop" : 1646924146697,
+          "duration" : 2475
+        }
+      }, {
+        "uid" : "3cfafa6af7764fd6",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254o/443//#testresult/3cfafa6af7764fd6",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f8ce36a7880>>(JsonRpcErrorResponse(id=35, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f8ce36a7880>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f8ce36a7880>.assert_no_error_object",
+        "time" : {
+          "start" : 1646923711281,
+          "stop" : 1646923714213,
+          "duration" : 2932
+        }
+      }, {
+        "uid" : "53e583d972e2707a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254o/445//#testresult/53e583d972e2707a",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f8b82a22340>>(JsonRpcErrorResponse(id=14, error={'code': -32000, 'message': 'Missing data'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f8b82a22340>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f8b82a22340>.assert_no_error_object",
+        "time" : {
+          "start" : 1646923708950,
+          "stop" : 1646923711525,
+          "duration" : 2575
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e2ab26dffaea56a.json",
+  "parameterValues" : [ ]
+}
