@@ -94,7 +94,8 @@ class TestRpcCalls(BasicTests):
                           JsonRpcResponse), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-    @allure.step("test: verify implemented rpc calls work eth_getLogs")
+    @allure.step("test: verify implemented rpc calls work eth_getLogs via tags"
+                 )
     @pytest.mark.parametrize("from_block,to_block", GET_LOGS_TEST_DATA)
     def test_rpc_call_eth_getLogs_via_tags(self, from_block: Tag,
                                            to_block: Tag):
@@ -117,7 +118,8 @@ class TestRpcCalls(BasicTests):
         assert self.assert_result_object(
             actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
-    @allure.step("test: verify implemented rpc calls work eth_getLogs")
+    @allure.step(
+        "test: verify implemented rpc calls work eth_getLogs via numbers")
     def test_rpc_call_eth_getLogs_via_number(self):
         """Verify implemented rpc calls work eth_getLogs"""
         # TODO: use contract instead of account
