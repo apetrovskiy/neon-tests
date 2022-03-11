@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR_MS, BasicTests
-from integration.tests.basic.test_data.test_input_data import TestInputData
+from integration.tests.basic.test_data.input_data import InputData
 '''
 1.	Create account and get balance
 2.	Check tokens in wallet
@@ -71,9 +71,9 @@ class TestSingleClient(BasicTests):
         """Check tokens in wallet: neon"""
         account = self.create_account()
         self.request_faucet_neon(
-            account.address, TestInputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+            account.address, InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
         self.assert_amount(account.address,
-                           TestInputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+                           InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step("test: check tokens in wallet: spl")
@@ -109,7 +109,7 @@ class TestSingleClient(BasicTests):
             self.request_faucet_neon(account.address, amount)
             self.request_faucet_neon(
                 account.address,
-                TestInputData.SECOND_FAUCET_REQUEST_AMOUNT.value)
+                InputData.SECOND_FAUCET_REQUEST_AMOUNT.value)
             self.assert_amount(
                 account.address,
-                amount + TestInputData.SECOND_FAUCET_REQUEST_AMOUNT.value)
+                amount + InputData.SECOND_FAUCET_REQUEST_AMOUNT.value)

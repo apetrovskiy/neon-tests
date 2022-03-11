@@ -7,7 +7,7 @@ from integration.tests.basic.helpers.basic import WAITIING_FOR_CONTRACT_SUPPORT,
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.model import CallRequest, GetLogsRequest, JsonRpcResponse
 from integration.tests.basic.model.tags import Tag
-from integration.tests.basic.test_data.test_input_data import TestInputData
+from integration.tests.basic.test_data.input_data import InputData
 '''
 12.	Verify implemented rpc calls work
 12.1.	eth_getBlockByHash		
@@ -45,7 +45,7 @@ class TestRpcCalls(BasicTests):
         recipient_account = self.create_account_with_balance()
 
         self.transfer_neon(sender_account, recipient_account,
-                           TestInputData.SAMPLE_AMOUNT.value)
+                           InputData.SAMPLE_AMOUNT.value)
 
         # TOOD: variants
         data = CallRequest(to=recipient_account.address)
@@ -120,7 +120,7 @@ class TestRpcCalls(BasicTests):
 
     @allure.step(
         "test: verify implemented rpc calls work eth_getLogs via numbers")
-    def test_rpc_call_eth_getLogs_via_number(self):
+    def test_rpc_call_eth_getLogs_via_numbers(self):
         """Verify implemented rpc calls work eth_getLogs"""
         # TODO: use contract instead of account
         sender_account = self.create_account_with_balance()
@@ -152,7 +152,7 @@ class TestRpcCalls(BasicTests):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert actual_result.result == TestInputData.FIRST_AMOUNT_IN_RESPONSE.value, AssertMessage.WRONG_AMOUNT.value
+        assert actual_result.result == InputData.FIRST_AMOUNT_IN_RESPONSE.value, AssertMessage.WRONG_AMOUNT.value
 
     @allure.step("test: verify implemented rpc calls work eth_getCode")
     def test_rpc_call_eth_getCode(self):

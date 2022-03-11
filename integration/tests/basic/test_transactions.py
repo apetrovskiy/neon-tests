@@ -1,11 +1,11 @@
 import allure
 import pytest
-from integration.tests.basic.helpers.base_transfers import BaseTransfers
+from integration.tests.basic.helpers.basic import BasicTests
 from integration.tests.basic.model.model import JsonRpcResponse
 from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
-from integration.tests.basic.test_data.test_input_data import TestInputData
+from integration.tests.basic.test_data.input_data import InputData
 '''
 12.	Verify implemented rpc calls work
 12.1.	eth_getBlockByHash		
@@ -28,14 +28,14 @@ from integration.tests.basic.test_data.test_input_data import TestInputData
 
 
 @allure.story("Basic: Json-RPC call tests - transactions")
-class TestRpcCallsTransactions(BaseTransfers):
+class TestRpcCallsTransactions(BasicTests):
     @allure.step(
         "test: verify implemented rpc calls work eth_getTransactionCount")
     def test_rpc_call_eth_getTransactionCount(self, prepare_accounts):
         """Verify implemented rpc calls work eth_getTransactionCount"""
 
         self.transfer_neon(self.sender_account, self.recipient_account,
-                           TestInputData.SAMPLE_AMOUNT.value)
+                           InputData.SAMPLE_AMOUNT.value)
 
         params = [self.sender_account.address, Tag.LATEST.value]
         model = RpcRequestFactory.get_trx_count(params=params)
@@ -59,7 +59,7 @@ class TestRpcCallsTransactions(BaseTransfers):
             "to":
             self.recipient_account.address,
             "value":
-            self.web3_client.toWei(TestInputData.SAMPLE_AMOUNT.value, "ether"),
+            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
             "chainId":
             111,
             "gasPrice":
@@ -92,8 +92,8 @@ class TestRpcCallsTransactions(BaseTransfers):
         #     self.calculate_trx_gas(tx_receipt=actual_result.result))
         self.assert_recipient_amount(
             self.recipient_account.address,
-            TestInputData.FIRST_FAUCET_REQUEST_AMOUNT.value +
-            TestInputData.SAMPLE_AMOUNT.value)
+            InputData.FIRST_FAUCET_REQUEST_AMOUNT.value +
+            InputData.SAMPLE_AMOUNT.value)
 
     @allure.step(
         "test: verify implemented rpc calls work eth_getTransactionByHash")
@@ -102,7 +102,7 @@ class TestRpcCallsTransactions(BaseTransfers):
 
         tx_receipt = self.transfer_neon(self.sender_account,
                                         self.recipient_account,
-                                        TestInputData.SAMPLE_AMOUNT.value)
+                                        InputData.SAMPLE_AMOUNT.value)
 
         params = [tx_receipt.transactionHash.hex()]
         model = RpcRequestFactory.get_trx_by_hash(params=params)
@@ -122,7 +122,7 @@ class TestRpcCallsTransactions(BaseTransfers):
 
         tx_receipt = self.transfer_neon(self.sender_account,
                                         self.recipient_account,
-                                        TestInputData.SAMPLE_AMOUNT.value)
+                                        InputData.SAMPLE_AMOUNT.value)
 
         params = [tx_receipt.transactionHash.hex()]
         model = RpcRequestFactory.get_trx_receipt(params=params)

@@ -9,7 +9,7 @@ from integration.tests.base import BaseTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
 from integration.tests.basic.model.model import JsonRpcErrorResponse, JsonRpcResponse
-from integration.tests.basic.test_data.test_input_data import TestInputData
+from integration.tests.basic.test_data.input_data import InputData
 
 WAITING_FOR_MS = "waiting for MS"
 # TODO: remove it after t
@@ -19,10 +19,18 @@ WAITIING_FOR_CONTRACT_SUPPORT = "no contracts are yet done"
 
 class BasicTests(BaseTests):
     jsonrpc_requester: JsonRpcRequester
+    sender_account: Account
+    recipient_account: Account
 
     @pytest.fixture(autouse=True)
     def prepare_json_rpc_requester(self, jsonrpc_requester: JsonRpcRequester):
         self.jsonrpc_requester = jsonrpc_requester
+
+    @pytest.fixture
+    def prepare_accounts(self):
+        self.sender_account = self.create_account_with_balance()
+        self.recipient_account = self.create_account_with_balance()
+        yield
 
     @allure.step("creating a new account")
     def create_account(self) -> Account:
@@ -41,7 +49,7 @@ class BasicTests(BaseTests):
     @allure.step("creating a new account with balance")
     def create_account_with_balance(
         self,
-        amount: int = TestInputData.FIRST_FAUCET_REQUEST_AMOUNT.value
+        amount: int = InputData.FIRST_FAUCET_REQUEST_AMOUNT.value
     ) -> Account:
         '''Creates a new account with balance'''
         account = self.create_account()
@@ -131,8 +139,8 @@ class BasicTests(BaseTests):
     @allure.step("comparing the balance with expectation")
     def compare_balance(self, expected: float, actual: Decimal, message: str):
         '''Compares the balance with expectation'''
-        expected_dec = round(expected, TestInputData.ROUND_DIGITS.value)
-        actual_dec = float(round(actual, TestInputData.ROUND_DIGITS.value))
+        expected_dec = round(expected, InputData.ROUND_DIGITS.value)
+        actual_dec = float(round(actual, InputData.ROUND_DIGITS.value))
 
         assert actual_dec == expected_dec, message + f"expected balance = {expected_dec}, actual balance = {actual_dec}"
 
