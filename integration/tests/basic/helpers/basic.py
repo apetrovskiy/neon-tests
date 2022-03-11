@@ -103,7 +103,8 @@ class BasicTests(BaseTests):
                       recipient_account: Account,
                       amount: int) -> Union[web3.types.TxReceipt, None]:
         '''Transers tokens'''
-        return self.process_transaction(sender_account, recipient_account, 0)
+        return self.process_transaction(sender_account, recipient_account,
+                                        amount)
 
     def transfer_zero_neon(
             self, sender_account: Account,
