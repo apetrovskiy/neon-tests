@@ -49,7 +49,7 @@ class BasicTests(BaseTests):
     @allure.step("creating a new account with balance")
     def create_account_with_balance(
         self,
-        amount: int = InputData.FIRST_FAUCET_REQUEST_AMOUNT.value
+        amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value
     ) -> Account:
         '''Creates a new account with balance'''
         account = self.create_account()

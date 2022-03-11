@@ -92,7 +92,7 @@ class TestRpcCallsTransactions(BasicTests):
         #     self.calculate_trx_gas(tx_receipt=actual_result.result))
         self.assert_recipient_amount(
             self.recipient_account.address,
-            InputData.FIRST_FAUCET_REQUEST_AMOUNT.value +
+            InputData.FAUCET_1ST_REQUEST_AMOUNT.value +
             InputData.SAMPLE_AMOUNT.value)
 
     @allure.step(

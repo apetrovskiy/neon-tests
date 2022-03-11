@@ -71,9 +71,9 @@ class TestSingleClient(BasicTests):
         """Check tokens in wallet: neon"""
         account = self.create_account()
         self.request_faucet_neon(
-            account.address, InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+            account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_amount(account.address,
-                           InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+                           InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step("test: check tokens in wallet: spl")
@@ -109,7 +109,7 @@ class TestSingleClient(BasicTests):
             self.request_faucet_neon(account.address, amount)
             self.request_faucet_neon(
                 account.address,
-                InputData.SECOND_FAUCET_REQUEST_AMOUNT.value)
+                InputData.FAUCET_2ND_REQUEST_AMOUNT.value)
             self.assert_amount(
                 account.address,
-                amount + InputData.SECOND_FAUCET_REQUEST_AMOUNT.value)
+                amount + InputData.FAUCET_2ND_REQUEST_AMOUNT.value)

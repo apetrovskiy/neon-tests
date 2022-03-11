@@ -28,11 +28,11 @@ class TestTransfer(BasicTests):
 
         self.assert_sender_amount(
             self.sender_account.address,
-            InputData.FIRST_FAUCET_REQUEST_AMOUNT.value - amount -
+            InputData.FAUCET_1ST_REQUEST_AMOUNT.value - amount -
             self.calculate_trx_gas(tx_receipt=tx_receipt))
         self.assert_recipient_amount(
             self.recipient_account.address,
-            InputData.FIRST_FAUCET_REQUEST_AMOUNT.value + amount)
+            InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step("test: send spl wrapped account from one account to another")
@@ -52,10 +52,10 @@ class TestTransfer(BasicTests):
                                                      amount)
 
         self.assert_sender_amount(self.sender_account.address,
-                                  InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+                                  InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_recipient_amount(
             self.recipient_account.address,
-            InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step(
@@ -81,11 +81,11 @@ class TestTransfer(BasicTests):
 
         self.assert_sender_amount(
             self.sender_account.address,
-            InputData.FIRST_FAUCET_REQUEST_AMOUNT.value -
+            InputData.FAUCET_1ST_REQUEST_AMOUNT.value -
             self.calculate_trx_gas(tx_receipt=tx_receipt))
         self.assert_recipient_amount(
             self.recipient_account.address,
-            InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step("test: send zero: spl (with different precision)")
@@ -108,10 +108,10 @@ class TestTransfer(BasicTests):
                                     InputData.NEGATIVE_AMOUNT.value)
 
         self.assert_sender_amount(self.sender_account.address,
-                                  InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+                                  InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_recipient_amount(
             self.recipient_account.address,
-            InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     @allure.step(
@@ -137,7 +137,7 @@ class TestTransfer(BasicTests):
             InputData.DEFAULT_TRANSFER_AMOUNT.value, ENS_NAME_ERROR)
 
         self.assert_sender_amount(sender_account.address,
-                                  InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+                                  InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     @allure.step("test: send token to a non-existing address")
     def test_send_more_token_to_non_existing_address(self):
@@ -151,4 +151,4 @@ class TestTransfer(BasicTests):
             InputData.DEFAULT_TRANSFER_AMOUNT.value, EIP55_INVALID_CHECKUM)
 
         self.assert_sender_amount(sender_account.address,
-                                  InputData.FIRST_FAUCET_REQUEST_AMOUNT.value)
+                                  InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
