@@ -28,6 +28,12 @@ from integration.tests.basic.test_data.test_input_data import TestInputData
 12.63.	net_version
 '''
 
+GET_LOGS_TEST_DATA = [(Tag.LATEST.value, Tag.LATEST.value),
+                      (Tag.EARLIEST.value, Tag.LATEST.value),
+                      (Tag.PENDING.value, Tag.LATEST.value),
+                      (Tag.LATEST.value, Tag.EARLIEST.value),
+                      (Tag.LATEST.value, Tag.PENDING.value)]
+
 
 @allure.story("Basic: Json-RPC call tests")
 class TestRpcCalls(BasicTests):
@@ -90,14 +96,15 @@ class TestRpcCalls(BasicTests):
 
     # TOOD: implement variants
     @allure.step("test: verify implemented rpc calls work eth_getLogs")
-    def test_rpc_call_eth_getLogs(self):
+    @pytest.mark.parametrize("from_block,to_block", GET_LOGS_TEST_DATA)
+    def test_rpc_call_eth_getLogs(self, from_block: Tag, to_block: Tag):
         """Verify implemented rpc calls work eth_getLogs"""
         # TODO: use contract instead of account
         sender_account = self.create_account_with_balance()
         # TOOD: variants
         params = [
-            GetLogsRequest(from_block=Tag.LATEST.value,
-                           to_block=Tag.LATEST.value,
+            GetLogsRequest(from_block=from_block,
+                           to_block=to_block,
                            address=sender_account.address)
         ]
         model = RpcRequestFactory.get_logs(params=params)
