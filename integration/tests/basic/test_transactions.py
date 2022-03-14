@@ -86,8 +86,6 @@ class TestRpcCallsTransactions(BasicTests):
             actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-        # FYI: JsonRpcResponse(id=42, result='0x9609b6c8d6b62019e80229e7cb60032e57ad86d353ed239e923cca5250b86237', jsonrpc='2.0')
-
         # TODO: calculate sender's amount
         # self.assert_sender_amount(
         #     self.sender_account.address,

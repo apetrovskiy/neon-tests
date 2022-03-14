@@ -53,7 +53,7 @@ class JsonRpcErrorResponse:
     jsonrpc: str = "2.0"
 
 
-# TODO: used only once
+
 @dataclass_json(letter_case=LetterCase.CAMEL, undefined=Undefined.INCLUDE)
 @dataclass
 class TrxResponse:
