@@ -107,28 +107,29 @@ class BasicTests(BaseTests):
         '''Transers tokens'''
         return self.process_transaction(sender_account, recipient_account,
                                         amount)
+    
+    # TODO: remove it later
+    # def transfer_zero_neon(
+    #         self, sender_account: Account,
+    #         recipient_account: Account) -> Union[web3.types.TxReceipt, None]:
+    #     '''Transfers 0 tokens'''
+    #     return self.process_transaction(sender_account, recipient_account)
 
-    def transfer_zero_neon(
-            self, sender_account: Account,
-            recipient_account: Account) -> Union[web3.types.TxReceipt, None]:
-        '''Transfers 0 tokens'''
-        return self.process_transaction(sender_account, recipient_account)
+    # def transfer_negative_neon(
+    #         self, sender_account: Account, recipient_account: Account,
+    #         amount: int) -> Union[web3.types.TxReceipt, None]:
+    #     '''Transfers negative amount of tokens'''
+    #     return self.process_transaction_with_failure(
+    #         sender_account, recipient_account, amount,
+    #         ErrorMessage.NEGATIVE_VALUE.value)
 
-    def transfer_negative_neon(
-            self, sender_account: Account, recipient_account: Account,
-            amount: int) -> Union[web3.types.TxReceipt, None]:
-        '''Transfers negative amount of tokens'''
-        return self.process_transaction_with_failure(
-            sender_account, recipient_account, amount,
-            ErrorMessage.NEGATIVE_VALUE.value)
-
-    def transfer_to_invalid_address(
-            self, sender_account: Account, recipient_account: Account,
-            amount: int, message: str) -> Union[web3.types.TxReceipt, None]:
-        '''Transfers tokens to an invalid address'''
-        return self.process_transaction_with_failure(sender_account,
-                                                     recipient_account, amount,
-                                                     message)
+    # def transfer_to_invalid_address(
+    #         self, sender_account: Account, recipient_account: Account,
+    #         amount: int, message: str) -> Union[web3.types.TxReceipt, None]:
+    #     '''Transfers tokens to an invalid address'''
+    #     return self.process_transaction_with_failure(sender_account,
+    #                                                  recipient_account, amount,
+    #                                                  message)
 
     def check_value_error_if_less_than_required(
             self, sender_account: Account, recipient_account: Account,
