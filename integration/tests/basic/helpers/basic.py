@@ -66,6 +66,7 @@ class BasicTests(BaseTests):
     # def request_faucet_erc20(self, wallet: str, amount: int):
     #     self.faucet.request_sol(wallet, amount=amount)
 
+    # TODO: remove it later
     @allure.step("processing transaction")
     def process_transaction(
             self,
@@ -74,6 +75,7 @@ class BasicTests(BaseTests):
             amount: float = 0.0) -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction'''
 
+        with allure.step(f"Sending {amount} from {sender_account.address} to {recipient_account.address}")
         tx = self.web3_client.send_neon(sender_account, recipient_account,
                                         amount)
 
@@ -118,8 +120,7 @@ class BasicTests(BaseTests):
             sender_account, recipient_account, amount,
             ErrorMessage.EXPECTING_VALUE.value)
 
-    # TODO: remove it later
-    # @allure.step("comparing the balance with expectation")
+
     def check_balance(self, expected: float, actual: Decimal, message: str):
         '''Compares the balance with expectation'''
         expected_dec = round(expected, InputData.ROUND_DIGITS.value)
@@ -127,8 +128,7 @@ class BasicTests(BaseTests):
 
         assert actual_dec == expected_dec, message + f"expected balance = {expected_dec}, actual balance = {actual_dec}"
 
-    # TODO: remove it later
-    # @allure.step("comparing balance of an account with expectation")
+
     def assert_amount(self,
                       address: str,
                       expected_amount: float,
@@ -137,8 +137,7 @@ class BasicTests(BaseTests):
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
         self.check_balance(expected_amount, balance, message)
 
-    # TODO: remove it later
-    # @allure.step("checking sender's balance")
+
     def assert_sender_amount(self, address: str, expected_amount: float):
         '''Checks sender's balance'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
