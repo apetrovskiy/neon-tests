@@ -1,0 +1,431 @@
+{
+  "uid" : "8e6ec98bc0bd9b8c",
+  "name" : "test_send_more_token_to_non_existing_address",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_more_token_to_non_existing_address",
+  "historyId" : "fd5b3b1e718afadf2a28256b1f920c1e",
+  "time" : {
+    "start" : 1647258666264,
+    "stop" : 1647258666943,
+    "duration" : 679
+  },
+  "description" : "Send token to a non-existing address",
+  "descriptionHtml" : "<p>Send token to a non-existing address</p>\n",
+  "status" : "broken",
+  "statusMessage" : "AttributeError: 'str' object has no attribute 'address'",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f87ae34bcd0>\n\n    @allure.step(\"test: send token to a non-existing address\")\n    def test_send_more_token_to_non_existing_address(self):\n        \"\"\"Send token to a non-existing address\"\"\"\n        sender_account = self.create_account_with_balance()\n        recipient_address = sender_account.address.replace('1', '2').replace(\n            '3', '4')\n    \n    \n>       self.process_transaction_with_failure(sender_account,recipient_address, InputData.DEFAULT_TRANSFER_AMOUNT.value, EIP55_INVALID_CHECKUM)\n\nintegration/tests/basic/test_transfers.py:145: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f87ae34bcd0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f87ae2ef580>\nrecipient_account = '0x4C7489Cb4789844EA89C4A6486aafB772906DA24', amount = 3\nerror_message = \"'Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.'\"\n\n    def process_transaction_with_failure(\n            self,\n            sender_account: Account,\n            recipient_account: Account,\n            amount: int,\n            error_message: str = \"\") -> Union[web3.types.TxReceipt, None]:\n        '''Processes transaction, expects a failure'''\n    \n        tx: Union[web3.types.TxReceipt, None] = None\n>       with allure.step( f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"):\nE       AttributeError: 'str' object has no attribute 'address'\n\nintegration/tests/basic/helpers/basic.py:93: AttributeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647258414670,
+      "stop" : 1647258414670,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647258414670,
+      "stop" : 1647258414671,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647258414671,
+      "stop" : 1647258415666,
+      "duration" : 995
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647258415666,
+      "stop" : 1647258415666,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647258415666,
+      "stop" : 1647258415666,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1647258415666,
+      "stop" : 1647258415666,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647258415667,
+      "stop" : 1647258415667,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647258633291,
+      "stop" : 1647258641545,
+      "duration" : 8254
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1647258633291,
+        "stop" : 1647258633295,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0xaEC9C126381230AdbF273C47EC90D230106E5Ed6",
+      "time" : {
+        "start" : 1647258633295,
+        "stop" : 1647258634138,
+        "duration" : 843
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.0022059892029476824798272 NEON 74064652.38107084 SOL",
+      "time" : {
+        "start" : 1647258641545,
+        "stop" : 1647258641545,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647258666263,
+      "stop" : 1647258666263,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647258666263,
+      "stop" : 1647258666263,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1647258666263,
+      "stop" : 1647258666263,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send token to a non-existing address",
+    "status" : "broken",
+    "statusMessage" : "AttributeError: 'str' object has no attribute 'address'",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f87ae34bcd0>\n\n    @allure.step(\"test: send token to a non-existing address\")\n    def test_send_more_token_to_non_existing_address(self):\n        \"\"\"Send token to a non-existing address\"\"\"\n        sender_account = self.create_account_with_balance()\n        recipient_address = sender_account.address.replace('1', '2').replace(\n            '3', '4')\n    \n    \n>       self.process_transaction_with_failure(sender_account,recipient_address, InputData.DEFAULT_TRANSFER_AMOUNT.value, EIP55_INVALID_CHECKUM)\n\nintegration/tests/basic/test_transfers.py:145: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f87ae34bcd0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f87ae2ef580>\nrecipient_account = '0x4C7489Cb4789844EA89C4A6486aafB772906DA24', amount = 3\nerror_message = \"'Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.'\"\n\n    def process_transaction_with_failure(\n            self,\n            sender_account: Account,\n            recipient_account: Account,\n            amount: int,\n            error_message: str = \"\") -> Union[web3.types.TxReceipt, None]:\n        '''Processes transaction, expects a failure'''\n    \n        tx: Union[web3.types.TxReceipt, None] = None\n>       with allure.step( f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"):\nE       AttributeError: 'str' object has no attribute 'address'\n\nintegration/tests/basic/helpers/basic.py:93: AttributeError",
+    "steps" : [ {
+      "name" : "test: send token to a non-existing address",
+      "time" : {
+        "start" : 1647258666264,
+        "stop" : 1647258666943,
+        "duration" : 679
+      },
+      "status" : "broken",
+      "statusMessage" : "AttributeError: 'str' object has no attribute 'address'\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transfers.py\", line 145, in test_send_more_token_to_non_existing_address\n    self.process_transaction_with_failure(sender_account,recipient_address, InputData.DEFAULT_TRANSFER_AMOUNT.value, EIP55_INVALID_CHECKUM)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 93, in process_transaction_with_failure\n    with allure.step( f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"):\n",
+      "steps" : [ {
+        "name" : "requesting faucet for Neon",
+        "time" : {
+          "start" : 1647258666271,
+          "stop" : 1647258666943,
+          "duration" : 672
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "wallet",
+          "value" : "'0x4C7489Cb4789843EA89C4A6386aafB771906DA24'"
+        }, {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1647258666953,
+      "stop" : 1647258674544,
+      "duration" : 7591
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.0022059892262736454558272 NEON 74064652.35285811 SOL",
+      "time" : {
+        "start" : 1647258674369,
+        "stop" : 1647258674369,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1647258674544,
+        "stop" : 1647258674544,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647258674550,
+      "stop" : 1647258674551,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az447-564"
+  }, {
+    "name" : "thread",
+    "value" : "1760-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "241698f17d1b7f6c",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/568//#testresult/241698f17d1b7f6c",
+        "status" : "broken",
+        "statusDetails" : "AttributeError: 'str' object has no attribute 'address'",
+        "time" : {
+          "start" : 1647258616780,
+          "stop" : 1647258617461,
+          "duration" : 681
+        }
+      }, {
+        "uid" : "9d856ccbb5715c4a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/566//#testresult/9d856ccbb5715c4a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647257842765,
+          "stop" : 1647257843953,
+          "duration" : 1188
+        }
+      }, {
+        "uid" : "d773e24522900206",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/564//#testresult/d773e24522900206",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647256914130,
+          "stop" : 1647256915026,
+          "duration" : 896
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "8e6ec98bc0bd9b8c.json",
+  "parameterValues" : [ ]
+}
