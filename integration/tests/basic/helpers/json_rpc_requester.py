@@ -17,19 +17,22 @@ class JsonRpcRequester:
         return self._session.post(self._url, json=dataclasses.asdict(data))
 
     # TODO: remove it later
-    @allure.step('deserializing response from JSON as model ot type {0} {1} {2}') # type(2).__name__}')
+    # @allure.step('deserializing response from JSON')
     def deserialize_response(
             self,
             response: Response,
             type: Type = None) -> Union[JsonRpcResponse, JsonRpcErrorResponse]:
-        str_data = self.stringify(response.json())
-        if 'result' in str_data:
-            return self.deserialize_successful_response(response=response,
-                                                        type=type)
-        elif 'error' in str_data:
-            return JsonRpcErrorResponse(**response.json())
-        else:
-            return JsonRpcErrorResponse(**response.json())
+        with allure.step(f"Response status code = {response.status_code}"):
+            # TODO: remove it later
+            # str_data = self.stringify(response.json())
+            str_data = str(response.json())
+            if 'result' in str_data:
+                return self.deserialize_successful_response(response=response,
+                                                            type=type)
+            elif 'error' in str_data:
+                return JsonRpcErrorResponse(**response.json())
+            else:
+                return JsonRpcErrorResponse(**response.json())
 
     # TODO: remove it later
     # @allure.step('deserializing response from JSON as model ot type {0}')
@@ -44,6 +47,7 @@ class JsonRpcRequester:
         json_rpc_response.result = result_subobject
         return json_rpc_response
 
-    @allure.step("showing as JSON")
-    def stringify(self, data) -> str:
-        return str(data)
+    # TODO: remove it later
+    # @allure.step("showing as JSON")
+    # def stringify(self, data) -> str:
+    #     return str(data)
