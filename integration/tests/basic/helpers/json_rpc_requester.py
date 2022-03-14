@@ -16,7 +16,7 @@ class JsonRpcRequester:
     # @allure.step("requesting Json-RPC")
     def request_json_rpc(self, data: JsonRpcRequest) -> Response:
         description = f'''Request:
-            {data}'''
+{data}'''
         with allure.step(description):
             return self._session.post(self._url, json=dataclasses.asdict(data))
 
@@ -28,8 +28,8 @@ class JsonRpcRequester:
             type: Type = None) -> Union[JsonRpcResponse, JsonRpcErrorResponse]:
         str_data = str(response.json())
         description = f'''Response:
-            status code = {response.status_code}
-            result = {str_data}'''
+status code = {response.status_code}
+result = {str_data}'''
         with allure.step(description):
             # TODO: remove it later
             # str_data = self.stringify(response.json())
