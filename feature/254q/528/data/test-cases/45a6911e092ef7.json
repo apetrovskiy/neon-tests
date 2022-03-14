@@ -1,0 +1,606 @@
+{
+  "uid" : "45a6911e092ef7",
+  "name" : "test_rpc_call_eth_estimateGas",
+  "fullName" : "integration.tests.basic.test_rpc_calls.TestRpcCalls#test_rpc_call_eth_estimateGas",
+  "historyId" : "af88a3a991324ea2b9c85b203e39309c",
+  "time" : {
+    "start" : 1647245904651,
+    "stop" : 1647245906052,
+    "duration" : 1401
+  },
+  "description" : "Verify implemented rpc calls work eth_estimateGas",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_estimateGas</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>>(JsonRpcErrorResponse(id=38, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>.assert_no_error_object",
+  "statusTrace" : "self = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>\n\n    @allure.step(\"test: verify implemented rpc calls work eth_estimateGas\")\n    def test_rpc_call_eth_estimateGas(self):\n        \"\"\"Verify implemented rpc calls work eth_estimateGas\"\"\"\n        sender_account = self.create_account_with_balance()\n        recipient_account = self.create_account_with_balance()\n    \n        # TOOD: variants\n        data = CallRequest(from_=sender_account.address,\n                           to=recipient_account.address,\n                           value=hex(1))\n        params = [data]\n        model = RpcRequestFactory.get_estimate_gas(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_no_error_object(\n            actual_result), AssertMessage.CONTAINS_ERROR\nE       AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nE       assert False\nE        +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>>(JsonRpcErrorResponse(id=38, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>.assert_no_error_object\n\nintegration/tests/basic/test_rpc_calls.py:80: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647245874688,
+      "stop" : 1647245874689,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647245874688,
+      "stop" : 1647245874688,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647245874689,
+      "stop" : 1647245875679,
+      "duration" : 990
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647245875679,
+      "stop" : 1647245875679,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1647245875680,
+      "stop" : 1647245875680,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647245875680,
+      "stop" : 1647245875680,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647245875680,
+      "stop" : 1647245875680,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647245895534,
+      "stop" : 1647245901986,
+      "duration" : 6452
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1647245895534,
+        "stop" : 1647245895538,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x78cB850B93341eB73F7252114700c1f451E42226",
+      "time" : {
+        "start" : 1647245895539,
+        "stop" : 1647245896299,
+        "duration" : 760
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.00220483703732471917344 NEON 74064667.86232892 SOL",
+      "time" : {
+        "start" : 1647245901986,
+        "stop" : 1647245901986,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1647245904650,
+      "stop" : 1647245904650,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647245904650,
+      "stop" : 1647245904650,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647245904650,
+      "stop" : 1647245904650,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_estimateGas",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>>(JsonRpcErrorResponse(id=38, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>.assert_no_error_object",
+    "statusTrace" : "self = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>\n\n    @allure.step(\"test: verify implemented rpc calls work eth_estimateGas\")\n    def test_rpc_call_eth_estimateGas(self):\n        \"\"\"Verify implemented rpc calls work eth_estimateGas\"\"\"\n        sender_account = self.create_account_with_balance()\n        recipient_account = self.create_account_with_balance()\n    \n        # TOOD: variants\n        data = CallRequest(from_=sender_account.address,\n                           to=recipient_account.address,\n                           value=hex(1))\n        params = [data]\n        model = RpcRequestFactory.get_estimate_gas(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_no_error_object(\n            actual_result), AssertMessage.CONTAINS_ERROR\nE       AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nE       assert False\nE        +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>>(JsonRpcErrorResponse(id=38, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>.assert_no_error_object\n\nintegration/tests/basic/test_rpc_calls.py:80: AssertionError",
+    "steps" : [ {
+      "name" : "test: verify implemented rpc calls work eth_estimateGas",
+      "time" : {
+        "start" : 1647245904651,
+        "stop" : 1647245906052,
+        "duration" : 1401
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>>(JsonRpcErrorResponse(id=38, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fbdffc07580>.assert_no_error_object\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_rpc_calls.py\", line 80, in test_rpc_call_eth_estimateGas\n    assert self.assert_no_error_object(\n",
+      "steps" : [ {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1647245904651,
+          "stop" : 1647245905288,
+          "duration" : 637
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1647245904651,
+            "stop" : 1647245904655,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1647245904655,
+            "stop" : 1647245905288,
+            "duration" : 633
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0x800b49a5D79e903F8b92b8985211408519852cBE'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "creating a new account with balance",
+        "time" : {
+          "start" : 1647245905288,
+          "stop" : 1647245905925,
+          "duration" : 637
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "creating a new account",
+          "time" : {
+            "start" : 1647245905288,
+            "stop" : 1647245905292,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "requesting faucet for Neon",
+          "time" : {
+            "start" : 1647245905293,
+            "stop" : 1647245905925,
+            "duration" : 632
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "wallet",
+            "value" : "'0xA018BDd4A0abEdD0169164A14bB28771CE985853'"
+          }, {
+            "name" : "amount",
+            "value" : "5"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "requesting Json-RPC",
+        "time" : {
+          "start" : 1647245905925,
+          "stop" : 1647245906052,
+          "duration" : 127
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "data",
+          "value" : "JsonRpcRequest(id=38, method='eth_estimateGas', params=[CallRequest(from_='0x800b49a5D79e903F8b92b8985211408519852cBE', to='0xA018BDd4A0abEdD0169164A14bB28771CE985853', gas=None, gas_price=None, value='0x1', data=None)], jsonrpc='2.0')"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "showing as JSON",
+        "time" : {
+          "start" : 1647245906052,
+          "stop" : 1647245906052,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "data",
+          "value" : "{'jsonrpc': '2.0', 'id': 38, 'error': {'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}}"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 8,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 9,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1647245912649,
+      "stop" : 1647245918491,
+      "duration" : 5842
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.00220483704901665978144 NEON 74064667.82476196 SOL",
+      "time" : {
+        "start" : 1647245918359,
+        "stop" : 1647245918359,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1647245918491,
+        "stop" : 1647245918491,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647246100063,
+      "stop" : 1647246100063,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_rpc_calls"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCalls"
+  }, {
+    "name" : "host",
+    "value" : "fv-az173-167"
+  }, {
+    "name" : "thread",
+    "value" : "1721-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_rpc_calls"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 9,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "5d8f54c5bd415672",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/526//#testresult/5d8f54c5bd415672",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fc56da16af0>>(JsonRpcErrorResponse(id=64, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fc56da16af0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fc56da16af0>.assert_no_error_object",
+        "time" : {
+          "start" : 1647245367983,
+          "stop" : 1647245369296,
+          "duration" : 1313
+        }
+      }, {
+        "uid" : "3b66f4a3b38b2188",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/524//#testresult/3b66f4a3b38b2188",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fca2c3034f0>>(JsonRpcErrorResponse(id=66, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fca2c3034f0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fca2c3034f0>.assert_no_error_object",
+        "time" : {
+          "start" : 1647245257158,
+          "stop" : 1647245258561,
+          "duration" : 1403
+        }
+      }, {
+        "uid" : "f4e3257717284be7",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/520//#testresult/f4e3257717284be7",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f30f3a5c3d0>>(JsonRpcErrorResponse(id=64, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f30f3a5c3d0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f30f3a5c3d0>.assert_no_error_object",
+        "time" : {
+          "start" : 1647244062275,
+          "stop" : 1647244063682,
+          "duration" : 1407
+        }
+      }, {
+        "uid" : "a4c1062cf133da4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/516//#testresult/a4c1062cf133da4",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fde39a0cd00>>(JsonRpcErrorResponse(id=87, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fde39a0cd00>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fde39a0cd00>.assert_no_error_object",
+        "time" : {
+          "start" : 1647242811998,
+          "stop" : 1647242813308,
+          "duration" : 1310
+        }
+      }, {
+        "uid" : "f31dd9bd06fa056e",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/514//#testresult/f31dd9bd06fa056e",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb4f06cb1c0>>(JsonRpcErrorResponse(id=19, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb4f06cb1c0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb4f06cb1c0>.assert_no_error_object",
+        "time" : {
+          "start" : 1647242682907,
+          "stop" : 1647242684423,
+          "duration" : 1516
+        }
+      }, {
+        "uid" : "a457e63bc76c716e",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/510//#testresult/a457e63bc76c716e",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f07c7672280>>(JsonRpcErrorResponse(id=21, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f07c7672280>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f07c7672280>.assert_no_error_object",
+        "time" : {
+          "start" : 1647241636705,
+          "stop" : 1647241638233,
+          "duration" : 1528
+        }
+      }, {
+        "uid" : "bbf112f4324a5727",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/508//#testresult/bbf112f4324a5727",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f4f4430a220>>(JsonRpcErrorResponse(id=66, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f4f4430a220>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f4f4430a220>.assert_no_error_object",
+        "time" : {
+          "start" : 1647239738598,
+          "stop" : 1647239739909,
+          "duration" : 1311
+        }
+      }, {
+        "uid" : "f8d8652f8657a882",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254q/506//#testresult/f8d8652f8657a882",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f5231e68460>>(JsonRpcErrorResponse(id=88, error={'code': -32000, 'message': \"'NoneType' object is not subscriptable\"}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f5231e68460>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f5231e68460>.assert_no_error_object",
+        "time" : {
+          "start" : 1647239446812,
+          "stop" : 1647239448332,
+          "duration" : 1520
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "45a6911e092ef7.json",
+  "parameterValues" : [ ]
+}
