@@ -67,7 +67,7 @@ class BasicTests(BaseTests):
     #     self.faucet.request_sol(wallet, amount=amount)
 
     # TODO: remove it later
-    @allure.step("processing transaction")
+    # @allure.step("processing transaction")
     def process_transaction(
             self,
             sender_account: Account,
@@ -175,8 +175,5 @@ class BasicTests(BaseTests):
 
     @allure.step("calculating gas")
     def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> Decimal:
-        # return tx_receipt.cumulativeGasUsed * self.web3_client.gas_price(
-        # ) * 0.000_000_000_000_000_001
-        # return tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(self.web3_client.gas_price(), "ether")
         gas_used_in_tx = tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(self.web3_client.gas_price(), "ether")
         return float(round(gas_used_in_tx, InputData.ROUND_DIGITS.value))

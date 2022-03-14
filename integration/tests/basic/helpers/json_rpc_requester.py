@@ -12,31 +12,18 @@ class JsonRpcRequester:
         self._url = proxy_url
         self._session = requests.Session()
 
-    # TODO: remove it later
-    # @allure.step("requesting Json-RPC")
+
     def request_json_rpc(self, data: JsonRpcRequest) -> Response:
-        #         description = f'''Request:
-        # {data}'''
         with allure.step(f'Request: {data}'):
             return self._session.post(self._url, json=dataclasses.asdict(data))
 
-    # TODO: remove it later
-    # @allure.step('deserializing response from JSON')
+
     def deserialize_response(
             self,
             response: Response,
             type: Type = None) -> Union[JsonRpcResponse, JsonRpcErrorResponse]:
         str_data = str(response.json())
-        #         description = f'''Response:
-        # status code = {response.status_code}
-        # result = {str_data}'''
-        description = (f'Response:'
-                       f'status code = {response.status_code}'
-                       f'result = {str_data}')
-        with allure.step(description):
-            # TODO: remove it later
-            # str_data = self.stringify(response.json())
-            # str_data = str(response.json())
+        with allure.step(f'Response: {str_data}'):
             if 'result' in str_data:
                 return self.deserialize_successful_response(response=response,
                                                             type=type)
@@ -45,8 +32,7 @@ class JsonRpcRequester:
             else:
                 return JsonRpcErrorResponse(**response.json())
 
-    # TODO: remove it later
-    # @allure.step('deserializing response from JSON as model ot type {0}')
+
     def deserialize_successful_response(self, response: Response,
                                         type: Type) -> JsonRpcResponse:
         json_rpc_response = JsonRpcResponse(**response.json())
@@ -57,8 +43,3 @@ class JsonRpcRequester:
         result_subobject = type.from_dict(result_dict)
         json_rpc_response.result = result_subobject
         return json_rpc_response
-
-    # TODO: remove it later
-    # @allure.step("showing as JSON")
-    # def stringify(self, data) -> str:
-    #     return str(data)
