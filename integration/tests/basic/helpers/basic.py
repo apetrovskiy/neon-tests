@@ -33,7 +33,6 @@ class BasicTests(BaseTests):
         self.recipient_account = self.create_account_with_balance()
         yield
 
-    @allure.step("creating a new account")
     def create_account(self) -> Account:
         '''Creates a new account'''
         return self.web3_client.create_account()
@@ -42,12 +41,12 @@ class BasicTests(BaseTests):
         '''Gets balance of account'''
         return self.web3_client.eth.get_balance(address)
 
+    # TODO: remove it later
     @allure.step("requesting faucet for Neon")
     def request_faucet_neon(self, wallet: str, amount: int):
         '''Requests faucet for Neon'''
         self.faucet.request_neon(wallet, amount=amount)
 
-    @allure.step("creating a new account with balance")
     def create_account_with_balance(
             self,
             amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value
@@ -66,8 +65,7 @@ class BasicTests(BaseTests):
     # def request_faucet_erc20(self, wallet: str, amount: int):
     #     self.faucet.request_sol(wallet, amount=amount)
 
-    # TODO: remove it later
-    # @allure.step("processing transaction")
+
     def process_transaction(
             self,
             sender_account: Account,
@@ -81,7 +79,8 @@ class BasicTests(BaseTests):
             return self.web3_client.send_neon(sender_account,
                                               recipient_account, amount)
 
-    @allure.step("processing transaction, expecting a failure")
+    # TODO: remove it later
+    # @allure.step("processing transaction, expecting a failure")
     def process_transaction_with_failure(
             self,
             sender_account: Account,
@@ -91,17 +90,18 @@ class BasicTests(BaseTests):
         '''Processes transaction, expects a failure'''
 
         tx: Union[web3.types.TxReceipt, None] = None
-        with pytest.raises(Exception) as error_info:
-            tx = self.web3_client.send_neon(sender_account, recipient_account,
-                                            amount)
+        with allure.step( f"Sending {amount} from {sender_account.address} to {recipient_account.address}"):
+            with pytest.raises(Exception) as error_info:
+                tx = self.web3_client.send_neon(sender_account, recipient_account,
+                                                amount)
 
-        if error_info != None:
+            if error_info != None:
 
-            if error_message:
-                assert error_message in str(error_info)
-            assert None != error_info, "Transaction failed"
+                if error_message:
+                    assert error_message in str(error_info)
+                assert None != error_info, "Transaction failed"
 
-        return tx
+            return tx
 
     def transfer_neon(self, sender_account: Account,
                       recipient_account: Account,
