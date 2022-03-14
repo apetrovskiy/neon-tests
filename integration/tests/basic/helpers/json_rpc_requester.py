@@ -31,7 +31,7 @@ class JsonRpcRequester:
         else:
             return JsonRpcErrorResponse(**response.json())
 
-    @allure.step("deserializing response from JSON as model ot type {2}")
+    @allure.step("deserializing response from JSON as model ot type {1}")
     def deserialize_successful_response(self, response: Response,
                                         type: Type) -> JsonRpcResponse:
         json_rpc_response = JsonRpcResponse(**response.json())
