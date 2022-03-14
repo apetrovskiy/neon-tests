@@ -13,7 +13,7 @@ from integration.tests.basic.model.model import JsonRpcErrorResponse, JsonRpcRes
 from integration.tests.basic.test_data.input_data import InputData
 
 WAITING_FOR_MS = "waiting for MS"
-# TODO: remove it after t
+
 WAITING_FOR_ERC20 = "ERC20 is in progress"
 WAITIING_FOR_CONTRACT_SUPPORT = "no contracts are yet done"
 

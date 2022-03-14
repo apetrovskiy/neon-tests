@@ -75,9 +75,7 @@ class TestTransfer(BasicTests):
     @allure.step("test: send zero: neon")
     def test_zero_neon(self, prepare_accounts):
         """Send zero: neon"""
-        # TODO: remove it later
-        # tx_receipt = self.transfer_zero_neon(self.sender_account,
-        #                                      self.recipient_account)
+
         tx_receipt=self.process_transaction(self.sender_account, self.recipient_account)
 
         self.assert_sender_amount(
@@ -103,10 +101,7 @@ class TestTransfer(BasicTests):
     def test_send_negative_sum_from_account_neon(self, prepare_accounts):
         """Send negative sum from account: neon"""
 
-        # TODO: remove it later
-        # self.transfer_negative_neon(self.sender_account,
-        #                             self.recipient_account,
-        #                             InputData.NEGATIVE_AMOUNT.value)
+
         self.process_transaction_with_failure(     self.sender_account, self.recipient_account, InputData.NEGATIVE_AMOUNT.value,  ErrorMessage.NEGATIVE_VALUE.value)
 
         self.assert_sender_amount(self.sender_account.address,
@@ -131,12 +126,9 @@ class TestTransfer(BasicTests):
     def test_send_token_to_an_invalid_address(self):
         """Send token to an invalid address"""
         sender_account = self.create_account_with_balance()
-        # recipient_address = INVALID_ADDRESS
 
-        # TODO: remove it later
-        # self.transfer_to_invalid_address(
-        #     sender_account, recipient_address,
-        #     InputData.DEFAULT_TRANSFER_AMOUNT.value, ENS_NAME_ERROR)
+
+
         self.process_transaction_with_failure(sender_account,INVALID_ADDRESS, InputData.DEFAULT_TRANSFER_AMOUNT.value, ENS_NAME_ERROR)
 
         self.assert_sender_amount(sender_account.address,
@@ -149,10 +141,7 @@ class TestTransfer(BasicTests):
         recipient_address = sender_account.address.replace('1', '2').replace(
             '3', '4')
 
-        # TODO: remove it later
-        # self.transfer_to_invalid_address(
-        #     sender_account, recipient_address,
-        #     InputData.DEFAULT_TRANSFER_AMOUNT.value, EIP55_INVALID_CHECKUM)
+
         self.process_transaction_with_failure(sender_account,recipient_address, InputData.DEFAULT_TRANSFER_AMOUNT.value, EIP55_INVALID_CHECKUM)
 
         self.assert_sender_amount(sender_account.address,

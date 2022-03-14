@@ -3,8 +3,7 @@ import random
 from typing import List, Union
 from integration.tests.basic.model.model import JsonRpcRequest, JsonRpcRequestParams
 
-# TODO: remove it later
-ALLURE_RETURN_VALUE_DESCRIPTION = "the model built"
+
 ALLURE_PARAMS_BUILT = "parameters built"
 
 
