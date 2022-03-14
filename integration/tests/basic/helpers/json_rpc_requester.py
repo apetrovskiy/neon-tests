@@ -17,7 +17,7 @@ class JsonRpcRequester:
         return self._session.post(self._url, json=dataclasses.asdict(data))
 
     # TODO: deserialize subobject
-    # @allure.step("deserializing response from JSON as model ot type {2}")
+    @allure.step('deserializing response from JSON as model ot type {2.name}')
     def deserialize_response(
             self,
             response: Response,
@@ -31,7 +31,8 @@ class JsonRpcRequester:
         else:
             return JsonRpcErrorResponse(**response.json())
 
-    @allure.step('deserializing response from JSON as model ot type {0}')
+    # TODO: deserialize subobject
+    # @allure.step('deserializing response from JSON as model ot type {0}')
     def deserialize_successful_response(self, response: Response,
                                         type: Type) -> JsonRpcResponse:
         json_rpc_response = JsonRpcResponse(**response.json())
