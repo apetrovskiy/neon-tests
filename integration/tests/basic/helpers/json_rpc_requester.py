@@ -12,11 +12,9 @@ class JsonRpcRequester:
         self._url = proxy_url
         self._session = requests.Session()
 
-
     def request_json_rpc(self, data: JsonRpcRequest) -> Response:
         with allure.step(f'Request: {data}'):
             return self._session.post(self._url, json=dataclasses.asdict(data))
-
 
     def deserialize_response(
             self,
@@ -31,7 +29,6 @@ class JsonRpcRequester:
                 return JsonRpcErrorResponse(**response.json())
             else:
                 return JsonRpcErrorResponse(**response.json())
-
 
     def deserialize_successful_response(self, response: Response,
                                         type: Type) -> JsonRpcResponse:

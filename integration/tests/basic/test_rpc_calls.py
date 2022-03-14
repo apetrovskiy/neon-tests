@@ -2,10 +2,9 @@ import allure
 import pytest
 from typing import Type
 from integration.tests.basic.helpers.assert_message import AssertMessage
-from integration.tests.basic.helpers.json_rpc_encoder import JsonRpcEncoder
 from integration.tests.basic.helpers.basic import WAITIING_FOR_CONTRACT_SUPPORT, BasicTests
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
-from integration.tests.basic.model.model import CallRequest, GetLogsRequest, JsonRpcResponse
+from integration.tests.basic.model.model import CallRequest, GetLogsRequest
 from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.test_data.input_data import InputData
 '''

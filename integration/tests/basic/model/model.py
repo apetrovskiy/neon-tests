@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
 from dataclasses_json import CatchAll, LetterCase, dataclass_json, Undefined
-from time import time
 from typing import Any, List, Union
 
 

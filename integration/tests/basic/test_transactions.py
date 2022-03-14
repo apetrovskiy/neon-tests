@@ -1,7 +1,7 @@
 import allure
 import pytest
 from integration.tests.basic.helpers.basic import BasicTests
-from integration.tests.basic.model.model import JsonRpcResponse, TrxReceiptResponse, TrxResponse
+from integration.tests.basic.model.model import TrxReceiptResponse, TrxResponse
 from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
