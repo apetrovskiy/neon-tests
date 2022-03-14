@@ -2,11 +2,9 @@ import allure
 import dataclasses
 import requests
 from requests.models import Response
-from typing import Union
-from integration.tests.basic.model.json_rpc_error_response import JsonRpcErrorResponse
+from typing import Type, Union
 
-from integration.tests.basic.model.json_rpc_request import JsonRpcRequest
-from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
+from integration.tests.basic.model.model import JsonRpcErrorResponse, JsonRpcRequest, JsonRpcResponse
 
 
 class JsonRpcRequester:
@@ -19,18 +17,32 @@ class JsonRpcRequester:
         with allure.step("getting response"):
             return self._session.post(self._url, json=dataclasses.asdict(data))
 
+    # TODO: deserialize subobject
     @allure.step("deserializing response from JSON")
     def deserialize_response(
-            self, response: Response
-    ) -> Union[JsonRpcResponse, JsonRpcErrorResponse]:
+            self,
+            response: Response,
+            type: Type = None) -> Union[JsonRpcResponse, JsonRpcErrorResponse]:
         str_data = self.stringify(response.json())
         with allure.step("deserialized"):
             if 'result' in str_data:
-                return JsonRpcResponse(**response.json())
+                return self.deserialize_successful_response(response=response,
+                                                            type=type)
             elif 'error' in str_data:
                 return JsonRpcErrorResponse(**response.json())
             else:
                 return JsonRpcErrorResponse(**response.json())
+
+    def deserialize_successful_response(self, response: Response,
+                                        type: Type) -> JsonRpcResponse:
+        json_rpc_response = JsonRpcResponse(**response.json())
+        if type == None:
+            return json_rpc_response
+
+        result_dict = dict(json_rpc_response.result)
+        result_subobject = type.from_dict(result_dict)
+        json_rpc_response.result = result_subobject
+        return json_rpc_response
 
     @allure.step("showing as JSON")
     def stringify(self, data) -> str:

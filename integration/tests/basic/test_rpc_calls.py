@@ -3,14 +3,11 @@ import pytest
 from typing import Type
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.json_rpc_encoder import JsonRpcEncoder
-from integration.tests.basic.model.call_request import CallRequest
-from integration.tests.basic.model.get_logs_request import GetLogsRequest
-from integration.tests.basic.model.json_rpc_response import JsonRpcResponse
-from integration.tests.basic.helpers.basic_helpers import WAITIING_FOR_CONTRACT_SUPPORT, BasicHelpers
+from integration.tests.basic.helpers.basic import WAITIING_FOR_CONTRACT_SUPPORT, BasicTests
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
-from integration.tests.basic.model.json_rpc_request_parameters import JsonRpcRequestParams
+from integration.tests.basic.model.model import CallRequest, GetLogsRequest, JsonRpcResponse
 from integration.tests.basic.model.tags import Tag
-from integration.tests.basic.test_data.test_input_data import TestInputData
+from integration.tests.basic.test_data.input_data import InputData
 '''
 12.	Verify implemented rpc calls work
 12.1.	eth_getBlockByHash		
@@ -31,9 +28,15 @@ from integration.tests.basic.test_data.test_input_data import TestInputData
 12.63.	net_version
 '''
 
+GET_LOGS_TEST_DATA = [(Tag.LATEST.value, Tag.LATEST.value),
+                      (Tag.EARLIEST.value, Tag.LATEST.value),
+                      (Tag.PENDING.value, Tag.LATEST.value),
+                      (Tag.LATEST.value, Tag.EARLIEST.value),
+                      (Tag.LATEST.value, Tag.PENDING.value)]
+
 
 @allure.story("Basic: Json-RPC call tests")
-class TestRpcCalls(BasicHelpers):
+class TestRpcCalls(BasicTests):
     # TODO: implement numerous variants
     @allure.step("test: verify implemented rpc calls work eth_call")
     def test_rpc_call_eth_call(self):
@@ -42,7 +45,7 @@ class TestRpcCalls(BasicHelpers):
         recipient_account = self.create_account_with_balance()
 
         self.transfer_neon(sender_account, recipient_account,
-                           TestInputData.SAMPLE_AMOUNT.value)
+                           InputData.SAMPLE_AMOUNT.value)
 
         # TOOD: variants
         data = CallRequest(to=recipient_account.address)
@@ -87,19 +90,43 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert isinstance(actual_result,
-                          JsonRpcResponse), AssertMessage.WRONG_TYPE.value
+        assert self.assert_is_successful_response(
+            actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-    # TOOD: implement variants
-    @allure.step("test: verify implemented rpc calls work eth_getLogs")
-    def test_rpc_call_eth_getLogs(self):
+    @allure.step("test: verify implemented rpc calls work eth_getLogs via tags"
+                 )
+    @pytest.mark.parametrize("from_block,to_block", GET_LOGS_TEST_DATA)
+    def test_rpc_call_eth_getLogs_via_tags(self, from_block: Tag,
+                                           to_block: Tag):
+        """Verify implemented rpc calls work eth_getLogs"""
+        # TODO: use contract instead of account
+        sender_account = self.create_account_with_balance()
+        params = [
+            GetLogsRequest(from_block=from_block,
+                           to_block=to_block,
+                           address=sender_account.address)
+        ]
+        model = RpcRequestFactory.get_logs(params=params)
+
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+        assert self.assert_no_error_object(
+            actual_result), AssertMessage.CONTAINS_ERROR
+        assert self.assert_result_object(
+            actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
+
+    @allure.step(
+        "test: verify implemented rpc calls work eth_getLogs via numbers")
+    def test_rpc_call_eth_getLogs_via_numbers(self):
         """Verify implemented rpc calls work eth_getLogs"""
         # TODO: use contract instead of account
         sender_account = self.create_account_with_balance()
         # TOOD: variants
         params = [
-            GetLogsRequest(from_block=Tag.LATEST.value,
+            GetLogsRequest(from_block=1,
                            to_block=Tag.LATEST.value,
                            address=sender_account.address)
         ]
@@ -125,7 +152,7 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert actual_result.result == TestInputData.FIRST_AMOUNT_IN_RESPONSE.value, AssertMessage.WRONG_AMOUNT.value
+        assert actual_result.result == InputData.FIRST_AMOUNT_IN_RESPONSE.value, AssertMessage.WRONG_AMOUNT.value
 
     @allure.step("test: verify implemented rpc calls work eth_getCode")
     def test_rpc_call_eth_getCode(self):
@@ -158,8 +185,8 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert isinstance(actual_result,
-                          JsonRpcResponse), AssertMessage.WRONG_TYPE.value
+        assert self.assert_is_successful_response(
+            actual_result), AssertMessage.WRONG_TYPE.value
         assert 'Neon' in actual_result.result, "version does not contain 'Neon'"
 
     @allure.step("test: verify implemented rpc calls work net_version")
@@ -170,6 +197,6 @@ class TestRpcCalls(BasicHelpers):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert isinstance(actual_result,
-                          JsonRpcResponse), AssertMessage.WRONG_TYPE.value
+        assert self.assert_is_successful_response(
+            actual_result), AssertMessage.WRONG_TYPE.value
         assert actual_result.result == '111', "net version is not 111"
