@@ -17,7 +17,8 @@ class JsonRpcRequester:
     def request_json_rpc(self, data: JsonRpcRequest) -> Response:
         #         description = f'''Request:
         # {data}'''
-        description = ("Request:" f"{data}")
+        description = (f"Request:" 
+        f"{data}")
         with allure.step(description):
             return self._session.post(self._url, json=dataclasses.asdict(data))
 
