@@ -1,0 +1,648 @@
+{
+  "uid" : "14bf343e7d762215",
+  "name" : "test_rpc_call_eth_getTransactionReceipt",
+  "fullName" : "integration.tests.basic.test_transactions.TestRpcCallsTransactions#test_rpc_call_eth_getTransactionReceipt",
+  "historyId" : "b962784ff37f368c799dce54dd3a0fec",
+  "time" : {
+    "start" : 1647245112370,
+    "stop" : 1647245113955,
+    "duration" : 1585
+  },
+  "description" : "Verify implemented rpc calls work eth_getTransactionReceipt",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_getTransactionReceipt</p>\n",
+  "status" : "broken",
+  "statusMessage" : "IndexError: Replacement index 1 out of range for positional args tuple",
+  "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7efdcc810c40>\nprepare_accounts = None\n\n    @allure.step(\n        \"test: verify implemented rpc calls work eth_getTransactionReceipt\")\n    def test_rpc_call_eth_getTransactionReceipt(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_getTransactionReceipt\"\"\"\n    \n        tx_receipt = self.transfer_neon(self.sender_account,\n                                        self.recipient_account,\n                                        InputData.SAMPLE_AMOUNT.value)\n    \n        params = [tx_receipt.transactionHash.hex()]\n        model = RpcRequestFactory.get_trx_receipt(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n>       actual_result = self.jsonrpc_requester.deserialize_response(\n            response, TrxReceiptResponse)\n\nintegration/tests/basic/test_transactions.py:135: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.helpers.json_rpc_requester.JsonRpcRequester object at 0x7efdccbb2970>\nresponse = <Response [200]>\ntype = <class 'integration.tests.basic.model.model.TrxReceiptResponse'>\n\n    def deserialize_response(\n            self,\n            response: Response,\n            type: Type = None) -> Union[JsonRpcResponse, JsonRpcErrorResponse]:\n        str_data = self.stringify(response.json())\n        if 'result' in str_data:\n>           return self.deserialize_successful_response(response=response,\nE           IndexError: Replacement index 1 out of range for positional args tuple\n\nintegration/tests/basic/helpers/json_rpc_requester.py:27: IndexError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647244903215,
+      "stop" : 1647244903216,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647244903215,
+      "stop" : 1647244903215,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647244903217,
+      "stop" : 1647244904217,
+      "duration" : 1000
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647244904217,
+      "stop" : 1647244904217,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1647244904217,
+      "stop" : 1647244904217,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647244904218,
+      "stop" : 1647244904218,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647244904218,
+      "stop" : 1647244904218,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647245093313,
+      "stop" : 1647245101570,
+      "duration" : 8257
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1647245093313,
+        "stop" : 1647245093318,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x627587a302bca3EE0Bb59D323e5d40bB07F6b6a7",
+      "time" : {
+        "start" : 1647245093318,
+        "stop" : 1647245094160,
+        "duration" : 842
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.00220483665128023117344 NEON 74064668.89909983 SOL",
+      "time" : {
+        "start" : 1647245101570,
+        "stop" : 1647245101570,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647245111011,
+      "stop" : 1647245111011,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1647245111011,
+      "stop" : 1647245111011,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647245111011,
+      "stop" : 1647245111011,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1647245111011,
+      "stop" : 1647245112369,
+      "duration" : 1358
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "creating a new account with balance",
+      "time" : {
+        "start" : 1647245111011,
+        "stop" : 1647245111690,
+        "duration" : 679
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "creating a new account",
+        "time" : {
+          "start" : 1647245111011,
+          "stop" : 1647245111016,
+          "duration" : 5
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "requesting faucet for Neon",
+        "time" : {
+          "start" : 1647245111016,
+          "stop" : 1647245111690,
+          "duration" : 674
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "wallet",
+          "value" : "'0xAD19482c4c32429653FBF288C788F7ddC735f016'"
+        }, {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "amount",
+        "value" : "5"
+      } ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "creating a new account with balance",
+      "time" : {
+        "start" : 1647245111690,
+        "stop" : 1647245112369,
+        "duration" : 679
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "creating a new account",
+        "time" : {
+          "start" : 1647245111690,
+          "stop" : 1647245111696,
+          "duration" : 6
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "requesting faucet for Neon",
+        "time" : {
+          "start" : 1647245111696,
+          "stop" : 1647245112369,
+          "duration" : 673
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "wallet",
+          "value" : "'0x4cC79d6F189d9CbDd39e3e8a48fBDB5dbd83cfE2'"
+        }, {
+          "name" : "amount",
+          "value" : "5"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "amount",
+        "value" : "5"
+      } ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_getTransactionReceipt",
+    "status" : "broken",
+    "statusMessage" : "IndexError: Replacement index 1 out of range for positional args tuple",
+    "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7efdcc810c40>\nprepare_accounts = None\n\n    @allure.step(\n        \"test: verify implemented rpc calls work eth_getTransactionReceipt\")\n    def test_rpc_call_eth_getTransactionReceipt(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_getTransactionReceipt\"\"\"\n    \n        tx_receipt = self.transfer_neon(self.sender_account,\n                                        self.recipient_account,\n                                        InputData.SAMPLE_AMOUNT.value)\n    \n        params = [tx_receipt.transactionHash.hex()]\n        model = RpcRequestFactory.get_trx_receipt(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n>       actual_result = self.jsonrpc_requester.deserialize_response(\n            response, TrxReceiptResponse)\n\nintegration/tests/basic/test_transactions.py:135: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.helpers.json_rpc_requester.JsonRpcRequester object at 0x7efdccbb2970>\nresponse = <Response [200]>\ntype = <class 'integration.tests.basic.model.model.TrxReceiptResponse'>\n\n    def deserialize_response(\n            self,\n            response: Response,\n            type: Type = None) -> Union[JsonRpcResponse, JsonRpcErrorResponse]:\n        str_data = self.stringify(response.json())\n        if 'result' in str_data:\n>           return self.deserialize_successful_response(response=response,\nE           IndexError: Replacement index 1 out of range for positional args tuple\n\nintegration/tests/basic/helpers/json_rpc_requester.py:27: IndexError",
+    "steps" : [ {
+      "name" : "test: verify implemented rpc calls work eth_getTransactionReceipt",
+      "time" : {
+        "start" : 1647245112370,
+        "stop" : 1647245113955,
+        "duration" : 1585
+      },
+      "status" : "broken",
+      "statusMessage" : "IndexError: Replacement index 1 out of range for positional args tuple\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_transactions.py\", line 135, in test_rpc_call_eth_getTransactionReceipt\n    actual_result = self.jsonrpc_requester.deserialize_response(\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/json_rpc_requester.py\", line 27, in deserialize_response\n    return self.deserialize_successful_response(response=response,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 171, in impl\n    with StepContext(self.title.format(*args, **params), params):\n",
+      "steps" : [ {
+        "name" : "processing transaction",
+        "time" : {
+          "start" : 1647245112370,
+          "stop" : 1647245113783,
+          "duration" : 1413
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "sender_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7efdcc8517f0>"
+        }, {
+          "name" : "recipient_account",
+          "value" : "<eth_account.signers.local.LocalAccount object at 0x7efdcc8790d0>"
+        }, {
+          "name" : "amount",
+          "value" : "4"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "requesting Json-RPC",
+        "time" : {
+          "start" : 1647245113783,
+          "stop" : 1647245113955,
+          "duration" : 172
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "data",
+          "value" : "JsonRpcRequest(id=89, method='eth_getTransactionReceipt', params=['0x188f0da46dbea999d6362c2393223be56dbd5601d759cf2a59ca05aff7c58261'], jsonrpc='2.0')"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "showing as JSON",
+        "time" : {
+          "start" : 1647245113955,
+          "stop" : 1647245113955,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "data",
+          "value" : "{'jsonrpc': '2.0', 'id': 89, 'result': {'transactionHash': '0x188f0da46dbea999d6362c2393223be56dbd5601d759cf2a59ca05aff7c58261', 'transactionIndex': '0x0', 'blockHash': '0x2896b430c88220538e52e4d566c1a0555ad3e9dfd24a02ac319048ce21d3b32b', 'blockNumber': '0x214895', 'from': '0xad19482c4c32429653fbf288c788f7ddc735f016', 'to': '0x4cc79d6f189d9cbdd39e3e8a48fbdb5dbd83cfe2', 'gasUsed': '0x3a98', 'cumulativeGasUsed': '0x3a98', 'contractAddress': None, 'logs': [], 'status': '0x1', 'logsBloom': '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'}}"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "prepare_accounts",
+        "value" : "None"
+      } ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1647245113961,
+      "stop" : 1647245113961,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1647245113962,
+      "stop" : 1647245121563,
+      "duration" : 7601
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.00220483669802948391744 NEON 74064668.87395519 SOL",
+      "time" : {
+        "start" : 1647245121393,
+        "stop" : 1647245121393,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1647245121563,
+        "stop" : 1647245121563,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647245163025,
+      "stop" : 1647245163026,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactions"
+  }, {
+    "name" : "host",
+    "value" : "fv-az449-204"
+  }, {
+    "name" : "thread",
+    "value" : "1744-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "4074d950d86858f8",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254q/521//#testresult/4074d950d86858f8",
+        "status" : "broken",
+        "statusDetails" : "IndexError: Replacement index 2 out of range for positional args tuple",
+        "time" : {
+          "start" : 1647244258861,
+          "stop" : 1647244260487,
+          "duration" : 1626
+        }
+      }, {
+        "uid" : "1aa4e49704a9e005",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254q/519//#testresult/1aa4e49704a9e005",
+        "status" : "broken",
+        "statusDetails" : "IndexError: Replacement index 2 out of range for positional args tuple",
+        "time" : {
+          "start" : 1647243647397,
+          "stop" : 1647243649025,
+          "duration" : 1628
+        }
+      }, {
+        "uid" : "95ec14a8c0aa8896",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254q/517//#testresult/95ec14a8c0aa8896",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647243004161,
+          "stop" : 1647243006147,
+          "duration" : 1986
+        }
+      }, {
+        "uid" : "58d53190435eebc",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254q/515//#testresult/58d53190435eebc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647242799456,
+          "stop" : 1647242800895,
+          "duration" : 1439
+        }
+      }, {
+        "uid" : "7a525ecca996eac9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254q/511//#testresult/7a525ecca996eac9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647241778704,
+          "stop" : 1647241780308,
+          "duration" : 1604
+        }
+      }, {
+        "uid" : "2afa97d585d965fd",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254q/507//#testresult/2afa97d585d965fd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647239586460,
+          "stop" : 1647239587929,
+          "duration" : 1469
+        }
+      }, {
+        "uid" : "83da71f3f36b32b7",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254q/509//#testresult/83da71f3f36b32b7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647239647426,
+          "stop" : 1647239649126,
+          "duration" : 1700
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "14bf343e7d762215.json",
+  "parameterValues" : [ ]
+}
