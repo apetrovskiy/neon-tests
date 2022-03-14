@@ -99,7 +99,6 @@ class BlockResponse:
     unknown: CatchAll
 
 
-# TODO: used only once
 @dataclass_json(letter_case=LetterCase.CAMEL, undefined=Undefined.INCLUDE)
 @dataclass(frozen=True)
 class TrxReceiptResponse:
@@ -116,3 +115,8 @@ class TrxReceiptResponse:
     logs_bloom: str
     # root: Any
     status: int
+
+
+@dataclass
+class InvalidAddress:
+    address: str

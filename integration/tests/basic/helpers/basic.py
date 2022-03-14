@@ -1,15 +1,14 @@
-from decimal import Decimal
 import allure
 import pytest
 import web3
 from _pytest.config import Config
+from decimal import Decimal
 from eth_account import Account
-from typing import Optional, Union
+from typing import Union
 from integration.tests.base import BaseTests
-from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
-from integration.tests.basic.model.model import JsonRpcErrorResponse, JsonRpcResponse
+from integration.tests.basic.model.model import InvalidAddress, JsonRpcErrorResponse, JsonRpcResponse
 from integration.tests.basic.test_data.input_data import InputData
 
 WAITING_FOR_MS = "waiting for MS"
@@ -41,8 +40,6 @@ class BasicTests(BaseTests):
         '''Gets balance of account'''
         return self.web3_client.eth.get_balance(address)
 
-    # TODO: remove it later
-    @allure.step("requesting faucet for Neon")
     def request_faucet_neon(self, wallet: str, amount: int):
         '''Requests faucet for Neon'''
         self.faucet.request_neon(wallet, amount=amount)
@@ -65,7 +62,6 @@ class BasicTests(BaseTests):
     # def request_faucet_erc20(self, wallet: str, amount: int):
     #     self.faucet.request_sol(wallet, amount=amount)
 
-
     def process_transaction(
             self,
             sender_account: Account,
@@ -79,21 +75,21 @@ class BasicTests(BaseTests):
             return self.web3_client.send_neon(sender_account,
                                               recipient_account, amount)
 
-    # TODO: remove it later
-    # @allure.step("processing transaction, expecting a failure")
     def process_transaction_with_failure(
             self,
             sender_account: Account,
-            recipient_account: Account,
+            recipient_account: Union[Account, InvalidAddress],
             amount: int,
             error_message: str = "") -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction, expects a failure'''
 
         tx: Union[web3.types.TxReceipt, None] = None
-        with allure.step( f"Sending {amount} from {sender_account.address} to {recipient_account.address}"):
+        with allure.step(
+                f"Sending {amount} from {sender_account.address} to {recipient_account.address}"
+        ):
             with pytest.raises(Exception) as error_info:
-                tx = self.web3_client.send_neon(sender_account, recipient_account,
-                                                amount)
+                tx = self.web3_client.send_neon(sender_account,
+                                                recipient_account, amount)
 
             if error_info != None:
 
@@ -140,8 +136,6 @@ class BasicTests(BaseTests):
             expected_amount, balance,
             f"Sender: expected ={expected_amount}, actual = {balance}")
 
-    # TODO: remove it later
-    # @allure.step("checking recipient's balance")
     def assert_recipient_amount(self, address: str, expected_amount: float):
         '''Checks recipient's balance'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
