@@ -75,11 +75,11 @@ class BasicTests(BaseTests):
             amount: float = 0.0) -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction'''
 
-        with allure.step(f"Sending {amount} from {sender_account.address} to {recipient_account.address}")
-        tx = self.web3_client.send_neon(sender_account, recipient_account,
-                                        amount)
-
-        return tx
+        with allure.step(
+                f"Sending {amount} from {sender_account.address} to {recipient_account.address}"
+        ):
+            return self.web3_client.send_neon(sender_account,
+                                              recipient_account, amount)
 
     @allure.step("processing transaction, expecting a failure")
     def process_transaction_with_failure(
@@ -109,8 +109,6 @@ class BasicTests(BaseTests):
         '''Transers tokens'''
         return self.process_transaction(sender_account, recipient_account,
                                         amount)
-    
-
 
     def check_value_error_if_less_than_required(
             self, sender_account: Account, recipient_account: Account,
@@ -120,14 +118,12 @@ class BasicTests(BaseTests):
             sender_account, recipient_account, amount,
             ErrorMessage.EXPECTING_VALUE.value)
 
-
     def check_balance(self, expected: float, actual: Decimal, message: str):
         '''Compares the balance with expectation'''
         expected_dec = round(expected, InputData.ROUND_DIGITS.value)
         actual_dec = float(round(actual, InputData.ROUND_DIGITS.value))
 
         assert actual_dec == expected_dec, message + f"expected balance = {expected_dec}, actual balance = {actual_dec}"
-
 
     def assert_amount(self,
                       address: str,
@@ -136,7 +132,6 @@ class BasicTests(BaseTests):
         '''Compares balance of an account with expectation'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
         self.check_balance(expected_amount, balance, message)
-
 
     def assert_sender_amount(self, address: str, expected_amount: float):
         '''Checks sender's balance'''
@@ -174,6 +169,6 @@ class BasicTests(BaseTests):
         return isinstance(actual_result, JsonRpcResponse)
 
     @allure.step("calculating gas")
-    def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> Decimal:
+    def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> float:
         gas_used_in_tx = tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(self.web3_client.gas_price(), "ether")
         return float(round(gas_used_in_tx, InputData.ROUND_DIGITS.value))
