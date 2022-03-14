@@ -78,7 +78,7 @@ class TestTransfer(BasicTests):
         # TODO: remove it later
         # tx_receipt = self.transfer_zero_neon(self.sender_account,
         #                                      self.recipient_account)
-        self.process_transaction(self.sender_account, self.recipient_account)
+        tx_receipt=self.process_transaction(self.sender_account, self.recipient_account)
 
         self.assert_sender_amount(
             self.sender_account.address,

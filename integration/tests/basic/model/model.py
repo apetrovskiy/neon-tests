@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from dataclasses_json import CatchAll, LetterCase, dataclass_json, Undefined
 from time import time
-from typing import Any, List, Optional, Union
+from typing import Any, List,  Union
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
@@ -73,7 +73,7 @@ class TrxResponse:
     r: str
     s: str
 
-
+# commented fields aren't represented in Neon EVM
 @dataclass_json(letter_case=LetterCase.CAMEL, undefined=Undefined.INCLUDE)
 @dataclass(frozen=True)
 class BlockResponse:
