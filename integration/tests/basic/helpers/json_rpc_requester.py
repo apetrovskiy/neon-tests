@@ -23,7 +23,7 @@ class JsonRpcRequester:
             response: Response,
             type: Type = None) -> Union[JsonRpcResponse, JsonRpcErrorResponse]:
         str_data = str(response.json())
-        with allure.step(f"Response status code = {response.status_code}, result = {str_data}"):
+        with allure.step(f"Response\nstatus code = {response.status_code}\nresult = {str_data}"):
             # TODO: remove it later
             # str_data = self.stringify(response.json())
             # str_data = str(response.json())
