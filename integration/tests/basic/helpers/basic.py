@@ -118,36 +118,40 @@ class BasicTests(BaseTests):
             sender_account, recipient_account, amount,
             ErrorMessage.EXPECTING_VALUE.value)
 
-    @allure.step("comparing the balance with expectation")
-    def compare_balance(self, expected: float, actual: Decimal, message: str):
+    # TODO: remove it later
+    # @allure.step("comparing the balance with expectation")
+    def check_balance(self, expected: float, actual: Decimal, message: str):
         '''Compares the balance with expectation'''
         expected_dec = round(expected, InputData.ROUND_DIGITS.value)
         actual_dec = float(round(actual, InputData.ROUND_DIGITS.value))
 
         assert actual_dec == expected_dec, message + f"expected balance = {expected_dec}, actual balance = {actual_dec}"
 
-    @allure.step("comparing balance of an account with expectation")
+    # TODO: remove it later
+    # @allure.step("comparing balance of an account with expectation")
     def assert_amount(self,
                       address: str,
                       expected_amount: float,
                       message: str = ""):
         '''Compares balance of an account with expectation'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(expected_amount, balance, message)
+        self.check_balance(expected_amount, balance, message)
 
-    @allure.step("checking sender's balance")
+    # TODO: remove it later
+    # @allure.step("checking sender's balance")
     def assert_sender_amount(self, address: str, expected_amount: float):
         '''Checks sender's balance'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(
+        self.check_balance(
             expected_amount, balance,
             f"Sender: expected ={expected_amount}, actual = {balance}")
 
-    @allure.step("checking recipient's balance")
+    # TODO: remove it later
+    # @allure.step("checking recipient's balance")
     def assert_recipient_amount(self, address: str, expected_amount: float):
         '''Checks recipient's balance'''
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
-        self.compare_balance(
+        self.check_balance(
             expected_amount, balance,
             f"Recipient: expected ={expected_amount}, actual = {balance}")
 
@@ -172,5 +176,6 @@ class BasicTests(BaseTests):
 
     @allure.step("calculating gas")
     def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> Decimal:
-        return tx_receipt.cumulativeGasUsed * self.web3_client.gas_price(
-        ) * 0.000_000_000_000_000_001
+        # return tx_receipt.cumulativeGasUsed * self.web3_client.gas_price(
+        # ) * 0.000_000_000_000_000_001
+        return tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(self.web3_client.gas_price(), "ether")
