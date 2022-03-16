@@ -1,10 +1,12 @@
 import allure
 import pytest
+from solcx import compile_standard, install_solc
 from typing import Union
 from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR_MS, BasicTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.model.model import InvalidAddress
 from integration.tests.basic.test_data.input_data import InputData
+from integration.tests.economy.test_economics import TestEconomics
 
 INVALID_ADDRESS = InvalidAddress(address="0x12345")
 ENS_NAME_ERROR = f"ENS name: '{INVALID_ADDRESS.address}' is invalid."
@@ -32,6 +34,41 @@ class TestTransfer(BasicTests):
         self.assert_recipient_amount(
             self.recipient_account.address,
             InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
+
+    # TODO: change the test
+    def test_erc20_transfer(self):
+        """Verify ERC20 token send"""
+
+        #
+        solcx.install_solc('0.6.6')
+        #
+
+        # contract, contract_deploy_tx = self.deploy_and_get_contract("ERC20", "0.6.6", constructor_args=[1000])
+        contract, contract_deploy_tx = TestEconomics().deploy_and_get_contract("ERC20", "0.6.6", constructor_args=[1000])
+
+        # assert contract.functions.balanceOf(self.acc.address).call() == 1000
+
+        # sol_balance_before = self.operator.get_solana_balance()
+        # neon_balance_before = self.operator.get_neon_balance()
+
+        # acc2 = self.web3_client.create_account()
+
+        transfer_tx = self.web3_client.send_erc20(
+            # self.acc, acc2, 500, contract_deploy_tx["contractAddress"], abi=contract.abi
+            self.sender_account, self.recipient_account, 500, contract_deploy_tx["contractAddress"], abi=contract.abi
+        )
+        # sol_balance_after = self.operator.get_solana_balance()
+        # neon_balance_after = self.operator.get_neon_balance()
+
+        # assert sol_balance_before > sol_balance_after
+        # assert neon_balance_after > neon_balance_before
+
+        # self.assert_profit(sol_balance_before - sol_balance_after, neon_balance_after - neon_balance_before)
+
+        # TODO: remove it later
+        print(">>>>>>>>>>>>>>>>>>>")
+        print(transfer_tx)
+        #
 
     @pytest.mark.skip(WAITING_FOR_MS)
     def test_send_spl_wrapped_account_from_one_account_to_another(self):
