@@ -57,11 +57,6 @@ class BasicTests(BaseTests):
             is_sender: bool = True) -> Account:
         '''Creates a new account with balance'''
 
-        # TODO: remove it later
-        print("<<<<<<<<<<<<<<<<<<<")
-        print(self.jsonrpc_requester.get_proxy_url())
-        #
-
         if self.jsonrpc_requester.is_devnet() and is_sender:
             return AccountData(address=DEVNET_SENDER_ADDRESS,
                                key=DEVNET_SENDER_KEY)
