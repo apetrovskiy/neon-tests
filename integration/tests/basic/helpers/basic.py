@@ -62,12 +62,12 @@ class BasicTests(BaseTests):
         print(self.jsonrpc_requester.get_proxy_url())
         #
 
-        if 'devnet' in self.jsonrpc_requester.get_proxy_url() and is_sender:
+        if self.jsonrpc_requester.is_devnet() and is_sender:
             return AccountData(address=DEVNET_SENDER_ADDRESS,
                                key=DEVNET_SENDER_KEY)
         else:
             account = self.create_account()
-            if 'devnet' not in self.jsonrpc_requester.get_proxy_url():
+            if not self.jsonrpc_requester.is_devnet():
                 self.request_faucet_neon(account.address, amount)
             return account
 
@@ -141,6 +141,8 @@ class BasicTests(BaseTests):
 
     def assert_balance(self, address: str, expected_amount: float):
         '''Compares balance of an account with expectation'''
+        if self.jsonrpc_requester.is_devnet():
+            return
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
         self.check_balance(expected_amount, balance)
 
