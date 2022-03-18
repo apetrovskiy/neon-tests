@@ -67,7 +67,8 @@ class BasicTests(BaseTests):
                                key=DEVNET_SENDER_KEY)
         else:
             account = self.create_account()
-            self.request_faucet_neon(account.address, amount)
+            if 'devnet' not in self.jsonrpc_requester.get_proxy_url():
+                self.request_faucet_neon(account.address, amount)
             return account
 
     @allure.step("deploying an ERC_20 conract")
