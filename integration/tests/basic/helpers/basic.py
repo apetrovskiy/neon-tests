@@ -10,7 +10,7 @@ from typing import Any, Optional, Union
 from integration.tests.base import BaseTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
-from integration.tests.basic.model.model import InvalidAddress, JsonRpcErrorResponse, JsonRpcResponse
+from integration.tests.basic.model.model import AddressContainer, JsonRpcErrorResponse, JsonRpcResponse
 from integration.tests.basic.test_data.input_data import InputData
 
 WAITING_FOR_MS = "waiting for MS"
@@ -18,11 +18,14 @@ WAITING_FOR_MS = "waiting for MS"
 WAITING_FOR_ERC20 = "ERC20 is in progress"
 WAITIING_FOR_CONTRACT_SUPPORT = "no contracts are yet done"
 
+DEVNET_SENDER = "0x10bA76E88cd03842eb45875e66a0CfD995Ab4D4A"
+
 
 class BasicTests(BaseTests):
     jsonrpc_requester: JsonRpcRequester
     sender_account: Account
     recipient_account: Account
+    env_url: str
 
     @pytest.fixture(autouse=True)
     def prepare_json_rpc_requester(self, jsonrpc_requester: JsonRpcRequester):
@@ -51,9 +54,12 @@ class BasicTests(BaseTests):
             amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value
     ) -> Account:
         '''Creates a new account with balance'''
-        account = self.create_account()
-        self.request_faucet_neon(account.address, amount)
-        return account
+        if 'devnet' in self.jsonrpc_requester.get_proxy_url():
+            return AddressContainer(address=DEVNET_SENDER)
+        else:
+            account = self.create_account()
+            self.request_faucet_neon(account.address, amount)
+            return account
 
     @allure.step("deploying an ERC_20 conract")
     def deploy_contract(self):
@@ -80,7 +86,7 @@ class BasicTests(BaseTests):
     def process_transaction_with_failure(
             self,
             sender_account: Account,
-            recipient_account: Union[Account, InvalidAddress],
+            recipient_account: Union[Account, AddressContainer],
             amount: int,
             error_message: str = "") -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction, expects a failure'''
@@ -190,4 +196,3 @@ class BasicTests(BaseTests):
     #         abi=contract_interface["abi"])
 
     #     return contract, contract_deploy_tx
-
