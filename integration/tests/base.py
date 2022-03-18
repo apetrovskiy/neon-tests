@@ -21,6 +21,7 @@ class BaseTests:
         self.web3_client = web3_client
         self.sol_client = sol_client
 
+    # TODO: uncomment
     # @pytest.fixture(autouse=True)
     # def prepare_account(self, prepare_account):
     #     self.acc = prepare_account
