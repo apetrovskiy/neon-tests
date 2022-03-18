@@ -1,0 +1,361 @@
+{
+  "uid" : "14991ae886153dfe",
+  "name" : "test_rpc_call_eth_getTransactionCount",
+  "fullName" : "integration.tests.basic.test_transactions.TestRpcCallsTransactions#test_rpc_call_eth_getTransactionCount",
+  "historyId" : "203fb24ab3840d60203239a580c20ac7",
+  "time" : {
+    "start" : 1647632725391,
+    "stop" : 1647632727529,
+    "duration" : 2138
+  },
+  "description" : "Verify implemented rpc calls work eth_getTransactionCount",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_getTransactionCount</p>\n",
+  "status" : "broken",
+  "statusMessage" : "ValueError: {'code': -32002, 'message': 'Verifying nonce before send transaction: Error processing Instruction 1: invalid program argument', 'data': {'logs': ['/src/entrypoint.rs Invalid Ethereum transaction nonce: acc 31, trx 30']}}",
+  "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7fa536ba26d0>\nprepare_accounts = None\n\n    def test_rpc_call_eth_getTransactionCount(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_getTransactionCount\"\"\"\n    \n>       self.transfer_neon(self.sender_account, self.recipient_account,\n                           InputData.SAMPLE_AMOUNT.value)\n\nintegration/tests/basic/test_transactions.py:35: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:119: in transfer_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic.py:88: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:64: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7fa536fe93d0>\nresponse = {'error': {'code': -32002, 'data': {'logs': ['/src/entrypoint.rs Invalid Ethereum transaction nonce: acc 31, trx 30']}... nonce before send transaction: Error processing Instruction 1: invalid program argument'}, 'id': 23, 'jsonrpc': '2.0'}\nparams = ('0xf8711e8565592fc60083181820949f00f2ebe8ea34f8e1b0f0e24e00a3b2aa216baa883782dace9d90000080841d3581bfa0e4a8713782cd9329c09487d983e7cb8081a9533792df056e84679ed5b38fea06a05b876ffb0ed066919fcef5f16f2ac2a438c501717bea9e0f13c2a58b870aa624',)\nerror_formatters = <cyfunction identity at 0x7fa53c3bdee0>\nnull_result_formatters = <cyfunction identity at 0x7fa53c3bdee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32002, 'message': 'Verifying nonce before send transaction: Error processing Instruction 1: invalid program argument', 'data': {'logs': ['/src/entrypoint.rs Invalid Ethereum transaction nonce: acc 31, trx 30']}}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647632714155,
+      "stop" : 1647632714157,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647632714155,
+      "stop" : 1647632714155,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647632714157,
+      "stop" : 1647632715042,
+      "duration" : 885
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647632715043,
+      "stop" : 1647632715043,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1647632715043,
+      "stop" : 1647632715043,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647632715043,
+      "stop" : 1647632715043,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647632715044,
+      "stop" : 1647632715044,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647632725386,
+      "stop" : 1647632725387,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1647632725387,
+      "stop" : 1647632725387,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1647632725387,
+      "stop" : 1647632725391,
+      "duration" : 4
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_getTransactionCount",
+    "status" : "broken",
+    "statusMessage" : "ValueError: {'code': -32002, 'message': 'Verifying nonce before send transaction: Error processing Instruction 1: invalid program argument', 'data': {'logs': ['/src/entrypoint.rs Invalid Ethereum transaction nonce: acc 31, trx 30']}}",
+    "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7fa536ba26d0>\nprepare_accounts = None\n\n    def test_rpc_call_eth_getTransactionCount(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_getTransactionCount\"\"\"\n    \n>       self.transfer_neon(self.sender_account, self.recipient_account,\n                           InputData.SAMPLE_AMOUNT.value)\n\nintegration/tests/basic/test_transactions.py:35: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:119: in transfer_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic.py:88: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:64: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7fa536fe93d0>\nresponse = {'error': {'code': -32002, 'data': {'logs': ['/src/entrypoint.rs Invalid Ethereum transaction nonce: acc 31, trx 30']}... nonce before send transaction: Error processing Instruction 1: invalid program argument'}, 'id': 23, 'jsonrpc': '2.0'}\nparams = ('0xf8711e8565592fc60083181820949f00f2ebe8ea34f8e1b0f0e24e00a3b2aa216baa883782dace9d90000080841d3581bfa0e4a8713782cd9329c09487d983e7cb8081a9533792df056e84679ed5b38fea06a05b876ffb0ed066919fcef5f16f2ac2a438c501717bea9e0f13c2a58b870aa624',)\nerror_formatters = <cyfunction identity at 0x7fa53c3bdee0>\nnull_result_formatters = <cyfunction identity at 0x7fa53c3bdee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32002, 'message': 'Verifying nonce before send transaction: Error processing Instruction 1: invalid program argument', 'data': {'logs': ['/src/entrypoint.rs Invalid Ethereum transaction nonce: acc 31, trx 30']}}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+    "steps" : [ {
+      "name" : "Sending 4 from 0x10bA76E88cd03842eb45875e66a0CfD995Ab4D4A to 0x9f00F2ebe8EA34F8E1B0F0E24E00a3b2Aa216BaA",
+      "time" : {
+        "start" : 1647632725392,
+        "stop" : 1647632727529,
+        "duration" : 2137
+      },
+      "status" : "broken",
+      "statusMessage" : "ValueError: {'code': -32002, 'message': 'Verifying nonce before send transaction: Error processing Instruction 1: invalid program argument', 'data': {'logs': ['/src/entrypoint.rs Invalid Ethereum transaction nonce: acc 31, trx 30']}}\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 88, in process_transaction\n    return self.web3_client.send_neon(sender_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 64, in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py\", line 783, in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py\", line 57, in caller\n    result = w3.manager.request_blocking(method_str,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py\", line 198, in request_blocking\n    return self.formatted_response(response,\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py\", line 171, in formatted_response\n    raise ValueError(response[\"error\"])\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1647632727565,
+      "stop" : 1647632727565,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647632754219,
+      "stop" : 1647632754220,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactions"
+  }, {
+    "name" : "host",
+    "value" : "fv-az453-564"
+  }, {
+    "name" : "thread",
+    "value" : "1787-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "cda2bcce9c947a7b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254t/647//#testresult/cda2bcce9c947a7b",
+        "status" : "broken",
+        "statusDetails" : "AttributeError: 'JsonRpcRequester' object has no attribute 'get_proxy_url'",
+        "time" : {
+          "start" : 1647629303175,
+          "stop" : 1647629303175,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "8616701f777d1e33",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254t/644//#testresult/8616701f777d1e33",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32002, 'message': 'Verifying nonce before send transaction: Error processing Instruction 1: invalid program argument', 'data': {'logs': ['/src/entrypoint.rs Invalid Ethereum transaction nonce: acc 8, trx 7']}}",
+        "time" : {
+          "start" : 1647627405839,
+          "stop" : 1647627407453,
+          "duration" : 1614
+        }
+      }, {
+        "uid" : "e39bc1f0f8d4b970",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254t/641//#testresult/e39bc1f0f8d4b970",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1647624114536,
+          "stop" : 1647624114536,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "41502763665938d",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254t/635//#testresult/41502763665938d",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1647623113563,
+          "stop" : 1647623113563,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "45c92cba2822d453",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254t/632//#testresult/45c92cba2822d453",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1647622864954,
+          "stop" : 1647622864954,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "8f4250fdfe20a585",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254t/629//#testresult/8f4250fdfe20a585",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1647622814560,
+          "stop" : 1647622815360,
+          "duration" : 800
+        }
+      }, {
+        "uid" : "631eae15b0c169e3",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/254t/624//#testresult/631eae15b0c169e3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647622163573,
+          "stop" : 1647622165599,
+          "duration" : 2026
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "14991ae886153dfe.json",
+  "parameterValues" : [ ]
+}
