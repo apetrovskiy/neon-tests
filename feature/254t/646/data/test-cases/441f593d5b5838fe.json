@@ -1,0 +1,290 @@
+{
+  "uid" : "441f593d5b5838fe",
+  "name" : "test_send_more_than_exist_on_account_neon[10]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_more_than_exist_on_account_neon",
+  "historyId" : "7c18cff9faa0c0d4a8730c575b629fdb",
+  "time" : {
+    "start" : 1647629305163,
+    "stop" : 1647629305163,
+    "duration" : 0
+  },
+  "description" : "Send more than exist on account: neon",
+  "descriptionHtml" : "<p>Send more than exist on account: neon</p>\n",
+  "status" : "broken",
+  "statusMessage" : "AttributeError: 'JsonRpcRequester' object has no attribute 'get_proxy_url'",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fe55bf1c280>\n\n    @pytest.fixture\n    def prepare_accounts(self):\n>       self.sender_account = self.create_account_with_balance()\n\nintegration/tests/basic/helpers/basic.py:37: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fe55bf1c280>\namount = 5, is_sender = True\n\n    def create_account_with_balance(\n            self,\n            amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value,\n            is_sender: bool = True) -> Account:\n        '''Creates a new account with balance'''\n    \n        # TODO: remove it later\n        print(\"<<<<<<<<<<<<<<<<<<<\")\n>       print(self.jsonrpc_requester.get_proxy_url())\nE       AttributeError: 'JsonRpcRequester' object has no attribute 'get_proxy_url'\n\nintegration/tests/basic/helpers/basic.py:62: AttributeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : true,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647629301365,
+      "stop" : 1647629301367,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647629301365,
+      "stop" : 1647629301365,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647629301367,
+      "stop" : 1647629302236,
+      "duration" : 869
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1647629302237,
+      "stop" : 1647629302237,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647629302237,
+      "stop" : 1647629302238,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647629302237,
+      "stop" : 1647629302237,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647629302238,
+      "stop" : 1647629302238,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647629305164,
+      "stop" : 1647629305164,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1647629305164,
+      "stop" : 1647629305164,
+      "duration" : 0
+    },
+    "status" : "broken",
+    "statusMessage" : "AttributeError: 'JsonRpcRequester' object has no attribute 'get_proxy_url'\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 37, in prepare_accounts\n    self.sender_account = self.create_account_with_balance()\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 62, in create_account_with_balance\n    print(self.jsonrpc_requester.get_proxy_url())\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1647629305164,
+      "stop" : 1647629305164,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send more than exist on account: neon",
+    "status" : "broken",
+    "statusMessage" : "AttributeError: 'JsonRpcRequester' object has no attribute 'get_proxy_url'",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fe55bf1c280>\n\n    @pytest.fixture\n    def prepare_accounts(self):\n>       self.sender_account = self.create_account_with_balance()\n\nintegration/tests/basic/helpers/basic.py:37: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fe55bf1c280>\namount = 5, is_sender = True\n\n    def create_account_with_balance(\n            self,\n            amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value,\n            is_sender: bool = True) -> Account:\n        '''Creates a new account with balance'''\n    \n        # TODO: remove it later\n        print(\"<<<<<<<<<<<<<<<<<<<\")\n>       print(self.jsonrpc_requester.get_proxy_url())\nE       AttributeError: 'JsonRpcRequester' object has no attribute 'get_proxy_url'\n\nintegration/tests/basic/helpers/basic.py:62: AttributeError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "81bd627404dc4d42",
+      "name" : "stdout",
+      "source" : "81bd627404dc4d42.txt",
+      "type" : "text/plain",
+      "size" : 20
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647629305289,
+      "stop" : 1647629305290,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az451-192"
+  }, {
+    "name" : "thread",
+    "value" : "1759-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "10"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "8b7c5e7ebbde428",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254t/637//#testresult/8b7c5e7ebbde428",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1647623803742,
+          "stop" : 1647623803742,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "8cb1b584f2c854d2",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254t/628//#testresult/8cb1b584f2c854d2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647622843706,
+          "stop" : 1647622844476,
+          "duration" : 770
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "441f593d5b5838fe.json",
+  "parameterValues" : [ "10" ]
+}
