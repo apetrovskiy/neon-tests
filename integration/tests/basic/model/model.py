@@ -117,5 +117,6 @@ class TrxReceiptResponse:
 
 
 @dataclass
-class AddressContainer:
+class AccountData:
     address: str
+    key: str = ""

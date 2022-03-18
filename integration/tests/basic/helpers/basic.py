@@ -10,7 +10,7 @@ from typing import Any, Optional, Union
 from integration.tests.base import BaseTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
-from integration.tests.basic.model.model import AddressContainer, JsonRpcErrorResponse, JsonRpcResponse
+from integration.tests.basic.model.model import AccountData, JsonRpcErrorResponse, JsonRpcResponse
 from integration.tests.basic.test_data.input_data import InputData
 
 WAITING_FOR_MS = "waiting for MS"
@@ -18,7 +18,8 @@ WAITING_FOR_MS = "waiting for MS"
 WAITING_FOR_ERC20 = "ERC20 is in progress"
 WAITIING_FOR_CONTRACT_SUPPORT = "no contracts are yet done"
 
-DEVNET_SENDER = "0x10bA76E88cd03842eb45875e66a0CfD995Ab4D4A"
+DEVNET_SENDER_ADDRESS = "0x10bA76E88cd03842eb45875e66a0CfD995Ab4D4A"
+DEVNET_SENDER_KEY = "f50167b6cb6680c3c230a1fb1831521d9e1e1a65796c170f7162bda48135d292"
 
 
 class BasicTests(BaseTests):
@@ -56,7 +57,8 @@ class BasicTests(BaseTests):
             is_sender: bool = True) -> Account:
         '''Creates a new account with balance'''
         if 'devnet' in self.jsonrpc_requester.get_proxy_url() and is_sender:
-            return AddressContainer(address=DEVNET_SENDER)
+            return AccountData(address=DEVNET_SENDER_ADDRESS,
+                               key=DEVNET_SENDER_KEY)
         else:
             account = self.create_account()
             self.request_faucet_neon(account.address, amount)
@@ -87,7 +89,7 @@ class BasicTests(BaseTests):
     def process_transaction_with_failure(
             self,
             sender_account: Account,
-            recipient_account: Union[Account, AddressContainer],
+            recipient_account: Union[Account, AccountData],
             amount: int,
             error_message: str = "") -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction, expects a failure'''
