@@ -1,5 +1,6 @@
 import allure
 import pytest
+from _pytest.config import Config
 from typing import Type
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.basic import WAITIING_FOR_CONTRACT_SUPPORT, BasicTests
@@ -131,6 +132,7 @@ class TestRpcCalls(BasicTests):
         assert self.assert_result_object(
             actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
+    @pytest.mark.only_stands
     def test_rpc_call_eth_getBalance(self):
         """Verify implemented rpc calls work eth_getBalance"""
         sender_account = self.create_account_with_balance()
@@ -175,7 +177,7 @@ class TestRpcCalls(BasicTests):
             actual_result), AssertMessage.WRONG_TYPE.value
         assert 'Neon' in actual_result.result, "version does not contain 'Neon'"
 
-    def test_rpc_call_net_version(self):
+    def test_rpc_call_net_version(self, pytestconfig: Config):
         """Verify implemented rpc calls work work net_version"""
         model = RpcRequestFactory.get_net_version(params=[])
         response = self.jsonrpc_requester.request_json_rpc(model)
@@ -184,4 +186,4 @@ class TestRpcCalls(BasicTests):
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         assert self.assert_is_successful_response(
             actual_result), AssertMessage.WRONG_TYPE.value
-        assert actual_result.result == '111', "net version is not 111"
+        assert actual_result.result == pytestconfig.network_id, "net version is not 111"

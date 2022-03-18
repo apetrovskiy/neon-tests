@@ -1,5 +1,6 @@
 import allure
 import pytest
+from _pytest.config import Config
 from integration.tests.basic.helpers.basic import BasicTests
 from integration.tests.basic.model.model import TrxReceiptResponse, TrxResponse
 from integration.tests.basic.model.tags import Tag
@@ -45,7 +46,8 @@ class TestRpcCallsTransactions(BasicTests):
             actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts):
+    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts,
+                                             pytestconfig: Config):
         """Verify implemented rpc calls work eth_sendRawTransaction"""
 
         # TODO: chain id
@@ -57,7 +59,7 @@ class TestRpcCallsTransactions(BasicTests):
             "value":
             self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
             "chainId":
-            111,
+            pytestconfig.network_id,
             "gasPrice":
             self.web3_client.gas_price(),
             "gas":
