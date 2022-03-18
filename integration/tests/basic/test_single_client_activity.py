@@ -55,7 +55,7 @@ from integration.tests.basic.test_data.input_data import InputData
 stack overflow и stack underflow
 '''
 
-FAUCET_TEST_DATA = [(1), (5), (999), (1_0000), (20_000)]
+FAUCET_TEST_DATA = [(1), (5)] # switched off for devnet, (999), (1_0000), (20_000)]
 FAUCET_REQUEST_MESSAGE = "requesting faucet for Neon"
 
 
