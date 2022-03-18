@@ -34,7 +34,8 @@ class BasicTests(BaseTests):
     @pytest.fixture
     def prepare_accounts(self):
         self.sender_account = self.create_account_with_balance()
-        self.recipient_account = self.create_account_with_balance()
+        self.recipient_account = self.create_account_with_balance(
+            is_sender=False)
         yield
 
     def create_account(self) -> Account:
@@ -51,10 +52,10 @@ class BasicTests(BaseTests):
 
     def create_account_with_balance(
             self,
-            amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value
-    ) -> Account:
+            amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value,
+            is_sender: bool = True) -> Account:
         '''Creates a new account with balance'''
-        if 'devnet' in self.jsonrpc_requester.get_proxy_url():
+        if 'devnet' in self.jsonrpc_requester.get_proxy_url() and is_sender:
             return AddressContainer(address=DEVNET_SENDER)
         else:
             account = self.create_account()
