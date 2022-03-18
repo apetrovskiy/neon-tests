@@ -27,13 +27,12 @@ class TestTransfer(BasicTests):
         tx_receipt = self.transfer_neon(self.sender_account,
                                         self.recipient_account, amount)
 
-        self.assert_sender_amount(
+        self.assert_balance(
             self.sender_account.address,
             InputData.FAUCET_1ST_REQUEST_AMOUNT.value - amount -
             self.calculate_trx_gas(tx_receipt=tx_receipt))
-        self.assert_recipient_amount(
-            self.recipient_account.address,
-            InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
 
     # TODO: change the test
     def test_erc20_transfer(self):
@@ -85,10 +84,10 @@ class TestTransfer(BasicTests):
                                                      self.recipient_account,
                                                      amount)
 
-        self.assert_sender_amount(self.sender_account.address,
-                                  InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
-        self.assert_recipient_amount(self.recipient_account.address,
-                                     InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     @pytest.mark.parametrize("amount", TRANSFER_AMOUNT_DATA)
@@ -107,12 +106,12 @@ class TestTransfer(BasicTests):
         tx_receipt = self.process_transaction(self.sender_account,
                                               self.recipient_account)
 
-        self.assert_sender_amount(
+        self.assert_balance(
             self.sender_account.address,
             InputData.FAUCET_1ST_REQUEST_AMOUNT.value -
             self.calculate_trx_gas(tx_receipt=tx_receipt))
-        self.assert_recipient_amount(self.recipient_account.address,
-                                     InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     def test_zero_spl(self):
@@ -131,10 +130,10 @@ class TestTransfer(BasicTests):
             self.sender_account, self.recipient_account,
             InputData.NEGATIVE_AMOUNT.value, ErrorMessage.NEGATIVE_VALUE.value)
 
-        self.assert_sender_amount(self.sender_account.address,
-                                  InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
-        self.assert_recipient_amount(self.recipient_account.address,
-                                     InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     @pytest.mark.skip(WAITING_FOR_MS)
     def test_send_negative_sum_from_account_spl(self):
@@ -154,8 +153,8 @@ class TestTransfer(BasicTests):
             sender_account, INVALID_ADDRESS,
             InputData.DEFAULT_TRANSFER_AMOUNT.value, ENS_NAME_ERROR)
 
-        self.assert_sender_amount(sender_account.address,
-                                  InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     def test_send_more_token_to_non_existing_address(self):
         """Send token to a non-existing address"""
@@ -167,5 +166,5 @@ class TestTransfer(BasicTests):
             sender_account, recipient_address,
             InputData.DEFAULT_TRANSFER_AMOUNT.value, EIP55_INVALID_CHECKUM)
 
-        self.assert_sender_amount(sender_account.address,
-                                  InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
