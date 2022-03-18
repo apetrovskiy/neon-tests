@@ -1,0 +1,391 @@
+{
+  "uid" : "8573d9896b8a83b",
+  "name" : "test_failed_tx_when_less_gas",
+  "fullName" : "integration.tests.economy.test_economics.TestEconomics#test_failed_tx_when_less_gas",
+  "historyId" : "ede713537a77f865da0a522879c0205a",
+  "time" : {
+    "start" : 1647622633777,
+    "stop" : 1647622651158,
+    "duration" : 17381
+  },
+  "description" : "Don't get money from user if tx failed",
+  "descriptionHtml" : "<p>Don't get money from user if tx failed</p>\n",
+  "status" : "skipped",
+  "statusMessage" : "XFAIL This tx unprofitable because we create accounts before check gas\n\nAssertionError: assert Decimal('277684.218') > Decimal('277684.218')",
+  "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7f2d5a099ac0>\n\n    @pytest.mark.xfail(AssertionError, reason=\"This tx unprofitable because we create accounts before check gas\")\n    def test_failed_tx_when_less_gas(self):\n        \"\"\"Don't get money from user if tx failed\"\"\"\n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n    \n        acc2 = self.web3_client.create_account()\n    \n        balance_user_balance_before = self.web3_client.get_balance(self.acc)\n    \n        receipt = self.web3_client.send_neon(self.acc, acc2, 5, gas=100)\n    \n        assert receipt[\"status\"] == 0\n    \n        assert balance_user_balance_before > self.web3_client.get_balance(self.acc)\n    \n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n    \n        assert sol_balance_before > sol_balance_after\n>       assert neon_balance_after > neon_balance_before\nE       AssertionError: assert Decimal('277684.218') > Decimal('277684.218')\n\nintegration/tests/economy/test_economics.py:510: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647622224452,
+      "stop" : 1647622224454,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647622224452,
+      "stop" : 1647622224452,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647622224454,
+      "stop" : 1647622225649,
+      "duration" : 1195
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647622225649,
+      "stop" : 1647622225649,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647622225649,
+      "stop" : 1647622225649,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647622225649,
+      "stop" : 1647622225649,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "install_solcx_versions",
+    "time" : {
+      "start" : 1647622225650,
+      "stop" : 1647622226328,
+      "duration" : 678
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_price",
+    "time" : {
+      "start" : 1647622226329,
+      "stop" : 1647622226399,
+      "duration" : 70
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "SOL price 90.113315$",
+      "time" : {
+        "start" : 1647622226399,
+        "stop" : 1647622226399,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647622226399,
+      "stop" : 1647622235682,
+      "duration" : 9283
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1647622226399,
+        "stop" : 1647622226413,
+        "duration" : 14
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0xF8CDFDe32886f7B475577e83591f65f550f6756c",
+      "time" : {
+        "start" : 1647622226413,
+        "stop" : 1647622227631,
+        "duration" : 1218
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.00027676311 NEON 74279.37336008 SOL",
+      "time" : {
+        "start" : 1647622235682,
+        "stop" : 1647622235682,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647622633776,
+      "stop" : 1647622633776,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647622633776,
+      "stop" : 1647622633777,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "setup_sol_cost",
+    "time" : {
+      "start" : 1647622633777,
+      "stop" : 1647622633777,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1647622904201,
+      "stop" : 1647622912375,
+      "duration" : 8174
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.000278097729 NEON 74276.39078456 SOL",
+      "time" : {
+        "start" : 1647622912026,
+        "stop" : 1647622912026,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 586.610253640976 NEON",
+      "time" : {
+        "start" : 1647622912374,
+        "stop" : 1647622912375,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647622912381,
+      "stop" : 1647622912382,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Operator economy"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(<class 'AssertionError'>, reason='This tx unprofitable because we create accounts before check gas')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.economy"
+  }, {
+    "name" : "suite",
+    "value" : "test_economics"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestEconomics"
+  }, {
+    "name" : "host",
+    "value" : "fv-az457-713"
+  }, {
+    "name" : "thread",
+    "value" : "1732-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.economy.test_economics"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 2,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "f29188289fe9e2dd",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/27//#testresult/f29188289fe9e2dd",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL This tx unprofitable because we create accounts before check gas\n\nAssertionError: Operator receive 0.001000000 NEON (0.00 $) and spend 0.032429000 SOL (2.93 $), profit - -99.991457200% \nassert Decimal('0.00025') > Decimal('2.92644958')",
+        "time" : {
+          "start" : 1647622528880,
+          "stop" : 1647622539438,
+          "duration" : 10558
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail(<class 'AssertionError'>, reason='This tx unprofitable because we create accounts before check gas')" ]
+  },
+  "source" : "8573d9896b8a83b.json",
+  "parameterValues" : [ ]
+}
