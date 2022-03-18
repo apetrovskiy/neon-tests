@@ -1,6 +1,5 @@
 import allure
 import pytest
-from _pytest.config import Config
 from integration.tests.basic.helpers.basic import BasicTests
 from integration.tests.basic.model.model import TrxReceiptResponse, TrxResponse
 from integration.tests.basic.model.tags import Tag
@@ -59,7 +58,7 @@ class TestRpcCallsTransactions(BasicTests):
             "value":
             self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
             "chainId":
-            pytestconfig.network_id,
+            self.web3_client._chain_id,
             "gasPrice":
             self.web3_client.gas_price(),
             "gas":
