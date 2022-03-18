@@ -1,10 +1,12 @@
 import allure
+import pathlib
 import pytest
+import solcx
 import web3
 from _pytest.config import Config
 from decimal import Decimal
 from eth_account import Account
-from typing import Union
+from typing import Any, Optional, Union
 from integration.tests.base import BaseTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
@@ -144,3 +146,48 @@ class BasicTests(BaseTests):
         gas_used_in_tx = tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(
             self.web3_client.gas_price(), "ether")
         return float(round(gas_used_in_tx, InputData.ROUND_DIGITS.value))
+
+    # # TODO: refactor this
+    # def deploy_and_get_contract(
+    #         self,
+    #         contract_name: str,
+    #         version: str,
+    #         # account: Optional[web3.eth_account.signers.local.LocalAccount] = None,
+    #         account: Optional[Account] = None,
+    #         constructor_args: Optional[Any] = None,
+    #         gas: Optional[int] = 0):
+    #     if contract_name.endswith(".sol"):
+    #         contract_name = contract_name.rsplit(".", 1)[0]
+
+    #     contract_path = (pathlib.Path(__file__).parent / "contracts" /
+    #                      f"{contract_name}.sol").absolute()
+
+    #     # TODO: remove it later
+    #     print("<<<<<<<")
+    #     print(contract_path)
+    #     #
+
+    #     assert contract_path.exists()
+
+    #     if account is None:
+    #         account = self.acc
+
+    #     compiled = solcx.compile_files([contract_path],
+    #                                    output_values=["abi", "bin"],
+    #                                    solc_version=version)
+    #     contract_interface = self.get_compiled_contract(
+    #         contract_name, compiled)
+
+    #     contract_deploy_tx = self.web3_client.deploy_contract(
+    #         account,
+    #         abi=contract_interface["abi"],
+    #         bytecode=contract_interface["bin"],
+    #         constructor_args=constructor_args,
+    #         gas=gas)
+
+    #     contract = self.web3_client.eth.contract(
+    #         address=contract_deploy_tx["contractAddress"],
+    #         abi=contract_interface["abi"])
+
+    #     return contract, contract_deploy_tx
+
