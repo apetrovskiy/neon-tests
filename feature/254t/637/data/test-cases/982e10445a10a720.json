@@ -1,0 +1,274 @@
+{
+  "uid" : "982e10445a10a720",
+  "name" : "test_verify_faucet_work_single_request[1]",
+  "fullName" : "integration.tests.basic.test_single_client_activity.TestSingleClient#test_verify_faucet_work_single_request",
+  "historyId" : "717a347745bd9b5213e756607aea0f53",
+  "time" : {
+    "start" : 1647623801662,
+    "stop" : 1647623801837,
+    "duration" : 175
+  },
+  "description" : "Verify faucet work (request drop for several accounts): single request",
+  "descriptionHtml" : "<p>Verify faucet work (request drop for several accounts): single request</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError",
+  "statusTrace" : "self = <integration.tests.basic.test_single_client_activity.TestSingleClient object at 0x7f753686cc40>\namount = 1\n\n    @pytest.mark.parametrize(\"amount\", FAUCET_TEST_DATA)\n    def test_verify_faucet_work_single_request(self, amount: int):\n        \"\"\"Verify faucet work (request drop for several accounts): single request\"\"\"\n        for _ in range(10):\n            account = self.create_account()\n            with allure.step(FAUCET_REQUEST_MESSAGE):\n>               self.request_faucet_neon(account.address, amount)\n\nintegration/tests/basic/test_single_client_activity.py:94: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:52: in request_faucet_neon\n    self.faucet.request_neon(wallet, amount=amount)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.faucet.Faucet object at 0x7f7536ce2280>\naddress = '0x92B8D9eB922c04ED75fc0DDdA70dB0C8Ae321C2E', amount = 1\n\n    def request_neon(self, address: str, amount: int = 100):\n        assert address.startswith(\"0x\")\n        url = urllib.parse.urljoin(self._url, \"request_neon\")\n        resp = self._session.post(url, json={\"amount\": amount, \"wallet\": address})\n>       assert resp.status_code == 200\nE       AssertionError\n\nutils/faucet.py:14: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647623796884,
+      "stop" : 1647623796884,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647623796885,
+      "stop" : 1647623796887,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647623796887,
+      "stop" : 1647623797817,
+      "duration" : 930
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647623797818,
+      "stop" : 1647623797818,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647623797818,
+      "stop" : 1647623797819,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647623797818,
+      "stop" : 1647623797818,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1647623797818,
+      "stop" : 1647623797818,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647623801661,
+      "stop" : 1647623801662,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1647623801662,
+      "stop" : 1647623801662,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify faucet work (request drop for several accounts): single request",
+    "status" : "failed",
+    "statusMessage" : "AssertionError",
+    "statusTrace" : "self = <integration.tests.basic.test_single_client_activity.TestSingleClient object at 0x7f753686cc40>\namount = 1\n\n    @pytest.mark.parametrize(\"amount\", FAUCET_TEST_DATA)\n    def test_verify_faucet_work_single_request(self, amount: int):\n        \"\"\"Verify faucet work (request drop for several accounts): single request\"\"\"\n        for _ in range(10):\n            account = self.create_account()\n            with allure.step(FAUCET_REQUEST_MESSAGE):\n>               self.request_faucet_neon(account.address, amount)\n\nintegration/tests/basic/test_single_client_activity.py:94: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:52: in request_faucet_neon\n    self.faucet.request_neon(wallet, amount=amount)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.faucet.Faucet object at 0x7f7536ce2280>\naddress = '0x92B8D9eB922c04ED75fc0DDdA70dB0C8Ae321C2E', amount = 1\n\n    def request_neon(self, address: str, amount: int = 100):\n        assert address.startswith(\"0x\")\n        url = urllib.parse.urljoin(self._url, \"request_neon\")\n        resp = self._session.post(url, json={\"amount\": amount, \"wallet\": address})\n>       assert resp.status_code == 200\nE       AssertionError\n\nutils/faucet.py:14: AssertionError",
+    "steps" : [ {
+      "name" : "requesting faucet for Neon",
+      "time" : {
+        "start" : 1647623801667,
+        "stop" : 1647623801836,
+        "duration" : 169
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/test_single_client_activity.py\", line 94, in test_verify_faucet_work_single_request\n    self.request_faucet_neon(account.address, amount)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 52, in request_faucet_neon\n    self.faucet.request_neon(wallet, amount=amount)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 14, in request_neon\n    assert resp.status_code == 200\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647623805311,
+      "stop" : 1647623805311,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: single user tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_single_client_activity"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestSingleClient"
+  }, {
+    "name" : "host",
+    "value" : "fv-az445-625"
+  }, {
+    "name" : "thread",
+    "value" : "1760-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_single_client_activity"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "1"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "46c3b7a0ccf58633",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/254t/628//#testresult/46c3b7a0ccf58633",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647622782216,
+          "stop" : 1647622789407,
+          "duration" : 7191
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "982e10445a10a720.json",
+  "parameterValues" : [ "1" ]
+}
