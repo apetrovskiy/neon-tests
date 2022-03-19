@@ -185,4 +185,6 @@ class TestRpcCalls(BasicTests):
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         assert self.assert_is_successful_response(
             actual_result), AssertMessage.WRONG_TYPE.value
-        assert actual_result.result == self.web3_client._chain_id, "net version is not 111"
+        assert actual_result.result == str(
+            self.web3_client._chain_id
+        ), f"net version is not {self.web3_client._chain_id}"
