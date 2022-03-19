@@ -10,7 +10,7 @@ INVALID_ADDRESS = AccountData(address="0x12345")
 ENS_NAME_ERROR = f"ENS name: '{INVALID_ADDRESS.address}' is invalid."
 EIP55_INVALID_CHECKUM = "'Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.'"
 
-WRONG_TRANSFER_AMOUNT_DATA = [(1_001), (10_000.1)]
+WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
 
 
