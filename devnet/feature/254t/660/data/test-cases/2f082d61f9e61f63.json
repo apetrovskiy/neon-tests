@@ -1,0 +1,294 @@
+{
+  "uid" : "2f082d61f9e61f63",
+  "name" : "test_rpc_call_eth_sendRawTransaction",
+  "fullName" : "integration.tests.basic.test_transactions.TestRpcCallsTransactions#test_rpc_call_eth_sendRawTransaction",
+  "historyId" : "f2266f2fcf46a3382764047e40d95c33",
+  "time" : {
+    "start" : 1647658447087,
+    "stop" : 1647658449719,
+    "duration" : 2632
+  },
+  "description" : "Verify implemented rpc calls work eth_sendRawTransaction",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_sendRawTransaction</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>>(JsonRpcErrorResponse(id=88, error='InvalidArgument', jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>.assert_is_successful_response",
+  "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>\nprepare_accounts = None\n\n    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_sendRawTransaction\"\"\"\n    \n        # TODO: chain id\n        transaction = {\n            \"from\":\n            self.sender_account.address,\n            \"to\":\n            self.recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, \"ether\"),\n            \"chainId\":\n            self.web3_client._chain_id,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(\n                self.sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_is_successful_response(\n            actual_result), AssertMessage.WRONG_TYPE.value\nE       AssertionError: The response type is error response\nE       assert False\nE        +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>>(JsonRpcErrorResponse(id=88, error='InvalidArgument', jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>.assert_is_successful_response\n\nintegration/tests/basic/test_transactions.py:81: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647658430959,
+      "stop" : 1647658430961,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647658430959,
+      "stop" : 1647658430959,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647658430961,
+      "stop" : 1647658431676,
+      "duration" : 715
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1647658431676,
+      "stop" : 1647658431676,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647658431676,
+      "stop" : 1647658431676,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647658431676,
+      "stop" : 1647658431677,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647658431677,
+      "stop" : 1647658431677,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647658447082,
+      "stop" : 1647658447082,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1647658447082,
+      "stop" : 1647658447082,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1647658447082,
+      "stop" : 1647658447086,
+      "duration" : 4
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_sendRawTransaction",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>>(JsonRpcErrorResponse(id=88, error='InvalidArgument', jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>.assert_is_successful_response",
+    "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>\nprepare_accounts = None\n\n    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_sendRawTransaction\"\"\"\n    \n        # TODO: chain id\n        transaction = {\n            \"from\":\n            self.sender_account.address,\n            \"to\":\n            self.recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, \"ether\"),\n            \"chainId\":\n            self.web3_client._chain_id,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(\n                self.sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_is_successful_response(\n            actual_result), AssertMessage.WRONG_TYPE.value\nE       AssertionError: The response type is error response\nE       assert False\nE        +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>>(JsonRpcErrorResponse(id=88, error='InvalidArgument', jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f8614dac400>.assert_is_successful_response\n\nintegration/tests/basic/test_transactions.py:81: AssertionError",
+    "steps" : [ {
+      "name" : "Request: JsonRpcRequest(id=88, method='eth_sendRawTransaction', params=['0xf871438564da717c008318182094287f9db4a3473ec85f06ec918a449ad1c3289faf881bc16d674ec8000080841d3581c0a0c5bff0c7edcdb7abfe73b516e01a3808a4e1cfdbcab5651775bb25c026bf896ba07da3d4573c9dd34baa8580c649fb0f68efd464e10401fc13fa55b71da2773cb6'], jsonrpc='2.0')",
+      "time" : {
+        "start" : 1647658447750,
+        "stop" : 1647658449719,
+        "duration" : 1969
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Response: {'jsonrpc': '2.0', 'id': 88, 'error': 'InvalidArgument'}",
+      "time" : {
+        "start" : 1647658449719,
+        "stop" : 1647658449719,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1647658449724,
+      "stop" : 1647658449724,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647658474092,
+      "stop" : 1647658474092,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactions"
+  }, {
+    "name" : "host",
+    "value" : "fv-az445-625"
+  }, {
+    "name" : "thread",
+    "value" : "1782-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "2f082d61f9e61f63.json",
+  "parameterValues" : [ ]
+}
