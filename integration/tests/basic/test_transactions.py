@@ -45,8 +45,7 @@ class TestRpcCallsTransactions(BasicTests):
             actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts,
-                                             pytestconfig: Config):
+    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts):
         """Verify implemented rpc calls work eth_sendRawTransaction"""
 
         # TODO: chain id
