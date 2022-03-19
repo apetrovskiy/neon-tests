@@ -26,7 +26,6 @@ class BasicTests(BaseTests):
     jsonrpc_requester: JsonRpcRequester
     sender_account: Account
     recipient_account: Account
-    env_url: str
 
     @pytest.fixture(autouse=True)
     def prepare_json_rpc_requester(self, jsonrpc_requester: JsonRpcRequester):
