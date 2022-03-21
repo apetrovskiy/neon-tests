@@ -1,0 +1,431 @@
+{
+  "uid" : "39e2c9ae1212b609",
+  "name" : "test_contract_interact_more_500000_bpf_less_neon",
+  "fullName" : "integration.tests.economy.test_economics.TestEconomics#test_contract_interact_more_500000_bpf_less_neon",
+  "historyId" : "12e73062f7cbeba387c4803ab398acfa",
+  "time" : {
+    "start" : 1647884352166,
+    "stop" : 1647884364436,
+    "duration" : 12270
+  },
+  "description" : "Deploy a contract with more 500000 bpf",
+  "descriptionHtml" : "<p>Deploy a contract with more 500000 bpf</p>\n",
+  "status" : "broken",
+  "statusMessage" : "ValueError: {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}",
+  "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7f71c9840f70>\n\n    def test_contract_interact_more_500000_bpf_less_neon(self):\n        \"\"\"Deploy a contract with more 500000 bpf\"\"\"\n        contract, contract_deploy_tx = self.deploy_and_get_contract(\"Counter\", \"0.8.10\")\n    \n        acc2 = self.web3_client.create_account()\n        self.web3_client.send_neon(self.acc, acc2, 0.001)\n    \n        sol_balance_before_instruction = self.operator.get_solana_balance()\n        neon_balance_before_instruction = self.operator.get_neon_balance()\n    \n>       instruction_tx = contract.functions.moreInstruction(0, 5000).buildTransaction(\n            {\n                \"from\": acc2.address,\n                \"nonce\": self.web3_client.eth.get_transaction_count(self.acc.address),\n                \"gasPrice\": self.web3_client.gas_price(),\n            }\n        )\n\nintegration/tests/economy/test_economics.py:585: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/contract.py:1079: in buildTransaction\n    return build_transaction_for_function(\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/contract.py:1648: in build_transaction_for_function\n    prepared_transaction = fill_transaction_defaults(web3, prepared_transaction)\ncytoolz/functoolz.pyx:250: in cytoolz.functoolz.curry.__call__\n    ???\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/_utils/transactions.py:114: in fill_transaction_defaults\n    default_val = default_getter(web3, transaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/_utils/transactions.py:60: in <lambda>\n    'gas': lambda web3, tx: web3.eth.estimate_gas(tx),\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:820: in estimate_gas\n    return self._estimate_gas(transaction, block_identifier)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f71cab84520>\nresponse = {'error': {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}, 'id': 861, 'jsonrpc': '2.0'}\nparams = ({'data': '0x08cf31ed0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000...00000001388', 'from': '0x1e100Bf776966B88D74ff6c015F66EbCaC644C1f', 'gasPrice': '0x627ae7b300', 'nonce': '0x19', ...},)\nerror_formatters = <function raise_solidity_error_on_revert at 0x7f71cd50c310>\nnull_result_formatters = <cyfunction identity at 0x7f71d03a7ee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647883884554,
+      "stop" : 1647883884554,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647883884555,
+      "stop" : 1647883884556,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647883884557,
+      "stop" : 1647883885668,
+      "duration" : 1111
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647883885668,
+      "stop" : 1647883885668,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647883885669,
+      "stop" : 1647883885669,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647883885669,
+      "stop" : 1647883885669,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "install_solcx_versions",
+    "time" : {
+      "start" : 1647883885669,
+      "stop" : 1647883886425,
+      "duration" : 756
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_price",
+    "time" : {
+      "start" : 1647883886426,
+      "stop" : 1647883886490,
+      "duration" : 64
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "SOL price 87.936867$",
+      "time" : {
+        "start" : 1647883886490,
+        "stop" : 1647883886490,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647883886491,
+      "stop" : 1647883895609,
+      "duration" : 9118
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1647883886491,
+        "stop" : 1647883886504,
+        "duration" : 13
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x70498175330e42dc8E9C110859880A5E5085d686",
+      "time" : {
+        "start" : 1647883886504,
+        "stop" : 1647883887722,
+        "duration" : 1218
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.000922153436 NEON 72841.16802248 SOL",
+      "time" : {
+        "start" : 1647883895609,
+        "stop" : 1647883895609,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "setup_sol_cost",
+    "time" : {
+      "start" : 1647884352165,
+      "stop" : 1647884352165,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647884352165,
+      "stop" : 1647884352165,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647884352165,
+      "stop" : 1647884352165,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Deploy a contract with more 500000 bpf",
+    "status" : "broken",
+    "statusMessage" : "ValueError: {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}",
+    "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7f71c9840f70>\n\n    def test_contract_interact_more_500000_bpf_less_neon(self):\n        \"\"\"Deploy a contract with more 500000 bpf\"\"\"\n        contract, contract_deploy_tx = self.deploy_and_get_contract(\"Counter\", \"0.8.10\")\n    \n        acc2 = self.web3_client.create_account()\n        self.web3_client.send_neon(self.acc, acc2, 0.001)\n    \n        sol_balance_before_instruction = self.operator.get_solana_balance()\n        neon_balance_before_instruction = self.operator.get_neon_balance()\n    \n>       instruction_tx = contract.functions.moreInstruction(0, 5000).buildTransaction(\n            {\n                \"from\": acc2.address,\n                \"nonce\": self.web3_client.eth.get_transaction_count(self.acc.address),\n                \"gasPrice\": self.web3_client.gas_price(),\n            }\n        )\n\nintegration/tests/economy/test_economics.py:585: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/contract.py:1079: in buildTransaction\n    return build_transaction_for_function(\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/contract.py:1648: in build_transaction_for_function\n    prepared_transaction = fill_transaction_defaults(web3, prepared_transaction)\ncytoolz/functoolz.pyx:250: in cytoolz.functoolz.curry.__call__\n    ???\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/_utils/transactions.py:114: in fill_transaction_defaults\n    default_val = default_getter(web3, transaction)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/_utils/transactions.py:60: in <lambda>\n    'gas': lambda web3, tx: web3.eth.estimate_gas(tx),\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/eth.py:820: in estimate_gas\n    return self._estimate_gas(transaction, block_identifier)\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f71cab84520>\nresponse = {'error': {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}, 'id': 861, 'jsonrpc': '2.0'}\nparams = ({'data': '0x08cf31ed0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000...00000001388', 'from': '0x1e100Bf776966B88D74ff6c015F66EbCaC644C1f', 'gasPrice': '0x627ae7b300', 'nonce': '0x19', ...},)\nerror_formatters = <function raise_solidity_error_on_revert at 0x7f71cd50c310>\nnull_result_formatters = <cyfunction identity at 0x7f71d03a7ee0>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}\n\n/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "ca193b3e7c08a91e",
+      "name" : "stdout",
+      "source" : "ca193b3e7c08a91e.txt",
+      "type" : "text/plain",
+      "size" : 142
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1647884554874,
+      "stop" : 1647884562982,
+      "duration" : 8108
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.000923123638 NEON 72838.93761452 SOL",
+      "time" : {
+        "start" : 1647884562633,
+        "stop" : 1647884562633,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 595.361218266128 NEON",
+      "time" : {
+        "start" : 1647884562982,
+        "stop" : 1647884562982,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647884562988,
+      "stop" : 1647884562988,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Operator economy"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.economy"
+  }, {
+    "name" : "suite",
+    "value" : "test_economics"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestEconomics"
+  }, {
+    "name" : "host",
+    "value" : "fv-az451-996"
+  }, {
+    "name" : "thread",
+    "value" : "1773-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.economy.test_economics"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "aa9a72b28dcbb5",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/test-release-stand/42//#testresult/aa9a72b28dcbb5",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}",
+        "time" : {
+          "start" : 1647883122968,
+          "stop" : 1647883131032,
+          "duration" : 8064
+        }
+      }, {
+        "uid" : "46f8143413eafcb7",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/test-release-stand/39//#testresult/46f8143413eafcb7",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}",
+        "time" : {
+          "start" : 1647881409855,
+          "stop" : 1647881417804,
+          "duration" : 7949
+        }
+      }, {
+        "uid" : "32a17b02a2033758",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/test-release-stand/36//#testresult/32a17b02a2033758",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'Expecting value: line 1 column 1 (char 0)'}",
+        "time" : {
+          "start" : 1647881258021,
+          "stop" : 1647881270225,
+          "duration" : 12204
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "39e2c9ae1212b609.json",
+  "parameterValues" : [ ]
+}
