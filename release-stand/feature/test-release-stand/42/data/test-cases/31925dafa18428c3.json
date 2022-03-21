@@ -1,0 +1,454 @@
+{
+  "uid" : "31925dafa18428c3",
+  "name" : "test_erc20_transfer",
+  "fullName" : "integration.tests.economy.test_economics.TestEconomics#test_erc20_transfer",
+  "historyId" : "30b14f3a24c429c0b7ce795058713573",
+  "time" : {
+    "start" : 1647882974483,
+    "stop" : 1647882986993,
+    "duration" : 12510
+  },
+  "description" : "Verify ERC20 token send",
+  "descriptionHtml" : "<p>Verify ERC20 token send</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Operator receive 0.300000000 NEON (0.08 $) and spend 0.002069280 SOL (0.18 $), profit - -58.876417800% \nassert Decimal('0.07500') > Decimal('0.182377108')",
+  "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7f95bf4a0df0>\n\n    def test_erc20_transfer(self):\n        \"\"\"Verify ERC20 token send\"\"\"\n        contract, contract_deploy_tx = self.deploy_and_get_contract(\"ERC20\", \"0.6.6\", constructor_args=[1000])\n    \n        assert contract.functions.balanceOf(self.acc.address).call() == 1000\n    \n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n    \n        acc2 = self.web3_client.create_account()\n    \n        transfer_tx = self.web3_client.send_erc20(\n            self.acc, acc2, 500, contract_deploy_tx[\"contractAddress\"], abi=contract.abi\n        )\n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n    \n        assert sol_balance_before > sol_balance_after\n        assert neon_balance_after > neon_balance_before\n    \n>       self.assert_profit(sol_balance_before - sol_balance_after, neon_balance_after - neon_balance_before)\n\nintegration/tests/economy/test_economics.py:315: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.economy.test_economics.TestEconomics object at 0x7f95bf4a0df0>\nsol_diff = 2069280, neon_diff = Decimal('0.300')\n\n    @allure.step(\"Verify operator profit\")\n    def assert_profit(self, sol_diff, neon_diff):\n        sol_amount = sol_diff / LAMPORT_PER_SOL\n        if neon_diff < 0:\n            raise AssertionError(f\"NEON has negative difference {neon_diff}\")\n        # neon_amount = self.web3_client.fromWei(neon_diff, \"ether\")\n        neon_amount = neon_diff\n        sol_cost = Decimal(sol_amount, DECIMAL_CONTEXT) * Decimal(self.sol_price, DECIMAL_CONTEXT)\n        neon_cost = Decimal(neon_amount, DECIMAL_CONTEXT) * Decimal(NEON_PRICE, DECIMAL_CONTEXT)\n        msg = \"Operator receive {:.9f} NEON ({:.2f} $) and spend {:.9f} SOL ({:.2f} $), profit - {:.9f}% \".format(\n            neon_amount, neon_cost, sol_amount, sol_cost, ((neon_cost - sol_cost) / sol_cost * 100)\n        )\n        with allure.step(msg):\n>           assert neon_cost > sol_cost, msg\nE           AssertionError: Operator receive 0.300000000 NEON (0.08 $) and spend 0.002069280 SOL (0.18 $), profit - -58.876417800% \nE           assert Decimal('0.07500') > Decimal('0.182377108')\n\nintegration/tests/economy/test_economics.py:57: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647882797443,
+      "stop" : 1647882797443,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647882797443,
+      "stop" : 1647882797444,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647882797444,
+      "stop" : 1647882798069,
+      "duration" : 625
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647882798070,
+      "stop" : 1647882798070,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "install_solcx_versions",
+    "time" : {
+      "start" : 1647882798070,
+      "stop" : 1647882799049,
+      "duration" : 979
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647882798070,
+      "stop" : 1647882798070,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647882798070,
+      "stop" : 1647882798070,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "sol_price",
+    "time" : {
+      "start" : 1647882799049,
+      "stop" : 1647882799327,
+      "duration" : 278
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "SOL price 88.13553900000001$",
+      "time" : {
+        "start" : 1647882799327,
+        "stop" : 1647882799327,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 1
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647882799327,
+      "stop" : 1647882804895,
+      "duration" : 5568
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1647882799328,
+        "stop" : 1647882799339,
+        "duration" : 11
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x406cBC402cc055E35Ac622Ed1a77085953CDFa1a",
+      "time" : {
+        "start" : 1647882799339,
+        "stop" : 1647882800268,
+        "duration" : 929
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Operator initial balance: 0.000921184727 NEON 72843.41204568 SOL",
+      "time" : {
+        "start" : 1647882804895,
+        "stop" : 1647882804895,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 3
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647882974482,
+      "stop" : 1647882974482,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647882974482,
+      "stop" : 1647882974482,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "setup_sol_cost",
+    "time" : {
+      "start" : 1647882974482,
+      "stop" : 1647882974482,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "testStage" : {
+    "description" : "Verify ERC20 token send",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Operator receive 0.300000000 NEON (0.08 $) and spend 0.002069280 SOL (0.18 $), profit - -58.876417800% \nassert Decimal('0.07500') > Decimal('0.182377108')",
+    "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7f95bf4a0df0>\n\n    def test_erc20_transfer(self):\n        \"\"\"Verify ERC20 token send\"\"\"\n        contract, contract_deploy_tx = self.deploy_and_get_contract(\"ERC20\", \"0.6.6\", constructor_args=[1000])\n    \n        assert contract.functions.balanceOf(self.acc.address).call() == 1000\n    \n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n    \n        acc2 = self.web3_client.create_account()\n    \n        transfer_tx = self.web3_client.send_erc20(\n            self.acc, acc2, 500, contract_deploy_tx[\"contractAddress\"], abi=contract.abi\n        )\n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n    \n        assert sol_balance_before > sol_balance_after\n        assert neon_balance_after > neon_balance_before\n    \n>       self.assert_profit(sol_balance_before - sol_balance_after, neon_balance_after - neon_balance_before)\n\nintegration/tests/economy/test_economics.py:315: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.economy.test_economics.TestEconomics object at 0x7f95bf4a0df0>\nsol_diff = 2069280, neon_diff = Decimal('0.300')\n\n    @allure.step(\"Verify operator profit\")\n    def assert_profit(self, sol_diff, neon_diff):\n        sol_amount = sol_diff / LAMPORT_PER_SOL\n        if neon_diff < 0:\n            raise AssertionError(f\"NEON has negative difference {neon_diff}\")\n        # neon_amount = self.web3_client.fromWei(neon_diff, \"ether\")\n        neon_amount = neon_diff\n        sol_cost = Decimal(sol_amount, DECIMAL_CONTEXT) * Decimal(self.sol_price, DECIMAL_CONTEXT)\n        neon_cost = Decimal(neon_amount, DECIMAL_CONTEXT) * Decimal(NEON_PRICE, DECIMAL_CONTEXT)\n        msg = \"Operator receive {:.9f} NEON ({:.2f} $) and spend {:.9f} SOL ({:.2f} $), profit - {:.9f}% \".format(\n            neon_amount, neon_cost, sol_amount, sol_cost, ((neon_cost - sol_cost) / sol_cost * 100)\n        )\n        with allure.step(msg):\n>           assert neon_cost > sol_cost, msg\nE           AssertionError: Operator receive 0.300000000 NEON (0.08 $) and spend 0.002069280 SOL (0.18 $), profit - -58.876417800% \nE           assert Decimal('0.07500') > Decimal('0.182377108')\n\nintegration/tests/economy/test_economics.py:57: AssertionError",
+    "steps" : [ {
+      "name" : "Verify operator profit",
+      "time" : {
+        "start" : 1647882986992,
+        "stop" : 1647882986993,
+        "duration" : 1
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Operator receive 0.300000000 NEON (0.08 $) and spend 0.002069280 SOL (0.18 $), profit - -58.876417800% \nassert Decimal('0.07500') > Decimal('0.182377108')\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/economy/test_economics.py\", line 57, in assert_profit\n    assert neon_cost > sol_cost, msg\n",
+      "steps" : [ {
+        "name" : "Operator receive 0.300000000 NEON (0.08 $) and spend 0.002069280 SOL (0.18 $), profit - -58.876417800% ",
+        "time" : {
+          "start" : 1647882986992,
+          "stop" : 1647882986993,
+          "duration" : 1
+        },
+        "status" : "failed",
+        "statusMessage" : "AssertionError: Operator receive 0.300000000 NEON (0.08 $) and spend 0.002069280 SOL (0.18 $), profit - -58.876417800% \nassert Decimal('0.07500') > Decimal('0.182377108')\n",
+        "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/economy/test_economics.py\", line 57, in assert_profit\n    assert neon_cost > sol_cost, msg\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "hasContent" : true,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "sol_diff",
+        "value" : "2069280"
+      }, {
+        "name" : "neon_diff",
+        "value" : "Decimal('0.300')"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 1
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 2
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1647883250369,
+      "stop" : 1647883255170,
+      "duration" : 4801
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.000921858287 NEON 72841.89559388 SOL",
+      "time" : {
+        "start" : 1647883254966,
+        "stop" : 1647883254966,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Account end balance: 595.811922612512 NEON",
+      "time" : {
+        "start" : 1647883255170,
+        "stop" : 1647883255170,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 2
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647883255176,
+      "stop" : 1647883255176,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Operator economy"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.economy"
+  }, {
+    "name" : "suite",
+    "value" : "test_economics"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestEconomics"
+  }, {
+    "name" : "host",
+    "value" : "fv-az193-519"
+  }, {
+    "name" : "thread",
+    "value" : "1745-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.economy.test_economics"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Operator economy",
+      "messageRegex" : ".*Operator receive.*",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "1553c2bef7815a4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/test-release-stand/39//#testresult/1553c2bef7815a4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647881260818,
+          "stop" : 1647881273278,
+          "duration" : 12460
+        }
+      }, {
+        "uid" : "6828207c2d99a7c0",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/test-release-stand/36//#testresult/6828207c2d99a7c0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647881021919,
+          "stop" : 1647881041201,
+          "duration" : 19282
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "31925dafa18428c3.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,424 @@
+{
+  "uid" : "6d20860cddac416f",
+  "name" : "test_account_creation",
+  "fullName" : "integration.tests.economy.test_economics.TestEconomics#test_account_creation",
+  "historyId" : "59e198aaed7a25f202fc4dc5a2c9b5aa",
+  "time" : {
+    "start" : 1647882804910,
+    "stop" : 1647882814235,
+    "duration" : 9325
+  },
+  "description" : "Verify account creation spend SOL",
+  "descriptionHtml" : "<p>Verify account creation spend SOL</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 72843410481640 == 72843412045680",
+  "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7f95bf6a6a90>\n\n    @pytest.mark.only_stands\n    def test_account_creation(self):\n        \"\"\"Verify account creation spend SOL\"\"\"\n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n        acc = self.web3_client.eth.account.create()\n        assert self.web3_client.eth.get_balance(acc.address) == Decimal(0)\n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n        assert neon_balance_after == neon_balance_before\n>       assert sol_balance_after == sol_balance_before\nE       assert 72843410481640 == 72843412045680\n\nintegration/tests/economy/test_economics.py:97: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647882797443,
+      "stop" : 1647882797443,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647882797443,
+      "stop" : 1647882797444,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647882797444,
+      "stop" : 1647882798069,
+      "duration" : 625
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647882798070,
+      "stop" : 1647882798070,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "install_solcx_versions",
+    "time" : {
+      "start" : 1647882798070,
+      "stop" : 1647882799049,
+      "duration" : 979
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647882798070,
+      "stop" : 1647882798070,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647882798070,
+      "stop" : 1647882798070,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "sol_price",
+    "time" : {
+      "start" : 1647882799049,
+      "stop" : 1647882799327,
+      "duration" : 278
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "SOL price 88.13553900000001$",
+      "time" : {
+        "start" : 1647882799327,
+        "stop" : 1647882799327,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 1
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647882799327,
+      "stop" : 1647882804895,
+      "duration" : 5568
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1647882799328,
+        "stop" : 1647882799339,
+        "duration" : 11
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x406cBC402cc055E35Ac622Ed1a77085953CDFa1a",
+      "time" : {
+        "start" : 1647882799339,
+        "stop" : 1647882800268,
+        "duration" : 929
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Operator initial balance: 0.000921184727 NEON 72843.41204568 SOL",
+      "time" : {
+        "start" : 1647882804895,
+        "stop" : 1647882804895,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 3
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647882799327,
+      "stop" : 1647882799327,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647882804895,
+      "stop" : 1647882804896,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "setup_sol_cost",
+    "time" : {
+      "start" : 1647882804896,
+      "stop" : 1647882804896,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "testStage" : {
+    "description" : "Verify account creation spend SOL",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert 72843410481640 == 72843412045680",
+    "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7f95bf6a6a90>\n\n    @pytest.mark.only_stands\n    def test_account_creation(self):\n        \"\"\"Verify account creation spend SOL\"\"\"\n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n        acc = self.web3_client.eth.account.create()\n        assert self.web3_client.eth.get_balance(acc.address) == Decimal(0)\n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n        assert neon_balance_after == neon_balance_before\n>       assert sol_balance_after == sol_balance_before\nE       assert 72843410481640 == 72843412045680\n\nintegration/tests/economy/test_economics.py:97: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "7ad7fc7ccdd435a1",
+      "name" : "log",
+      "source" : "7ad7fc7ccdd435a1.txt",
+      "type" : "text/plain",
+      "size" : 357
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 0
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1647883250369,
+      "stop" : 1647883255170,
+      "duration" : 4801
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.000921858287 NEON 72841.89559388 SOL",
+      "time" : {
+        "start" : 1647883254966,
+        "stop" : 1647883254966,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Account end balance: 595.811922612512 NEON",
+      "time" : {
+        "start" : 1647883255170,
+        "stop" : 1647883255170,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 2
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647883255176,
+      "stop" : 1647883255176,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Operator economy"
+  }, {
+    "name" : "tag",
+    "value" : "only_stands"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.economy"
+  }, {
+    "name" : "suite",
+    "value" : "test_economics"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestEconomics"
+  }, {
+    "name" : "host",
+    "value" : "fv-az193-519"
+  }, {
+    "name" : "thread",
+    "value" : "1745-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.economy.test_economics"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "7fd03fc1a2d1674e",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/test-release-stand/39//#testresult/7fd03fc1a2d1674e",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: assert Decimal('919561.638') == Decimal('919560.966')",
+        "time" : {
+          "start" : 1647881090393,
+          "stop" : 1647881099836,
+          "duration" : 9443
+        }
+      }, {
+        "uid" : "aa9da4a69149ade1",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/test-release-stand/36//#testresult/aa9da4a69149ade1",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: assert 72847884578720 == 72847886142760",
+        "time" : {
+          "start" : 1647880799240,
+          "stop" : 1647880815028,
+          "duration" : 15788
+        }
+      } ]
+    },
+    "tags" : [ "only_stands" ]
+  },
+  "source" : "6d20860cddac416f.json",
+  "parameterValues" : [ ]
+}
