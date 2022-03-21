@@ -1,0 +1,466 @@
+{
+  "uid" : "9d7518e606cf4763",
+  "name" : "test_deploy_small_contract_less_gas",
+  "fullName" : "integration.tests.economy.test_economics.TestEconomics#test_deploy_small_contract_less_gas",
+  "historyId" : "633e256dcae9e5aeca3bce58d5dbad61",
+  "time" : {
+    "start" : 1647886980116,
+    "stop" : 1647886993925,
+    "duration" : 13809
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL This tx unprofitable because we create accounts before check gas\n\nAssertionError: Operator receive 9.751000000 NEON (2.44 $) and spend 0.082982720 SOL (7.29 $), profit - -66.569622500% \nassert Decimal('2.43775') > Decimal('7.29202055')",
+  "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7fd0a5a36ee0>\n\n    @pytest.mark.xfail(AssertionError, reason=\"This tx unprofitable because we create accounts before check gas\")\n    def test_deploy_small_contract_less_gas(self):\n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n    \n        contract, contract_deploy_tx = self.deploy_and_get_contract(\"Counter\", \"0.8.10\", gas=1000)\n    \n        assert contract_deploy_tx[\"status\"] == 0\n    \n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n    \n        assert sol_balance_before > sol_balance_after\n        assert neon_balance_after > neon_balance_before\n>       self.assert_profit(sol_balance_before - sol_balance_after, neon_balance_after - neon_balance_before)\n\nintegration/tests/economy/test_economics.py:360: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.economy.test_economics.TestEconomics object at 0x7fd0a5a36ee0>\nsol_diff = 82982720, neon_diff = Decimal('9.751')\n\n    @allure.step(\"Verify operator profit\")\n    def assert_profit(self, sol_diff, neon_diff):\n        sol_amount = sol_diff / LAMPORT_PER_SOL\n        if neon_diff < 0:\n            raise AssertionError(f\"NEON has negative difference {neon_diff}\")\n        # neon_amount = self.web3_client.fromWei(neon_diff, \"ether\")\n        neon_amount = neon_diff\n        sol_cost = Decimal(sol_amount, DECIMAL_CONTEXT) * Decimal(self.sol_price, DECIMAL_CONTEXT)\n        neon_cost = Decimal(neon_amount, DECIMAL_CONTEXT) * Decimal(NEON_PRICE, DECIMAL_CONTEXT)\n        msg = \"Operator receive {:.9f} NEON ({:.2f} $) and spend {:.9f} SOL ({:.2f} $), profit - {:.9f}% \".format(\n            neon_amount, neon_cost, sol_amount, sol_cost, ((neon_cost - sol_cost) / sol_cost * 100)\n        )\n        with allure.step(msg):\n>           assert neon_cost > sol_cost, msg\nE           AssertionError: Operator receive 9.751000000 NEON (2.44 $) and spend 0.082982720 SOL (7.29 $), profit - -66.569622500% \nE           assert Decimal('2.43775') > Decimal('7.29202055')\n\nintegration/tests/economy/test_economics.py:57: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1647886738971,
+      "stop" : 1647886738973,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1647886738971,
+      "stop" : 1647886738971,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1647886738973,
+      "stop" : 1647886739980,
+      "duration" : 1007
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1647886739981,
+      "stop" : 1647886739981,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1647886739981,
+      "stop" : 1647886739981,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1647886739981,
+      "stop" : 1647886739981,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "install_solcx_versions",
+    "time" : {
+      "start" : 1647886739981,
+      "stop" : 1647886740881,
+      "duration" : 900
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_price",
+    "time" : {
+      "start" : 1647886740882,
+      "stop" : 1647886741100,
+      "duration" : 218
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "SOL price 87.873964$",
+      "time" : {
+        "start" : 1647886741100,
+        "stop" : 1647886741100,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647886741100,
+      "stop" : 1647886748619,
+      "duration" : 7519
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1647886741100,
+        "stop" : 1647886741112,
+        "duration" : 12
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x35b0c08BC6b2aB2267B1958E0E671610444899F4",
+      "time" : {
+        "start" : 1647886741112,
+        "stop" : 1647886742251,
+        "duration" : 1139
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.000923123638 NEON 72838.93134836 SOL",
+      "time" : {
+        "start" : 1647886748619,
+        "stop" : 1647886748619,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1647886980115,
+      "stop" : 1647886980115,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1647886980115,
+      "stop" : 1647886980116,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "setup_sol_cost",
+    "time" : {
+      "start" : 1647886980116,
+      "stop" : 1647886980116,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL This tx unprofitable because we create accounts before check gas\n\nAssertionError: Operator receive 9.751000000 NEON (2.44 $) and spend 0.082982720 SOL (7.29 $), profit - -66.569622500% \nassert Decimal('2.43775') > Decimal('7.29202055')",
+    "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7fd0a5a36ee0>\n\n    @pytest.mark.xfail(AssertionError, reason=\"This tx unprofitable because we create accounts before check gas\")\n    def test_deploy_small_contract_less_gas(self):\n        sol_balance_before = self.operator.get_solana_balance()\n        neon_balance_before = self.operator.get_neon_balance()\n    \n        contract, contract_deploy_tx = self.deploy_and_get_contract(\"Counter\", \"0.8.10\", gas=1000)\n    \n        assert contract_deploy_tx[\"status\"] == 0\n    \n        sol_balance_after = self.operator.get_solana_balance()\n        neon_balance_after = self.operator.get_neon_balance()\n    \n        assert sol_balance_before > sol_balance_after\n        assert neon_balance_after > neon_balance_before\n>       self.assert_profit(sol_balance_before - sol_balance_after, neon_balance_after - neon_balance_before)\n\nintegration/tests/economy/test_economics.py:360: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.economy.test_economics.TestEconomics object at 0x7fd0a5a36ee0>\nsol_diff = 82982720, neon_diff = Decimal('9.751')\n\n    @allure.step(\"Verify operator profit\")\n    def assert_profit(self, sol_diff, neon_diff):\n        sol_amount = sol_diff / LAMPORT_PER_SOL\n        if neon_diff < 0:\n            raise AssertionError(f\"NEON has negative difference {neon_diff}\")\n        # neon_amount = self.web3_client.fromWei(neon_diff, \"ether\")\n        neon_amount = neon_diff\n        sol_cost = Decimal(sol_amount, DECIMAL_CONTEXT) * Decimal(self.sol_price, DECIMAL_CONTEXT)\n        neon_cost = Decimal(neon_amount, DECIMAL_CONTEXT) * Decimal(NEON_PRICE, DECIMAL_CONTEXT)\n        msg = \"Operator receive {:.9f} NEON ({:.2f} $) and spend {:.9f} SOL ({:.2f} $), profit - {:.9f}% \".format(\n            neon_amount, neon_cost, sol_amount, sol_cost, ((neon_cost - sol_cost) / sol_cost * 100)\n        )\n        with allure.step(msg):\n>           assert neon_cost > sol_cost, msg\nE           AssertionError: Operator receive 9.751000000 NEON (2.44 $) and spend 0.082982720 SOL (7.29 $), profit - -66.569622500% \nE           assert Decimal('2.43775') > Decimal('7.29202055')\n\nintegration/tests/economy/test_economics.py:57: AssertionError",
+    "steps" : [ {
+      "name" : "Verify operator profit",
+      "time" : {
+        "start" : 1647886993924,
+        "stop" : 1647886993924,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Operator receive 9.751000000 NEON (2.44 $) and spend 0.082982720 SOL (7.29 $), profit - -66.569622500% \nassert Decimal('2.43775') > Decimal('7.29202055')\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/allure_commons/_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/economy/test_economics.py\", line 57, in assert_profit\n    assert neon_cost > sol_cost, msg\n",
+      "steps" : [ {
+        "name" : "Operator receive 9.751000000 NEON (2.44 $) and spend 0.082982720 SOL (7.29 $), profit - -66.569622500% ",
+        "time" : {
+          "start" : 1647886993924,
+          "stop" : 1647886993924,
+          "duration" : 0
+        },
+        "status" : "failed",
+        "statusMessage" : "AssertionError: Operator receive 9.751000000 NEON (2.44 $) and spend 0.082982720 SOL (7.29 $), profit - -66.569622500% \nassert Decimal('2.43775') > Decimal('7.29202055')\n",
+        "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/economy/test_economics.py\", line 57, in assert_profit\n    assert neon_cost > sol_cost, msg\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "sol_diff",
+        "value" : "82982720"
+      }, {
+        "name" : "neon_diff",
+        "value" : "Decimal('9.751')"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1647887295264,
+      "stop" : 1647887301602,
+      "duration" : 6338
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.000924024454 NEON 72836.88031336 SOL",
+      "time" : {
+        "start" : 1647887301330,
+        "stop" : 1647887301330,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 595.108049066336 NEON",
+      "time" : {
+        "start" : 1647887301602,
+        "stop" : 1647887301602,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1647887301607,
+      "stop" : 1647887301608,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Operator economy"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(<class 'AssertionError'>, reason='This tx unprofitable because we create accounts before check gas')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.economy"
+  }, {
+    "name" : "suite",
+    "value" : "test_economics"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestEconomics"
+  }, {
+    "name" : "host",
+    "value" : "fv-az296-810"
+  }, {
+    "name" : "thread",
+    "value" : "1753-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.economy.test_economics"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Operator economy",
+      "messageRegex" : ".*Operator receive.*",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 3,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "a7e4db7ebd3c40c2",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet-aws/feature/test-release-stand/46//#testresult/a7e4db7ebd3c40c2",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL This tx unprofitable because we create accounts before check gas\n\nAssertionError: Operator receive 9.447000000 NEON (2.36 $) and spend 0.112080240 SOL (9.86 $), profit - -76.037403000% \nassert Decimal('2.36175') > Decimal('9.85598516')",
+        "time" : {
+          "start" : 1647884162428,
+          "stop" : 1647884179854,
+          "duration" : 17426
+        }
+      }, {
+        "uid" : "cda17086f85d0fc0",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet-aws/feature/test-release-stand/43//#testresult/cda17086f85d0fc0",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL This tx unprofitable because we create accounts before check gas\n\nAssertionError: Operator receive 13.283000000 NEON (3.32 $) and spend 0.060165880 SOL (5.30 $), profit - -37.397785500% \nassert Decimal('3.32075') > Decimal('5.30452481')",
+        "time" : {
+          "start" : 1647883098536,
+          "stop" : 1647883115593,
+          "duration" : 17057
+        }
+      }, {
+        "uid" : "ac9002faace67130",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet-aws/feature/test-release-stand/37//#testresult/ac9002faace67130",
+        "status" : "passed",
+        "statusDetails" : "XPASS This tx unprofitable because we create accounts before check gas",
+        "time" : {
+          "start" : 1647881080287,
+          "stop" : 1647881097457,
+          "duration" : 17170
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail(<class 'AssertionError'>, reason='This tx unprofitable because we create accounts before check gas')" ]
+  },
+  "source" : "9d7518e606cf4763.json",
+  "parameterValues" : [ ]
+}
