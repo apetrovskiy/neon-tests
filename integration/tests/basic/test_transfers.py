@@ -164,11 +164,12 @@ class TestTransfer(BasicTests):
         """Too low gas_limit"""
         amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
 
-        self.process_transaction_with_failure(self.sender_account,
-                                              self.recipient_account,
-                                              amount,
-                                              gas=1,
-                                              error_message=ErrorMessage.GAS_LIMIT_REACHED.value)
+        self.process_transaction_with_failure(
+            self.sender_account,
+            self.recipient_account,
+            amount,
+            gas=1,
+            error_message=ErrorMessage.GAS_LIMIT_REACHED.value)
 
         self.assert_balance(self.sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
@@ -182,7 +183,7 @@ class TestTransfer(BasicTests):
         self.process_transaction_with_failure(self.sender_account,
                                               self.recipient_account,
                                               amount,
-                                              gas=U64_MAX+1,
+                                              gas=U64_MAX + 1,
                                               error_message="")
 
         self.assert_balance(self.sender_account.address,
@@ -197,7 +198,7 @@ class TestTransfer(BasicTests):
         self.process_transaction_with_failure(self.sender_account,
                                               self.recipient_account,
                                               amount,
-                                              gas_price=U64_MAX+1,
+                                              gas_price=U64_MAX + 1,
                                               error_message="")
 
         self.assert_balance(self.sender_account.address,
