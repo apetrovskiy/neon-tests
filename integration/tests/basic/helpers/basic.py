@@ -86,7 +86,9 @@ class BasicTests(BaseTests):
         with allure.step(
                 f"Sending {amount} from {sender_account.address} to {recipient_account.address}"
         ):
-            return self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)
+            return self.web3_client.send_neon(sender_account,
+                                              recipient_account, amount, gas,
+                                              gas_price)
 
     def process_transaction_with_failure(
             self,
@@ -103,7 +105,9 @@ class BasicTests(BaseTests):
                 f"Sending {amount} from {sender_account.address} to {recipient_account.address}"
         ):
             with pytest.raises(Exception) as error_info:
-                tx = self.web3_client.send_neon(sender_account,  recipient_account, amount,gas,gas_price)
+                tx = self.web3_client.send_neon(sender_account,
+                                                recipient_account, amount, gas,
+                                                gas_price)
 
             if error_info != None:
 
