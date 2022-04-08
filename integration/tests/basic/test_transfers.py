@@ -131,3 +131,53 @@ class TestTransfer(BasicTests):
 
         self.assert_balance(sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+
+    """
+    20.	Check ERC-1820 transaction (without chain_id in sign)		
+    21.	Generate bad sign (when v, r, s over allowed size)		
+        There are many known variants of, it's not possible to describe all of them.		
+        Below are the simplest:		
+    22.	Too low gas_limit		
+    23.	Too high gas_limit > u64::max		
+    24.	Too high gas_price > u64::max		
+    25.	Too high gas_limit * gas_price > u64::max		
+    26.	There are not enough Neons for gas fee		
+    27.	There are not enough Neons for transfer
+    """
+
+    def test_check_erc_1820_transaction(self):
+        """Check ERC-1820 transaction (without chain_id in sign)"""
+        pass
+
+    def test_generate_bad_sign(self):
+        """Generate bad sign (when v, r, s over allowed size)"""
+        pass
+
+    def test_too_low_gas_limit(self,prepare_accounts):
+        """Too low gas_limit"""
+        tx_receipt = self.transfer_neon(self.sender_account,
+                                        self.recipient_account, amount)
+
+        self.assert_balance(
+            self.sender_account.address,
+            InputData.FAUCET_1ST_REQUEST_AMOUNT.value - amount -
+            self.calculate_trx_gas(tx_receipt=tx_receipt))
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
+    
+    def test_too_high_gas_limit_greater_than_u64_max(self):
+        """Too high gas_limit > u64::max"""
+        pass
+    
+    def test_too_high_gas_price_greater_than_u64_max(self):
+        """Too high gas_price > u64::max"""
+        pass
+    
+    def test_there_are_not_enough_neons_for_gas_fee(self):
+        """There are not enough Neons for gas fee"""
+        pass
+    
+    def test_there_are_not_enough_neons_for_transfer(self):
+        """There are not enough Neons for transfer"""
+        pass
+    
