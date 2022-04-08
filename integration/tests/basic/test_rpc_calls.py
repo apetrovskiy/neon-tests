@@ -41,7 +41,8 @@ class TestRpcCalls(BasicTests):
     def test_rpc_call_eth_call(self, prepare_accounts):
         """Verify implemented rpc calls work eth_call"""
 
-        self.process_transaction(self.sender_account, self.recipient_account,  InputData.SAMPLE_AMOUNT.value)
+        self.process_transaction(self.sender_account, self.recipient_account,
+                                 InputData.SAMPLE_AMOUNT.value)
 
         # TOOD: variants
         data = CallRequest(to=self.recipient_account.address)

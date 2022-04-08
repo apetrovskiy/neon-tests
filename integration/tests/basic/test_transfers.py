@@ -22,7 +22,8 @@ class TestTransfer(BasicTests):
                                                    prepare_accounts):
         """Send neon from one account to another"""
 
-        tx_receipt = self.process_transaction(self.sender_account, self.recipient_account, amount)
+        tx_receipt = self.process_transaction(self.sender_account,
+                                              self.recipient_account, amount)
 
         self.assert_balance(
             self.sender_account.address,

@@ -117,8 +117,6 @@ class BasicTests(BaseTests):
 
             return tx
 
-
-
     def check_value_error_if_less_than_required(
             self, sender_account: Account, recipient_account: Account,
             amount: int) -> Union[web3.types.TxReceipt, None]:
