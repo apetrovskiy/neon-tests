@@ -9,6 +9,7 @@ from integration.tests.basic.test_data.input_data import InputData
 INVALID_ADDRESS = AccountData(address="0x12345")
 ENS_NAME_ERROR = f"ENS name: '{INVALID_ADDRESS.address}' is invalid."
 EIP55_INVALID_CHECKSUM = "'Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.'"
+U64_MAX = 18_446_744_073_709_551_615
 
 WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
@@ -167,6 +168,21 @@ class TestTransfer(BasicTests):
                                               self.recipient_account,
                                               amount,
                                               gas=1,
+                                              error_message=ErrorMessage.GAS_LIMIT_REACHED.value)
+
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+
+    def test_too_high_gas_limit_greater_than_u64_max(self, prepare_accounts):
+        """Too high gas_limit > u64::max"""
+        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
+
+        self.process_transaction_with_failure(self.sender_account,
+                                              self.recipient_account,
+                                              amount,
+                                              gas=U64_MAX+1,
                                               error_message="")
 
         self.assert_balance(self.sender_account.address,
@@ -174,18 +190,25 @@ class TestTransfer(BasicTests):
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    def test_too_high_gas_limit_greater_than_u64_max(self):
-        """Too high gas_limit > u64::max"""
-        pass
-
-    def test_too_high_gas_price_greater_than_u64_max(self):
+    def test_too_high_gas_price_greater_than_u64_max(self, prepare_accounts):
         """Too high gas_price > u64::max"""
-        pass
+        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
 
-    def test_there_are_not_enough_neons_for_gas_fee(self):
+        self.process_transaction_with_failure(self.sender_account,
+                                              self.recipient_account,
+                                              amount,
+                                              gas_price=U64_MAX+1,
+                                              error_message="")
+
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+
+    def test_there_are_not_enough_neons_for_gas_fee(self, prepare_accounts):
         """There are not enough Neons for gas fee"""
         pass
 
-    def test_there_are_not_enough_neons_for_transfer(self):
+    def test_there_are_not_enough_neons_for_transfer(self, prepare_accounts):
         """There are not enough Neons for transfer"""
         pass
