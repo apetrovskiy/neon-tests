@@ -1,0 +1,484 @@
+{
+  "uid" : "b3791e6c0e7024f3",
+  "name" : "test_send_neon_from_one_account_to_another[0.01]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_neon_from_one_account_to_another",
+  "historyId" : "468859a02cbbf36eb35dac8ca17be612",
+  "time" : {
+    "start" : 1649413422056,
+    "stop" : 1649413422390,
+    "duration" : 334
+  },
+  "description" : "Send neon from one account to another",
+  "descriptionHtml" : "<p>Send neon from one account to another</p>\n",
+  "status" : "broken",
+  "statusMessage" : "TypeError: Transaction had invalid fields: {'gas': 0.01}",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fc1e1974340>\namount = 0.01, prepare_accounts = None\n\n    @pytest.mark.parametrize(\"amount\", TRANSFER_AMOUNT_DATA)\n    def test_send_neon_from_one_account_to_another(self, amount: Union[int,\n                                                                       float],\n                                                   prepare_accounts):\n        \"\"\"Send neon from one account to another\"\"\"\n    \n>       tx_receipt = self.transfer_neon(self.sender_account,\n                                        self.recipient_account, amount)\n\nintegration/tests/basic/test_transfers.py:25: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:124: in transfer_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic.py:89: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:75: in send_neon\n    signed_tx = self._web3.eth.account.sign_transaction(transaction, from_.key)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/decorators.py:18: in _wrapper\n    return self.method(obj, *args, **kwargs)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/account.py:748: in sign_transaction\n    ) = sign_transaction_dict(account._key_obj, sanitized_transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/signing.py:32: in sign_transaction_dict\n    unsigned_transaction = serializable_unsigned_transaction_from_dict(transaction_dict)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:44: in serializable_unsigned_transaction_from_dict\n    assert_valid_fields(transaction_dict)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ntransaction_dict = {'chainId': 111, 'gas': 0.01, 'gasPrice': 561252672000, 'nonce': 0, ...}\n\n    def assert_valid_fields(transaction_dict):\n        # check if any keys are missing\n        missing_keys = REQUIRED_TRANSACTION_KEYS.difference(transaction_dict.keys())\n        if missing_keys:\n            raise TypeError(\"Transaction must include these fields: %r\" % missing_keys)\n    \n        # check if any extra keys were specified\n        superfluous_keys = set(transaction_dict.keys()).difference(ALLOWED_TRANSACTION_KEYS)\n        if superfluous_keys:\n            raise TypeError(\"Transaction must not include unrecognized fields: %r\" % superfluous_keys)\n    \n        # check for valid types in each field\n        valid_fields: Dict[str, bool]\n        valid_fields = apply_formatters_to_dict(LEGACY_TRANSACTION_VALID_VALUES, transaction_dict)\n        if not all(valid_fields.values()):\n            invalid = {key: transaction_dict[key] for key, valid in valid_fields.items() if not valid}\n>           raise TypeError(\"Transaction had invalid fields: %r\" % invalid)\nE           TypeError: Transaction had invalid fields: {'gas': 0.01}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:109: TypeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1649413265745,
+      "stop" : 1649413265745,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1649413265745,
+      "stop" : 1649413265747,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1649413265747,
+      "stop" : 1649413266857,
+      "duration" : 1110
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1649413266857,
+      "stop" : 1649413266857,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1649413266857,
+      "stop" : 1649413266858,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1649413266858,
+      "stop" : 1649413266858,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1649413266858,
+      "stop" : 1649413266858,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1649413419231,
+      "stop" : 1649413419231,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649413419231,
+      "stop" : 1649413420715,
+      "duration" : 1484
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1649413419231,
+        "stop" : 1649413419236,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x81aa84C48bb7fC0DA0c9B3400e90bFF3cC02934D",
+      "time" : {
+        "start" : 1649413419236,
+        "stop" : 1649413420070,
+        "duration" : 834
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 974178135.0 NEON 4766.836923715 SOL",
+      "time" : {
+        "start" : 1649413420715,
+        "stop" : 1649413420715,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649413420715,
+      "stop" : 1649413420715,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1649413420715,
+      "stop" : 1649413422056,
+      "duration" : 1341
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1649413420715,
+      "stop" : 1649413420715,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send neon from one account to another",
+    "status" : "broken",
+    "statusMessage" : "TypeError: Transaction had invalid fields: {'gas': 0.01}",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fc1e1974340>\namount = 0.01, prepare_accounts = None\n\n    @pytest.mark.parametrize(\"amount\", TRANSFER_AMOUNT_DATA)\n    def test_send_neon_from_one_account_to_another(self, amount: Union[int,\n                                                                       float],\n                                                   prepare_accounts):\n        \"\"\"Send neon from one account to another\"\"\"\n    \n>       tx_receipt = self.transfer_neon(self.sender_account,\n                                        self.recipient_account, amount)\n\nintegration/tests/basic/test_transfers.py:25: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:124: in transfer_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic.py:89: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:75: in send_neon\n    signed_tx = self._web3.eth.account.sign_transaction(transaction, from_.key)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/decorators.py:18: in _wrapper\n    return self.method(obj, *args, **kwargs)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/account.py:748: in sign_transaction\n    ) = sign_transaction_dict(account._key_obj, sanitized_transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/signing.py:32: in sign_transaction_dict\n    unsigned_transaction = serializable_unsigned_transaction_from_dict(transaction_dict)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:44: in serializable_unsigned_transaction_from_dict\n    assert_valid_fields(transaction_dict)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ntransaction_dict = {'chainId': 111, 'gas': 0.01, 'gasPrice': 561252672000, 'nonce': 0, ...}\n\n    def assert_valid_fields(transaction_dict):\n        # check if any keys are missing\n        missing_keys = REQUIRED_TRANSACTION_KEYS.difference(transaction_dict.keys())\n        if missing_keys:\n            raise TypeError(\"Transaction must include these fields: %r\" % missing_keys)\n    \n        # check if any extra keys were specified\n        superfluous_keys = set(transaction_dict.keys()).difference(ALLOWED_TRANSACTION_KEYS)\n        if superfluous_keys:\n            raise TypeError(\"Transaction must not include unrecognized fields: %r\" % superfluous_keys)\n    \n        # check for valid types in each field\n        valid_fields: Dict[str, bool]\n        valid_fields = apply_formatters_to_dict(LEGACY_TRANSACTION_VALID_VALUES, transaction_dict)\n        if not all(valid_fields.values()):\n            invalid = {key: transaction_dict[key] for key, valid in valid_fields.items() if not valid}\n>           raise TypeError(\"Transaction had invalid fields: %r\" % invalid)\nE           TypeError: Transaction had invalid fields: {'gas': 0.01}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:109: TypeError",
+    "steps" : [ {
+      "name" : "Sending 0.0 from 0xFc4140F572dcF6B63E9e94d7C208D6f0CbFB6032 to 0xc5113Aa6b0d3642270C255ee1630154Bc82c33E0",
+      "time" : {
+        "start" : 1649413422057,
+        "stop" : 1649413422390,
+        "duration" : 333
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: Transaction had invalid fields: {'gas': 0.01}\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 89, in process_transaction\n    return self.web3_client.send_neon(sender_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 75, in send_neon\n    signed_tx = self._web3.eth.account.sign_transaction(transaction, from_.key)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/decorators.py\", line 18, in _wrapper\n    return self.method(obj, *args, **kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/account.py\", line 748, in sign_transaction\n    ) = sign_transaction_dict(account._key_obj, sanitized_transaction)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/signing.py\", line 32, in sign_transaction_dict\n    unsigned_transaction = serializable_unsigned_transaction_from_dict(transaction_dict)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py\", line 44, in serializable_unsigned_transaction_from_dict\n    assert_valid_fields(transaction_dict)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py\", line 109, in assert_valid_fields\n    raise TypeError(\"Transaction had invalid fields: %r\" % invalid)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1649413422418,
+      "stop" : 1649413422418,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1649413438285,
+      "stop" : 1649413439098,
+      "duration" : 813
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 974178045.0 NEON 4766.808770995 SOL",
+      "time" : {
+        "start" : 1649413438929,
+        "stop" : 1649413438929,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1649413439097,
+        "stop" : 1649413439098,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1649413439104,
+      "stop" : 1649413439105,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az453-715"
+  }, {
+    "name" : "thread",
+    "value" : "1801-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "0.01"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 7,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "74a13fe850e70844",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/756//#testresult/74a13fe850e70844",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction had invalid fields: {'gas': 0.01}",
+        "time" : {
+          "start" : 1649413019865,
+          "stop" : 1649413020198,
+          "duration" : 333
+        }
+      }, {
+        "uid" : "7d41dd1258ed23a4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/754//#testresult/7d41dd1258ed23a4",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649411565661,
+          "stop" : 1649411566752,
+          "duration" : 1091
+        }
+      }, {
+        "uid" : "9355b2a79d106aaf",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/752//#testresult/9355b2a79d106aaf",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649408694875,
+          "stop" : 1649408695673,
+          "duration" : 798
+        }
+      }, {
+        "uid" : "2cbcc53e15012640",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/750//#testresult/2cbcc53e15012640",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649408144823,
+          "stop" : 1649408145448,
+          "duration" : 625
+        }
+      }, {
+        "uid" : "791367a508c4ac7e",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/748//#testresult/791367a508c4ac7e",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649407754211,
+          "stop" : 1649407755010,
+          "duration" : 799
+        }
+      }, {
+        "uid" : "2dfdc3f8c35b3f1f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/746//#testresult/2dfdc3f8c35b3f1f",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649406022927,
+          "stop" : 1649406023969,
+          "duration" : 1042
+        }
+      }, {
+        "uid" : "8a2333752a04dbcf",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/744//#testresult/8a2333752a04dbcf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649405507315,
+          "stop" : 1649405508784,
+          "duration" : 1469
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "b3791e6c0e7024f3.json",
+  "parameterValues" : [ "0.01" ]
+}
