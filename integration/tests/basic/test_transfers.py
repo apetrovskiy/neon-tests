@@ -8,7 +8,7 @@ from integration.tests.basic.test_data.input_data import InputData
 
 INVALID_ADDRESS = AccountData(address="0x12345")
 ENS_NAME_ERROR = f"ENS name: '{INVALID_ADDRESS.address}' is invalid."
-EIP55_INVALID_CHECKUM = "'Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.'"
+EIP55_INVALID_CHECKSUM = "'Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.'"
 
 WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
@@ -89,9 +89,7 @@ class TestTransfer(BasicTests):
     def test_send_negative_sum_from_account_neon(self, prepare_accounts):
         """Send negative sum from account: neon"""
 
-        self.process_transaction_with_failure(
-            self.sender_account, self.recipient_account,
-            InputData.NEGATIVE_AMOUNT.value, ErrorMessage.NEGATIVE_VALUE.value)
+        self.process_transaction_with_failure(  self.sender_account, self.recipient_account, InputData.NEGATIVE_AMOUNT.value, error_message= ErrorMessage.NEGATIVE_VALUE.value)
 
         self.assert_balance(self.sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
@@ -112,9 +110,7 @@ class TestTransfer(BasicTests):
         """Send token to an invalid address"""
         sender_account = self.create_account_with_balance()
 
-        self.process_transaction_with_failure(
-            sender_account, INVALID_ADDRESS,
-            InputData.DEFAULT_TRANSFER_AMOUNT.value, ENS_NAME_ERROR)
+        self.process_transaction_with_failure(  sender_account, INVALID_ADDRESS,  InputData.DEFAULT_TRANSFER_AMOUNT.value,error_message= ENS_NAME_ERROR)
 
         self.assert_balance(sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
@@ -125,9 +121,7 @@ class TestTransfer(BasicTests):
         recipient_address = AccountData(
             address=sender_account.address.replace('1', '2').replace('3', '4'))
 
-        self.process_transaction_with_failure(
-            sender_account, recipient_address,
-            InputData.DEFAULT_TRANSFER_AMOUNT.value, EIP55_INVALID_CHECKUM)
+        self.process_transaction_with_failure(  sender_account, recipient_address,   InputData.DEFAULT_TRANSFER_AMOUNT.value,error_message= EIP55_INVALID_CHECKSUM)
 
         self.assert_balance(sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
@@ -157,10 +151,7 @@ class TestTransfer(BasicTests):
         """Too low gas_limit"""
         amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
 
-        tx_receipt = self.process_transaction(self.sender_account,
-                                              self.recipient_account,
-                                              amount,
-                                              gas=1)
+        self.process_transaction_with_failure(self.sender_account,   self.recipient_account,  amount, gas=1,error_message="")
 
         self.assert_balance(self.sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)

@@ -117,9 +117,7 @@ class BasicTests(BaseTests):
             self, sender_account: Account, recipient_account: Account,
             amount: int) -> Union[web3.types.TxReceipt, None]:
         '''Checks in case the balance is less than required'''
-        return self.process_transaction_with_failure(
-            sender_account, recipient_account, amount,
-            ErrorMessage.EXPECTING_VALUE.value)
+        return self.process_transaction_with_failure(  sender_account, recipient_account, amount,error_message= ErrorMessage.EXPECTING_VALUE.value)
 
     def check_balance(self, expected: float, actual: Decimal):
         '''Compares the balance with expectation'''
