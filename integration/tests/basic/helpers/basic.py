@@ -6,7 +6,7 @@ import web3
 from _pytest.config import Config
 from decimal import Decimal
 from eth_account import Account
-from typing import Union
+from typing import Optional, Union
 from integration.tests.base import BaseTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
@@ -92,6 +92,8 @@ class BasicTests(BaseTests):
             sender_account: Account,
             recipient_account: Union[Account, AccountData],
             amount: int,
+            gas: Optional[int] = 0,
+            gas_price: Optional[int] = None,
             error_message: str = "") -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction, expects a failure'''
 
@@ -100,8 +102,7 @@ class BasicTests(BaseTests):
                 f"Sending {amount} from {sender_account.address} to {recipient_account.address}"
         ):
             with pytest.raises(Exception) as error_info:
-                tx = self.web3_client.send_neon(sender_account,
-                                                recipient_account, amount)
+                tx = self.web3_client.send_neon(sender_account,  recipient_account, amount,gas,gas_price)
 
             if error_info != None:
 
