@@ -157,8 +157,7 @@ class TestTransfer(BasicTests):
         """Too low gas_limit"""
         amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
 
-        tx_receipt = self.transfer_neon(self.sender_account,
-                                        self.recipient_account, amount)
+        tx_receipt = self.process_transaction(self.sender_account, self.recipient_account, amount, 1)
 
         self.assert_balance(
             self.sender_account.address,
