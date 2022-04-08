@@ -1,0 +1,469 @@
+{
+  "uid" : "e35cbc74a213fc80",
+  "name" : "test_send_neon_from_one_account_to_another[1]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_neon_from_one_account_to_another",
+  "historyId" : "e0fb2960146feb86d2510769aeee9644",
+  "time" : {
+    "start" : 1649413071684,
+    "stop" : 1649413072304,
+    "duration" : 620
+  },
+  "description" : "Send neon from one account to another",
+  "descriptionHtml" : "<p>Send neon from one account to another</p>\n",
+  "status" : "broken",
+  "statusMessage" : "ValueError: {'code': -32000, 'message': 'gas limit reached: have 1 want 21000'}",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fc24e650310>\namount = 1, prepare_accounts = None\n\n    @pytest.mark.parametrize(\"amount\", TRANSFER_AMOUNT_DATA)\n    def test_send_neon_from_one_account_to_another(self, amount: Union[int,\n                                                                       float],\n                                                   prepare_accounts):\n        \"\"\"Send neon from one account to another\"\"\"\n    \n>       tx_receipt = self.transfer_neon(self.sender_account,\n                                        self.recipient_account, amount)\n\nintegration/tests/basic/test_transfers.py:25: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:124: in transfer_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic.py:89: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:76: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7fc24eb47610>\nresponse = {'error': {'code': -32000, 'message': 'gas limit reached: have 1 want 21000'}, 'id': 268, 'jsonrpc': '2.0'}\nparams = ('0xf864808582defb6d800194bced35f631e2a574965a28ccd4dce5c4c150b1da8080820101a011f05463299e9f3917210ca918e2fafeac2f17016cddbf759815164a07f44ceea01444eac5dc89faa3a7bf0eed2b9b97fd7ae09232bc6730baefde63542f2c2824',)\nerror_formatters = <cyfunction identity at 0x7fc254593040>\nnull_result_formatters = <cyfunction identity at 0x7fc254593040>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'gas limit reached: have 1 want 21000'}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : true,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1649412848959,
+      "stop" : 1649412848960,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1649412848959,
+      "stop" : 1649412848959,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1649412848960,
+      "stop" : 1649412850089,
+      "duration" : 1129
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1649412850089,
+      "stop" : 1649412850089,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1649412850090,
+      "stop" : 1649412850090,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1649412850090,
+      "stop" : 1649412850090,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1649412850090,
+      "stop" : 1649412850090,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649413060288,
+      "stop" : 1649413068558,
+      "duration" : 8270
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1649413060288,
+        "stop" : 1649413060292,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0xf1E2B28b8f9bDB98698d3acC429B2A2E6eE64fD9",
+      "time" : {
+        "start" : 1649413060292,
+        "stop" : 1649413061146,
+        "duration" : 854
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.00276245794203646786288 NEON 70556.95770984 SOL",
+      "time" : {
+        "start" : 1649413068558,
+        "stop" : 1649413068558,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1649413070302,
+      "stop" : 1649413070302,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649413070302,
+      "stop" : 1649413070302,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1649413070302,
+      "stop" : 1649413070302,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1649413070302,
+      "stop" : 1649413071683,
+      "duration" : 1381
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send neon from one account to another",
+    "status" : "broken",
+    "statusMessage" : "ValueError: {'code': -32000, 'message': 'gas limit reached: have 1 want 21000'}",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fc24e650310>\namount = 1, prepare_accounts = None\n\n    @pytest.mark.parametrize(\"amount\", TRANSFER_AMOUNT_DATA)\n    def test_send_neon_from_one_account_to_another(self, amount: Union[int,\n                                                                       float],\n                                                   prepare_accounts):\n        \"\"\"Send neon from one account to another\"\"\"\n    \n>       tx_receipt = self.transfer_neon(self.sender_account,\n                                        self.recipient_account, amount)\n\nintegration/tests/basic/test_transfers.py:25: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:124: in transfer_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic.py:89: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:76: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7fc24eb47610>\nresponse = {'error': {'code': -32000, 'message': 'gas limit reached: have 1 want 21000'}, 'id': 268, 'jsonrpc': '2.0'}\nparams = ('0xf864808582defb6d800194bced35f631e2a574965a28ccd4dce5c4c150b1da8080820101a011f05463299e9f3917210ca918e2fafeac2f17016cddbf759815164a07f44ceea01444eac5dc89faa3a7bf0eed2b9b97fd7ae09232bc6730baefde63542f2c2824',)\nerror_formatters = <cyfunction identity at 0x7fc254593040>\nnull_result_formatters = <cyfunction identity at 0x7fc254593040>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'gas limit reached: have 1 want 21000'}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+    "steps" : [ {
+      "name" : "Sending 0.0 from 0x7dD5207C16E1C188c8243153fF534E92969Fc5d1 to 0xBCeD35F631E2a574965a28cCd4DCe5C4c150B1da",
+      "time" : {
+        "start" : 1649413071684,
+        "stop" : 1649413072303,
+        "duration" : 619
+      },
+      "status" : "broken",
+      "statusMessage" : "ValueError: {'code': -32000, 'message': 'gas limit reached: have 1 want 21000'}\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 89, in process_transaction\n    return self.web3_client.send_neon(sender_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 76, in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py\", line 783, in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py\", line 57, in caller\n    result = w3.manager.request_blocking(method_str,\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py\", line 198, in request_blocking\n    return self.formatted_response(response,\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py\", line 171, in formatted_response\n    raise ValueError(response[\"error\"])\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1649413072334,
+      "stop" : 1649413072334,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1649413087740,
+      "stop" : 1649413095480,
+      "duration" : 7740
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.00276245795046776938288 NEON 70556.92954212 SOL",
+      "time" : {
+        "start" : 1649413095310,
+        "stop" : 1649413095310,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1649413095480,
+        "stop" : 1649413095480,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1649413095486,
+      "stop" : 1649413095487,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az457-821"
+  }, {
+    "name" : "thread",
+    "value" : "1801-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "1"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "802ba85ff1d81c6",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/753//#testresult/802ba85ff1d81c6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649411578373,
+          "stop" : 1649411580696,
+          "duration" : 2323
+        }
+      }, {
+        "uid" : "72b4e0b697e6cb80",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/751//#testresult/72b4e0b697e6cb80",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649408713785,
+          "stop" : 1649408715286,
+          "duration" : 1501
+        }
+      }, {
+        "uid" : "4e4ec7e2d6edb105",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/749//#testresult/4e4ec7e2d6edb105",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649408194654,
+          "stop" : 1649408196268,
+          "duration" : 1614
+        }
+      }, {
+        "uid" : "241825cff386b0ad",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/747//#testresult/241825cff386b0ad",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649407774862,
+          "stop" : 1649407776801,
+          "duration" : 1939
+        }
+      }, {
+        "uid" : "c336e9fe09adae8a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/745//#testresult/c336e9fe09adae8a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649406004045,
+          "stop" : 1649406005718,
+          "duration" : 1673
+        }
+      }, {
+        "uid" : "744a1d87a7b624ec",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/743//#testresult/744a1d87a7b624ec",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649405595653,
+          "stop" : 1649405597849,
+          "duration" : 2196
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e35cbc74a213fc80.json",
+  "parameterValues" : [ "1" ]
+}

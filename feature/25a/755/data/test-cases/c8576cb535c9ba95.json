@@ -1,0 +1,466 @@
+{
+  "uid" : "c8576cb535c9ba95",
+  "name" : "test_rpc_call_eth_getTransactionByHash",
+  "fullName" : "integration.tests.basic.test_transactions.TestRpcCallsTransactions#test_rpc_call_eth_getTransactionByHash",
+  "historyId" : "6ac4a8f7a5e8b0d870eb9a8c83c848c5",
+  "time" : {
+    "start" : 1649413050538,
+    "stop" : 1649413050876,
+    "duration" : 338
+  },
+  "description" : "Verify implemented rpc calls work eth_getTransactionByHash",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_getTransactionByHash</p>\n",
+  "status" : "broken",
+  "statusMessage" : "TypeError: Transaction had invalid fields: {'gas': 0.02}",
+  "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7fc24e72bdf0>\nprepare_accounts = None\n\n    def test_rpc_call_eth_getTransactionByHash(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_getTransactionByHash\"\"\"\n    \n>       tx_receipt = self.transfer_neon(self.sender_account,\n                                        self.recipient_account,\n                                        InputData.SAMPLE_AMOUNT.value)\n\nintegration/tests/basic/test_transactions.py:99: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:124: in transfer_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic.py:89: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:75: in send_neon\n    signed_tx = self._web3.eth.account.sign_transaction(transaction, from_.key)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/decorators.py:18: in _wrapper\n    return self.method(obj, *args, **kwargs)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/account.py:748: in sign_transaction\n    ) = sign_transaction_dict(account._key_obj, sanitized_transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/signing.py:32: in sign_transaction_dict\n    unsigned_transaction = serializable_unsigned_transaction_from_dict(transaction_dict)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:44: in serializable_unsigned_transaction_from_dict\n    assert_valid_fields(transaction_dict)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ntransaction_dict = {'chainId': 111, 'gas': 0.02, 'gasPrice': 562086768000, 'nonce': 0, ...}\n\n    def assert_valid_fields(transaction_dict):\n        # check if any keys are missing\n        missing_keys = REQUIRED_TRANSACTION_KEYS.difference(transaction_dict.keys())\n        if missing_keys:\n            raise TypeError(\"Transaction must include these fields: %r\" % missing_keys)\n    \n        # check if any extra keys were specified\n        superfluous_keys = set(transaction_dict.keys()).difference(ALLOWED_TRANSACTION_KEYS)\n        if superfluous_keys:\n            raise TypeError(\"Transaction must not include unrecognized fields: %r\" % superfluous_keys)\n    \n        # check for valid types in each field\n        valid_fields: Dict[str, bool]\n        valid_fields = apply_formatters_to_dict(LEGACY_TRANSACTION_VALID_VALUES, transaction_dict)\n        if not all(valid_fields.values()):\n            invalid = {key: transaction_dict[key] for key, valid in valid_fields.items() if not valid}\n>           raise TypeError(\"Transaction had invalid fields: %r\" % invalid)\nE           TypeError: Transaction had invalid fields: {'gas': 0.02}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:109: TypeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : true,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1649412848959,
+      "stop" : 1649412848960,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1649412848959,
+      "stop" : 1649412848959,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1649412848960,
+      "stop" : 1649412850089,
+      "duration" : 1129
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1649412850089,
+      "stop" : 1649412850089,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1649412850090,
+      "stop" : 1649412850090,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1649412850090,
+      "stop" : 1649412850090,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1649412850090,
+      "stop" : 1649412850090,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649413035761,
+      "stop" : 1649413044040,
+      "duration" : 8279
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1649413035761,
+        "stop" : 1649413035764,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x2152BB341935f1B81d5807e08230BdaC22fF398d",
+      "time" : {
+        "start" : 1649413035764,
+        "stop" : 1649413036616,
+        "duration" : 852
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.00276245793360516634288 NEON 70556.9718012 SOL",
+      "time" : {
+        "start" : 1649413044040,
+        "stop" : 1649413044040,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1649413049156,
+      "stop" : 1649413049156,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1649413049157,
+      "stop" : 1649413050537,
+      "duration" : 1380
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649413049157,
+      "stop" : 1649413049157,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1649413049157,
+      "stop" : 1649413049157,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_getTransactionByHash",
+    "status" : "broken",
+    "statusMessage" : "TypeError: Transaction had invalid fields: {'gas': 0.02}",
+    "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7fc24e72bdf0>\nprepare_accounts = None\n\n    def test_rpc_call_eth_getTransactionByHash(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_getTransactionByHash\"\"\"\n    \n>       tx_receipt = self.transfer_neon(self.sender_account,\n                                        self.recipient_account,\n                                        InputData.SAMPLE_AMOUNT.value)\n\nintegration/tests/basic/test_transactions.py:99: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:124: in transfer_neon\n    return self.process_transaction(sender_account, recipient_account,\nintegration/tests/basic/helpers/basic.py:89: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:75: in send_neon\n    signed_tx = self._web3.eth.account.sign_transaction(transaction, from_.key)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/decorators.py:18: in _wrapper\n    return self.method(obj, *args, **kwargs)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/account.py:748: in sign_transaction\n    ) = sign_transaction_dict(account._key_obj, sanitized_transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/signing.py:32: in sign_transaction_dict\n    unsigned_transaction = serializable_unsigned_transaction_from_dict(transaction_dict)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:44: in serializable_unsigned_transaction_from_dict\n    assert_valid_fields(transaction_dict)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ntransaction_dict = {'chainId': 111, 'gas': 0.02, 'gasPrice': 562086768000, 'nonce': 0, ...}\n\n    def assert_valid_fields(transaction_dict):\n        # check if any keys are missing\n        missing_keys = REQUIRED_TRANSACTION_KEYS.difference(transaction_dict.keys())\n        if missing_keys:\n            raise TypeError(\"Transaction must include these fields: %r\" % missing_keys)\n    \n        # check if any extra keys were specified\n        superfluous_keys = set(transaction_dict.keys()).difference(ALLOWED_TRANSACTION_KEYS)\n        if superfluous_keys:\n            raise TypeError(\"Transaction must not include unrecognized fields: %r\" % superfluous_keys)\n    \n        # check for valid types in each field\n        valid_fields: Dict[str, bool]\n        valid_fields = apply_formatters_to_dict(LEGACY_TRANSACTION_VALID_VALUES, transaction_dict)\n        if not all(valid_fields.values()):\n            invalid = {key: transaction_dict[key] for key, valid in valid_fields.items() if not valid}\n>           raise TypeError(\"Transaction had invalid fields: %r\" % invalid)\nE           TypeError: Transaction had invalid fields: {'gas': 0.02}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:109: TypeError",
+    "steps" : [ {
+      "name" : "Sending 0.0 from 0xD4cc59BcD523b63F145750d4Ac8e1b9A45e32963 to 0x1f089A3432353ADA8901ea42edC1e3ce54Baf0e0",
+      "time" : {
+        "start" : 1649413050538,
+        "stop" : 1649413050876,
+        "duration" : 338
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: Transaction had invalid fields: {'gas': 0.02}\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 89, in process_transaction\n    return self.web3_client.send_neon(sender_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 75, in send_neon\n    signed_tx = self._web3.eth.account.sign_transaction(transaction, from_.key)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/decorators.py\", line 18, in _wrapper\n    return self.method(obj, *args, **kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/account.py\", line 748, in sign_transaction\n    ) = sign_transaction_dict(account._key_obj, sanitized_transaction)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/signing.py\", line 32, in sign_transaction_dict\n    unsigned_transaction = serializable_unsigned_transaction_from_dict(transaction_dict)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py\", line 44, in serializable_unsigned_transaction_from_dict\n    assert_valid_fields(transaction_dict)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py\", line 109, in assert_valid_fields\n    raise TypeError(\"Transaction had invalid fields: %r\" % invalid)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1649413050938,
+      "stop" : 1649413050938,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1649413052683,
+      "stop" : 1649413060285,
+      "duration" : 7602
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.00276245794203646786288 NEON 70556.95927388 SOL",
+      "time" : {
+        "start" : 1649413060112,
+        "stop" : 1649413060112,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1649413060285,
+        "stop" : 1649413060285,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1649413095486,
+      "stop" : 1649413095487,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactions"
+  }, {
+    "name" : "host",
+    "value" : "fv-az457-821"
+  }, {
+    "name" : "thread",
+    "value" : "1801-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "ff697f20c5d57b5e",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/753//#testresult/ff697f20c5d57b5e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649411556999,
+          "stop" : 1649411558739,
+          "duration" : 1740
+        }
+      }, {
+        "uid" : "da12ba2a705bb6bc",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/751//#testresult/da12ba2a705bb6bc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649408696284,
+          "stop" : 1649408697679,
+          "duration" : 1395
+        }
+      }, {
+        "uid" : "761af6ac4bed59ff",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/749//#testresult/761af6ac4bed59ff",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649408177227,
+          "stop" : 1649408178558,
+          "duration" : 1331
+        }
+      }, {
+        "uid" : "afaaf04a78ed93a4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/747//#testresult/afaaf04a78ed93a4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649407757397,
+          "stop" : 1649407758686,
+          "duration" : 1289
+        }
+      }, {
+        "uid" : "5d70026655f4c4f5",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/745//#testresult/5d70026655f4c4f5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649405986643,
+          "stop" : 1649405988029,
+          "duration" : 1386
+        }
+      }, {
+        "uid" : "baa23b2b16f97971",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25a/743//#testresult/baa23b2b16f97971",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649405569600,
+          "stop" : 1649405571321,
+          "duration" : 1721
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "c8576cb535c9ba95.json",
+  "parameterValues" : [ ]
+}
