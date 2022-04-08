@@ -117,12 +117,7 @@ class BasicTests(BaseTests):
 
             return tx
 
-    def transfer_neon(self, sender_account: Account,
-                      recipient_account: Account,
-                      amount: int) -> Union[web3.types.TxReceipt, None]:
-        '''Transers tokens'''
-        return self.process_transaction(sender_account, recipient_account,
-                                        amount)
+
 
     def check_value_error_if_less_than_required(
             self, sender_account: Account, recipient_account: Account,
