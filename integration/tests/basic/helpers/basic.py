@@ -78,14 +78,15 @@ class BasicTests(BaseTests):
             self,
             sender_account: Account,
             recipient_account: Account,
+            gas: Optional[int] = 0,
+            gas_price: Optional[int] = None,
             amount: float = 0.0) -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction'''
 
         with allure.step(
                 f"Sending {amount} from {sender_account.address} to {recipient_account.address}"
         ):
-            return self.web3_client.send_neon(sender_account,
-                                              recipient_account, amount)
+            return self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)
 
     def process_transaction_with_failure(
             self,
