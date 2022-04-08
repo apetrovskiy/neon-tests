@@ -56,14 +56,9 @@ class BasicTests(BaseTests):
             is_sender: bool = True) -> Account:
         '''Creates a new account with balance'''
 
-        if self.jsonrpc_requester.is_devnet() and is_sender:
-            return AccountData(address=DEVNET_SENDER_ADDRESS,
-                               key=DEVNET_SENDER_KEY)
-        else:
-            account = self.create_account()
-            if not self.jsonrpc_requester.is_devnet():
-                self.request_faucet_neon(account.address, amount)
-            return account
+        account = self.create_account()
+        self.request_faucet_neon(account.address, amount)
+        return account
 
     @allure.step("deploying an ERC_20 conract")
     def deploy_contract(self):
@@ -135,8 +130,6 @@ class BasicTests(BaseTests):
 
     def assert_balance(self, address: str, expected_amount: float):
         '''Compares balance of an account with expectation'''
-        if self.jsonrpc_requester.is_devnet():
-            return
         balance = self.web3_client.fromWei(self.get_balance(address), "ether")
         self.check_balance(expected_amount, balance)
 
