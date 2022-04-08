@@ -104,12 +104,6 @@ class BasicTests(BaseTests):
                                                 recipient_account, amount)
 
             if error_info != None:
-                
-                #
-                print("!!!!!!!!!!!!!!!!!!!!!!")
-                print(error_info)
-                print(error_message)
-                #
 
                 if error_message:
                     assert error_message in str(error_info)
