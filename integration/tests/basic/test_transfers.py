@@ -158,15 +158,14 @@ class TestTransfer(BasicTests):
         amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
 
         tx_receipt = self.process_transaction(self.sender_account,
-                                              self.recipient_account, amount,
-                                              1)
+                                              self.recipient_account,
+                                              amount,
+                                              gas=1)
 
-        self.assert_balance(
-            self.sender_account.address,
-            InputData.FAUCET_1ST_REQUEST_AMOUNT.value - amount -
-            self.calculate_trx_gas(tx_receipt=tx_receipt))
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(self.recipient_account.address,
-                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     def test_too_high_gas_limit_greater_than_u64_max(self):
         """Too high gas_limit > u64::max"""
