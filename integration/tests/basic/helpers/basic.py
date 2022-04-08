@@ -78,9 +78,9 @@ class BasicTests(BaseTests):
             self,
             sender_account: Account,
             recipient_account: Account,
+            amount: float = 0.0,
             gas: Optional[int] = 0,
-            gas_price: Optional[int] = None,
-            amount: float = 0.0) -> Union[web3.types.TxReceipt, None]:
+            gas_price: Optional[int] = None) -> Union[web3.types.TxReceipt, None]:
         '''Processes transaction'''
 
         with allure.step(
