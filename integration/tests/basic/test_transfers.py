@@ -153,8 +153,10 @@ class TestTransfer(BasicTests):
         """Generate bad sign (when v, r, s over allowed size)"""
         pass
 
-    def test_too_low_gas_limit(self,prepare_accounts):
+    def test_too_low_gas_limit(self, prepare_accounts):
         """Too low gas_limit"""
+        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
+
         tx_receipt = self.transfer_neon(self.sender_account,
                                         self.recipient_account, amount)
 
@@ -164,20 +166,19 @@ class TestTransfer(BasicTests):
             self.calculate_trx_gas(tx_receipt=tx_receipt))
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
-    
+
     def test_too_high_gas_limit_greater_than_u64_max(self):
         """Too high gas_limit > u64::max"""
         pass
-    
+
     def test_too_high_gas_price_greater_than_u64_max(self):
         """Too high gas_price > u64::max"""
         pass
-    
+
     def test_there_are_not_enough_neons_for_gas_fee(self):
         """There are not enough Neons for gas fee"""
         pass
-    
+
     def test_there_are_not_enough_neons_for_transfer(self):
         """There are not enough Neons for transfer"""
         pass
-    
