@@ -126,7 +126,7 @@ class BasicTests(BaseTests):
             sender_account,
             recipient_account,
             amount,
-            error_message=ErrorMessage.EXPECTING_VALUE.value)
+            error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
 
     def check_balance(self, expected: float, actual: Decimal):
         '''Compares the balance with expectation'''
