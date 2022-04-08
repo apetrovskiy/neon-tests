@@ -1,0 +1,453 @@
+{
+  "uid" : "d4038e2d0d664958",
+  "name" : "test_rpc_call_eth_sendRawTransaction",
+  "fullName" : "integration.tests.basic.test_transactions.TestRpcCallsTransactions#test_rpc_call_eth_sendRawTransaction",
+  "historyId" : "f2266f2fcf46a3382764047e40d95c33",
+  "time" : {
+    "start" : 1649408137210,
+    "stop" : 1649408137924,
+    "duration" : 714
+  },
+  "description" : "Verify implemented rpc calls work eth_sendRawTransaction",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_sendRawTransaction</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>>(JsonRpcErrorResponse(id=30, error={'code': -32000, 'message': 'connection already closed'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>.assert_is_successful_response",
+  "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>\nprepare_accounts = None\n\n    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_sendRawTransaction\"\"\"\n    \n        # TODO: chain id\n        transaction = {\n            \"from\":\n            self.sender_account.address,\n            \"to\":\n            self.recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, \"ether\"),\n            \"chainId\":\n            self.web3_client._chain_id,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(\n                self.sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_is_successful_response(\n            actual_result), AssertMessage.WRONG_TYPE.value\nE       AssertionError: The response type is error response\nE       assert False\nE        +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>>(JsonRpcErrorResponse(id=30, error={'code': -32000, 'message': 'connection already closed'}, jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>.assert_is_successful_response\n\nintegration/tests/basic/test_transactions.py:81: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1649408010940,
+      "stop" : 1649408010940,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1649408010940,
+      "stop" : 1649408010941,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1649408010941,
+      "stop" : 1649408011522,
+      "duration" : 581
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1649408011522,
+      "stop" : 1649408011522,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1649408011523,
+      "stop" : 1649408011523,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1649408011523,
+      "stop" : 1649408011523,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1649408011523,
+      "stop" : 1649408011523,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649408132696,
+      "stop" : 1649408133784,
+      "duration" : 1088
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1649408132697,
+        "stop" : 1649408132700,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x3020bB343C199Ae4aC40e4c448a13af9AD7A99e2",
+      "time" : {
+        "start" : 1649408132700,
+        "stop" : 1649408133411,
+        "duration" : 711
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    }, {
+      "name" : "Operator initial balance: 976698175.0 NEON 4768.483588795 SOL",
+      "time" : {
+        "start" : 1649408133784,
+        "stop" : 1649408133784,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 3,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1649408136008,
+      "stop" : 1649408136008,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1649408136008,
+      "stop" : 1649408137209,
+      "duration" : 1201
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649408136008,
+      "stop" : 1649408136008,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1649408136008,
+      "stop" : 1649408136008,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_sendRawTransaction",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>>(JsonRpcErrorResponse(id=30, error={'code': -32000, 'message': 'connection already closed'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>.assert_is_successful_response",
+    "statusTrace" : "self = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>\nprepare_accounts = None\n\n    def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_sendRawTransaction\"\"\"\n    \n        # TODO: chain id\n        transaction = {\n            \"from\":\n            self.sender_account.address,\n            \"to\":\n            self.recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, \"ether\"),\n            \"chainId\":\n            self.web3_client._chain_id,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(\n                self.sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_is_successful_response(\n            actual_result), AssertMessage.WRONG_TYPE.value\nE       AssertionError: The response type is error response\nE       assert False\nE        +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>>(JsonRpcErrorResponse(id=30, error={'code': -32000, 'message': 'connection already closed'}, jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1a275a5df0>.assert_is_successful_response\n\nintegration/tests/basic/test_transactions.py:81: AssertionError",
+    "steps" : [ {
+      "name" : "Request: JsonRpcRequest(id=30, method='eth_sendRawTransaction', params=['0xf86d8085858913c2c0825208940c422b2c247bbbb3310406234d9d3f4a02d5a9ed87470de4df82000080820102a0db110196599517d48322ec94ffee1cb012502703ff2be7e3d313957a4f7f1c8ca0535a3471b5c4c345ec84de5106e830f8bdf7f2e317bc49c2ffb88c55962540f6'], jsonrpc='2.0')",
+      "time" : {
+        "start" : 1649408137712,
+        "stop" : 1649408137924,
+        "duration" : 212
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    }, {
+      "name" : "Response: {'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32000, 'message': 'connection already closed'}}",
+      "time" : {
+        "start" : 1649408137924,
+        "stop" : 1649408137924,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 2,
+    "attachmentsCount" : 0
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1649408137929,
+      "stop" : 1649408137929,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1649408142080,
+      "stop" : 1649408142548,
+      "duration" : 468
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 976698135.0 NEON 4768.471076475 SOL",
+      "time" : {
+        "start" : 1649408142450,
+        "stop" : 1649408142450,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1649408142548,
+        "stop" : 1649408142548,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 2,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1649408159291,
+      "stop" : 1649408159291,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transactions"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactions"
+  }, {
+    "name" : "host",
+    "value" : "fv-az182-776"
+  }, {
+    "name" : "thread",
+    "value" : "1784-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transactions"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "8746a9722b3379b4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/748//#testresult/8746a9722b3379b4",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f10152a3790>>(JsonRpcErrorResponse(id=52, error={'code': -32000, 'message': 'connection already closed'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f10152a3790>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f10152a3790>.assert_is_successful_response",
+        "time" : {
+          "start" : 1649407745952,
+          "stop" : 1649407746875,
+          "duration" : 923
+        }
+      }, {
+        "uid" : "18313e652aaca798",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/746//#testresult/18313e652aaca798",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649406011741,
+          "stop" : 1649406013408,
+          "duration" : 1667
+        }
+      }, {
+        "uid" : "50c447eb4b62a821",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/744//#testresult/50c447eb4b62a821",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649405498022,
+          "stop" : 1649405499414,
+          "duration" : 1392
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d4038e2d0d664958.json",
+  "parameterValues" : [ ]
+}
