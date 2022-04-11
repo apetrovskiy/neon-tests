@@ -210,8 +210,36 @@ class TestTransfer(BasicTests):
 
     def test_there_are_not_enough_neons_for_gas_fee(self, prepare_accounts):
         """There are not enough Neons for gas fee"""
-        pass
+        self.sender_account = self.web3_client.create_account()
+        self.recipient_account = self.web3_client.create_account()
+        amount = 0
+
+        self.process_transaction_with_failure(
+            self.sender_account,
+            self.recipient_account,
+            amount,
+            gas_price=U64_MAX + 1,
+            error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
+
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     def test_there_are_not_enough_neons_for_transfer(self, prepare_accounts):
         """There are not enough Neons for transfer"""
-        pass
+        self.sender_account = self.create_account_with_balance(1)
+        self.recipient_account = self.web3_client.create_account()
+        amount = 1.1
+
+        self.process_transaction_with_failure(
+            self.sender_account,
+            self.recipient_account,
+            amount,
+            gas_price=U64_MAX + 1,
+            error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
+
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)

@@ -52,8 +52,7 @@ class BasicTests(BaseTests):
 
     def create_account_with_balance(
             self,
-            amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value,
-            is_sender: bool = True) -> Account:
+            amount: int = InputData.FAUCET_1ST_REQUEST_AMOUNT.value) -> Account:
         '''Creates a new account with balance'''
 
         account = self.create_account()
