@@ -218,7 +218,6 @@ class TestTransfer(BasicTests):
             self.sender_account,
             self.recipient_account,
             amount,
-            gas_price=U64_MAX + 1,
             error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
 
         self.assert_balance(self.sender_account.address,
@@ -236,7 +235,6 @@ class TestTransfer(BasicTests):
             self.sender_account,
             self.recipient_account,
             amount,
-            gas_price=U64_MAX + 1,
             error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
 
         self.assert_balance(self.sender_account.address,
