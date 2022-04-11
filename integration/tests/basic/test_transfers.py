@@ -243,8 +243,17 @@ class TestTransfer(BasicTests):
             amount,
             error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
 
+        #
+        print("0001")
+        #
         self.assert_balance(self.sender_account.address, sender_amount)
+        #
+        print(sender_amount)
+        #
         self.assert_balance(self.recipient_account.address, 0)
+        #
+        print(0)
+        #
 
     def test_there_are_not_enough_neons_for_transfer(self):
         """There are not enough Neons for transfer"""
