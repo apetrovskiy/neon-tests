@@ -34,8 +34,7 @@ class BasicTests(BaseTests):
     @pytest.fixture
     def prepare_accounts(self):
         self.sender_account = self.create_account_with_balance()
-        self.recipient_account = self.create_account_with_balance(
-            is_sender=False)
+        self.recipient_account = self.create_account_with_balance()
         yield
 
     def create_account(self) -> Account:
@@ -110,7 +109,7 @@ class BasicTests(BaseTests):
                 print("!!!!!!!!!!!!!!!!!!!!!!!")
                 print(error_info)
                 #
-                
+
                 if error_message:
                     assert error_message in str(error_info)
                 assert None != error_info, "Transaction failed"
