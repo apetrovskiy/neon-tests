@@ -15,8 +15,7 @@ U64_MAX = 18_446_744_073_709_551_615
 WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
 
-GAS_LIMIT_AND_PRICE_DATA = (
-    [0.01, int((U64_MAX+1)*100)], [1, (U64_MAX+1)], [1000, int((U64_MAX+100)/1000)])
+GAS_LIMIT_AND_PRICE_DATA = ([1, (U64_MAX+1)], [1000, int((U64_MAX+100)/1000)])
 
 
 @allure.story("Basic: transfer tests")
@@ -180,6 +179,22 @@ class TestTransfer(BasicTests):
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
+    def test_not_allowed_gas_limit(self, prepare_accounts):
+        """Too low gas_limit"""
+        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
+
+        self.process_transaction_with_failure(
+            self.sender_account,
+            self.recipient_account,
+            amount,
+            gas=0.01,
+            error_message=ErrorMessage.INVALID_FIELDS_GAS.value)
+
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+
     def test_too_high_gas_limit_greater_than_u64_max(self, prepare_accounts):
         """Too high gas_limit > u64::max"""
         amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
@@ -269,6 +284,7 @@ class TestTransfer(BasicTests):
         self.assert_balance(self.sender_account.address, sender_amount)
         # -
         #                     first_amount - self.calculate_trx_gas(tx_receipt=tx_receipt))
+        print(sender_amount)
         #
         # print(sender_amount)
         # print(sender_amount-first_amount -
@@ -276,7 +292,7 @@ class TestTransfer(BasicTests):
         #
         self.assert_balance(self.recipient_account.address, 0)
         #
-        print(first_amount)
+        # print(first_amount)
         #
 
     def test_there_are_not_enough_neons_for_transfer(self):
