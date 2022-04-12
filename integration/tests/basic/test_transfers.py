@@ -242,11 +242,20 @@ class TestTransfer(BasicTests):
 
     def test_there_are_not_enough_neons_for_gas_fee(self):
         """There are not enough Neons for gas fee"""
-        # sender_amount = 1
-        self.sender_account = self.create_account_with_balance()
+        sender_amount = 1
+        self.sender_account = self.create_account_with_balance(sender_amount)
         self.recipient_account = self.web3_client.create_account()
-        amount = 0
+        first_amount = 0.9
+        
+        # processing transaction to have balance 0.1
+        tx_receipt=self.process_transaction(
+            self.sender_account,
+            self.recipient_account,
+            first_amount)
+        self.assert_balance(self.sender_account.address, sender_amount-first_amount - self.calculate_trx_gas(tx_receipt=tx_receipt))
+        self.assert_balance(self.recipient_account.address, first_amount)
 
+        amount=0.01
         self.process_transaction_with_failure(
             self.sender_account,
             self.recipient_account,
@@ -256,13 +265,14 @@ class TestTransfer(BasicTests):
         #
         print("0001")
         #
-        self.assert_balance(self.sender_account.address, 0)
+        self.assert_balance(self.sender_account.address, sender_amount-first_amount - self.calculate_trx_gas(tx_receipt=tx_receipt))
         #
-        # print(sender_amount)
+        print(sender_amount)
+        print(sender_amount-first_amount - self.calculate_trx_gas(tx_receipt=tx_receipt))
         #
-        self.assert_balance(self.recipient_account.address, 0)
+        self.assert_balance(self.recipient_account.address, first_amount)
         #
-        print(0)
+        print(first_amount)
         #
 
     def test_there_are_not_enough_neons_for_transfer(self):
