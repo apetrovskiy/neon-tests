@@ -1,0 +1,607 @@
+{
+  "uid" : "32e896a3b7e649c1",
+  "name" : "test_rpc_call_eth_call",
+  "fullName" : "integration.tests.basic.test_rpc_calls.TestRpcCalls#test_rpc_call_eth_call",
+  "historyId" : "d90d4db35cc07c352c6ab08bf8cb84cc",
+  "time" : {
+    "start" : 1649750737531,
+    "stop" : 1649750738571,
+    "duration" : 1040
+  },
+  "description" : "Verify implemented rpc calls work eth_call",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_call</p>\n",
+  "status" : "broken",
+  "statusMessage" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+  "statusTrace" : "self = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f723dd30040>\nprepare_accounts = None\n\n    def test_rpc_call_eth_call(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_call\"\"\"\n    \n>       self.process_transaction(self.sender_account, self.recipient_account,\n                                 InputData.SAMPLE_AMOUNT.value)\n\nintegration/tests/basic/test_rpc_calls.py:44: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:83: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:76: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f723e1f5280>\nresponse = {'error': {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, 'id': 21, 'jsonrpc': '2.0'}\nparams = ('0xf86d808573541f2bc0825208940fdf1afba623fa8b43ba812a36f87a614dc568dc87470de4df82000080820101a0387dd05c71e7c1b254f8500021c8cac46d08cf2caa886335ef26fe9e32350313a03a53192a5902f9cc0eb1bf720a0ff60f9eb45401b322a12cf5d5dc0c645af932',)\nerror_formatters = <cyfunction identity at 0x7f7243b7c040>\nnull_result_formatters = <cyfunction identity at 0x7f7243b7c040>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1649750723511,
+      "stop" : 1649750723513,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1649750723511,
+      "stop" : 1649750723511,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1649750723513,
+      "stop" : 1649750724508,
+      "duration" : 995
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1649750724508,
+      "stop" : 1649750724508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1649750724508,
+      "stop" : 1649750724508,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1649750724508,
+      "stop" : 1649750724509,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1649750724509,
+      "stop" : 1649750724509,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1649750734642,
+      "stop" : 1649750734642,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649750734642,
+      "stop" : 1649750736190,
+      "duration" : 1548
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1649750734642,
+        "stop" : 1649750734647,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x4697593da4CEb98881F6613e5985c487Cf80223B",
+      "time" : {
+        "start" : 1649750734647,
+        "stop" : 1649750735479,
+        "duration" : 832
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 996426289.0 NEON 4956.06295076 SOL",
+      "time" : {
+        "start" : 1649750736190,
+        "stop" : 1649750736190,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1649750736190,
+      "stop" : 1649750736190,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649750736190,
+      "stop" : 1649750736190,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1649750736190,
+      "stop" : 1649750737530,
+      "duration" : 1340
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_call",
+    "status" : "broken",
+    "statusMessage" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+    "statusTrace" : "self = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f723dd30040>\nprepare_accounts = None\n\n    def test_rpc_call_eth_call(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_call\"\"\"\n    \n>       self.process_transaction(self.sender_account, self.recipient_account,\n                                 InputData.SAMPLE_AMOUNT.value)\n\nintegration/tests/basic/test_rpc_calls.py:44: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:83: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:76: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f723e1f5280>\nresponse = {'error': {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, 'id': 21, 'jsonrpc': '2.0'}\nparams = ('0xf86d808573541f2bc0825208940fdf1afba623fa8b43ba812a36f87a614dc568dc87470de4df82000080820101a0387dd05c71e7c1b254f8500021c8cac46d08cf2caa886335ef26fe9e32350313a03a53192a5902f9cc0eb1bf720a0ff60f9eb45401b322a12cf5d5dc0c645af932',)\nerror_formatters = <cyfunction identity at 0x7f7243b7c040>\nnull_result_formatters = <cyfunction identity at 0x7f7243b7c040>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+    "steps" : [ {
+      "name" : "Sending 0.02 from 0x125189f62745886ec177657F2CA16bFc9a5d080b to 0x0fDF1afba623fA8b43Ba812A36f87A614DC568dc",
+      "time" : {
+        "start" : 1649750737531,
+        "stop" : 1649750738570,
+        "duration" : 1039
+      },
+      "status" : "broken",
+      "statusMessage" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 83, in process_transaction\n    return self.web3_client.send_neon(sender_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 76, in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py\", line 783, in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py\", line 57, in caller\n    result = w3.manager.request_blocking(method_str,\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py\", line 198, in request_blocking\n    return self.formatted_response(response,\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py\", line 171, in formatted_response\n    raise ValueError(response[\"error\"])\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1649750738606,
+      "stop" : 1649750738606,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1649750747365,
+      "stop" : 1649750748177,
+      "duration" : 812
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 996426229.0 NEON 4956.04418228 SOL",
+      "time" : {
+        "start" : 1649750748010,
+        "stop" : 1649750748010,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1649750748177,
+        "stop" : 1649750748177,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1649750917356,
+      "stop" : 1649750917357,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_rpc_calls"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCalls"
+  }, {
+    "name" : "host",
+    "value" : "fv-az447-857"
+  }, {
+    "name" : "thread",
+    "value" : "1817-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_rpc_calls"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 17,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 22
+      },
+      "items" : [ {
+        "uid" : "876e1296eded19e1",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/786//#testresult/876e1296eded19e1",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+        "time" : {
+          "start" : 1649710689006,
+          "stop" : 1649710689649,
+          "duration" : 643
+        }
+      }, {
+        "uid" : "b523665d521b38c2",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/784//#testresult/b523665d521b38c2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649690386263,
+          "stop" : 1649690387794,
+          "duration" : 1531
+        }
+      }, {
+        "uid" : "b8f92f8befc61330",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/782//#testresult/b8f92f8befc61330",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+        "time" : {
+          "start" : 1649684696140,
+          "stop" : 1649684696758,
+          "duration" : 618
+        }
+      }, {
+        "uid" : "3be5527bb2f918f3",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/780//#testresult/3be5527bb2f918f3",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+        "time" : {
+          "start" : 1649682791264,
+          "stop" : 1649682792072,
+          "duration" : 808
+        }
+      }, {
+        "uid" : "48f92e44c4ea819",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/778//#testresult/48f92e44c4ea819",
+        "status" : "broken",
+        "statusDetails" : "TypeError: create_account_with_balance() got an unexpected keyword argument 'is_sender'",
+        "time" : {
+          "start" : 1649681636168,
+          "stop" : 1649681636168,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "74527773d57c3bbe",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/776//#testresult/74527773d57c3bbe",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649424425791,
+          "stop" : 1649424427030,
+          "duration" : 1239
+        }
+      }, {
+        "uid" : "299bb555fed4bee8",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/774//#testresult/299bb555fed4bee8",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649418680627,
+          "stop" : 1649418681730,
+          "duration" : 1103
+        }
+      }, {
+        "uid" : "4335efa11849af64",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/770//#testresult/4335efa11849af64",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649417365886,
+          "stop" : 1649417366920,
+          "duration" : 1034
+        }
+      }, {
+        "uid" : "4967742612d2da64",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/768//#testresult/4967742612d2da64",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649416623401,
+          "stop" : 1649416624451,
+          "duration" : 1050
+        }
+      }, {
+        "uid" : "9a0665539109be8c",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/766//#testresult/9a0665539109be8c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649415419929,
+          "stop" : 1649415421742,
+          "duration" : 1813
+        }
+      }, {
+        "uid" : "2569b0eb1243b3bf",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/764//#testresult/2569b0eb1243b3bf",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649415188924,
+          "stop" : 1649415189993,
+          "duration" : 1069
+        }
+      }, {
+        "uid" : "3f765b26e1071524",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/762//#testresult/3f765b26e1071524",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649414928630,
+          "stop" : 1649414929692,
+          "duration" : 1062
+        }
+      }, {
+        "uid" : "6b077eae9ce7d9cf",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/760//#testresult/6b077eae9ce7d9cf",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction had invalid fields: {'gas': 0.02}",
+        "time" : {
+          "start" : 1649413679173,
+          "stop" : 1649413679368,
+          "duration" : 195
+        }
+      }, {
+        "uid" : "1be7ebdb92a93db9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/758//#testresult/1be7ebdb92a93db9",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction had invalid fields: {'gas': 0.02}",
+        "time" : {
+          "start" : 1649413277864,
+          "stop" : 1649413278195,
+          "duration" : 331
+        }
+      }, {
+        "uid" : "b72236e058898dfe",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/756//#testresult/b72236e058898dfe",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction had invalid fields: {'gas': 0.02}",
+        "time" : {
+          "start" : 1649412873204,
+          "stop" : 1649412873538,
+          "duration" : 334
+        }
+      }, {
+        "uid" : "4f0013a7c01350b1",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/754//#testresult/4f0013a7c01350b1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649411416273,
+          "stop" : 1649411417841,
+          "duration" : 1568
+        }
+      }, {
+        "uid" : "46a66d4000c63cbd",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/752//#testresult/46a66d4000c63cbd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649408560980,
+          "stop" : 1649408562529,
+          "duration" : 1549
+        }
+      }, {
+        "uid" : "1911c15d02a4a2f4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/750//#testresult/1911c15d02a4a2f4",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649408021498,
+          "stop" : 1649408022127,
+          "duration" : 629
+        }
+      }, {
+        "uid" : "d92f4f72f583669a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/748//#testresult/d92f4f72f583669a",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649407621113,
+          "stop" : 1649407621925,
+          "duration" : 812
+        }
+      }, {
+        "uid" : "e1df354abac00ad0",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25a/746//#testresult/e1df354abac00ad0",
+        "status" : "broken",
+        "statusDetails" : "ValueError: {'code': -32000, 'message': 'connection already closed'}",
+        "time" : {
+          "start" : 1649405873728,
+          "stop" : 1649405874775,
+          "duration" : 1047
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "32e896a3b7e649c1.json",
+  "parameterValues" : [ ]
+}
