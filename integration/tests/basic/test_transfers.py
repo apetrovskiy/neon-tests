@@ -242,8 +242,8 @@ class TestTransfer(BasicTests):
 
     def test_there_are_not_enough_neons_for_gas_fee(self):
         """There are not enough Neons for gas fee"""
-        sender_amount = 0.1
-        self.sender_account = self.create_account_with_balance(sender_amount)
+        # sender_amount = 1
+        self.sender_account = self.create_account_with_balance()
         self.recipient_account = self.web3_client.create_account()
         amount = 0
 
@@ -256,9 +256,9 @@ class TestTransfer(BasicTests):
         #
         print("0001")
         #
-        self.assert_balance(self.sender_account.address, sender_amount)
+        self.assert_balance(self.sender_account.address, 0)
         #
-        print(sender_amount)
+        # print(sender_amount)
         #
         self.assert_balance(self.recipient_account.address, 0)
         #
