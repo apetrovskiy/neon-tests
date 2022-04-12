@@ -16,7 +16,7 @@ WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
 
 GAS_LIMIT_AND_PRICE_DATA = (
-    [0.01, (U64_MAX+1)*100], [1, (U64_MAX+1)], [1000, (U64_MAX+100)/1000])
+    [0.01, int((U64_MAX+1)*100)], [1, (U64_MAX+1)], [1000, int((U64_MAX+100)/1000)])
 
 
 @allure.story("Basic: transfer tests")
