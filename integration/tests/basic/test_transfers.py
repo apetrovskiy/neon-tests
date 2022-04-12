@@ -215,6 +215,9 @@ class TestTransfer(BasicTests):
     @pytest.mark.parametrize("gas_limit,gas_price", GAS_LIMIT_AND_PRICE_DATA)
     def test_too_high_gas_limit_by_gas_prise_greater_than_u64_max(self, gas_limit: float, gas_price: float, prepare_accounts):
         """Too high gas_limit * gas_price > u64::max"""
+        sender_amount = 2
+        self.sender_account = self.create_account_with_balance(sender_amount)
+        self.recipient_account = self.web3_client.create_account()
         amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
 
         self.process_transaction_with_failure(
@@ -225,10 +228,17 @@ class TestTransfer(BasicTests):
             gas_price=gas_price,
             error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
 
-        self.assert_balance(self.sender_account.address,
-                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
-        self.assert_balance(self.recipient_account.address,
-                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        #
+        print("0001")
+        #
+        self.assert_balance(self.sender_account.address, sender_amount)
+        #
+        print(sender_amount)
+        #
+        self.assert_balance(self.recipient_account.address, 0)
+        #
+        print(0)
+        #
 
     def test_there_are_not_enough_neons_for_gas_fee(self):
         """There are not enough Neons for gas fee"""
