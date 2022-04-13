@@ -8,7 +8,7 @@ from integration.tests.basic.test_data.input_data import InputData
 
 @allure.story("Basic: Json-RPC call tests - transactions validation")
 class TestRpcCallsTransactions(BasicTests):
-    def test_generate_bad_sign(self):
+    def test_generate_bad_sign(self, prepare_accounts):
         """Generate bad sign (when v, r, s over allowed size)"""
 
         transaction = {
