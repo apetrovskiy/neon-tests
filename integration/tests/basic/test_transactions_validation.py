@@ -6,7 +6,7 @@ from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactor
 from integration.tests.basic.test_data.input_data import InputData
 
 
-@allure_commons.story("Basic: Json-RPC call tests - transactions validation")
+@allure.story("Basic: Json-RPC call tests - transactions validation")
 class TestRpcCallsTransactions(BasicTests):
     def test_generate_bad_sign(self):
         """Generate bad sign (when v, r, s over allowed size)"""
