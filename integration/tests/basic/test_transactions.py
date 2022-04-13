@@ -48,7 +48,6 @@ class TestRpcCallsTransactions(BasicTests):
     def test_rpc_call_eth_sendRawTransaction(self, prepare_accounts):
         """Verify implemented rpc calls work eth_sendRawTransaction"""
 
-        # TODO: chain id
         transaction = {
             "from":
             self.sender_account.address,

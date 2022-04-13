@@ -159,9 +159,9 @@ class TestTransfer(BasicTests):
         """Check ERC-1820 transaction (without chain_id in sign)"""
         pass
 
-    def test_generate_bad_sign(self):
-        """Generate bad sign (when v, r, s over allowed size)"""
-        pass
+    # def test_generate_bad_sign(self):
+    #     """Generate bad sign (when v, r, s over allowed size)"""
+    #     pass
 
     def test_too_low_gas_limit(self, prepare_accounts):
         """Too low gas_limit"""
