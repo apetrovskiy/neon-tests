@@ -1,0 +1,401 @@
+{
+  "uid" : "18f66947df55f2b3",
+  "name" : "test_rpc_call_eth_getBlockByNumber_via_numbers",
+  "fullName" : "integration.tests.basic.test_blocks.TestRpcCallsBlocks#test_rpc_call_eth_getBlockByNumber_via_numbers",
+  "historyId" : "b31c84439c31d432fef0bc4132e23d4a",
+  "time" : {
+    "start" : 1649947676865,
+    "stop" : 1649947677916,
+    "duration" : 1051
+  },
+  "description" : "Verify implemented rpc calls work eth_getBlockByNumber",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_getBlockByNumber</p>\n",
+  "status" : "broken",
+  "statusMessage" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+  "statusTrace" : "self = <integration.tests.basic.test_blocks.TestRpcCallsBlocks object at 0x7f45cb9f5910>\nprepare_accounts = None\n\n    def test_rpc_call_eth_getBlockByNumber_via_numbers(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_getBlockByNumber\"\"\"\n    \n>       tx_receipt = self.process_transaction(self.sender_account,\n                                              self.recipient_account,\n                                              InputData.SAMPLE_AMOUNT.value)\n\nintegration/tests/basic/test_blocks.py:85: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:83: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:76: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f45cbcf3940>\nresponse = {'error': {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, 'id': 12, 'jsonrpc': '2.0'}\nparams = ('0xf86d808572fece4700825208943361845528c257147d9259d40d7ead19b619ea8087470de4df82000080820102a00291ad9c7fd016de247f4379324295e42b31bf114b71da827505ad0f8786dbc9a0218e45d06e473d414a15597bd644c3e7240c3438424450d30758afcf661d390a',)\nerror_formatters = <cyfunction identity at 0x7f45d1723040>\nnull_result_formatters = <cyfunction identity at 0x7f45d1723040>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1649947667580,
+      "stop" : 1649947667582,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1649947667580,
+      "stop" : 1649947667580,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1649947667582,
+      "stop" : 1649947668785,
+      "duration" : 1203
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1649947668785,
+      "stop" : 1649947668786,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1649947668785,
+      "stop" : 1649947668785,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1649947668786,
+      "stop" : 1649947668786,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649947668786,
+      "stop" : 1649947671018,
+      "duration" : 2232
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1649947668786,
+        "stop" : 1649947668799,
+        "duration" : 13
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x95A69C8287Fe829ca3B4a17938C158d32465DF97",
+      "time" : {
+        "start" : 1649947668799,
+        "stop" : 1649947669978,
+        "duration" : 1179
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 982164732.0 NEON 4928.4451438 SOL",
+      "time" : {
+        "start" : 1649947671018,
+        "stop" : 1649947671018,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1649947668786,
+      "stop" : 1649947668786,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1649947675519,
+      "stop" : 1649947675519,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1649947675519,
+      "stop" : 1649947675520,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1649947675519,
+      "stop" : 1649947675519,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1649947675520,
+      "stop" : 1649947676864,
+      "duration" : 1344
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Verify implemented rpc calls work eth_getBlockByNumber",
+    "status" : "broken",
+    "statusMessage" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+    "statusTrace" : "self = <integration.tests.basic.test_blocks.TestRpcCallsBlocks object at 0x7f45cb9f5910>\nprepare_accounts = None\n\n    def test_rpc_call_eth_getBlockByNumber_via_numbers(self, prepare_accounts):\n        \"\"\"Verify implemented rpc calls work eth_getBlockByNumber\"\"\"\n    \n>       tx_receipt = self.process_transaction(self.sender_account,\n                                              self.recipient_account,\n                                              InputData.SAMPLE_AMOUNT.value)\n\nintegration/tests/basic/test_blocks.py:85: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:83: in process_transaction\n    return self.web3_client.send_neon(sender_account,\nutils/web3client.py:76: in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py:783: in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py:57: in caller\n    result = w3.manager.request_blocking(method_str,\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:198: in request_blocking\n    return self.formatted_response(response,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f45cbcf3940>\nresponse = {'error': {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, 'id': 12, 'jsonrpc': '2.0'}\nparams = ('0xf86d808572fece4700825208943361845528c257147d9259d40d7ead19b619ea8087470de4df82000080820102a00291ad9c7fd016de247f4379324295e42b31bf114b71da827505ad0f8786dbc9a0218e45d06e473d414a15597bd644c3e7240c3438424450d30758afcf661d390a',)\nerror_formatters = <cyfunction identity at 0x7f45d1723040>\nnull_result_formatters = <cyfunction identity at 0x7f45d1723040>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError",
+    "steps" : [ {
+      "name" : "Sending 0.02 from 0x8DF23c0D218adD7C2A639fB9D3F76FCD8D9Bc5Ef to 0x3361845528C257147d9259D40d7EAd19b619Ea80",
+      "time" : {
+        "start" : 1649947676866,
+        "stop" : 1649947677916,
+        "duration" : 1050
+      },
+      "status" : "broken",
+      "statusMessage" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 83, in process_transaction\n    return self.web3_client.send_neon(sender_account,\n  File \"/home/runner/work/neon-tests/neon-tests/utils/web3client.py\", line 76, in send_neon\n    tx = self._web3.eth.send_raw_transaction(signed_tx.rawTransaction)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py\", line 783, in send_raw_transaction\n    return self._send_raw_transaction(transaction)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py\", line 57, in caller\n    result = w3.manager.request_blocking(method_str,\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py\", line 198, in request_blocking\n    return self.formatted_response(response,\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py\", line 171, in formatted_response\n    raise ValueError(response[\"error\"])\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1649947677952,
+      "stop" : 1649947677952,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1649947678127,
+      "stop" : 1649947678979,
+      "duration" : 852
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 982164712.0 NEON 4928.43888764 SOL",
+      "time" : {
+        "start" : 1649947678800,
+        "stop" : 1649947678800,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1649947678979,
+        "stop" : 1649947678979,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1649947874223,
+      "stop" : 1649947874224,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - blocks"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_blocks"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsBlocks"
+  }, {
+    "name" : "host",
+    "value" : "fv-az451-393"
+  }, {
+    "name" : "thread",
+    "value" : "1823-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_blocks"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "18f66947df55f2b3.json",
+  "parameterValues" : [ ]
+}
