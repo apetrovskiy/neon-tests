@@ -1,0 +1,427 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getBlockByHash",
+        "uid" : "5ba5f0cae2074e6e",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649953127924,
+          "stop" : 1649953129568,
+          "duration" : 1644
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_rpc_call_eth_getBlockByNumber_via_numbers",
+        "uid" : "77049a9d5b8b4341",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649953131875,
+          "stop" : 1649953132692,
+          "duration" : 817
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : true,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_send_neon_from_one_account_to_another[0.01]",
+        "uid" : "8f15c19a82d82ddc",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649953261528,
+          "stop" : 1649953262749,
+          "duration" : 1221
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "0.01" ]
+      }, {
+        "name" : "test_send_neon_from_one_account_to_another[1.1]",
+        "uid" : "c8f3240bfdc2ff2c",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649953266931,
+          "stop" : 1649953267772,
+          "duration" : 841
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : true,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "1.1" ]
+      }, {
+        "name" : "test_zero_neon",
+        "uid" : "1710f5629f68ec2c",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649953273121,
+          "stop" : 1649953274002,
+          "duration" : 881
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_rpc_call_eth_getTransactionReceipt",
+        "uid" : "e07eba5cfe97a5e6",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649953291165,
+          "stop" : 1649953292002,
+          "duration" : 837
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "69453fb2bc7653d0a16f1bd046aaf65a"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  }, {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b741f1f0>>(JsonRpcErrorResponse(id=36, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0x2ef...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b741f1f0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b741f1f0>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_tags[earliest-latest]",
+        "uid" : "8bc10ebd1b552776",
+        "parentUid" : "6fe92dc79cef4c3cc99999ed73dc2fba",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953139939,
+          "stop" : 1649953140702,
+          "duration" : 763
+        },
+        "flaky" : true,
+        "newFailed" : true,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'earliest'", "'latest'" ]
+      } ],
+      "uid" : "6fe92dc79cef4c3cc99999ed73dc2fba"
+    }, {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b7478e20>>(JsonRpcErrorResponse(id=32, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0xef4...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b7478e20>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b7478e20>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_tags[pending-latest]",
+        "uid" : "14cb1610ecc50488",
+        "parentUid" : "60e4a132a2888a72221f3872ea1a9e66",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953140711,
+          "stop" : 1649953141472,
+          "duration" : 761
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'pending'", "'latest'" ]
+      } ],
+      "uid" : "60e4a132a2888a72221f3872ea1a9e66"
+    }, {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b741f7c0>>(JsonRpcErrorResponse(id=54, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0x770...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b741f7c0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b741f7c0>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_tags[latest-earliest]",
+        "uid" : "ad210218e906ff2f",
+        "parentUid" : "924c7d9c7110f703884fd928b8b86d25",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953141482,
+          "stop" : 1649953142244,
+          "duration" : 762
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'latest'", "'earliest'" ]
+      } ],
+      "uid" : "924c7d9c7110f703884fd928b8b86d25"
+    }, {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b72e2550>>(JsonRpcErrorResponse(id=92, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0x2bb...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b72e2550>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b72e2550>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_numbers",
+        "uid" : "848d727e71151b85",
+        "parentUid" : "432ccfc1189e9a57fedb09e97210b8a5",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953143019,
+          "stop" : 1649953143781,
+          "duration" : 762
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "432ccfc1189e9a57fedb09e97210b8a5"
+    }, {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b72f1400>>(JsonRpcErrorResponse(id=3, error={'code': -32000, 'message': 'relation \"neon_accounts\" does not exist\\nLINE 3:               FROM neon_accounts AS a\\n                           ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b72f1400>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7fb8b72f1400>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getCode",
+        "uid" : "b7d6878243b867c3",
+        "parentUid" : "bc27153e0dba17fdefc9ee1c0a44aaf3",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953144556,
+          "stop" : 1649953145318,
+          "duration" : 762
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "bc27153e0dba17fdefc9ee1c0a44aaf3"
+    }, {
+      "name" : "AssertionError",
+      "children" : [ {
+        "name" : "test_send_more_than_exist_on_account_neon[1501]",
+        "uid" : "2ac99e14e5602105",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953269077,
+          "stop" : 1649953269810,
+          "duration" : 733
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "1501" ]
+      }, {
+        "name" : "test_send_more_than_exist_on_account_neon[10000.1]",
+        "uid" : "5da3af64e5318538",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953271092,
+          "stop" : 1649953271833,
+          "duration" : 741
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "10000.1" ]
+      }, {
+        "name" : "test_there_are_not_enough_neons_for_gas_fee",
+        "uid" : "d53e696113c88c4",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953277780,
+          "stop" : 1649953279239,
+          "duration" : 1459
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_there_are_not_enough_neons_for_transfer",
+        "uid" : "ff6c9e6b985020f6",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953279253,
+          "stop" : 1649953280558,
+          "duration" : 1305
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_gas_limit_and_gas_price[18446744073709551616-None-insufficient funds for transfer]",
+        "uid" : "b72aad96087e6a7a",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953301125,
+          "stop" : 1649953301528,
+          "duration" : 403
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'insufficient funds for transfer'", "18446744073709551616", "None" ]
+      }, {
+        "name" : "test_gas_limit_and_gas_price[0-18446744073709551616-insufficient funds for transfer]",
+        "uid" : "b974cfea0f889aec",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953302813,
+          "stop" : 1649953303494,
+          "duration" : 681
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'insufficient funds for transfer'", "0", "18446744073709551616" ]
+      }, {
+        "name" : "test_gas_limit_and_gas_price[1-18446744073709551616-insufficient funds for transfer]",
+        "uid" : "8d8bc3e374d82ffa",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953304777,
+          "stop" : 1649953305052,
+          "duration" : 275
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'insufficient funds for transfer'", "1", "18446744073709551616" ]
+      }, {
+        "name" : "test_gas_limit_and_gas_price[1000-18446744073709552-insufficient funds for transfer]",
+        "uid" : "267f041c3a327827",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953306335,
+          "stop" : 1649953306609,
+          "duration" : 274
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'insufficient funds for transfer'", "1000", "18446744073709552" ]
+      } ],
+      "uid" : "a0017ad855102fea08b8682d27fec4ca"
+    }, {
+      "name" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactions object at 0x7fb8b7821f40>>(JsonRpcErrorResponse(id=83, error={'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactions object at 0x7fb8b7821f40>> = <integration.tests.basic.test_transfers.TestRpcCallsTransactions object at 0x7fb8b7821f40>.assert_is_successful_response",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_sendRawTransaction",
+        "uid" : "c8c58b06b65484f1",
+        "parentUid" : "3a0307b51982d689b900f22d2ccb3893",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953286408,
+          "stop" : 1649953287238,
+          "duration" : 830
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "3a0307b51982d689b900f22d2ccb3893"
+    }, {
+      "name" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactions object at 0x7fb8b71aa9d0>>(JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactions object at 0x7fb8b71aa9d0>> = <integration.tests.basic.test_transfers.TestRpcCallsTransactions object at 0x7fb8b71aa9d0>.assert_is_successful_response",
+      "children" : [ {
+        "name" : "test_check_erc_1820_transaction",
+        "uid" : "87c6e29c41c569c9",
+        "parentUid" : "00df7bb2e8a1b869cfd34bfd6c0eedc4",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953293305,
+          "stop" : 1649953293872,
+          "duration" : 567
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "00df7bb2e8a1b869cfd34bfd6c0eedc4"
+    }, {
+      "name" : "Failed: DID NOT RAISE <class 'Exception'>",
+      "children" : [ {
+        "name" : "test_gas_limit_and_gas_price[1-None-gas limit reached]",
+        "uid" : "a9a5caca00397131",
+        "parentUid" : "4b1b218519a23f484ef3888ffcf04b79",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649953297222,
+          "stop" : 1649953298034,
+          "duration" : 812
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'gas limit reached'", "1", "None" ]
+      } ],
+      "uid" : "4b1b218519a23f484ef3888ffcf04b79"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}
