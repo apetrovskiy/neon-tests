@@ -1,0 +1,419 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "ValueError: {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getBlockByNumber_via_numbers",
+        "uid" : "5bf7ce9e669dd863",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649939560196,
+          "stop" : 1649939561251,
+          "duration" : 1055
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : true,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_rpc_call_eth_call",
+        "uid" : "33bb57f23cb97989",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649939565220,
+          "stop" : 1649939566281,
+          "duration" : 1061
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_rpc_call_eth_getTransactionReceipt",
+        "uid" : "71d6e180e0eafae3",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649939710091,
+          "stop" : 1649939711151,
+          "duration" : 1060
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_send_neon_from_one_account_to_another[0.01]",
+        "uid" : "e04f58bcad31cc92",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649939722023,
+          "stop" : 1649939723098,
+          "duration" : 1075
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : true,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "0.01" ]
+      }, {
+        "name" : "test_send_neon_from_one_account_to_another[1]",
+        "uid" : "f076d94533b38030",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649939724483,
+          "stop" : 1649939725553,
+          "duration" : 1070
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "1" ]
+      }, {
+        "name" : "test_send_neon_from_one_account_to_another[1.1]",
+        "uid" : "6fd48cb626c3a6e7",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649939726939,
+          "stop" : 1649939727999,
+          "duration" : 1060
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "1.1" ]
+      }, {
+        "name" : "test_zero_neon",
+        "uid" : "94ee08a6e390373c",
+        "parentUid" : "69453fb2bc7653d0a16f1bd046aaf65a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649939733844,
+          "stop" : 1649939735086,
+          "duration" : 1242
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : true,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "69453fb2bc7653d0a16f1bd046aaf65a"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  }, {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f271f1490>>(JsonRpcErrorResponse(id=25, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0x3d2...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f271f1490>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f271f1490>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_tags[latest-latest]",
+        "uid" : "8b093ef39ce3a076",
+        "parentUid" : "fe7ce1923627143ee2c7c633215f24ef",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939568031,
+          "stop" : 1649939568873,
+          "duration" : 842
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'latest'", "'latest'" ]
+      } ],
+      "uid" : "fe7ce1923627143ee2c7c633215f24ef"
+    }, {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f27274730>>(JsonRpcErrorResponse(id=25, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0x5fd...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f27274730>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f27274730>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_tags[earliest-latest]",
+        "uid" : "98d21fbdbce7771",
+        "parentUid" : "776187b4947c416bda23a3aa3a83b4fa",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939568882,
+          "stop" : 1649939569723,
+          "duration" : 841
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'earliest'", "'latest'" ]
+      } ],
+      "uid" : "776187b4947c416bda23a3aa3a83b4fa"
+    }, {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f271b96d0>>(JsonRpcErrorResponse(id=23, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0x8bb...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f271b96d0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f271b96d0>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_tags[pending-latest]",
+        "uid" : "74247047ed6b258d",
+        "parentUid" : "d8b3ee9a6278fc7223f2b05b74508220",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939569733,
+          "stop" : 1649939570574,
+          "duration" : 841
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'pending'", "'latest'" ]
+      } ],
+      "uid" : "d8b3ee9a6278fc7223f2b05b74508220"
+    }, {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f2719e6a0>>(JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0x8b4...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f2719e6a0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f2719e6a0>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_tags[latest-earliest]",
+        "uid" : "18de399a4891b153",
+        "parentUid" : "dae6e1e97d512364774bd096f4ca107a",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939570589,
+          "stop" : 1649939571430,
+          "duration" : 841
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'latest'", "'earliest'" ]
+      } ],
+      "uid" : "dae6e1e97d512364774bd096f4ca107a"
+    }, {
+      "name" : "AssertionError: <AssertMessage.CONTAINS_ERROR: 'Contains the error data'>\nassert False\n +  where False = <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f2714acd0>>(JsonRpcErrorResponse(id=2, error={'code': -32000, 'message': 'relation \"neon_transaction_logs\" does not exist\\nLINE 1: SELECT * FROM neon_transaction_logs WHERE address IN (\\'0x900...\\n                      ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_no_error_object of <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f2714acd0>> = <integration.tests.basic.test_rpc_calls.TestRpcCalls object at 0x7f1f2714acd0>.assert_no_error_object",
+      "children" : [ {
+        "name" : "test_rpc_call_eth_getLogs_via_numbers",
+        "uid" : "75f2f561c10743d5",
+        "parentUid" : "45ee24f7b094c7cad2fddbc842350bf7",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939572287,
+          "stop" : 1649939573129,
+          "duration" : 842
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "45ee24f7b094c7cad2fddbc842350bf7"
+    }, {
+      "name" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1f270f6df0>>(JsonRpcErrorResponse(id=19, error={'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1f270f6df0>> = <integration.tests.basic.test_transactions.TestRpcCallsTransactions object at 0x7f1f270f6df0>.assert_is_successful_response",
+      "children" : [ {
+        "name" : "test_check_erc_1820_transaction",
+        "uid" : "4f9b8045369acb02",
+        "parentUid" : "945656f9cc8b91657ecf3ae10a06982b",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939712532,
+          "stop" : 1649939713261,
+          "duration" : 729
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "945656f9cc8b91657ecf3ae10a06982b"
+    }, {
+      "name" : "AssertionError",
+      "children" : [ {
+        "name" : "test_send_more_than_exist_on_account_neon[1501]",
+        "uid" : "21d1935ae72d0ee7",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939729387,
+          "stop" : 1649939730245,
+          "duration" : 858
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "1501" ]
+      }, {
+        "name" : "test_send_more_than_exist_on_account_neon[10000.1]",
+        "uid" : "76a1df1893e953b7",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939731613,
+          "stop" : 1649939732473,
+          "duration" : 860
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "10000.1" ]
+      }, {
+        "name" : "test_too_low_gas_limit",
+        "uid" : "37466ce56c0be3b1",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939740959,
+          "stop" : 1649939741511,
+          "duration" : 552
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_too_high_gas_limit_greater_than_u64_max",
+        "uid" : "c8282c94711c990a",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939744911,
+          "stop" : 1649939745432,
+          "duration" : 521
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_too_high_gas_price_greater_than_u64_max",
+        "uid" : "fb1e7c7ee9529a8a",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939746795,
+          "stop" : 1649939747670,
+          "duration" : 875
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_too_high_gas_limit_by_gas_prise_greater_than_u64_max[1-18446744073709551616]",
+        "uid" : "4d10806ac434164d",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939749070,
+          "stop" : 1649939750100,
+          "duration" : 1030
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "1", "18446744073709551616" ]
+      }, {
+        "name" : "test_too_high_gas_limit_by_gas_prise_greater_than_u64_max[1000-18446744073709552]",
+        "uid" : "ef3da44c4141d0e4",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939751463,
+          "stop" : 1649939752494,
+          "duration" : 1031
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "1000", "18446744073709552" ]
+      }, {
+        "name" : "test_there_are_not_enough_neons_for_gas_fee",
+        "uid" : "7ffab389589542f4",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939752509,
+          "stop" : 1649939754236,
+          "duration" : 1727
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_there_are_not_enough_neons_for_transfer",
+        "uid" : "dbe9ddc6131a6d3c",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649939754252,
+          "stop" : 1649939755786,
+          "duration" : 1534
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "a0017ad855102fea08b8682d27fec4ca"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}
