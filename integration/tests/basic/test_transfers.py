@@ -1,10 +1,11 @@
-from re import U
 import allure
 import pytest
 from typing import Union
+from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR_MS, BasicTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
-from integration.tests.basic.model.model import AccountData
+from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
+from integration.tests.basic.model.model import AccountData, TrxReceiptResponse, TrxResponse
 from integration.tests.basic.test_data.input_data import InputData
 
 INVALID_ADDRESS = AccountData(address="0x12345")
@@ -346,7 +347,6 @@ class TestRpcCallsTransactions(BasicTests):
             actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-        # TODO: calculate sender's amount
         self.assert_balance(
             self.recipient_account.address,
             InputData.FAUCET_1ST_REQUEST_AMOUNT.value +
@@ -425,7 +425,6 @@ class TestRpcCallsTransactions(BasicTests):
             actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-        # TODO: calculate sender's amount
         self.assert_balance(
             self.recipient_account.address,
             InputData.FAUCET_1ST_REQUEST_AMOUNT.value +
@@ -471,7 +470,6 @@ class TestRpcCallsTransactionsValidation(BasicTests):
             actual_result), AssertMessage.WRONG_TYPE.value
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
-        # TODO: calculate sender's amount
         self.assert_balance(
             self.recipient_account.address,
             InputData.FAUCET_1ST_REQUEST_AMOUNT.value +
