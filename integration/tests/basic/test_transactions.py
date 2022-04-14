@@ -141,8 +141,6 @@ class TestRpcCallsTransactions(BasicTests):
             self.recipient_account.address,
             "value":
             self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
-            # "chainId":
-            # self.web3_client._chain_id,
             "gasPrice":
             self.web3_client.gas_price(),
             "gas":
@@ -168,11 +166,6 @@ class TestRpcCallsTransactions(BasicTests):
         assert '0x' in actual_result.result, AssertMessage.DOES_NOT_START_WITH_0X.value
 
         # TODO: calculate sender's amount
-        # self.assert_balance(
-        #     self.sender_account.address,
-        #     InputData.FAUCET_1ST_REQUEST_AMOUNT.value -
-        #     InputData.SAMPLE_AMOUNT.value -
-        #     self.calculate_trx_gas(tx_receipt=actual_result.result))
         self.assert_balance(
             self.recipient_account.address,
             InputData.FAUCET_1ST_REQUEST_AMOUNT.value +
