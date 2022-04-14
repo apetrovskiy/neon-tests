@@ -173,7 +173,7 @@ class TestRpcCallsTransactions(BasicTests):
 
 
 @allure.story("Basic: Json-RPC call tests - transactions validation")
-class TestRpcCallsTransactions(BasicTests):
+class TestRpcCallsTransactionsValidation(BasicTests):
     def test_generate_bad_sign(self, prepare_accounts):
         """Generate bad sign (when v, r, s over allowed size)"""
 
