@@ -6,6 +6,7 @@ from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.model import AccountData, TrxReceiptResponse, TrxResponse
+from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.test_data.input_data import InputData
 
 INVALID_ADDRESS = AccountData(address="0x12345")
