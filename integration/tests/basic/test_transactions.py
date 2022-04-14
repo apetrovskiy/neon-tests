@@ -132,7 +132,7 @@ class TestRpcCallsTransactions(BasicTests):
 
         result_object = self.jsonrpc_requester.deserialize_response
 
-    def test_check_erc_1820_transaction(self):
+    def test_check_erc_1820_transaction(self, prepare_accounts):
         """Check ERC-1820 transaction (without chain_id in sign)"""
         transaction = {
             "from":
