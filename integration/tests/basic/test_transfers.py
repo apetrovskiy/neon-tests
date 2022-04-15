@@ -21,6 +21,17 @@ GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.
                             U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
+def R_ACTION(model, value):  model.r = value; return model
+def S_ACTION(model, value): model.s = value; return model
+def V_ACTION(model, value): model.v = value; return model
+
+
+TEST_DATA_R_S_V = ([R_ACTION, ""], [R_ACTION, 0], [R_ACTION, 1], [R_ACTION, U64_MAX], [R_ACTION, U64_MAX*U64_MAX],
+                   [S_ACTION, ""], [S_ACTION, 0], [S_ACTION, 1], [
+                       S_ACTION, U64_MAX], [S_ACTION, U64_MAX*U64_MAX],
+                   [V_ACTION, ""], [V_ACTION, 0], [V_ACTION, 1], [V_ACTION, U64_MAX], [V_ACTION, U64_MAX*U64_MAX])
+
+
 @allure.story("Basic: transfer tests")
 class TestTransfer(BasicTests):
     @pytest.mark.parametrize("amount", TRANSFER_AMOUNT_DATA)
@@ -376,7 +387,8 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    def test_generate_bad_sign(self, prepare_accounts):
+    @pytest.mark.parametrize("action,value", TEST_DATA_R_S_V)
+    def test_generate_bad_sign(self, action, value, prepare_accounts):
         """Generate bad sign (when v, r, s over allowed size)"""
 
         transaction = {
@@ -400,7 +412,14 @@ class TestRpcCallsTransactionsValidation(BasicTests):
 
         signed_tx = self.web3_client.eth.account.sign_transaction(
             transaction, self.sender_account.key)
-        
+
+        #
+        print("=============================")
+        print(signed_tx)
+        #
+
+        (action)(value)
+
         #
         print("=============================")
         print(signed_tx)
