@@ -21,8 +21,10 @@ GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.
                             U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
-def r_action(model: TrxResponse, value) -> TrxResponse:
-    model.r = value
+def r_action(input_model: TrxResponse, value) -> TrxResponse:
+    input_model.r = value
+    model = TrxResponse(block_hash=input_model.block_hash, block_number=input_model.block_number, gas=input_model.gas, gas_price=input_model.gas_price, hash=input_model.hash, input=input_model.input,
+                        nonce=input_model.nonce, to=input_model.to, transaction_index=input_model.transaction_index, value=input_model.value, v=input_model.v, r=input_model.r, s=input_model.s)
     return model
 
 
