@@ -418,7 +418,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         print(signed_tx)
         #
 
-        (action)(value)
+        (action)(signed_tx, value)
 
         #
         print("=============================")
