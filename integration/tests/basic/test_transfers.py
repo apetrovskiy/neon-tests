@@ -5,7 +5,7 @@ from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR_MS, BasicTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
-from integration.tests.basic.model.model import AccountData, TrxReceiptResponse, TrxResponse
+from integration.tests.basic.model.model import AccountData, SignedTransaction, TrxReceiptResponse, TrxResponse
 from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.test_data.input_data import InputData
 
@@ -21,20 +21,28 @@ GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.
                             U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
-def r_action(input_model: TrxResponse, value) -> TrxResponse:
-    model = TrxResponse(block_hash=input_model.block_hash, block_number=input_model.block_number, gas=input_model.gas, gas_price=input_model.gas_price, hash=input_model.hash, input=input_model.input,
-                        nonce=input_model.nonce, to=input_model.to, transaction_index=input_model.transaction_index, value=input_model.value, v=input_model.v, r=input_model.r, s=input_model.s)
+def r_action(input_model: SignedTransaction, value) -> SignedTransaction:
+    model = SignedTransaction(raw_transaction=input_model.raw_transaction,
+                              hash=input_model.hash, r=value, s=input_model.s, v=input_model.v)
     return model
 
 
-def S_ACTION(model: TrxResponse, value): model.s = value; return model
-def V_ACTION(model: TrxResponse, value): model.v = value; return model
+def s_action(input_model: SignedTransaction, value) -> SignedTransaction:
+    model = SignedTransaction(raw_transaction=input_model.raw_transaction,
+                              hash=input_model.hash, r=input_model.r, s=value, v=input_model.v)
+    return model
+
+
+def v_action(input_model: SignedTransaction, value) -> SignedTransaction:
+    model = SignedTransaction(raw_transaction=input_model.raw_transaction,
+                              hash=input_model.hash,  r=input_model.r, s=input_model.s, v=value)
+    return model
 
 
 TEST_DATA_R_S_V = ([r_action, ""], [r_action, 0], [r_action, 1], [r_action, U64_MAX], [r_action, U64_MAX*U64_MAX],
-                   [S_ACTION, ""], [S_ACTION, 0], [S_ACTION, 1], [
-                       S_ACTION, U64_MAX], [S_ACTION, U64_MAX*U64_MAX],
-                   [V_ACTION, ""], [V_ACTION, 0], [V_ACTION, 1], [V_ACTION, U64_MAX], [V_ACTION, U64_MAX*U64_MAX])
+                   [s_action, ""], [s_action, 0], [s_action, 1], [
+                       s_action, U64_MAX], [s_action, U64_MAX*U64_MAX],
+                   [v_action, ""], [v_action, 0], [v_action, 1], [v_action, U64_MAX], [v_action, U64_MAX*U64_MAX])
 
 
 @allure.story("Basic: transfer tests")
