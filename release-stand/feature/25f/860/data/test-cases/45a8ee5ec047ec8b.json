@@ -1,0 +1,465 @@
+{
+  "uid" : "45a8ee5ec047ec8b",
+  "name" : "test_send_more_than_exist_on_account_neon[1501]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_more_than_exist_on_account_neon",
+  "historyId" : "caf5f25c58dff921bb419258e809e8bd",
+  "time" : {
+    "start" : 1650034581143,
+    "stop" : 1650034581654,
+    "duration" : 511
+  },
+  "description" : "Send more than exist on account: neon",
+  "descriptionHtml" : "<p>Send more than exist on account: neon</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7ff3c37bbdc0>\namount = 1501, prepare_accounts = None\n\n    @pytest.mark.parametrize(\"amount\", WRONG_TRANSFER_AMOUNT_DATA)\n    def test_send_more_than_exist_on_account_neon(self, amount: Union[int,\n                                                                      float],\n                                                  prepare_accounts):\n        \"\"\"Send more than exist on account: neon\"\"\"\n    \n>       self.check_value_error_if_less_than_required(self.sender_account,\n                                                     self.recipient_account,\n                                                     amount)\n\nintegration/tests/basic/test_transfers.py:64: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:118: in check_value_error_if_less_than_required\n    return self.process_transaction_with_failure(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7ff3c37bbdc0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7ff3c37a4160>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7ff3c37a4d00>\namount = 1501, gas = 0, gas_price = None\nerror_message = 'insufficient funds for transfer'\n\n    def process_transaction_with_failure(\n            self,\n            sender_account: Account,\n            recipient_account: Union[Account, AccountData],\n            amount: int,\n            gas: Optional[int] = 0,\n            gas_price: Optional[int] = None,\n            error_message: str = \"\") -> Union[web3.types.TxReceipt, None]:\n        '''Processes transaction, expects a failure'''\n    \n        tx: Union[web3.types.TxReceipt, None] = None\n        with allure.step(\n                f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"\n        ):\n            with pytest.raises(Exception) as error_info:\n                tx = self.web3_client.send_neon(sender_account,\n                                                recipient_account, amount, gas,\n                                                gas_price)\n    \n            if error_info != None:\n    \n                if error_message:\n>                   assert error_message in str(error_info)\nE                   AssertionError\n\nintegration/tests/basic/helpers/basic.py:109: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650034449822,
+      "stop" : 1650034449824,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650034449822,
+      "stop" : 1650034449822,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650034449824,
+      "stop" : 1650034450412,
+      "duration" : 588
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650034450412,
+      "stop" : 1650034450413,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1650034450413,
+      "stop" : 1650034450413,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650034450413,
+      "stop" : 1650034450413,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650034450414,
+      "stop" : 1650034450414,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650034571797,
+      "stop" : 1650034572886,
+      "duration" : 1089
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650034571797,
+        "stop" : 1650034571802,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x93D012c5834C637452CEE13ef6B0d034885f4f14",
+      "time" : {
+        "start" : 1650034571802,
+        "stop" : 1650034572501,
+        "duration" : 699
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 973816606.0 NEON 4915.9964106 SOL",
+      "time" : {
+        "start" : 1650034572886,
+        "stop" : 1650034572886,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1650034579936,
+      "stop" : 1650034579936,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1650034579936,
+      "stop" : 1650034581142,
+      "duration" : 1206
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650034579936,
+      "stop" : 1650034579936,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650034579936,
+      "stop" : 1650034579936,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send more than exist on account: neon",
+    "status" : "failed",
+    "statusMessage" : "AssertionError",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7ff3c37bbdc0>\namount = 1501, prepare_accounts = None\n\n    @pytest.mark.parametrize(\"amount\", WRONG_TRANSFER_AMOUNT_DATA)\n    def test_send_more_than_exist_on_account_neon(self, amount: Union[int,\n                                                                      float],\n                                                  prepare_accounts):\n        \"\"\"Send more than exist on account: neon\"\"\"\n    \n>       self.check_value_error_if_less_than_required(self.sender_account,\n                                                     self.recipient_account,\n                                                     amount)\n\nintegration/tests/basic/test_transfers.py:64: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:118: in check_value_error_if_less_than_required\n    return self.process_transaction_with_failure(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7ff3c37bbdc0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7ff3c37a4160>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7ff3c37a4d00>\namount = 1501, gas = 0, gas_price = None\nerror_message = 'insufficient funds for transfer'\n\n    def process_transaction_with_failure(\n            self,\n            sender_account: Account,\n            recipient_account: Union[Account, AccountData],\n            amount: int,\n            gas: Optional[int] = 0,\n            gas_price: Optional[int] = None,\n            error_message: str = \"\") -> Union[web3.types.TxReceipt, None]:\n        '''Processes transaction, expects a failure'''\n    \n        tx: Union[web3.types.TxReceipt, None] = None\n        with allure.step(\n                f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"\n        ):\n            with pytest.raises(Exception) as error_info:\n                tx = self.web3_client.send_neon(sender_account,\n                                                recipient_account, amount, gas,\n                                                gas_price)\n    \n            if error_info != None:\n    \n                if error_message:\n>                   assert error_message in str(error_info)\nE                   AssertionError\n\nintegration/tests/basic/helpers/basic.py:109: AssertionError",
+    "steps" : [ {
+      "name" : "Sending 1501 from 0x9772aee8b5F6d04c1a82eA2CA8bA7750e09b5f71 to 0x4569A0Cc1B5b2e4984cEbA32a1aF929C9692858B",
+      "time" : {
+        "start" : 1650034581144,
+        "stop" : 1650034581653,
+        "duration" : 509
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 109, in process_transaction_with_failure\n    assert error_message in str(error_info)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1650034581670,
+      "stop" : 1650034581670,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650034591772,
+      "stop" : 1650034592249,
+      "duration" : 477
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 973816524.0 NEON 4915.96825788 SOL",
+      "time" : {
+        "start" : 1650034592149,
+        "stop" : 1650034592149,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650034592249,
+        "stop" : 1650034592249,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650034641131,
+      "stop" : 1650034641131,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az190-986"
+  }, {
+    "name" : "thread",
+    "value" : "1929-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "1501"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 6,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "68ecbf7a248b4d84",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/858//#testresult/68ecbf7a248b4d84",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650032560083,
+          "stop" : 1650032560930,
+          "duration" : 847
+        }
+      }, {
+        "uid" : "1382ebba0ceea673",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/856//#testresult/1382ebba0ceea673",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650031708774,
+          "stop" : 1650031709621,
+          "duration" : 847
+        }
+      }, {
+        "uid" : "e13bce2e52e83320",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/854//#testresult/e13bce2e52e83320",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650026725428,
+          "stop" : 1650026726273,
+          "duration" : 845
+        }
+      }, {
+        "uid" : "7fdc94c150e9dd84",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/852//#testresult/7fdc94c150e9dd84",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650026264682,
+          "stop" : 1650026265531,
+          "duration" : 849
+        }
+      }, {
+        "uid" : "ea835b98c48680d6",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/850//#testresult/ea835b98c48680d6",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650026205816,
+          "stop" : 1650026206667,
+          "duration" : 851
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "45a8ee5ec047ec8b.json",
+  "parameterValues" : [ "1501" ]
+}
