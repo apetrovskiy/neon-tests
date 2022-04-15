@@ -1,0 +1,441 @@
+{
+  "uid" : "726176177faa4b71",
+  "name" : "test_gas_limit_and_gas_price[1-None-gas limit reached]",
+  "fullName" : "integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation#test_gas_limit_and_gas_price",
+  "historyId" : "fa14e019e2269d4881197d1ce8655068",
+  "time" : {
+    "start" : 1650026757935,
+    "stop" : 1650026758923,
+    "duration" : 988
+  },
+  "description" : "Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        ",
+  "descriptionHtml" : "<p>Too low gas_limit<br />\nToo high gas_limit &gt; u64::max<br />\nToo high gas_limit &gt; u64::max<br />\nToo high gas_price &gt; u64::max<br />\nToo high gas_limit * gas_price &gt; u64::max</p>\n",
+  "status" : "failed",
+  "statusMessage" : "Failed: DID NOT RAISE <class 'Exception'>",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f15aad787c0>\ngas_limit = 1, gas_price = None, expected_message = 'gas limit reached'\nprepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_gas_limit_and_gas_price(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        \"\"\"\n    \n        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value\n    \n>       self.process_transaction_with_failure(\n            self.sender_account,\n            self.recipient_account,\n            amount,\n            gas=gas_limit,\n            gas_price=gas_price,\n            error_message=expected_message)\n\nintegration/tests/basic/test_transfers.py:366: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f15aad787c0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f15aac264c0>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7f15aac26130>\namount = 0.01, gas = 1, gas_price = None, error_message = 'gas limit reached'\n\n    def process_transaction_with_failure(\n            self,\n            sender_account: Account,\n            recipient_account: Union[Account, AccountData],\n            amount: int,\n            gas: Optional[int] = 0,\n            gas_price: Optional[int] = None,\n            error_message: str = \"\") -> Union[web3.types.TxReceipt, None]:\n        '''Processes transaction, expects a failure'''\n    \n        tx: Union[web3.types.TxReceipt, None] = None\n        with allure.step(\n                f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"\n        ):\n            with pytest.raises(Exception) as error_info:\n>               tx = self.web3_client.send_neon(sender_account,\n                                                recipient_account, amount, gas,\n                                                gas_price)\nE               Failed: DID NOT RAISE <class 'Exception'>\n\nintegration/tests/basic/helpers/basic.py:102: Failed",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650026566324,
+      "stop" : 1650026566326,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650026566324,
+      "stop" : 1650026566324,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650026566326,
+      "stop" : 1650026567320,
+      "duration" : 994
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650026567321,
+      "stop" : 1650026567321,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1650026567321,
+      "stop" : 1650026567321,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650026567321,
+      "stop" : 1650026567321,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650026567322,
+      "stop" : 1650026567322,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650026754932,
+      "stop" : 1650026756589,
+      "duration" : 1657
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650026754932,
+        "stop" : 1650026754936,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x6ba9A01eE2C3B3e6A2c964368d5A915C9A47ED2E",
+      "time" : {
+        "start" : 1650026754936,
+        "stop" : 1650026755936,
+        "duration" : 1000
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 975714443.0 NEON 4917.68042764 SOL",
+      "time" : {
+        "start" : 1650026756589,
+        "stop" : 1650026756589,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650026754932,
+      "stop" : 1650026754932,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1650026756589,
+      "stop" : 1650026756589,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650026756589,
+      "stop" : 1650026756589,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1650026756590,
+      "stop" : 1650026757934,
+      "duration" : 1344
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        ",
+    "status" : "failed",
+    "statusMessage" : "Failed: DID NOT RAISE <class 'Exception'>",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f15aad787c0>\ngas_limit = 1, gas_price = None, expected_message = 'gas limit reached'\nprepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_gas_limit_and_gas_price(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        \"\"\"\n    \n        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value\n    \n>       self.process_transaction_with_failure(\n            self.sender_account,\n            self.recipient_account,\n            amount,\n            gas=gas_limit,\n            gas_price=gas_price,\n            error_message=expected_message)\n\nintegration/tests/basic/test_transfers.py:366: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f15aad787c0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f15aac264c0>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7f15aac26130>\namount = 0.01, gas = 1, gas_price = None, error_message = 'gas limit reached'\n\n    def process_transaction_with_failure(\n            self,\n            sender_account: Account,\n            recipient_account: Union[Account, AccountData],\n            amount: int,\n            gas: Optional[int] = 0,\n            gas_price: Optional[int] = None,\n            error_message: str = \"\") -> Union[web3.types.TxReceipt, None]:\n        '''Processes transaction, expects a failure'''\n    \n        tx: Union[web3.types.TxReceipt, None] = None\n        with allure.step(\n                f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"\n        ):\n            with pytest.raises(Exception) as error_info:\n>               tx = self.web3_client.send_neon(sender_account,\n                                                recipient_account, amount, gas,\n                                                gas_price)\nE               Failed: DID NOT RAISE <class 'Exception'>\n\nintegration/tests/basic/helpers/basic.py:102: Failed",
+    "steps" : [ {
+      "name" : "Sending 0.01 from 0xb915C7DCF45eadb3540caE61245848a0Ed56Ea2F to 0x4cA6e148D24f57D6f8702Cf7011cc5af71766e8C",
+      "time" : {
+        "start" : 1650026757935,
+        "stop" : 1650026758922,
+        "duration" : 987
+      },
+      "status" : "failed",
+      "statusMessage" : "Failed: DID NOT RAISE <class 'Exception'>\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 102, in process_transaction_with_failure\n    tx = self.web3_client.send_neon(sender_account,\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/python_api.py\", line 777, in __exit__\n    fail(self.message)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/outcomes.py\", line 153, in fail\n    raise Failed(msg=msg, pytrace=pytrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1650026758936,
+      "stop" : 1650026758936,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650026770910,
+      "stop" : 1650026771732,
+      "duration" : 822
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 975714373.0 NEON 4917.65853108 SOL",
+      "time" : {
+        "start" : 1650026771563,
+        "stop" : 1650026771563,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650026771732,
+        "stop" : 1650026771732,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650026771739,
+      "stop" : 1650026771739,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az445-589"
+  }, {
+    "name" : "thread",
+    "value" : "2065-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "expected_message",
+    "value" : "'gas limit reached'"
+  }, {
+    "name" : "gas_limit",
+    "value" : "1"
+  }, {
+    "name" : "gas_price",
+    "value" : "None"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "9299e22a5e3908e7",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/852//#testresult/9299e22a5e3908e7",
+        "status" : "failed",
+        "statusDetails" : "Failed: DID NOT RAISE <class 'Exception'>",
+        "time" : {
+          "start" : 1650026296128,
+          "stop" : 1650026297200,
+          "duration" : 1072
+        }
+      }, {
+        "uid" : "3c2a9b1f73186126",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/850//#testresult/3c2a9b1f73186126",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650026240736,
+          "stop" : 1650026241275,
+          "duration" : 539
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "726176177faa4b71.json",
+  "parameterValues" : [ "'gas limit reached'", "1", "None" ]
+}
