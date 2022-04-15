@@ -1,0 +1,427 @@
+{
+  "uid" : "49085012685e1f8d",
+  "name" : "test_generate_bad_sign[R_ACTION-1]",
+  "fullName" : "integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation#test_generate_bad_sign",
+  "historyId" : "8a6069f062d0a11e7017ef0689cf8cd0",
+  "time" : {
+    "start" : 1650034735997,
+    "stop" : 1650034736873,
+    "duration" : 876
+  },
+  "description" : "Generate bad sign (when v, r, s over allowed size)",
+  "descriptionHtml" : "<p>Generate bad sign (when v, r, s over allowed size)</p>\n",
+  "status" : "broken",
+  "statusMessage" : "AttributeError: can't set attribute",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fa6ef879e80>\naction = <function R_ACTION at 0x7fa6efcb2700>, value = 1\nprepare_accounts = None\n\n    @pytest.mark.parametrize(\"action,value\", TEST_DATA_R_S_V)\n    def test_generate_bad_sign(self, action, value, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\"\"\"\n    \n        transaction = {\n            \"from\":\n            self.sender_account.address,\n            \"to\":\n            self.recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, \"ether\"),\n            \"chainId\":\n            self.web3_client._chain_id,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(\n                self.sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        signed_tx: TrxResponse = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        #\n        print(\"=============================\")\n        print(signed_tx)\n        #\n    \n>       (action)(signed_tx, value)\n\nintegration/tests/basic/test_transfers.py:421: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nmodel = SignedTransaction(rawTransaction=HexBytes('0xf86d8085719fc7ae0082520894d365a8a8cf3ae41a08d5a5195290c7b9fe25d89587470de...585929326853373930814417170219, s=48654163350787852537870926254081933232354285444206281186596134257018936332475, v=258)\nvalue = 1\n\n>   def R_ACTION(model: TrxResponse, value):  model.r = value; return model\nE   AttributeError: can't set attribute\n\nintegration/tests/basic/test_transfers.py:24: AttributeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650034429549,
+      "stop" : 1650034429552,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650034429549,
+      "stop" : 1650034429549,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650034429552,
+      "stop" : 1650034430761,
+      "duration" : 1209
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650034430761,
+      "stop" : 1650034430761,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1650034430761,
+      "stop" : 1650034430761,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650034430761,
+      "stop" : 1650034430762,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650034430762,
+      "stop" : 1650034430762,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650034707307,
+      "stop" : 1650034715784,
+      "duration" : 8477
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650034707307,
+        "stop" : 1650034707312,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0xCD92bC138D3B70D3fC01Db5c4E0Fc85215090FFa",
+      "time" : {
+        "start" : 1650034707312,
+        "stop" : 1650034708335,
+        "duration" : 1023
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.004515107835646758292608 NEON 67238.01804168 SOL",
+      "time" : {
+        "start" : 1650034715784,
+        "stop" : 1650034715784,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650034734224,
+      "stop" : 1650034734225,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650034734225,
+      "stop" : 1650034734225,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1650034734225,
+      "stop" : 1650034735996,
+      "duration" : 1771
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1650034734225,
+      "stop" : 1650034734225,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Generate bad sign (when v, r, s over allowed size)",
+    "status" : "broken",
+    "statusMessage" : "AttributeError: can't set attribute",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fa6ef879e80>\naction = <function R_ACTION at 0x7fa6efcb2700>, value = 1\nprepare_accounts = None\n\n    @pytest.mark.parametrize(\"action,value\", TEST_DATA_R_S_V)\n    def test_generate_bad_sign(self, action, value, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\"\"\"\n    \n        transaction = {\n            \"from\":\n            self.sender_account.address,\n            \"to\":\n            self.recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, \"ether\"),\n            \"chainId\":\n            self.web3_client._chain_id,\n            \"gasPrice\":\n            self.web3_client.gas_price(),\n            \"gas\":\n            0,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(\n                self.sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        signed_tx: TrxResponse = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        #\n        print(\"=============================\")\n        print(signed_tx)\n        #\n    \n>       (action)(signed_tx, value)\n\nintegration/tests/basic/test_transfers.py:421: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nmodel = SignedTransaction(rawTransaction=HexBytes('0xf86d8085719fc7ae0082520894d365a8a8cf3ae41a08d5a5195290c7b9fe25d89587470de...585929326853373930814417170219, s=48654163350787852537870926254081933232354285444206281186596134257018936332475, v=258)\nvalue = 1\n\n>   def R_ACTION(model: TrxResponse, value):  model.r = value; return model\nE   AttributeError: can't set attribute\n\nintegration/tests/basic/test_transfers.py:24: AttributeError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "fa9743108cd7ef2c",
+      "name" : "stdout",
+      "source" : "fa9743108cd7ef2c.txt",
+      "type" : "text/plain",
+      "size" : 555
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1650034736888,
+      "stop" : 1650034736888,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650034764072,
+      "stop" : 1650034771917,
+      "duration" : 7845
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.004515107835646758292608 NEON 67237.952352 SOL",
+      "time" : {
+        "start" : 1650034771743,
+        "stop" : 1650034771743,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650034771917,
+        "stop" : 1650034771917,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650034771925,
+      "stop" : 1650034771926,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az457-317"
+  }, {
+    "name" : "thread",
+    "value" : "1932-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "action",
+    "value" : "<function R_ACTION at 0x7fa6efcb2700>"
+  }, {
+    "name" : "value",
+    "value" : "1"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "fc65b9f1083e0ada",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25f/857//#testresult/fc65b9f1083e0ada",
+        "status" : "broken",
+        "statusDetails" : "AttributeError: can't set attribute",
+        "time" : {
+          "start" : 1650032610508,
+          "stop" : 1650032611050,
+          "duration" : 542
+        }
+      }, {
+        "uid" : "4984c48607f69719",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25f/855//#testresult/4984c48607f69719",
+        "status" : "broken",
+        "statusDetails" : "TypeError: R_ACTION() missing 1 required positional argument: 'value'",
+        "time" : {
+          "start" : 1650031784531,
+          "stop" : 1650031785221,
+          "duration" : 690
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "49085012685e1f8d.json",
+  "parameterValues" : [ "<function R_ACTION at 0x7fa6efcb2700>", "1" ]
+}
