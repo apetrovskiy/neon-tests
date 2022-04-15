@@ -439,7 +439,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         print(signed_tx)
         #
 
-        params = [signed_tx.rawTransaction.hex()]
+        params = [signed_tx.raw_transaction.hex()]
 
         model = RpcRequestFactory.get_send_raw_trx(params=params)
 
