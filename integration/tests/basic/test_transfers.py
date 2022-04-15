@@ -400,7 +400,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    @pytest.mark.parametrize("action,value", GAS_LIMIT_AND_PRICE_DATA)
+    @pytest.mark.parametrize("gas_limit,gas_price,expected_message", GAS_LIMIT_AND_PRICE_DATA)
     def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):
         """Generate bad sign (when v, r, s over allowed size)"""
 
