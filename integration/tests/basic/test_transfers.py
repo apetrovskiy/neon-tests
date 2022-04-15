@@ -39,10 +39,10 @@ GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.
 #     return model
 
 
-TEST_DATA_R_S_V = ([r_action, ""], [r_action, 0], [r_action, 1], [r_action, U64_MAX], [r_action, U64_MAX*U64_MAX],
-                   [s_action, ""], [s_action, 0], [s_action, 1], [
-                       s_action, U64_MAX], [s_action, U64_MAX*U64_MAX],
-                   [v_action, ""], [v_action, 0], [v_action, 1], [v_action, U64_MAX], [v_action, U64_MAX*U64_MAX])
+# TEST_DATA_R_S_V = ([r_action, ""], [r_action, 0], [r_action, 1], [r_action, U64_MAX], [r_action, U64_MAX*U64_MAX],
+#                    [s_action, ""], [s_action, 0], [s_action, 1], [
+#                        s_action, U64_MAX], [s_action, U64_MAX*U64_MAX],
+#                    [v_action, ""], [v_action, 0], [v_action, 1], [v_action, U64_MAX], [v_action, U64_MAX*U64_MAX])
 
 
 @allure.story("Basic: transfer tests")
