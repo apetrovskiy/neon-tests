@@ -21,9 +21,9 @@ GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.
                             U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
-def R_ACTION(model, value):  model.r = value; return model
-def S_ACTION(model, value): model.s = value; return model
-def V_ACTION(model, value): model.v = value; return model
+def R_ACTION(model: TrxResponse, value):  model.r = value; return model
+def S_ACTION(model: TrxResponse, value): model.s = value; return model
+def V_ACTION(model: TrxResponse, value): model.v = value; return model
 
 
 TEST_DATA_R_S_V = ([R_ACTION, ""], [R_ACTION, 0], [R_ACTION, 1], [R_ACTION, U64_MAX], [R_ACTION, U64_MAX*U64_MAX],
@@ -410,7 +410,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         }
         transaction["gas"] = self.web3_client.eth.estimate_gas(transaction)
 
-        signed_tx = self.web3_client.eth.account.sign_transaction(
+        signed_tx: TrxResponse = self.web3_client.eth.account.sign_transaction(
             transaction, self.sender_account.key)
 
         #
