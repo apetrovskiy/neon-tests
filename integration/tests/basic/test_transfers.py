@@ -400,6 +400,11 @@ class TestRpcCallsTransactionsValidation(BasicTests):
 
         signed_tx = self.web3_client.eth.account.sign_transaction(
             transaction, self.sender_account.key)
+        
+        #
+        print("=============================")
+        print(signed_tx)
+        #
 
         params = [signed_tx.rawTransaction.hex()]
 
