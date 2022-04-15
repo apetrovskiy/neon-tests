@@ -22,19 +22,19 @@ GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.
 
 
 def r_action(input_model: SignedTransaction, value) -> SignedTransaction:
-    model = SignedTransaction(raw_transaction=input_model.raw_transaction,
+    model = SignedTransaction(raw_transaction=input_model.rawTransaction,
                               hash=input_model.hash, r=value, s=input_model.s, v=input_model.v)
     return model
 
 
 def s_action(input_model: SignedTransaction, value) -> SignedTransaction:
-    model = SignedTransaction(raw_transaction=input_model.raw_transaction,
+    model = SignedTransaction(raw_transaction=input_model.rawTransaction,
                               hash=input_model.hash, r=input_model.r, s=value, v=input_model.v)
     return model
 
 
 def v_action(input_model: SignedTransaction, value) -> SignedTransaction:
-    model = SignedTransaction(raw_transaction=input_model.raw_transaction,
+    model = SignedTransaction(raw_transaction=input_model.rawTransaction,
                               hash=input_model.hash,  r=input_model.r, s=input_model.s, v=value)
     return model
 
