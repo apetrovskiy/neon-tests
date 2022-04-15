@@ -1,0 +1,429 @@
+{
+  "uid" : "ba78be67ccc360b6",
+  "name" : "test_generate_bad_sign[0-18446744073709551616-insufficient funds for transfer]",
+  "fullName" : "integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation#test_generate_bad_sign",
+  "historyId" : "c2a047ce5eb8159839bbebae09b571f9",
+  "time" : {
+    "start" : 1650048220522,
+    "stop" : 1650048221465,
+    "duration" : 943
+  },
+  "description" : "Generate bad sign (when v, r, s over allowed size)",
+  "descriptionHtml" : "<p>Generate bad sign (when v, r, s over allowed size)</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>>(JsonRpcErrorResponse(id=96, error={'code': -32000, 'message': 'insufficient funds for transfer: address 0x31f9064b0fd6a4c5457335fbb5e4cee12334dc58 have 5000000000000000000 want 387381645547900583936000'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>> = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>.assert_is_successful_response",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>\ngas_limit = 0, gas_price = 18446744073709551616\nexpected_message = 'insufficient funds for transfer', prepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\"\"\"\n    \n        transaction = {\n            \"from\":\n            self.sender_account.address,\n            \"to\":\n            self.recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, \"ether\"),\n            \"chainId\":\n            self.web3_client._chain_id,\n            \"gasPrice\":\n            gas_price,\n            \"gas\":\n            gas_limit,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(\n                self.sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        signed_tx: SignedTransaction = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        #\n        print(\"=============================\")\n        print(signed_tx)\n        #\n    \n        # (action)(signed_tx, value)\n        # signed_tx = action(signed_tx, value)\n    \n        #\n        # print(\"=============================\")\n        # print(signed_tx)\n        #\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n    \n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_is_successful_response(\n            actual_result), AssertMessage.WRONG_TYPE.value\nE       AssertionError: The response type is error response\nE       assert False\nE        +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>>(JsonRpcErrorResponse(id=96, error={'code': -32000, 'message': 'insufficient funds for transfer: address 0x31f9064b0fd6a4c5457335fbb5e4cee12334dc58 have 5000000000000000000 want 387381645547900583936000'}, jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>> = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>.assert_is_successful_response\n\nintegration/tests/basic/test_transfers.py:450: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650047922144,
+      "stop" : 1650047922146,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650047922144,
+      "stop" : 1650047922144,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650047922146,
+      "stop" : 1650047923220,
+      "duration" : 1074
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1650047923221,
+      "stop" : 1650047923221,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650047923221,
+      "stop" : 1650047923221,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650047923221,
+      "stop" : 1650047923221,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650047923221,
+      "stop" : 1650047923221,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650048190368,
+      "stop" : 1650048199072,
+      "duration" : 8704
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650048190368,
+        "stop" : 1650048190372,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0xa2Eee07CDD3A912fc8A1B23926a79365e8b89B43",
+      "time" : {
+        "start" : 1650048190372,
+        "stop" : 1650048191391,
+        "duration" : 1019
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Operator initial balance: 0.004515108416989785772608 NEON 67234.93945404 SOL",
+      "time" : {
+        "start" : 1650048199072,
+        "stop" : 1650048199072,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 3
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650048219146,
+      "stop" : 1650048219146,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650048219146,
+      "stop" : 1650048219146,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1650048219146,
+      "stop" : 1650048219146,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1650048219146,
+      "stop" : 1650048220521,
+      "duration" : 1375
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "testStage" : {
+    "description" : "Generate bad sign (when v, r, s over allowed size)",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>>(JsonRpcErrorResponse(id=96, error={'code': -32000, 'message': 'insufficient funds for transfer: address 0x31f9064b0fd6a4c5457335fbb5e4cee12334dc58 have 5000000000000000000 want 387381645547900583936000'}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>> = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>.assert_is_successful_response",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>\ngas_limit = 0, gas_price = 18446744073709551616\nexpected_message = 'insufficient funds for transfer', prepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\"\"\"\n    \n        transaction = {\n            \"from\":\n            self.sender_account.address,\n            \"to\":\n            self.recipient_account.address,\n            \"value\":\n            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, \"ether\"),\n            \"chainId\":\n            self.web3_client._chain_id,\n            \"gasPrice\":\n            gas_price,\n            \"gas\":\n            gas_limit,\n            \"nonce\":\n            self.web3_client.eth.get_transaction_count(\n                self.sender_account.address),\n        }\n        transaction[\"gas\"] = self.web3_client.eth.estimate_gas(transaction)\n    \n        signed_tx: SignedTransaction = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        #\n        print(\"=============================\")\n        print(signed_tx)\n        #\n    \n        # (action)(signed_tx, value)\n        # signed_tx = action(signed_tx, value)\n    \n        #\n        # print(\"=============================\")\n        # print(signed_tx)\n        #\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n    \n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert self.assert_is_successful_response(\n            actual_result), AssertMessage.WRONG_TYPE.value\nE       AssertionError: The response type is error response\nE       assert False\nE        +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>>(JsonRpcErrorResponse(id=96, error={'code': -32000, 'message': 'insufficient funds for transfer: address 0x31f9064b0fd6a4c5457335fbb5e4cee12334dc58 have 5000000000000000000 want 387381645547900583936000'}, jsonrpc='2.0'))\nE        +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>> = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f2bad415cd0>.assert_is_successful_response\n\nintegration/tests/basic/test_transfers.py:450: AssertionError",
+    "steps" : [ {
+      "name" : "Request: JsonRpcRequest(id=96, method='eth_sendRawTransaction', params=['0xf8718089010000000000000000825208946e4c8c916ef72128fffdaacda159144b5de7068f87470de4df82000080820102a02f05c1898306e19b622ce1d7f6e3a0f67e18f5c1495021256a96a06672e0014ea010c08faa972315e87477f9aa27a72096196dff4d6b59c1dd2eb6ba4bde58f317'], jsonrpc='2.0')",
+      "time" : {
+        "start" : 1650048221223,
+        "stop" : 1650048221464,
+        "duration" : 241
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Response: {'jsonrpc': '2.0', 'id': 96, 'error': {'code': -32000, 'message': 'insufficient funds for transfer: address 0x31f9064b0fd6a4c5457335fbb5e4cee12334dc58 have 5000000000000000000 want 387381645547900583936000'}}",
+      "time" : {
+        "start" : 1650048221464,
+        "stop" : 1650048221464,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ {
+      "uid" : "8cbef00f5c7d6f96",
+      "name" : "stdout",
+      "source" : "8cbef00f5c7d6f96.txt",
+      "type" : "text/plain",
+      "size" : 562
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 2
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1650048221474,
+      "stop" : 1650048221475,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650048226111,
+      "stop" : 1650048233793,
+      "duration" : 7682
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.004515108416989785772608 NEON 67234.90191708 SOL",
+      "time" : {
+        "start" : 1650048233624,
+        "stop" : 1650048233624,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650048233793,
+        "stop" : 1650048233793,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 2
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650048233800,
+      "stop" : 1650048233800,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az457-317"
+  }, {
+    "name" : "thread",
+    "value" : "1902-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "expected_message",
+    "value" : "'insufficient funds for transfer'"
+  }, {
+    "name" : "gas_limit",
+    "value" : "0"
+  }, {
+    "name" : "gas_price",
+    "value" : "18446744073709551616"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "ba78be67ccc360b6.json",
+  "parameterValues" : [ "'insufficient funds for transfer'", "0", "18446744073709551616" ]
+}
