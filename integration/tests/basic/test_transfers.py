@@ -21,22 +21,22 @@ GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.
                             U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
-def r_action(input_model: SignedTransaction, value) -> SignedTransaction:
-    model = SignedTransaction(raw_transaction=input_model.rawTransaction,
-                              hash=input_model.hash, r=value, s=input_model.s, v=input_model.v)
-    return model
+# def r_action(input_model: SignedTransaction, value) -> SignedTransaction:
+#     model = SignedTransaction(raw_transaction=input_model.rawTransaction,
+#                               hash=input_model.hash, r=value, s=input_model.s, v=input_model.v)
+#     return model
 
 
-def s_action(input_model: SignedTransaction, value) -> SignedTransaction:
-    model = SignedTransaction(raw_transaction=input_model.rawTransaction,
-                              hash=input_model.hash, r=input_model.r, s=value, v=input_model.v)
-    return model
+# def s_action(input_model: SignedTransaction, value) -> SignedTransaction:
+#     model = SignedTransaction(raw_transaction=input_model.rawTransaction,
+#                               hash=input_model.hash, r=input_model.r, s=value, v=input_model.v)
+#     return model
 
 
-def v_action(input_model: SignedTransaction, value) -> SignedTransaction:
-    model = SignedTransaction(raw_transaction=input_model.rawTransaction,
-                              hash=input_model.hash,  r=input_model.r, s=input_model.s, v=value)
-    return model
+# def v_action(input_model: SignedTransaction, value) -> SignedTransaction:
+#     model = SignedTransaction(raw_transaction=input_model.rawTransaction,
+#                               hash=input_model.hash,  r=input_model.r, s=input_model.s, v=value)
+#     return model
 
 
 TEST_DATA_R_S_V = ([r_action, ""], [r_action, 0], [r_action, 1], [r_action, U64_MAX], [r_action, U64_MAX*U64_MAX],
@@ -400,8 +400,8 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    @pytest.mark.parametrize("action,value", TEST_DATA_R_S_V)
-    def test_generate_bad_sign(self, action, value, prepare_accounts):
+    @pytest.mark.parametrize("action,value", GAS_LIMIT_AND_PRICE_DATA)
+    def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):
         """Generate bad sign (when v, r, s over allowed size)"""
 
         transaction = {
@@ -414,16 +414,16 @@ class TestRpcCallsTransactionsValidation(BasicTests):
             "chainId":
             self.web3_client._chain_id,
             "gasPrice":
-            self.web3_client.gas_price(),
+            gas_price,
             "gas":
-            0,
+            gas_limit,
             "nonce":
             self.web3_client.eth.get_transaction_count(
                 self.sender_account.address),
         }
         transaction["gas"] = self.web3_client.eth.estimate_gas(transaction)
 
-        signed_tx: TrxResponse = self.web3_client.eth.account.sign_transaction(
+        signed_tx: SignedTransaction = self.web3_client.eth.account.sign_transaction(
             transaction, self.sender_account.key)
 
         #
@@ -432,14 +432,14 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         #
 
         # (action)(signed_tx, value)
-        signed_tx = action(signed_tx, value)
+        # signed_tx = action(signed_tx, value)
 
         #
-        print("=============================")
-        print(signed_tx)
+        # print("=============================")
+        # print(signed_tx)
         #
 
-        params = [signed_tx.raw_transaction.hex()]
+        params = [signed_tx.rawTransaction.hex()]
 
         model = RpcRequestFactory.get_send_raw_trx(params=params)
 
