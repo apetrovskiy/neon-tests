@@ -21,12 +21,16 @@ GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.
                             U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
-def R_ACTION(model: TrxResponse, value):  model.r = value; return model
+def r_action(model: TrxResponse, value) -> TrxResponse:
+    model.r = value
+    return model
+
+
 def S_ACTION(model: TrxResponse, value): model.s = value; return model
 def V_ACTION(model: TrxResponse, value): model.v = value; return model
 
 
-TEST_DATA_R_S_V = ([R_ACTION, ""], [R_ACTION, 0], [R_ACTION, 1], [R_ACTION, U64_MAX], [R_ACTION, U64_MAX*U64_MAX],
+TEST_DATA_R_S_V = ([r_action, ""], [r_action, 0], [r_action, 1], [r_action, U64_MAX], [r_action, U64_MAX*U64_MAX],
                    [S_ACTION, ""], [S_ACTION, 0], [S_ACTION, 1], [
                        S_ACTION, U64_MAX], [S_ACTION, U64_MAX*U64_MAX],
                    [V_ACTION, ""], [V_ACTION, 0], [V_ACTION, 1], [V_ACTION, U64_MAX], [V_ACTION, U64_MAX*U64_MAX])
