@@ -18,7 +18,7 @@ WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
 
 GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1,
-                            ErrorMessage.GAS_LIMIT_REACHED.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
+                            ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
 @allure.story("Basic: transfer tests")
@@ -361,21 +361,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         Too high gas_price > u64::max
         Too high gas_limit * gas_price > u64::max
         """
-        # transaction = self.get_transaction_data(
-        #     gas_limit=gas_limit, gas_price=gas_price)
 
-        # signed_tx = self.web3_client.eth.account.sign_transaction(
-        #     transaction, self.sender_account.key)
-
-        # params = [signed_tx.rawTransaction.hex()]
-        # model = RpcRequestFactory.get_send_raw_trx(params=params)
-        # response = self.jsonrpc_requester.request_json_rpc(model)
-        # actual_result = self.jsonrpc_requester.deserialize_response(response)
-
-        # assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        # assert expected_message in actual_result.error[
-        #     'message'], f"Actual result {actual_result}"
-        
         amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
 
         self.process_transaction_with_failure(
@@ -385,21 +371,8 @@ class TestRpcCallsTransactionsValidation(BasicTests):
             gas=gas_limit,
             gas_price=gas_price,
             error_message=expected_message)
-        
+
         self.assert_balance(self.sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
-
-    # def get_transaction_data(self, gas_limit, gas_price):
-    #     transaction = {
-    #         "from":  self.sender_account.address,
-    #         "to":  self.recipient_account.address,
-    #         "value":  self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
-    #         "chainId": self.web3_client._chain_id,
-    #         "gasPrice": gas_price or self.web3_client.gas_price(),
-    #         "nonce": self.web3_client.eth.get_transaction_count(self.sender_account.address),
-    #     }
-    #     if gas_limit != None:
-    #         transaction["gas"] = gas_limit
-    #     return transaction
