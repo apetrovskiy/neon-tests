@@ -17,8 +17,8 @@ U64_MAX = 18_446_744_073_709_551_615
 WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
 
-GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.01, None, ErrorMessage.INVALID_FIELDS_GAS.value], [U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [
-                            0, U64_MAX+1, ErrorMessage.GAS_LIMIT_REACHED.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
+GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1,
+                            ErrorMessage.GAS_LIMIT_REACHED.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
 @allure.story("Basic: transfer tests")
@@ -371,12 +371,6 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         model = RpcRequestFactory.get_send_raw_trx(params=params)
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
-
-        #
-        print("================================")
-        print(model)
-        print(actual_result)
-        #
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         assert expected_message in actual_result.error[
