@@ -361,20 +361,31 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         Too high gas_price > u64::max
         Too high gas_limit * gas_price > u64::max
         """
-        transaction = self.get_transaction_data(
-            gas_limit=gas_limit, gas_price=gas_price)
+        # transaction = self.get_transaction_data(
+        #     gas_limit=gas_limit, gas_price=gas_price)
 
-        signed_tx = self.web3_client.eth.account.sign_transaction(
-            transaction, self.sender_account.key)
+        # signed_tx = self.web3_client.eth.account.sign_transaction(
+        #     transaction, self.sender_account.key)
 
-        params = [signed_tx.rawTransaction.hex()]
-        model = RpcRequestFactory.get_send_raw_trx(params=params)
-        response = self.jsonrpc_requester.request_json_rpc(model)
-        actual_result = self.jsonrpc_requester.deserialize_response(response)
+        # params = [signed_tx.rawTransaction.hex()]
+        # model = RpcRequestFactory.get_send_raw_trx(params=params)
+        # response = self.jsonrpc_requester.request_json_rpc(model)
+        # actual_result = self.jsonrpc_requester.deserialize_response(response)
 
-        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert expected_message in actual_result.error[
-            'message'], f"Actual result {actual_result}"
+        # assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+        # assert expected_message in actual_result.error[
+        #     'message'], f"Actual result {actual_result}"
+        
+        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
+
+        self.process_transaction_with_failure(
+            self.sender_account,
+            self.recipient_account,
+            amount,
+            gas=gas_limit,
+            gas_price=gas_price,
+            error_message=expected_message)
+        
         self.assert_balance(self.sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(self.recipient_account.address,
