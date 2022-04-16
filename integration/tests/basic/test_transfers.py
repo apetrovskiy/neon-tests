@@ -397,15 +397,11 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        # assert self.assert_is_successful_response(
-        #     actual_result), AssertMessage.WRONG_TYPE.value
         assert expected_message in actual_result.error[
             'message'], f"Actual result {actual_result}"
 
-        self.assert_balance(
-            self.recipient_account.address,
-            InputData.FAUCET_1ST_REQUEST_AMOUNT.value +
-            InputData.SAMPLE_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
     def get_transaction_data(self, gas_limit, gas_price):
         transaction = {
