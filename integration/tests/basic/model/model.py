@@ -122,11 +122,3 @@ class AccountData:
     key: str = ""
 
 
-@dataclass_json(letter_case=LetterCase.CAMEL)
-@dataclass
-class SignedTransaction:
-    raw_transaction: str
-    hash: str
-    r: str
-    s: str
-    v: int
