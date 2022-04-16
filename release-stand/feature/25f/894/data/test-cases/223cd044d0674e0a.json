@@ -1,0 +1,441 @@
+{
+  "uid" : "223cd044d0674e0a",
+  "name" : "test_generate_bad_sign[0.01-None-Transaction had invalid fields: {'gas']",
+  "fullName" : "integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation#test_generate_bad_sign",
+  "historyId" : "0014a5c839b4d869856aec7c53a74865",
+  "time" : {
+    "start" : 1650123754691,
+    "stop" : 1650123755028,
+    "duration" : 337
+  },
+  "description" : "Generate bad sign (when v, r, s over allowed size)",
+  "descriptionHtml" : "<p>Generate bad sign (when v, r, s over allowed size)</p>\n",
+  "status" : "broken",
+  "statusMessage" : "TypeError: Transaction had invalid fields: {'gas': 0.01}",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f588f625d90>\ngas_limit = 0.01, gas_price = None\nexpected_message = \"Transaction had invalid fields: {'gas'\"\nprepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    # def test_gas_limit_and_gas_price(self, gas_limit, gas_price, expected_message, prepare_accounts):\n    #     \"\"\"Too low gas_limit\n    #     Too high gas_limit > u64::max\n    #     Too high gas_limit > u64::max\n    #     Too high gas_price > u64::max\n    #     Too high gas_limit * gas_price > u64::max\n    #     \"\"\"\n    #     amount = InputData.DEFAULT_TRANSFER_AMOUNT.value\n    #     self.process_transaction_with_failure(\n    #         self.sender_account,\n    #         self.recipient_account,\n    #         amount,\n    #         gas=gas_limit,\n    #         gas_price=gas_price,\n    #         error_message=expected_message)\n    #     self.assert_balance(self.sender_account.address,\n    #                         InputData.FAUCET_1ST_REQUEST_AMOUNT.value)\n    #     self.assert_balance(self.recipient_account.address,\n    #                         InputData.FAUCET_1ST_REQUEST_AMOUNT.value)\n    # @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\"\"\"\n    \n        transaction = self.get_transaction_data(\n            gas_limit=gas_limit, gas_price=gas_price)\n    \n>       signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n\nintegration/tests/basic/test_transfers.py:384: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/decorators.py:18: in _wrapper\n    return self.method(obj, *args, **kwargs)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/account.py:748: in sign_transaction\n    ) = sign_transaction_dict(account._key_obj, sanitized_transaction)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/signing.py:32: in sign_transaction_dict\n    unsigned_transaction = serializable_unsigned_transaction_from_dict(transaction_dict)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:44: in serializable_unsigned_transaction_from_dict\n    assert_valid_fields(transaction_dict)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ntransaction_dict = {'chainId': 111, 'gas': 0.01, 'gasPrice': 487412400000, 'nonce': 0, ...}\n\n    def assert_valid_fields(transaction_dict):\n        # check if any keys are missing\n        missing_keys = REQUIRED_TRANSACTION_KEYS.difference(transaction_dict.keys())\n        if missing_keys:\n            raise TypeError(\"Transaction must include these fields: %r\" % missing_keys)\n    \n        # check if any extra keys were specified\n        superfluous_keys = set(transaction_dict.keys()).difference(ALLOWED_TRANSACTION_KEYS)\n        if superfluous_keys:\n            raise TypeError(\"Transaction must not include unrecognized fields: %r\" % superfluous_keys)\n    \n        # check for valid types in each field\n        valid_fields: Dict[str, bool]\n        valid_fields = apply_formatters_to_dict(LEGACY_TRANSACTION_VALID_VALUES, transaction_dict)\n        if not all(valid_fields.values()):\n            invalid = {key: transaction_dict[key] for key, valid in valid_fields.items() if not valid}\n>           raise TypeError(\"Transaction had invalid fields: %r\" % invalid)\nE           TypeError: Transaction had invalid fields: {'gas': 0.01}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_account/_utils/legacy_transactions.py:109: TypeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650123561615,
+      "stop" : 1650123561616,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650123561615,
+      "stop" : 1650123561615,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650123561617,
+      "stop" : 1650123562745,
+      "duration" : 1128
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650123562745,
+      "stop" : 1650123562746,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1650123562746,
+      "stop" : 1650123562746,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650123562746,
+      "stop" : 1650123562746,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650123562746,
+      "stop" : 1650123562746,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650123749326,
+      "stop" : 1650123750968,
+      "duration" : 1642
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650123749326,
+        "stop" : 1650123749330,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x3e4597bC0Fe57800Dcc948eA0B0E6307D4abD765",
+      "time" : {
+        "start" : 1650123749330,
+        "stop" : 1650123750323,
+        "duration" : 993
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 964168524.0 NEON 4901.09722076 SOL",
+      "time" : {
+        "start" : 1650123750968,
+        "stop" : 1650123750968,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650123753348,
+      "stop" : 1650123753348,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1650123753349,
+      "stop" : 1650123754690,
+      "duration" : 1341
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1650123753349,
+      "stop" : 1650123753349,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650123753349,
+      "stop" : 1650123753349,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1650123755098,
+      "stop" : 1650123755098,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650123762106,
+      "stop" : 1650123762920,
+      "duration" : 814
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 964168464.0 NEON 4901.07845228 SOL",
+      "time" : {
+        "start" : 1650123762753,
+        "stop" : 1650123762753,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650123762919,
+        "stop" : 1650123762919,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650123762926,
+      "stop" : 1650123762927,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az445-589"
+  }, {
+    "name" : "thread",
+    "value" : "1977-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "expected_message",
+    "value" : "'Transaction had invalid fields: {'gas''"
+  }, {
+    "name" : "gas_limit",
+    "value" : "0.01"
+  }, {
+    "name" : "gas_price",
+    "value" : "None"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 6,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "fdb86e133eeb81c",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/892//#testresult/fdb86e133eeb81c",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction had invalid fields: {'gas': 0.01}",
+        "time" : {
+          "start" : 1650122815481,
+          "stop" : 1650122815677,
+          "duration" : 196
+        }
+      }, {
+        "uid" : "9460962d748c46b2",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/890//#testresult/9460962d748c46b2",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction must include these fields: {'gasPrice'}",
+        "time" : {
+          "start" : 1650121767894,
+          "stop" : 1650121768028,
+          "duration" : 134
+        }
+      }, {
+        "uid" : "a670cb84d4240daa",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/888//#testresult/a670cb84d4240daa",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction must include these fields: {'gasPrice'}",
+        "time" : {
+          "start" : 1650116907364,
+          "stop" : 1650116907468,
+          "duration" : 104
+        }
+      }, {
+        "uid" : "efd79a698949c401",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/886//#testresult/efd79a698949c401",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction must include these fields: {'gasPrice'}",
+        "time" : {
+          "start" : 1650114454062,
+          "stop" : 1650114454166,
+          "duration" : 104
+        }
+      }, {
+        "uid" : "d430edd1ebe71008",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/884//#testresult/d430edd1ebe71008",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Unsupported type: '<class 'float'>'.  Must be one of: bool, str, bytes, bytearrayor int.",
+        "time" : {
+          "start" : 1650048139844,
+          "stop" : 1650048140013,
+          "duration" : 169
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "223cd044d0674e0a.json",
+  "parameterValues" : [ "'Transaction had invalid fields: {'gas''", "0.01", "None" ]
+}
