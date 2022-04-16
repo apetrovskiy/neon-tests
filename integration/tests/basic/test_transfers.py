@@ -17,10 +17,8 @@ U64_MAX = 18_446_744_073_709_551_615
 WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
 
-# GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.01, None, ErrorMessage.INVALID_FIELDS_GAS.value], [
-# U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
-GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.01, None, ErrorMessage.INVALID_FIELDS_GAS.value], [
-                            U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.GAS_LIMIT_REACHED.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
+GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.01, None, ErrorMessage.INVALID_FIELDS_GAS.value], [U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [
+                            0, U64_MAX+1, ErrorMessage.GAS_LIMIT_REACHED.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
 @allure.story("Basic: transfer tests")
@@ -355,51 +353,36 @@ class TestRpcCallsTransactions(BasicTests):
 @allure.story("Basic: Json-RPC call tests - transactions validation")
 class TestRpcCallsTransactionsValidation(BasicTests):
     @pytest.mark.parametrize("gas_limit,gas_price,expected_message", GAS_LIMIT_AND_PRICE_DATA)
-    # def test_gas_limit_and_gas_price(self, gas_limit, gas_price, expected_message, prepare_accounts):
-    #     """Too low gas_limit
-    #     Too high gas_limit > u64::max
-    #     Too high gas_limit > u64::max
-    #     Too high gas_price > u64::max
-    #     Too high gas_limit * gas_price > u64::max
-    #     """
-    #     amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
-    #     self.process_transaction_with_failure(
-    #         self.sender_account,
-    #         self.recipient_account,
-    #         amount,
-    #         gas=gas_limit,
-    #         gas_price=gas_price,
-    #         error_message=expected_message)
-    #     self.assert_balance(self.sender_account.address,
-    #                         InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
-    #     self.assert_balance(self.recipient_account.address,
-    #                         InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
-    # @pytest.mark.parametrize("gas_limit,gas_price,expected_message", GAS_LIMIT_AND_PRICE_DATA)
     def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):
-        """Generate bad sign (when v, r, s over allowed size)"""
-
+        """Generate bad sign (when v, r, s over allowed size)
+        Too low gas_limit
+        Too high gas_limit > u64::max
+        Too high gas_limit > u64::max
+        Too high gas_price > u64::max
+        Too high gas_limit * gas_price > u64::max
+        """
         transaction = self.get_transaction_data(
             gas_limit=gas_limit, gas_price=gas_price)
 
         signed_tx = self.web3_client.eth.account.sign_transaction(
             transaction, self.sender_account.key)
 
-        #
-        print("=============================")
-        print(signed_tx)
-        #
-
         params = [signed_tx.rawTransaction.hex()]
-
         model = RpcRequestFactory.get_send_raw_trx(params=params)
-
         response = self.jsonrpc_requester.request_json_rpc(model)
         actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        #
+        print("================================")
+        print(model)
+        print(actual_result)
+        #
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         assert expected_message in actual_result.error[
             'message'], f"Actual result {actual_result}"
-
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
