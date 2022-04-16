@@ -105,8 +105,14 @@ class BasicTests(BaseTests):
 
             if error_info != None:
 
+                #
+                print("=======")
+                print(error_info)
+                #
+
                 if error_message:
-                    assert error_message in str(error_info)
+                    assert error_message in str(
+                        error_info), f"Expected {error_message} to be in {error_info}"
                 assert None != error_info, "Transaction failed"
 
             return tx
