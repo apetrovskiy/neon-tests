@@ -391,15 +391,15 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    def get_transaction_data(self, gas_limit, gas_price):
-        transaction = {
-            "from":  self.sender_account.address,
-            "to":  self.recipient_account.address,
-            "value":  self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
-            "chainId": self.web3_client._chain_id,
-            "gasPrice": gas_price or self.web3_client.gas_price(),
-            "nonce": self.web3_client.eth.get_transaction_count(self.sender_account.address),
-        }
-        if gas_limit != None:
-            transaction["gas"] = gas_limit
-        return transaction
+    # def get_transaction_data(self, gas_limit, gas_price):
+    #     transaction = {
+    #         "from":  self.sender_account.address,
+    #         "to":  self.recipient_account.address,
+    #         "value":  self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
+    #         "chainId": self.web3_client._chain_id,
+    #         "gasPrice": gas_price or self.web3_client.gas_price(),
+    #         "nonce": self.web3_client.eth.get_transaction_count(self.sender_account.address),
+    #     }
+    #     if gas_limit != None:
+    #         transaction["gas"] = gas_limit
+    #     return transaction
