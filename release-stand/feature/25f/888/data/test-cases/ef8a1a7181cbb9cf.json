@@ -1,0 +1,460 @@
+{
+  "uid" : "ef8a1a7181cbb9cf",
+  "name" : "test_generate_bad_sign[1000-18446744073709552-insufficient funds for transfer]",
+  "fullName" : "integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation#test_generate_bad_sign",
+  "historyId" : "d8edfb1e8eddb0b68383491a3f78b9bf",
+  "time" : {
+    "start" : 1650116912922,
+    "stop" : 1650116913127,
+    "duration" : 205
+  },
+  "description" : "Generate bad sign (when v, r, s over allowed size)",
+  "descriptionHtml" : "<p>Generate bad sign (when v, r, s over allowed size)</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Actual result JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e492; balance = 5000000000000000000; gasPrice = 18446744073709552; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0')\nassert 'insufficient funds for transfer' in {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e4...52; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}\n +  where {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e4...52; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '} = JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'The account balance is less than required: Account acb8...000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0').error",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fae0b852a30>\ngas_limit = 1000, gas_price = 18446744073709552\nexpected_message = 'insufficient funds for transfer', prepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\"\"\"\n    \n        transaction = self.get_transaction_data(gas_limit=gas_limit,gas_price=gas_price)\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        #\n        print(\"=============================\")\n        print(signed_tx)\n        #\n    \n    \n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n    \n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n        # assert self.assert_is_successful_response(\n        #     actual_result), AssertMessage.WRONG_TYPE.value\n>       assert expected_message in actual_result.error, f\"Actual result {actual_result}\"\nE       AssertionError: Actual result JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e492; balance = 5000000000000000000; gasPrice = 18446744073709552; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0')\nE       assert 'insufficient funds for transfer' in {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e4...52; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}\nE        +  where {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e4...52; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '} = JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'The account balance is less than required: Account acb8...000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0').error\n\nintegration/tests/basic/test_transfers.py:407: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650116741908,
+      "stop" : 1650116741908,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650116741908,
+      "stop" : 1650116741910,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650116741910,
+      "stop" : 1650116742517,
+      "duration" : 607
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1650116742517,
+      "stop" : 1650116742517,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650116742517,
+      "stop" : 1650116742517,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650116742517,
+      "stop" : 1650116742518,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650116742517,
+      "stop" : 1650116742517,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650116894400,
+      "stop" : 1650116895559,
+      "duration" : 1159
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650116894400,
+        "stop" : 1650116894404,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x97CA536b248d13B383a1ECA02a26DfCc8016Bf6D",
+      "time" : {
+        "start" : 1650116894405,
+        "stop" : 1650116895190,
+        "duration" : 785
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 966074349.0 NEON 4902.94241892 SOL",
+      "time" : {
+        "start" : 1650116895559,
+        "stop" : 1650116895559,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650116911717,
+      "stop" : 1650116911717,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1650116911718,
+      "stop" : 1650116912922,
+      "duration" : 1204
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1650116911718,
+      "stop" : 1650116911718,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650116911718,
+      "stop" : 1650116911718,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Generate bad sign (when v, r, s over allowed size)",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Actual result JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e492; balance = 5000000000000000000; gasPrice = 18446744073709552; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0')\nassert 'insufficient funds for transfer' in {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e4...52; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}\n +  where {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e4...52; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '} = JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'The account balance is less than required: Account acb8...000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0').error",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fae0b852a30>\ngas_limit = 1000, gas_price = 18446744073709552\nexpected_message = 'insufficient funds for transfer', prepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\"\"\"\n    \n        transaction = self.get_transaction_data(gas_limit=gas_limit,gas_price=gas_price)\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        #\n        print(\"=============================\")\n        print(signed_tx)\n        #\n    \n    \n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n    \n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n        # assert self.assert_is_successful_response(\n        #     actual_result), AssertMessage.WRONG_TYPE.value\n>       assert expected_message in actual_result.error, f\"Actual result {actual_result}\"\nE       AssertionError: Actual result JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e492; balance = 5000000000000000000; gasPrice = 18446744073709552; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0')\nE       assert 'insufficient funds for transfer' in {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e4...52; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}\nE        +  where {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e4...52; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '} = JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'The account balance is less than required: Account acb8...000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0').error\n\nintegration/tests/basic/test_transfers.py:407: AssertionError",
+    "steps" : [ {
+      "name" : "Request: JsonRpcRequest(id=75, method='eth_sendRawTransaction', params=['0xf86f80874189374bc6a7f08203e89407ce02e694c6b702f71bca205a2e2b782085a43a87470de4df82000080820102a0fdbdac98c5ee022b54627a452d62f6e96359eddaa593306ae5fd6eeff9c7ec37a0065d8271c559e7ca1f0fa795aa89f084c5ec71530f19ff14967e354e3a67090a'], jsonrpc='2.0')",
+      "time" : {
+        "start" : 1650116913029,
+        "stop" : 1650116913126,
+        "duration" : 97
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Response: {'jsonrpc': '2.0', 'id': 75, 'error': {'code': -32000, 'message': 'The account balance is less than required: Account acb80662ac61f19ec625796d344ebe44e301e492; balance = 5000000000000000000; gasPrice = 18446744073709552; gasLimit = 1000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}}",
+      "time" : {
+        "start" : 1650116913126,
+        "stop" : 1650116913126,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "5b050f0e8fda375a",
+      "name" : "stdout",
+      "source" : "5b050f0e8fda375a.txt",
+      "type" : "text/plain",
+      "size" : 559
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1650116913137,
+      "stop" : 1650116913137,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650116913139,
+      "stop" : 1650116913608,
+      "duration" : 469
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 966074229.0 NEON 4902.90488196 SOL",
+      "time" : {
+        "start" : 1650116913510,
+        "stop" : 1650116913510,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650116913607,
+        "stop" : 1650116913607,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650116913615,
+      "stop" : 1650116913615,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az196-855"
+  }, {
+    "name" : "thread",
+    "value" : "1842-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "expected_message",
+    "value" : "'insufficient funds for transfer'"
+  }, {
+    "name" : "gas_limit",
+    "value" : "1000"
+  }, {
+    "name" : "gas_price",
+    "value" : "18446744073709552"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "9812573c610e5c04",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/886//#testresult/9812573c610e5c04",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f22e11faeb0>>(JsonRpcErrorResponse(id=42, error={'code': -32000, 'message': 'The account balance is less than required: Account 89de...000; fee = 18446744073709552000; value = 20000000000000000; required_balance = 18466744073709552000; '}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f22e11faeb0>> = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f22e11faeb0>.assert_is_successful_response",
+        "time" : {
+          "start" : 1650114459653,
+          "stop" : 1650114459872,
+          "duration" : 219
+        }
+      }, {
+        "uid" : "bf3121746f030e70",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/884//#testresult/bf3121746f030e70",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: The response type is error response\nassert False\n +  where False = <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fc0fdeb7400>>(JsonRpcErrorResponse(id=45, error={'code': -32000, 'message': 'The account balance is less than required: Account 7295...0; fee = 387381625547900592000; value = 20000000000000000; required_balance = 387401625547900592000; '}, jsonrpc='2.0'))\n +    where <bound method BasicTests.assert_is_successful_response of <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fc0fdeb7400>> = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fc0fdeb7400>.assert_is_successful_response",
+        "time" : {
+          "start" : 1650048147989,
+          "stop" : 1650048148849,
+          "duration" : 860
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ef8a1a7181cbb9cf.json",
+  "parameterValues" : [ "'insufficient funds for transfer'", "1000", "18446744073709552" ]
+}
