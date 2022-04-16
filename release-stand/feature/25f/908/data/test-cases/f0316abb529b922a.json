@@ -1,0 +1,547 @@
+{
+  "uid" : "f0316abb529b922a",
+  "name" : "test_generate_bad_sign[1-None-gas limit reached]",
+  "fullName" : "integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation#test_generate_bad_sign",
+  "historyId" : "97724a4bb4b8d1e108798676128ffcb7",
+  "time" : {
+    "start" : 1650131796933,
+    "stop" : 1650131797466,
+    "duration" : 533
+  },
+  "description" : "Generate bad sign (when v, r, s over allowed size)\n        Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        ",
+  "descriptionHtml" : "<p>Generate bad sign (when v, r, s over allowed size)<br />\nToo low gas_limit<br />\nToo high gas_limit &gt; u64::max<br />\nToo high gas_limit &gt; u64::max<br />\nToo high gas_price &gt; u64::max<br />\nToo high gas_limit * gas_price &gt; u64::max</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Expected gas limit reached to be in <ExceptionInfo ValueError({'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}) tblen=6>",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fe6dae63fd0>\ngas_limit = 1, gas_price = None, expected_message = 'gas limit reached'\nprepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\n        Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        \"\"\"\n        # transaction = self.get_transaction_data(\n        #     gas_limit=gas_limit, gas_price=gas_price)\n    \n        # signed_tx = self.web3_client.eth.account.sign_transaction(\n        #     transaction, self.sender_account.key)\n    \n        # params = [signed_tx.rawTransaction.hex()]\n        # model = RpcRequestFactory.get_send_raw_trx(params=params)\n        # response = self.jsonrpc_requester.request_json_rpc(model)\n        # actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        # assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n        # assert expected_message in actual_result.error[\n        #     'message'], f\"Actual result {actual_result}\"\n    \n        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value\n    \n>       self.process_transaction_with_failure(\n            self.sender_account,\n            self.recipient_account,\n            amount,\n            gas=gas_limit,\n            gas_price=gas_price,\n            error_message=expected_message)\n\nintegration/tests/basic/test_transfers.py:381: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fe6dae63fd0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7fe6daf1a850>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7fe6daf1a2b0>\namount = 0.01, gas = 1, gas_price = None, error_message = 'gas limit reached'\n\n    def process_transaction_with_failure(\n            self,\n            sender_account: Account,\n            recipient_account: Union[Account, AccountData],\n            amount: int,\n            gas: Optional[int] = 0,\n            gas_price: Optional[int] = None,\n            error_message: str = \"\") -> Union[web3.types.TxReceipt, None]:\n        '''Processes transaction, expects a failure'''\n    \n        tx: Union[web3.types.TxReceipt, None] = None\n        with allure.step(\n                f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"\n        ):\n            with pytest.raises(Exception) as error_info:\n                tx = self.web3_client.send_neon(sender_account,\n                                                recipient_account, amount, gas,\n                                                gas_price)\n    \n            if error_info != None:\n    \n                #\n                print(\"=======\")\n                print(error_info)\n                #\n    \n                if error_message:\n>                   assert error_message in str(\n                        error_info), f\"Expected {error_message} to be in {error_info}\"\nE                   AssertionError: Expected gas limit reached to be in <ExceptionInfo ValueError({'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}) tblen=6>\n\nintegration/tests/basic/helpers/basic.py:114: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650131605936,
+      "stop" : 1650131605936,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650131605937,
+      "stop" : 1650131605938,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650131605938,
+      "stop" : 1650131607050,
+      "duration" : 1112
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650131607050,
+      "stop" : 1650131607050,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650131607050,
+      "stop" : 1650131607050,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1650131607050,
+      "stop" : 1650131607050,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650131607051,
+      "stop" : 1650131607051,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650131793949,
+      "stop" : 1650131793949,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650131793949,
+      "stop" : 1650131795592,
+      "duration" : 1643
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650131793949,
+        "stop" : 1650131793953,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x81FeC82C57477B2335f6794B8BC133efA9B1E9ba",
+      "time" : {
+        "start" : 1650131793953,
+        "stop" : 1650131794947,
+        "duration" : 994
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 959756692.0 NEON 4898.26252432 SOL",
+      "time" : {
+        "start" : 1650131795592,
+        "stop" : 1650131795592,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650131795592,
+      "stop" : 1650131795592,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1650131795592,
+      "stop" : 1650131795592,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1650131795593,
+      "stop" : 1650131796932,
+      "duration" : 1339
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Generate bad sign (when v, r, s over allowed size)\n        Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        ",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Expected gas limit reached to be in <ExceptionInfo ValueError({'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}) tblen=6>",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fe6dae63fd0>\ngas_limit = 1, gas_price = None, expected_message = 'gas limit reached'\nprepare_accounts = None\n\n    @pytest.mark.parametrize(\"gas_limit,gas_price,expected_message\", GAS_LIMIT_AND_PRICE_DATA)\n    def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):\n        \"\"\"Generate bad sign (when v, r, s over allowed size)\n        Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        \"\"\"\n        # transaction = self.get_transaction_data(\n        #     gas_limit=gas_limit, gas_price=gas_price)\n    \n        # signed_tx = self.web3_client.eth.account.sign_transaction(\n        #     transaction, self.sender_account.key)\n    \n        # params = [signed_tx.rawTransaction.hex()]\n        # model = RpcRequestFactory.get_send_raw_trx(params=params)\n        # response = self.jsonrpc_requester.request_json_rpc(model)\n        # actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        # assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n        # assert expected_message in actual_result.error[\n        #     'message'], f\"Actual result {actual_result}\"\n    \n        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value\n    \n>       self.process_transaction_with_failure(\n            self.sender_account,\n            self.recipient_account,\n            amount,\n            gas=gas_limit,\n            gas_price=gas_price,\n            error_message=expected_message)\n\nintegration/tests/basic/test_transfers.py:381: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7fe6dae63fd0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7fe6daf1a850>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7fe6daf1a2b0>\namount = 0.01, gas = 1, gas_price = None, error_message = 'gas limit reached'\n\n    def process_transaction_with_failure(\n            self,\n            sender_account: Account,\n            recipient_account: Union[Account, AccountData],\n            amount: int,\n            gas: Optional[int] = 0,\n            gas_price: Optional[int] = None,\n            error_message: str = \"\") -> Union[web3.types.TxReceipt, None]:\n        '''Processes transaction, expects a failure'''\n    \n        tx: Union[web3.types.TxReceipt, None] = None\n        with allure.step(\n                f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"\n        ):\n            with pytest.raises(Exception) as error_info:\n                tx = self.web3_client.send_neon(sender_account,\n                                                recipient_account, amount, gas,\n                                                gas_price)\n    \n            if error_info != None:\n    \n                #\n                print(\"=======\")\n                print(error_info)\n                #\n    \n                if error_message:\n>                   assert error_message in str(\n                        error_info), f\"Expected {error_message} to be in {error_info}\"\nE                   AssertionError: Expected gas limit reached to be in <ExceptionInfo ValueError({'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}) tblen=6>\n\nintegration/tests/basic/helpers/basic.py:114: AssertionError",
+    "steps" : [ {
+      "name" : "Sending 0.01 from 0x3EAdcF4dC72b82E990132f9cE8e9C699C66f4cE5 to 0xf6729568AE1F884fAdD41295ada46388DDDF8d30",
+      "time" : {
+        "start" : 1650131796934,
+        "stop" : 1650131797466,
+        "duration" : 532
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Expected gas limit reached to be in <ExceptionInfo ValueError({'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}) tblen=6>\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 114, in process_transaction_with_failure\n    assert error_message in str(\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "132ce19d30683fc9",
+      "name" : "stdout",
+      "source" : "132ce19d30683fc9.txt",
+      "type" : "text/plain",
+      "size" : 202
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1650131797477,
+      "stop" : 1650131797477,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650131804974,
+      "stop" : 1650131805786,
+      "duration" : 812
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 959756642.0 NEON 4898.24688392 SOL",
+      "time" : {
+        "start" : 1650131805619,
+        "stop" : 1650131805619,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650131805785,
+        "stop" : 1650131805785,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650131805792,
+      "stop" : 1650131805792,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az449-950"
+  }, {
+    "name" : "thread",
+    "value" : "1836-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "expected_message",
+    "value" : "'gas limit reached'"
+  }, {
+    "name" : "gas_limit",
+    "value" : "1"
+  }, {
+    "name" : "gas_price",
+    "value" : "None"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 7,
+        "broken" : 6,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "b1edfbf543e9e415",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/906//#testresult/b1edfbf543e9e415",
+        "status" : "failed",
+        "statusDetails" : "Failed: DID NOT RAISE <class 'Exception'>",
+        "time" : {
+          "start" : 1650131170539,
+          "stop" : 1650131171499,
+          "duration" : 960
+        }
+      }, {
+        "uid" : "6d786dadee9c5567",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/904//#testresult/6d786dadee9c5567",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650130166237,
+          "stop" : 1650130166777,
+          "duration" : 540
+        }
+      }, {
+        "uid" : "59a28042bd4e7ef4",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/902//#testresult/59a28042bd4e7ef4",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Actual result JsonRpcErrorResponse(id=75, error={'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, jsonrpc='2.0')\nassert 'gas limit reached' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'",
+        "time" : {
+          "start" : 1650128832322,
+          "stop" : 1650128832739,
+          "duration" : 417
+        }
+      }, {
+        "uid" : "bc73d028af44bee9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/900//#testresult/bc73d028af44bee9",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Actual result JsonRpcErrorResponse(id=21, error={'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, jsonrpc='2.0')\nassert 'gas limit reached' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'",
+        "time" : {
+          "start" : 1650127300074,
+          "stop" : 1650127300607,
+          "duration" : 533
+        }
+      }, {
+        "uid" : "30fa1f21968aaaa0",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/898//#testresult/30fa1f21968aaaa0",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Actual result JsonRpcErrorResponse(id=35, error={'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, jsonrpc='2.0')\nassert 'gas limit reached' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'",
+        "time" : {
+          "start" : 1650125915093,
+          "stop" : 1650125915424,
+          "duration" : 331
+        }
+      }, {
+        "uid" : "53d28b86a829be23",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/896//#testresult/53d28b86a829be23",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Actual result JsonRpcErrorResponse(id=21, error={'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}, jsonrpc='2.0')\nassert 'gas limit reached' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'",
+        "time" : {
+          "start" : 1650124996358,
+          "stop" : 1650124996894,
+          "duration" : 536
+        }
+      }, {
+        "uid" : "c9309b36d5049eef",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/894//#testresult/c9309b36d5049eef",
+        "status" : "broken",
+        "statusDetails" : "AttributeError: 'JsonRpcResponse' object has no attribute 'error'",
+        "time" : {
+          "start" : 1650123752310,
+          "stop" : 1650123753337,
+          "duration" : 1027
+        }
+      }, {
+        "uid" : "53858a30a4b15f79",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/892//#testresult/53858a30a4b15f79",
+        "status" : "broken",
+        "statusDetails" : "AttributeError: 'dict' object has no attribute 'message'",
+        "time" : {
+          "start" : 1650122813915,
+          "stop" : 1650122814237,
+          "duration" : 322
+        }
+      }, {
+        "uid" : "258e70f87b5f9b12",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/890//#testresult/258e70f87b5f9b12",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction must include these fields: {'gasPrice'}",
+        "time" : {
+          "start" : 1650121766472,
+          "stop" : 1650121766606,
+          "duration" : 134
+        }
+      }, {
+        "uid" : "4f5c7ae316bfe526",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/888//#testresult/4f5c7ae316bfe526",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction must include these fields: {'gasPrice'}",
+        "time" : {
+          "start" : 1650116906035,
+          "stop" : 1650116906136,
+          "duration" : 101
+        }
+      }, {
+        "uid" : "e5dfa35740d20225",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/886//#testresult/e5dfa35740d20225",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction must include these fields: {'gasPrice'}",
+        "time" : {
+          "start" : 1650114452723,
+          "stop" : 1650114452828,
+          "duration" : 105
+        }
+      }, {
+        "uid" : "be6d81b6d3e2db26",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25f/884//#testresult/be6d81b6d3e2db26",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Transaction had invalid fields: {'gasPrice': None}",
+        "time" : {
+          "start" : 1650048137790,
+          "stop" : 1650048138475,
+          "duration" : 685
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "f0316abb529b922a.json",
+  "parameterValues" : [ "'gas limit reached'", "1", "None" ]
+}
