@@ -17,10 +17,10 @@ U64_MAX = 18_446_744_073_709_551_615
 WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
 
+# GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.01, None, ErrorMessage.INVALID_FIELDS_GAS.value], [
+# U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 GAS_LIMIT_AND_PRICE_DATA = ([1, None, ErrorMessage.GAS_LIMIT_REACHED.value], [0.01, None, ErrorMessage.INVALID_FIELDS_GAS.value], [
-                            U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.INSUFFICIENT_FUNDS.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
-
-
+                            U64_MAX+1, None, ErrorMessage.INSUFFICIENT_FUNDS.value], [0, U64_MAX+1, ErrorMessage.GAS_LIMIT_REACHED.value], [1, (U64_MAX+1), ErrorMessage.INSUFFICIENT_FUNDS.value], [1000, int((U64_MAX+100)/1000), ErrorMessage.INSUFFICIENT_FUNDS.value])
 
 
 @allure.story("Basic: transfer tests")
@@ -362,9 +362,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
     #     Too high gas_price > u64::max
     #     Too high gas_limit * gas_price > u64::max
     #     """
-
     #     amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
-
     #     self.process_transaction_with_failure(
     #         self.sender_account,
     #         self.recipient_account,
@@ -372,17 +370,16 @@ class TestRpcCallsTransactionsValidation(BasicTests):
     #         gas=gas_limit,
     #         gas_price=gas_price,
     #         error_message=expected_message)
-
     #     self.assert_balance(self.sender_account.address,
     #                         InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
     #     self.assert_balance(self.recipient_account.address,
     #                         InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
-
     # @pytest.mark.parametrize("gas_limit,gas_price,expected_message", GAS_LIMIT_AND_PRICE_DATA)
     def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):
         """Generate bad sign (when v, r, s over allowed size)"""
 
-        transaction = self.get_transaction_data(gas_limit=gas_limit,gas_price=gas_price)
+        transaction = self.get_transaction_data(
+            gas_limit=gas_limit, gas_price=gas_price)
 
         signed_tx = self.web3_client.eth.account.sign_transaction(
             transaction, self.sender_account.key)
@@ -391,8 +388,6 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         print("=============================")
         print(signed_tx)
         #
-
-
 
         params = [signed_tx.rawTransaction.hex()]
 
@@ -404,29 +399,22 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         # assert self.assert_is_successful_response(
         #     actual_result), AssertMessage.WRONG_TYPE.value
-        assert expected_message in actual_result.error, f"Actual result {actual_result}"
+        assert expected_message in actual_result.error.message, f"Actual result {actual_result}"
 
         self.assert_balance(
             self.recipient_account.address,
             InputData.FAUCET_1ST_REQUEST_AMOUNT.value +
             InputData.SAMPLE_AMOUNT.value)
 
-    def get_transaction_data(self,gas_limit,gas_price):
+    def get_transaction_data(self, gas_limit, gas_price):
         transaction = {
-                "from":
-                self.sender_account.address,
-                "to":
-                self.recipient_account.address,
-                "value":
-                self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
-                "chainId":
-                self.web3_client._chain_id,
-                "nonce":
-                self.web3_client.eth.get_transaction_count(
-                    self.sender_account.address),
-            }
-        if gas_limit!=None:
-            transaction["gas"]=gas_limit
-        if gas_price!=None:
-            transaction["gasPrice"]=gas_price
+            "from":  self.sender_account.address,
+            "to":  self.recipient_account.address,
+            "value":  self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
+            "chainId": self.web3_client._chain_id,
+            "gasPrice": gas_price or self.web3_client.gas_price(),
+            "nonce": self.web3_client.eth.get_transaction_count(self.sender_account.address),
+        }
+        if gas_limit != None:
+            transaction["gas"] = gas_limit
         return transaction

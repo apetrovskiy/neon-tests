@@ -120,5 +120,3 @@ class TrxReceiptResponse:
 class AccountData:
     address: str
     key: str = ""
-
-
