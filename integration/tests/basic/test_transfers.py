@@ -355,30 +355,30 @@ class TestRpcCallsTransactions(BasicTests):
 @allure.story("Basic: Json-RPC call tests - transactions validation")
 class TestRpcCallsTransactionsValidation(BasicTests):
     @pytest.mark.parametrize("gas_limit,gas_price,expected_message", GAS_LIMIT_AND_PRICE_DATA)
-    def test_gas_limit_and_gas_price(self, gas_limit, gas_price, expected_message, prepare_accounts):
-        """Too low gas_limit
-        Too high gas_limit > u64::max
-        Too high gas_limit > u64::max
-        Too high gas_price > u64::max
-        Too high gas_limit * gas_price > u64::max
-        """
+    # def test_gas_limit_and_gas_price(self, gas_limit, gas_price, expected_message, prepare_accounts):
+    #     """Too low gas_limit
+    #     Too high gas_limit > u64::max
+    #     Too high gas_limit > u64::max
+    #     Too high gas_price > u64::max
+    #     Too high gas_limit * gas_price > u64::max
+    #     """
 
-        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
+    #     amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
 
-        self.process_transaction_with_failure(
-            self.sender_account,
-            self.recipient_account,
-            amount,
-            gas=gas_limit,
-            gas_price=gas_price,
-            error_message=expected_message)
+    #     self.process_transaction_with_failure(
+    #         self.sender_account,
+    #         self.recipient_account,
+    #         amount,
+    #         gas=gas_limit,
+    #         gas_price=gas_price,
+    #         error_message=expected_message)
 
-        self.assert_balance(self.sender_account.address,
-                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
-        self.assert_balance(self.recipient_account.address,
-                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+    #     self.assert_balance(self.sender_account.address,
+    #                         InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+    #     self.assert_balance(self.recipient_account.address,
+    #                         InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    @pytest.mark.parametrize("gas_limit,gas_price,expected_message", GAS_LIMIT_AND_PRICE_DATA)
+    # @pytest.mark.parametrize("gas_limit,gas_price,expected_message", GAS_LIMIT_AND_PRICE_DATA)
     def test_generate_bad_sign(self, gas_limit, gas_price, expected_message, prepare_accounts):
         """Generate bad sign (when v, r, s over allowed size)"""
 
