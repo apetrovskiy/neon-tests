@@ -399,7 +399,8 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         # assert self.assert_is_successful_response(
         #     actual_result), AssertMessage.WRONG_TYPE.value
-        assert expected_message in actual_result.error.message, f"Actual result {actual_result}"
+        assert expected_message in actual_result.error[
+            'message'], f"Actual result {actual_result}"
 
         self.assert_balance(
             self.recipient_account.address,
