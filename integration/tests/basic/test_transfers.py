@@ -370,7 +370,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
 
     def test_send_with_big_nonce(self, prepare_accounts):
         """Nonce is too high"""
-        
+
         transaction = self.create_tx_object(1_000_000_000)
 
         signed_tx = self.web3_client.eth.account.sign_transaction(
@@ -393,7 +393,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
 
     def test_send_with_old_nonce(self, prepare_accounts):
         """Nonce is too low"""
-        
+
         # 1st transaction
         transaction = self.create_tx_object(
             self.web3_client.eth.get_transaction_count(self.sender_account.address))
