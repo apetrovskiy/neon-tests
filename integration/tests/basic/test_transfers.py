@@ -314,19 +314,12 @@ class TestRpcCallsTransactions(BasicTests):
     def test_check_erc_1820_transaction(self, prepare_accounts):
         """Check ERC-1820 transaction (without chain_id in sign)"""
         transaction = {
-            "from":
-            self.sender_account.address,
-            "to":
-            self.recipient_account.address,
-            "value":
-            self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
-            "gasPrice":
-            self.web3_client.gas_price(),
-            "gas":
-            0,
-            "nonce":
-            self.web3_client.eth.get_transaction_count(
-                self.sender_account.address),
+            "from":self.sender_account.address,
+            "to":self.recipient_account.address,
+            "value":self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
+            "gasPrice":self.web3_client.gas_price(),
+            "gas": 0,
+            "nonce":self.web3_client.eth.get_transaction_count( self.sender_account.address),
         }
         transaction["gas"] = self.web3_client.eth.estimate_gas(transaction)
 
@@ -350,6 +343,8 @@ class TestRpcCallsTransactions(BasicTests):
             InputData.SAMPLE_AMOUNT.value)
 
 
+    
+
 @allure.story("Basic: Json-RPC call tests - transactions validation")
 class TestRpcCallsTransactionsValidation(BasicTests):
     @pytest.mark.parametrize("gas_limit,gas_price,expected_message", GAS_LIMIT_AND_PRICE_DATA)
@@ -361,8 +356,6 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         Too high gas_price > u64::max
         Too high gas_limit * gas_price > u64::max
         """
-
-
 
         self.process_transaction_with_failure(
             self.sender_account,
@@ -376,3 +369,66 @@ class TestRpcCallsTransactionsValidation(BasicTests):
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(self.recipient_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+
+    def test_send_with_big_nonce(self, prepare_accounts):
+        transaction = self.create_tx_object(1_000_000_000)
+    
+        signed_tx = self.web3_client.eth.account.sign_transaction(
+            transaction, self.sender_account.key)
+
+        params = [signed_tx.rawTransaction.hex()]
+
+        model = RpcRequestFactory.get_send_raw_trx(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
+
+        self.assert_balance(self.sender_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+        self.assert_balance(self.recipient_account.address,
+                            InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
+    
+    def test_send_with_old_nonce(self, prepare_accounts):
+        # 1st transaction
+        transaction = self.create_tx_object(self.web3_client.eth.get_transaction_count( self.sender_account.address))
+        
+        signed_tx = self.web3_client.eth.account.sign_transaction(
+            transaction, self.sender_account.key)
+
+        params = [signed_tx.rawTransaction.hex()]
+
+        model = RpcRequestFactory.get_send_raw_trx(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+        
+        # 2nd transaction (with low nonce)
+        transaction = self.create_tx_object(0)
+        
+        signed_tx = self.web3_client.eth.account.sign_transaction(
+            transaction, self.sender_account.key)
+
+        params = [signed_tx.rawTransaction.hex()]
+
+        model = RpcRequestFactory.get_send_raw_trx(params=params)
+        response = self.jsonrpc_requester.request_json_rpc(model)
+        actual_result = self.jsonrpc_requester.deserialize_response(response)
+
+        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value        
+        assert ErrorMessage.NONCE_TOO_LOW.value in actual_result.error["message"], f"Message does not contain '{ErrorMessage.NONCE_TOO_LOW.value}'"
+        
+
+
+    
+
+    def create_tx_object(self,nonce):
+        transaction= {
+            "from":self.sender_account.address,
+            "to":self.recipient_account.address,
+            "value":self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
+            "gasPrice":self.web3_client.gas_price(),
+            "gas": 0,
+            "nonce":nonce,
+        }
+        transaction["gas"] = self.web3_client.eth.estimate_gas(transaction)
+        return transaction
