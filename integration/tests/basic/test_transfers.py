@@ -383,8 +383,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert ErrorMessage.NONCE_TOO_HIGH.value in actual_result.error[
-            "message"], f"Message does not contain '{ErrorMessage.NONCE_TOO_LOW.value}'"
+        assert ErrorMessage.NONCE_TOO_HIGH.value in actual_result.error["message"], AssertMessage.DOES_NOT_CONTAIN_TOO_HIGH.value
 
         self.assert_balance(self.sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
@@ -420,8 +419,7 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         actual_result = self.jsonrpc_requester.deserialize_response(response)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
-        assert ErrorMessage.NONCE_TOO_LOW.value in actual_result.error[
-            "message"], f"Message does not contain '{ErrorMessage.NONCE_TOO_LOW.value}'"
+        assert ErrorMessage.NONCE_TOO_LOW.value in actual_result.error["message"], AssertMessage.DOES_NOT_CONTAIN_TOO_LOW.value
 
     def create_tx_object(self, nonce):
         transaction = {
