@@ -362,12 +362,12 @@ class TestRpcCallsTransactionsValidation(BasicTests):
         Too high gas_limit * gas_price > u64::max
         """
 
-        amount = InputData.DEFAULT_TRANSFER_AMOUNT.value
+
 
         self.process_transaction_with_failure(
             self.sender_account,
             self.recipient_account,
-            amount,
+            amount=InputData.DEFAULT_TRANSFER_AMOUNT.value,
             gas=gas_limit,
             gas_price=gas_price,
             error_message=expected_message)
