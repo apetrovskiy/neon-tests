@@ -1,0 +1,495 @@
+{
+  "uid" : "65146513b3dee711",
+  "name" : "test_send_with_old_nonce",
+  "fullName" : "integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation#test_send_with_old_nonce",
+  "historyId" : "9c7ebf1e178d726acf8e4505b97121d5",
+  "time" : {
+    "start" : 1650231281387,
+    "stop" : 1650231282142,
+    "duration" : 755
+  },
+  "description" : "Nonce is too low",
+  "descriptionHtml" : "<p>Nonce is too low</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Message does not contain 'nonce too low'\nassert 'nonce too low' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'\n +  where 'nonce too low' = <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'>.value\n +    where <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'> = ErrorMessage.NONCE_TOO_LOW",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f309fb5acd0>\nprepare_accounts = None\n\n    def test_send_with_old_nonce(self, prepare_accounts):\n        \"\"\"Nonce is too low\"\"\"\n    \n        # 1st transaction\n        transaction = self.create_tx_object(\n            self.web3_client.eth.get_transaction_count(self.sender_account.address))\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        # 2nd transaction (with low nonce)\n        transaction = self.create_tx_object(0)\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert ErrorMessage.NONCE_TOO_LOW.value in actual_result.error[\n            \"message\"], AssertMessage.DOES_NOT_CONTAIN_TOO_LOW.value\nE       AssertionError: Message does not contain 'nonce too low'\nE       assert 'nonce too low' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'\nE        +  where 'nonce too low' = <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'>.value\nE        +    where <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'> = ErrorMessage.NONCE_TOO_LOW\n\nintegration/tests/basic/test_transfers.py:423: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650231058975,
+      "stop" : 1650231058977,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650231058975,
+      "stop" : 1650231058975,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650231058977,
+      "stop" : 1650231059553,
+      "duration" : 576
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "jsonrpc_requester",
+    "time" : {
+      "start" : 1650231059553,
+      "stop" : 1650231059554,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650231059553,
+      "stop" : 1650231059553,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650231059554,
+      "stop" : 1650231059554,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650231059554,
+      "stop" : 1650231059554,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650231229368,
+      "stop" : 1650231230530,
+      "duration" : 1162
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650231229368,
+        "stop" : 1650231229371,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x4524bBcA88427c657C1D6E5B8B7321d630093F6D",
+      "time" : {
+        "start" : 1650231229371,
+        "stop" : 1650231230161,
+        "duration" : 790
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 953838951.0 NEON 4884.16842104 SOL",
+      "time" : {
+        "start" : 1650231230530,
+        "stop" : 1650231230530,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_json_rpc_requester",
+    "time" : {
+      "start" : 1650231280184,
+      "stop" : 1650231280184,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650231280184,
+      "stop" : 1650231280184,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_accounts",
+    "time" : {
+      "start" : 1650231280184,
+      "stop" : 1650231281386,
+      "duration" : 1202
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650231280184,
+      "stop" : 1650231280184,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Nonce is too low",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Message does not contain 'nonce too low'\nassert 'nonce too low' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'\n +  where 'nonce too low' = <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'>.value\n +    where <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'> = ErrorMessage.NONCE_TOO_LOW",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestRpcCallsTransactionsValidation object at 0x7f309fb5acd0>\nprepare_accounts = None\n\n    def test_send_with_old_nonce(self, prepare_accounts):\n        \"\"\"Nonce is too low\"\"\"\n    \n        # 1st transaction\n        transaction = self.create_tx_object(\n            self.web3_client.eth.get_transaction_count(self.sender_account.address))\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        # 2nd transaction (with low nonce)\n        transaction = self.create_tx_object(0)\n    \n        signed_tx = self.web3_client.eth.account.sign_transaction(\n            transaction, self.sender_account.key)\n    \n        params = [signed_tx.rawTransaction.hex()]\n    \n        model = RpcRequestFactory.get_send_raw_trx(params=params)\n        response = self.jsonrpc_requester.request_json_rpc(model)\n        actual_result = self.jsonrpc_requester.deserialize_response(response)\n    \n        assert actual_result.id == model.id, AssertMessage.WRONG_ID.value\n>       assert ErrorMessage.NONCE_TOO_LOW.value in actual_result.error[\n            \"message\"], AssertMessage.DOES_NOT_CONTAIN_TOO_LOW.value\nE       AssertionError: Message does not contain 'nonce too low'\nE       assert 'nonce too low' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'\nE        +  where 'nonce too low' = <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'>.value\nE        +    where <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'> = ErrorMessage.NONCE_TOO_LOW\n\nintegration/tests/basic/test_transfers.py:423: AssertionError",
+    "steps" : [ {
+      "name" : "Request: JsonRpcRequest(id=22, method='eth_sendRawTransaction', params=['0xf86b808572e6e46700825208948eb1b96af156104704e722306f9ceda57bb7145e87470de4df820000801ca07db0d93b8dee9d524d1fcdeb7d6b4e7bf16b53ab117b27e28a9944f49969af2ea029d6fe0b0326f007064414c88af9fed951e489f8f234892c76060037846cb6dd'], jsonrpc='2.0')",
+      "time" : {
+        "start" : 1650231281701,
+        "stop" : 1650231281820,
+        "duration" : 119
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Response: {'jsonrpc': '2.0', 'id': 22, 'error': {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}}",
+      "time" : {
+        "start" : 1650231281820,
+        "stop" : 1650231281820,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request: JsonRpcRequest(id=12, method='eth_sendRawTransaction', params=['0xf86b808572e6e46700825208948eb1b96af156104704e722306f9ceda57bb7145e87470de4df820000801ca07db0d93b8dee9d524d1fcdeb7d6b4e7bf16b53ab117b27e28a9944f49969af2ea029d6fe0b0326f007064414c88af9fed951e489f8f234892c76060037846cb6dd'], jsonrpc='2.0')",
+      "time" : {
+        "start" : 1650231282033,
+        "stop" : 1650231282141,
+        "duration" : 108
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Response: {'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32000, 'message': 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'}}",
+      "time" : {
+        "start" : 1650231282141,
+        "stop" : 1650231282141,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_accounts::0",
+    "time" : {
+      "start" : 1650231282150,
+      "stop" : 1650231282150,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650231282152,
+      "stop" : 1650231282622,
+      "duration" : 470
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 953838861.0 NEON 4884.14026832 SOL",
+      "time" : {
+        "start" : 1650231282521,
+        "stop" : 1650231282521,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650231282622,
+        "stop" : 1650231282622,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650231282628,
+      "stop" : 1650231282629,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests - transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCallsTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az182-392"
+  }, {
+    "name" : "thread",
+    "value" : "1831-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "8c4535c0bff50f91",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25g/924//#testresult/8c4535c0bff50f91",
+        "status" : "broken",
+        "statusDetails" : "TypeError: string indices must be integers",
+        "time" : {
+          "start" : 1650231236273,
+          "stop" : 1650231237553,
+          "duration" : 1280
+        }
+      }, {
+        "uid" : "b0deecdafa0df358",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25g/922//#testresult/b0deecdafa0df358",
+        "status" : "broken",
+        "statusDetails" : "TypeError: string indices must be integers",
+        "time" : {
+          "start" : 1650229299149,
+          "stop" : 1650229299957,
+          "duration" : 808
+        }
+      }, {
+        "uid" : "d59df589e95da1f8",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25g/920//#testresult/d59df589e95da1f8",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Message does not contain 'nonce too low'\nassert 'nonce too low' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'\n +  where 'nonce too low' = <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'>.value\n +    where <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'> = ErrorMessage.NONCE_TOO_LOW",
+        "time" : {
+          "start" : 1650228323784,
+          "stop" : 1650228325076,
+          "duration" : 1292
+        }
+      }, {
+        "uid" : "7dd6707566678b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25g/918//#testresult/7dd6707566678b",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Message does not contain 'nonce too low'\nassert 'nonce too low' in 'relation \"neon_transactions\" does not exist\\nLINE 3:               FROM neon_transactions AS a\\n                           ^\\n'\n +  where 'nonce too low' = <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'>.value\n +    where <ErrorMessage.NONCE_TOO_LOW: 'nonce too low'> = ErrorMessage.NONCE_TOO_LOW",
+        "time" : {
+          "start" : 1650228175232,
+          "stop" : 1650228176243,
+          "duration" : 1011
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "65146513b3dee711.json",
+  "parameterValues" : [ ]
+}
