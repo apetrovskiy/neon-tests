@@ -10,5 +10,5 @@ class AssertMessage(Enum):
     WRONG_AMOUNT = "Wrong amount returned"
     CONTAINS_ERROR = "Contains the error data"
     DOES_NOT_CONTAIN_RESULT = "Does not contain the result data"
-    DOES_NOT_CONTAIN_TOO_LOW=f"Message does not contain '{ErrorMessage.NONCE_TOO_LOW.value}'"
-    DOES_NOT_CONTAIN_TOO_HIGH=f"Message does not contain '{ErrorMessage.NONCE_TOO_HIGH.value}'"
+    DOES_NOT_CONTAIN_TOO_LOW = f"Message does not contain '{ErrorMessage.NONCE_TOO_LOW.value}'"
+    DOES_NOT_CONTAIN_TOO_HIGH = f"Message does not contain '{ErrorMessage.NONCE_TOO_HIGH.value}'"
