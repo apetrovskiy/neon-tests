@@ -9,6 +9,8 @@ from integration.tests.basic.model.model import AccountData
 from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.test_data.input_data import InputData
 
+
+
 INVALID_ADDRESS = AccountData(address="0x12345")
 ENS_NAME_ERROR = f"ENS name: '{INVALID_ADDRESS.address}' is invalid."
 EIP55_INVALID_CHECKSUM = "'Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.'"
