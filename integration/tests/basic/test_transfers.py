@@ -145,50 +145,6 @@ class TestTransfer(BasicTests):
         self.assert_balance(sender_account.address,
                             InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    """
-    20.	Check ERC-1820 transaction (without chain_id in sign)		
-    21.	Generate bad sign (when v, r, s over allowed size)		
-        There are many known variants of, it's not possible to describe all of them.		
-        Below are the simplest:		
-    22.	Too low gas_limit		
-    23.	Too high gas_limit > u64::max		
-    24.	Too high gas_price > u64::max		
-    25.	Too high gas_limit * gas_price > u64::max		
-    26.	There are not enough Neons for gas fee		
-    27.	There are not enough Neons for transfer
-    """
-
-    def test_there_are_not_enough_neons_for_gas_fee(self):
-        """There are not enough Neons for gas fee"""
-        sender_amount = 1
-        self.sender_account = self.create_account_with_balance(sender_amount)
-        self.recipient_account = self.web3_client.create_account()
-        amount = 0.9
-
-        self.process_transaction_with_failure(
-            self.sender_account,
-            self.recipient_account,
-            amount,
-            error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
-
-        self.assert_balance(self.sender_account.address, sender_amount)
-        self.assert_balance(self.recipient_account.address, 0)
-
-    def test_there_are_not_enough_neons_for_transfer(self):
-        """There are not enough Neons for transfer"""
-        sender_amount = 1
-        self.sender_account = self.create_account_with_balance(sender_amount)
-        self.recipient_account = self.web3_client.create_account()
-        amount = 1.1
-
-        self.process_transaction_with_failure(
-            self.sender_account,
-            self.recipient_account,
-            amount,
-            error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
-
-        self.assert_balance(self.sender_account.address, sender_amount)
-        self.assert_balance(self.recipient_account.address, 0)
 
     def test_check_erc_1820_transaction(self, prepare_accounts):
         """Check ERC-1820 transaction (without chain_id in sign)"""
@@ -300,6 +256,38 @@ class TestTransactionsValidation(BasicTests):
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
         assert ErrorMessage.NONCE_TOO_LOW.value in actual_result.error[
             "message"], AssertMessage.DOES_NOT_CONTAIN_TOO_LOW.value
+
+    def test_there_are_not_enough_neons_for_gas_fee(self):
+        """There are not enough Neons for gas fee"""
+        sender_amount = 1
+        self.sender_account = self.create_account_with_balance(sender_amount)
+        self.recipient_account = self.web3_client.create_account()
+        amount = 0.9
+
+        self.process_transaction_with_failure(
+            self.sender_account,
+            self.recipient_account,
+            amount,
+            error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
+
+        self.assert_balance(self.sender_account.address, sender_amount)
+        self.assert_balance(self.recipient_account.address, 0)
+
+    def test_there_are_not_enough_neons_for_transfer(self):
+        """There are not enough Neons for transfer"""
+        sender_amount = 1
+        self.sender_account = self.create_account_with_balance(sender_amount)
+        self.recipient_account = self.web3_client.create_account()
+        amount = 1.1
+
+        self.process_transaction_with_failure(
+            self.sender_account,
+            self.recipient_account,
+            amount,
+            error_message=ErrorMessage.INSUFFICIENT_FUNDS.value)
+
+        self.assert_balance(self.sender_account.address, sender_amount)
+        self.assert_balance(self.recipient_account.address, 0)
 
     def create_tx_object(self, nonce):
         transaction = {
