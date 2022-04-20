@@ -16,10 +16,9 @@ from integration.tests.basic.test_data.input_data import InputData
 WAITING_FOR_MS = "waiting for MS"
 
 WAITING_FOR_ERC20 = "ERC20 is in progress"
-WAITIING_FOR_CONTRACT_SUPPORT = "no contracts are yet done"
+WAITING_FOR_CONTRACT_SUPPORT = "no contracts are yet done"
 
-DEVNET_SENDER_ADDRESS = "0x59cf149216bFBfeA66C4b1d2097d37A3Dfe74ff0"
-DEVNET_SENDER_KEY = "269bc1dd17e8cbfd4280a0f58d67a0ca4631a2a8debebb88b6017083fc90c56d"
+
 
 
 class BasicTests(BaseTests):
