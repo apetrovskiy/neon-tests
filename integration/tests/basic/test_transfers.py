@@ -83,17 +83,18 @@ class TestTransfer(BasicTests):
 
     def test_send_more_than_exist_on_account_erc20(self, erc20wrapper, prepare_accounts):
         """Send more than exist on account: ERC20"""
-        amount = 1_000_000
+        initial_amount = 0
+        amount = 1_000_000_000
 
         contract, spl_owner = erc20wrapper
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
         transfer_tx = self.web3_client.send_erc20(
             spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
         )
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
     def test_zero_neon(self, prepare_accounts):
         """Send zero: neon"""
@@ -113,17 +114,18 @@ class TestTransfer(BasicTests):
 
     def test_zero_erc20(self, erc20wrapper, prepare_accounts):
         """Send zero: ERC20"""
+        initial_amount = 0
         amount = 0
 
         contract, spl_owner = erc20wrapper
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
         transfer_tx = self.web3_client.send_erc20(
             spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
         )
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
     def test_send_negative_sum_from_account_neon(self, prepare_accounts):
         """Send negative sum from account: neon"""
