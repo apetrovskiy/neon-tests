@@ -92,7 +92,7 @@ class TestSingleClient(BasicTests):
     # @pytest.mark.skip(WAITING_FOR_ERC20)
     def test_check_tokens_in_wallet_ERC20(self):
         """Check tokens in wallet: ERC20"""
-        account = self.create_account()
+        account = self.create_account_with_balance()
         contract, contract_deploy_tx = self.deploy_and_get_contract("ERC20", "0.6.6", account, constructor_args=[1000])
 
     @pytest.mark.only_stands
