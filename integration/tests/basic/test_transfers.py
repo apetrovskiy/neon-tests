@@ -1,8 +1,9 @@
 import allure
+from marshmallow import ValidationError
 import pytest
 from typing import Union
 from integration.tests.basic.helpers.assert_message import AssertMessage
-from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR_MS, BasicTests
+from integration.tests.basic.helpers.basic import BasicTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.model import AccountData
@@ -80,10 +81,19 @@ class TestTransfer(BasicTests):
         """Send more than exist on account: spl (with different precision)"""
         assert 1 == 2
 
-    # @pytest.mark.skip(WAITING_FOR_ERC20)
-    def test_send_more_than_exist_on_account_erc20(self):
+    def test_send_more_than_exist_on_account_erc20(self, erc20wrapper, prepare_accounts):
         """Send more than exist on account: ERC20"""
-        assert 1 == 2
+        amount = 1_000_000
+
+        contract, spl_owner = erc20wrapper
+
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
+
+        transfer_tx = self.web3_client.send_erc20(
+            spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+        )
+
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
 
     def test_zero_neon(self, prepare_accounts):
         """Send zero: neon"""
@@ -101,10 +111,19 @@ class TestTransfer(BasicTests):
         """Send zero: spl (with different precision)"""
         assert 1 == 2
 
-    # @pytest.mark.xfail()
-    def test_zero_erc20(self):
+    def test_zero_erc20(self, erc20wrapper, prepare_accounts):
         """Send zero: ERC20"""
-        assert 1 == 2
+        amount = 0
+
+        contract, spl_owner = erc20wrapper
+
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
+
+        transfer_tx = self.web3_client.send_erc20(
+            spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+        )
+
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
 
     def test_send_negative_sum_from_account_neon(self, prepare_accounts):
         """Send negative sum from account: neon"""
@@ -124,10 +143,22 @@ class TestTransfer(BasicTests):
         """Send negative sum from account: spl (with different precision)"""
         assert 1 == 2
 
-    # @pytest.mark.skip(WAITING_FOR_ERC20)
-    def test_send_negative_sum_from_account_erc20(self):
+    def test_send_negative_sum_from_account_erc20(self, erc20wrapper, prepare_accounts):
         """Send negative sum from account: ERC20"""
-        assert 1 == 2
+        amount = -1
+
+        contract, spl_owner = erc20wrapper
+
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
+
+        with pytest.raises(ValidationError) as error_info:
+            transfer_tx = self.web3_client.send_erc20(
+                spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+            )
+
+            assert None != error_info, f"Transaction failed: {error_info}"
+
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
 
     def test_send_token_to_an_invalid_address(self):
         """Send token to an invalid address"""
