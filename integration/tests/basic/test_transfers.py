@@ -84,15 +84,17 @@ class TestTransfer(BasicTests):
     def test_send_more_than_exist_on_account_erc20(self, erc20wrapper, prepare_accounts):
         """Send more than exist on account: ERC20"""
         initial_amount = 0
-        amount = 1_000_000_000
+        amount = 1_000_000_000_000_000_000  # U64_MAX + 1_000
 
         contract, spl_owner = erc20wrapper
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
-        transfer_tx = self.web3_client.send_erc20(
-            spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
-        )
+        with pytest.raises("exceptions.ContractLogicError") as error_info:
+            transfer_tx = self.web3_client.send_erc20(
+                spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+            )
+        assert None == error_info, f"Transaction failed: {error_info}"
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
@@ -158,7 +160,7 @@ class TestTransfer(BasicTests):
                 spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
             )
 
-            assert None != error_info, f"Transaction failed: {error_info}"
+        assert None == error_info, f"Transaction failed: {error_info}"
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
 
