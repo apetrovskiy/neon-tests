@@ -166,7 +166,7 @@ class BasicTests(BaseTests):
         self,
         name: str,
         version: str,
-        account: Account, # "eth_account.signers.local.LocalAccount",
+        account: Account,  # "eth_account.signers.local.LocalAccount",
         constructor_args: Optional[Any] = None,
         gas: Optional[int] = 0,
     ) -> "web3._utils.datatypes.Contract":

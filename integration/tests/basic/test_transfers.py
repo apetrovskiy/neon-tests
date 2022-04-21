@@ -19,6 +19,7 @@ U64_MAX = 18_446_744_073_709_551_615
 
 WRONG_TRANSFER_AMOUNT_DATA = [(1_501), (10_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
+TRANSFER_INT_AMOUNT_DATA = [(1), (100)]
 
 GAS_LIMIT_AND_PRICE_DATA = (
     [1, None, ErrorMessage.GAS_LIMIT_REACHED.value],
@@ -43,8 +44,24 @@ class TestTransfer(BasicTests):
         )
         self.assert_balance(self.recipient_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
 
+    @pytest.mark.parametrize("amount", TRANSFER_INT_AMOUNT_DATA)
+    def test_send_erc20_token_from_one_account_to_another(
+        self, amount: Union[int, float], erc20wrapper, prepare_accounts
+    ):
+        """Send erc20 token from one account to another"""
+
+        contract, spl_owner = erc20wrapper
+
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
+
+        transfer_tx = self.web3_client.send_erc20(
+            spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+        )
+
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
+
     # @pytest.mark.skip(WAITING_FOR_MS)
-    def test_send_spl_wrapped_account_from_one_account_to_another(self):
+    def test_send_spl_wrapped_account_from_one_account_to_another(self):  # , erc20wrapper, prepare_accounts):
         """Send spl wrapped account from one account to another"""
         assert 1 == 2
 
@@ -163,26 +180,6 @@ class TestTransfer(BasicTests):
         self.assert_balance(
             self.recipient_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value + InputData.SAMPLE_AMOUNT.value
         )
-
-    def test_experimental_erc20(self, erc20wrapper):
-        #########################################################################
-        # sol_balance_before = self.operator.get_solana_balance()
-        # neon_balance_before = self.operator.get_neon_balance()
-
-        contract, spl_owner = erc20wrapper
-
-        assert contract.functions.balanceOf(self.acc.address).call() == 0
-
-        transfer_tx = self.web3_client.send_erc20(spl_owner, self.acc, 25, contract.address, abi=contract.abi)
-
-        assert contract.functions.balanceOf(self.acc.address).call() == 25
-        sol_balance_after = self.operator.get_solana_balance()
-        neon_balance_after = self.operator.get_neon_balance()
-
-        # assert sol_balance_before > sol_balance_after
-
-        # self.assert_profit(sol_balance_before - sol_balance_after, neon_balance_after - neon_balance_before)
-        #########################################################################
 
 
 @allure.story("Basic: transactions validation")
