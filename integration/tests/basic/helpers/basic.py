@@ -53,7 +53,7 @@ class BasicTests(BaseTests):
         self.request_faucet_neon(account.address, amount)
         return account
 
-    @allure.step("deploying an ERC_20 conract")
+    @allure.step("deploying an ERC_20 contract")
     def deploy_contract(self):
         """Deploys an ERC-20 contract"""
         pass
