@@ -84,15 +84,16 @@ class TestSingleClient(BasicTests):
             self.request_faucet_neon(account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    @pytest.mark.skip(WAITING_FOR_MS)
+    # @pytest.mark.skip(WAITING_FOR_MS)
     def test_check_tokens_in_wallet_spl(self):
         """Check tokens in wallet: spl"""
-        pass
+        assert 1 == 2
 
-    @pytest.mark.skip(WAITING_FOR_ERC20)
+    # @pytest.mark.skip(WAITING_FOR_ERC20)
     def test_check_tokens_in_wallet_ERC20(self):
         """Check tokens in wallet: ERC20"""
-        pass
+        # pass
+        contract, contract_deploy_tx = self.deploy_and_get_contract("ERC20", "0.6.6", constructor_args=[1000])
 
     @pytest.mark.only_stands
     @pytest.mark.parametrize("amount", FAUCET_TEST_DATA)

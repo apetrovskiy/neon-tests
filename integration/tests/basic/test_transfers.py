@@ -43,10 +43,10 @@ class TestTransfer(BasicTests):
         )
         self.assert_balance(self.recipient_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value + amount)
 
-    @pytest.mark.skip(WAITING_FOR_MS)
+    # @pytest.mark.skip(WAITING_FOR_MS)
     def test_send_spl_wrapped_account_from_one_account_to_another(self):
         """Send spl wrapped account from one account to another"""
-        pass
+        assert 1 == 2
 
     @pytest.mark.parametrize("amount", WRONG_TRANSFER_AMOUNT_DATA)
     def test_send_more_than_exist_on_account_neon(self, amount: Union[int, float], prepare_accounts):
@@ -57,16 +57,16 @@ class TestTransfer(BasicTests):
         self.assert_balance(self.sender_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(self.recipient_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    @pytest.mark.skip(WAITING_FOR_MS)
+    # @pytest.mark.skip(WAITING_FOR_MS)
     @pytest.mark.parametrize("amount", TRANSFER_AMOUNT_DATA)
     def test_send_more_than_exist_on_account_spl(self, amount):
         """Send more than exist on account: spl (with different precision)"""
-        pass
+        assert 1 == 2
 
-    @pytest.mark.skip(WAITING_FOR_ERC20)
+    # @pytest.mark.skip(WAITING_FOR_ERC20)
     def test_send_more_than_exist_on_account_erc20(self):
         """Send more than exist on account: ERC20"""
-        pass
+        assert 1 == 2
 
     def test_zero_neon(self, prepare_accounts):
         """Send zero: neon"""
@@ -79,15 +79,15 @@ class TestTransfer(BasicTests):
         )
         self.assert_balance(self.recipient_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    @pytest.mark.skip(WAITING_FOR_MS)
+    # @pytest.mark.skip(WAITING_FOR_MS)
     def test_zero_spl(self):
         """Send zero: spl (with different precision)"""
-        pass
+        assert 1 == 2
 
-    @pytest.mark.xfail()
+    # @pytest.mark.xfail()
     def test_zero_erc20(self):
         """Send zero: ERC20"""
-        pass
+        assert 1 == 2
 
     def test_send_negative_sum_from_account_neon(self, prepare_accounts):
         """Send negative sum from account: neon"""
@@ -102,15 +102,15 @@ class TestTransfer(BasicTests):
         self.assert_balance(self.sender_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(self.recipient_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    @pytest.mark.skip(WAITING_FOR_MS)
+    # @pytest.mark.skip(WAITING_FOR_MS)
     def test_send_negative_sum_from_account_spl(self):
         """Send negative sum from account: spl (with different precision)"""
-        pass
+        assert 1 == 2
 
-    @pytest.mark.skip(WAITING_FOR_ERC20)
+    # @pytest.mark.skip(WAITING_FOR_ERC20)
     def test_send_negative_sum_from_account_erc20(self):
         """Send negative sum from account: ERC20"""
-        pass
+        assert 1 == 2
 
     def test_send_token_to_an_invalid_address(self):
         """Send token to an invalid address"""
@@ -163,6 +163,26 @@ class TestTransfer(BasicTests):
         self.assert_balance(
             self.recipient_account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value + InputData.SAMPLE_AMOUNT.value
         )
+
+    def test_experimental_erc20(self, erc20wrapper):
+        #########################################################################
+        # sol_balance_before = self.operator.get_solana_balance()
+        # neon_balance_before = self.operator.get_neon_balance()
+
+        contract, spl_owner = erc20wrapper
+
+        assert contract.functions.balanceOf(self.acc.address).call() == 0
+
+        transfer_tx = self.web3_client.send_erc20(spl_owner, self.acc, 25, contract.address, abi=contract.abi)
+
+        assert contract.functions.balanceOf(self.acc.address).call() == 25
+        sol_balance_after = self.operator.get_solana_balance()
+        neon_balance_after = self.operator.get_neon_balance()
+
+        # assert sol_balance_before > sol_balance_after
+
+        # self.assert_profit(sol_balance_before - sol_balance_after, neon_balance_after - neon_balance_before)
+        #########################################################################
 
 
 @allure.story("Basic: transactions validation")

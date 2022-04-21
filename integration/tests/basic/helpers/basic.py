@@ -6,12 +6,13 @@ import web3
 from _pytest.config import Config
 from decimal import Decimal
 from eth_account import Account
-from typing import Optional, Union
+from typing import Any, Optional, Tuple, Union
 from integration.tests.base import BaseTests
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_requester import JsonRpcRequester
 from integration.tests.basic.model.model import AccountData, JsonRpcErrorResponse, JsonRpcResponse
 from integration.tests.basic.test_data.input_data import InputData
+from utils import helpers
 
 WAITING_FOR_MS = "waiting for MS"
 
@@ -134,3 +135,58 @@ class BasicTests(BaseTests):
     def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> float:
         gas_used_in_tx = tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(self.web3_client.gas_price(), "ether")
         return float(round(gas_used_in_tx, InputData.ROUND_DIGITS.value))
+
+    # TODO: check it
+    def deploy_and_get_contract(
+        self,
+        contract_name: str,
+        version: str,
+        account: Account,
+        constructor_args: Optional[Any] = None,
+        gas: Optional[int] = 0,
+    ) -> Tuple[Any, web3.types.TxReceipt]:
+        contract_interface = helpers.get_contract_interface(contract_name, version)
+
+        contract_deploy_tx = self.web3_client.deploy_contract(
+            account,
+            abi=contract_interface["abi"],
+            bytecode=contract_interface["bin"],
+            constructor_args=constructor_args,
+            gas=gas,
+        )
+
+        contract = self.web3_client.eth.contract(
+            address=contract_deploy_tx["contractAddress"], abi=contract_interface["abi"]
+        )
+
+        return contract, contract_deploy_tx
+
+    # TODO: probe
+    def deploy_contract(
+        self,
+        name: str,
+        version: str,
+        account: Account, # "eth_account.signers.local.LocalAccount",
+        constructor_args: Optional[Any] = None,
+        gas: Optional[int] = 0,
+    ) -> "web3._utils.datatypes.Contract":
+        """contract deployments"""
+
+        # contract_interface = self._compile_contract_interface(name, version)
+        contract_interface = helpers.get_contract_interface(name, version)
+        contract_deploy_tx = self._web3_client.deploy_contract(
+            account,
+            abi=contract_interface["abi"],
+            bytecode=contract_interface["bin"],
+            constructor_args=constructor_args,
+            gas=gas,
+        )
+
+        if not (contract_deploy_tx and contract_interface):
+            return None, None
+
+        contract = self._web3_client.eth.contract(
+            address=contract_deploy_tx["contractAddress"], abi=contract_interface["abi"]
+        )
+
+        return contract, contract_deploy_tx
