@@ -1,0 +1,329 @@
+{
+  "uid" : "202ef17a55da6167",
+  "name" : "test_send_neon_from_one_account_to_another[1]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_neon_from_one_account_to_another",
+  "historyId" : "e0fb2960146feb86d2510769aeee9644",
+  "time" : {
+    "start" : 1650652071248,
+    "stop" : 1650652071248,
+    "duration" : 0
+  },
+  "description" : "Send neon from one account to another",
+  "descriptionHtml" : "<p>Send neon from one account to another</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7f258ebf8640>\nfaucet = <utils.faucet.Faucet object at 0x7f258edf3dc0>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7f258ed2ecd0>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client: NeonWeb3Client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request 1000 NEON from faucet for {acc.address}\"):\n>           faucet.request_neon(acc.address, 1000)\n\nintegration/tests/conftest.py:113: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.faucet.Faucet object at 0x7f258edf3dc0>\naddress = '0xF2D315Ec33b9D36489eD5D73D7197a304f7F9c7A', amount = 1000\n\n    def request_neon(self, address: str, amount: int = 100):\n        assert address.startswith(\"0x\")\n        url = urllib.parse.urljoin(self._url, \"request_neon\")\n        resp = self._session.post(url, json={\"amount\": amount, \"wallet\": address})\n>       assert resp.status_code == 200\nE       AssertionError\n\nutils/faucet.py:16: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650651888529,
+      "stop" : 1650651888530,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650651888529,
+      "stop" : 1650651888529,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650651888530,
+      "stop" : 1650651889677,
+      "duration" : 1147
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650651889677,
+      "stop" : 1650651889677,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1650651889677,
+      "stop" : 1650651889677,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650651889677,
+      "stop" : 1650651889677,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650651889678,
+      "stop" : 1650651889678,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650652011079,
+      "stop" : 1650652071239,
+      "duration" : 60160
+    },
+    "status" : "failed",
+    "statusMessage" : "AssertionError\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 113, in prepare_account\n    faucet.request_neon(acc.address, 1000)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 16, in request_neon\n    assert resp.status_code == 200\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650652011079,
+        "stop" : 1650652011083,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0xF2D315Ec33b9D36489eD5D73D7197a304f7F9c7A",
+      "time" : {
+        "start" : 1650652011083,
+        "stop" : 1650652071239,
+        "duration" : 60156
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 113, in prepare_account\n    faucet.request_neon(acc.address, 1000)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 16, in request_neon\n    assert resp.status_code == 200\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650652071249,
+      "stop" : 1650652071249,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650652131575,
+      "stop" : 1650652131576,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az275-532"
+  }, {
+    "name" : "thread",
+    "value" : "1783-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "amount",
+    "value" : "1"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 7,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "ac809c01763b5476",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/982//#testresult/ac809c01763b5476",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650645602121,
+          "stop" : 1650645602121,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "6367f432f84ce8c9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/976//#testresult/6367f432f84ce8c9",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650644419703,
+          "stop" : 1650644419703,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "ee0a2a676544d3af",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/972//#testresult/ee0a2a676544d3af",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650632953265,
+          "stop" : 1650632953265,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "6dd1d5db65cc0d71",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/970//#testresult/6dd1d5db65cc0d71",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650631782077,
+          "stop" : 1650631782077,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "f4d4c59397f775b9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/968//#testresult/f4d4c59397f775b9",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650631263786,
+          "stop" : 1650631263786,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "763a715a4b265c90",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/964//#testresult/763a715a4b265c90",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650623859046,
+          "stop" : 1650623859046,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "202ef17a55da6167.json",
+  "parameterValues" : [ "1" ]
+}
