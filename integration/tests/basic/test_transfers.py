@@ -73,10 +73,11 @@ class TestTransfer(BaseMixin):
         self.assert_balance(
             self.sender_account.address,
             sender_balance - amount - self.calculate_trx_gas(tx_receipt=tx_receipt),
-            rnd_dig=1,
+            rnd_dig=3,
         )
-        self.assert_balance(self.recipient_account.address, recipient_balance + amount, rnd_dig=1)
+        self.assert_balance(self.recipient_account.address, recipient_balance + amount, rnd_dig=3)
 # >>>>>>> develop
+# TODO: changed rnd_dig from 1 to 3
 
     @pytest.mark.parametrize("amount", TRANSFER_INT_AMOUNT_DATA)
     def test_send_erc20_token_from_one_account_to_another(
@@ -280,8 +281,8 @@ class TestTransfer(BaseMixin):
 #         params = [signed_tx.rawTransaction.hex()]
 
 #         model = RpcRequestFactory.get_send_raw_trx(params=params)
-#         response = self.jsonrpc_requester.request_json_rpc(model)
-#         actual_result = self.jsonrpc_requester.deserialize_response(response)
+#         actual_result = self.json_rpc_client.do_call(model)
+#         # actual_result = self.json_rpc_client.deserialize_response(response)
 
 #         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
 #         assert self.assert_is_successful_response(actual_result), AssertMessage.WRONG_TYPE.value
@@ -326,8 +327,8 @@ class TestTransfer(BaseMixin):
 #         params = [signed_tx.rawTransaction.hex()]
 
 #         model = RpcRequestFactory.get_send_raw_trx(params=params)
-#         response = self.jsonrpc_requester.request_json_rpc(model)
-#         actual_result = self.jsonrpc_requester.deserialize_response(response)
+#         actual_result = self.json_rpc_client.do_call(model)
+#         # actual_result = self.json_rpc_client.deserialize_response(response)
 
 #         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
 #         assert (
@@ -348,8 +349,8 @@ class TestTransfer(BaseMixin):
 #         params = [signed_tx.rawTransaction.hex()]
 
 #         model = RpcRequestFactory.get_send_raw_trx(params=params)
-#         response = self.jsonrpc_requester.request_json_rpc(model)
-#         actual_result = self.jsonrpc_requester.deserialize_response(response)
+#         actual_result = self.json_rpc_client.do_call(model)
+#         # actual_result = self.json_rpc_client.deserialize_response(response)
 
 #         # 2nd transaction (with low nonce)
 #         transaction = self.create_tx_object(0)
@@ -359,8 +360,8 @@ class TestTransfer(BaseMixin):
 #         params = [signed_tx.rawTransaction.hex()]
 
 #         model = RpcRequestFactory.get_send_raw_trx(params=params)
-#         response = self.jsonrpc_requester.request_json_rpc(model)
-#         actual_result = self.jsonrpc_requester.deserialize_response(response)
+#         actual_result = self.json_rpc_client.do_call(model)
+#         # actual_result = self.json_rpc_client.deserialize_response(response)
 
 #         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
 #         assert (
