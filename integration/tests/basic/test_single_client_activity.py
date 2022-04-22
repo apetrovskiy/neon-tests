@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR_MS, BaseMixin
+from integration.tests.basic.helpers.basic import  BaseMixin
 from integration.tests.basic.test_data.input_data import InputData
 
 """
