@@ -1,0 +1,392 @@
+{
+  "uid" : "39634bc057098c15",
+  "name" : "test_eth_get_block_transaction_count_by_number[earliest-False]",
+  "fullName" : "integration.tests.basic.test_rpc_calls.TestRpcCalls#test_eth_get_block_transaction_count_by_number",
+  "historyId" : "78e1f6e9046c2303baac92462de35a96",
+  "time" : {
+    "start" : 1650870997956,
+    "stop" : 1650870997956,
+    "duration" : 0
+  },
+  "description" : "Verify implemented rpc calls work eth_getBlockTransactionCountByNumber",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_getBlockTransactionCountByNumber</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7fd5e2e12880>\nfaucet = <utils.faucet.Faucet object at 0x7fd5e2fa8cd0>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7fd5e30119a0>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client: NeonWeb3Client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request 1000 NEON from faucet for {acc.address}\"):\n>           faucet.request_neon(acc.address, 1000)\n\nintegration/tests/conftest.py:113: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.faucet.Faucet object at 0x7fd5e2fa8cd0>\naddress = '0x82aAbAc743A8127aB08354ED45A78b14CeD2171C', amount = 1000\n\n    def request_neon(self, address: str, amount: int = 100):\n        assert address.startswith(\"0x\")\n        url = urllib.parse.urljoin(self._url, \"request_neon\")\n        resp = self._session.post(url, json={\"amount\": amount, \"wallet\": address})\n>       assert resp.status_code == 200\nE       AssertionError\n\nutils/faucet.py:16: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650870936245,
+      "stop" : 1650870936246,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650870936245,
+      "stop" : 1650870936245,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650870936247,
+      "stop" : 1650870937185,
+      "duration" : 938
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650870937186,
+      "stop" : 1650870937186,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650870937186,
+      "stop" : 1650870997524,
+      "duration" : 60338
+    },
+    "status" : "failed",
+    "statusMessage" : "AssertionError\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 113, in prepare_account\n    faucet.request_neon(acc.address, 1000)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 16, in request_neon\n    assert resp.status_code == 200\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650870937186,
+        "stop" : 1650870937197,
+        "duration" : 11
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x82aAbAc743A8127aB08354ED45A78b14CeD2171C",
+      "time" : {
+        "start" : 1650870937197,
+        "stop" : 1650870997524,
+        "duration" : 60327
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 113, in prepare_account\n    faucet.request_neon(acc.address, 1000)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 16, in request_neon\n    assert resp.status_code == 200\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650870937186,
+      "stop" : 1650870937186,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1650870937186,
+      "stop" : 1650870937186,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650870937186,
+      "stop" : 1650870937186,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650870997957,
+      "stop" : 1650870997957,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650871179010,
+      "stop" : 1650871179010,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_rpc_calls"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCalls"
+  }, {
+    "name" : "host",
+    "value" : "fv-az173-890"
+  }, {
+    "name" : "thread",
+    "value" : "1755-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_rpc_calls"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "params",
+    "value" : "'earliest'"
+  }, {
+    "name" : "raises",
+    "value" : "False"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 13,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "1f64d03b1c2903f2",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/1008//#testresult/1f64d03b1c2903f2",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650867536802,
+          "stop" : 1650867536802,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "6cfb270a263b9455",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/1004//#testresult/6cfb270a263b9455",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650866241625,
+          "stop" : 1650866241625,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "64ed418e0c9eba56",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/1000//#testresult/64ed418e0c9eba56",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650704328593,
+          "stop" : 1650704328593,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "f1d7bf6b071281b9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/996//#testresult/f1d7bf6b071281b9",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650702465073,
+          "stop" : 1650702465073,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "7c5ca1e02da3f28a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/992//#testresult/7c5ca1e02da3f28a",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650696681352,
+          "stop" : 1650696681352,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "52e779f00b3e2259",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/984//#testresult/52e779f00b3e2259",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650651950430,
+          "stop" : 1650651950430,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "1f1b1cb067a350f2",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/982//#testresult/1f1b1cb067a350f2",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650645481442,
+          "stop" : 1650645481442,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "d8163362cf36ecc6",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/976//#testresult/d8163362cf36ecc6",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650644298957,
+          "stop" : 1650644298957,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "39760bf626c3304a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/972//#testresult/39760bf626c3304a",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650632832314,
+          "stop" : 1650632832314,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "c253ab5b662d1e80",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/970//#testresult/c253ab5b662d1e80",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650631661341,
+          "stop" : 1650631661341,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "639b0a9fdac74ba5",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/968//#testresult/639b0a9fdac74ba5",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650631143027,
+          "stop" : 1650631143027,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "273a604835ec079b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25-add-cases-for-basic-operations/964//#testresult/273a604835ec079b",
+        "status" : "failed",
+        "statusDetails" : "AssertionError",
+        "time" : {
+          "start" : 1650623738043,
+          "stop" : 1650623738043,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "39634bc057098c15.json",
+  "parameterValues" : [ "'earliest'", "False" ]
+}
