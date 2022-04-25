@@ -54,9 +54,7 @@ class TestTransfer(BaseMixin):
         self.assert_balance(self.recipient_account.address, recipient_balance + amount, rnd_dig=3)
 
     @pytest.mark.parametrize("amount", TRANSFER_INT_AMOUNT_DATA)
-    def test_send_erc20_token_from_one_account_to_another(
-        self, amount: Union[int, float], erc20wrapper, prepare_accounts
-    ):
+    def test_send_erc20_token_from_one_account_to_another(self, amount: Union[int, float], erc20wrapper):
         """Send erc20 token from one account to another"""
 
         contract, spl_owner = erc20wrapper
@@ -91,7 +89,7 @@ class TestTransfer(BaseMixin):
         """Send more than exist on account: spl (with different precision)"""
         assert 1 == 2
 
-    def test_send_more_than_exist_on_account_erc20(self, erc20wrapper, prepare_accounts):
+    def test_send_more_than_exist_on_account_erc20(self, erc20wrapper):
         """Send more than exist on account: ERC20"""
         initial_amount = 0
         amount = 1_000_000_000_000_000  # 10_000_000_000 + 1_000  # 1_000_000_000_000_000_000  # U64_MAX + 1_000
@@ -125,7 +123,7 @@ class TestTransfer(BaseMixin):
         """Send zero: spl (with different precision)"""
         assert 1 == 2
 
-    def test_zero_erc20(self, erc20wrapper, prepare_accounts):
+    def test_zero_erc20(self, erc20wrapper):
         """Send zero: ERC20"""
         initial_amount = 0
         amount = 0
@@ -160,7 +158,7 @@ class TestTransfer(BaseMixin):
         """Send negative sum from account: spl (with different precision)"""
         assert 1 == 2
 
-    def test_send_negative_sum_from_account_erc20(self, erc20wrapper, prepare_accounts):
+    def test_send_negative_sum_from_account_erc20(self, erc20wrapper):
         """Send negative sum from account: ERC20"""
         amount = -1
 
