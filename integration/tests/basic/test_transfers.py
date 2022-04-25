@@ -8,7 +8,6 @@ from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.model import AccountData
-from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.test_data.input_data import InputData
 
 
@@ -223,7 +222,7 @@ class TestTransfer(BaseMixin):
         signed_tx = self.web3_client.eth.account.sign_transaction(transaction, sender_account.key)
 
         params = [signed_tx.rawTransaction.hex()]
-        model = RpcRequestFactory.get_send_raw_trx(params=params)
+        model = RpcRequestFactory.build_send_raw_trx(params=params)
         actual_result = self.json_rpc_client.do_call(model)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
@@ -270,7 +269,7 @@ class TestTransactionsValidation(BaseMixin):
         signed_tx = self.web3_client.eth.account.sign_transaction(transaction, self.sender_account.key)
 
         params = [signed_tx.rawTransaction.hex()]
-        model = RpcRequestFactory.get_send_raw_trx(params=params)
+        model = RpcRequestFactory.build_send_raw_trx(params=params)
         actual_result = self.json_rpc_client.do_call(model)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
@@ -290,7 +289,7 @@ class TestTransactionsValidation(BaseMixin):
         signed_tx = self.web3_client.eth.account.sign_transaction(transaction, self.sender_account.key)
 
         params = [signed_tx.rawTransaction.hex()]
-        model = RpcRequestFactory.get_send_raw_trx(params=params)
+        model = RpcRequestFactory.build_send_raw_trx(params=params)
         actual_result = self.json_rpc_client.do_call(model)
 
         # 2nd transaction (with low nonce)
@@ -298,7 +297,7 @@ class TestTransactionsValidation(BaseMixin):
         signed_tx = self.web3_client.eth.account.sign_transaction(transaction, self.sender_account.key)
 
         params = [signed_tx.rawTransaction.hex()]
-        model = RpcRequestFactory.get_send_raw_trx(params=params)
+        model = RpcRequestFactory.build_send_raw_trx(params=params)
         actual_result = self.json_rpc_client.do_call(model)
 
         assert actual_result.id == model.id, AssertMessage.WRONG_ID.value
