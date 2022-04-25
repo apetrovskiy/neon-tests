@@ -10,7 +10,6 @@ class InputData(Enum):
     NEGATIVE_AMOUNT = -0.1
     SAMPLE_AMOUNT = 0.02
     ROUND_DIGITS = 3
-    GREAT_AMOUNT = 1000
 
     def get_transfer_amount(self) -> int:
         return self.DEFAULT_TRANSFER_AMOUNT.value

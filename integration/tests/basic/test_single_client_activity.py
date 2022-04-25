@@ -91,10 +91,13 @@ class TestSingleClient(BaseMixin):
 
     def test_check_tokens_in_wallet_ERC20(self, erc20wrapper):
         """Check tokens in wallet: ERC20"""
-        account = self.create_account_with_balance(InputData.GREAT_AMOUNT.value)
-        contract, contract_deploy_tx = self.deploy_and_get_contract("ERC20", "0.6.6", account, constructor_args=[10])
+        erc20_amount = 20
+        account = self.create_account_with_balance()
+        contract, contract_deploy_tx = self.deploy_and_get_contract(
+            "ERC20", "0.6.6", account, constructor_args=[erc20_amount]
+        )
 
-        assert contract.functions.balanceOf(account.address).call() == 10
+        assert contract.functions.balanceOf(account.address).call() == erc20_amount
 
     @pytest.mark.only_stands
     @pytest.mark.parametrize("amount", FAUCET_TEST_DATA)
