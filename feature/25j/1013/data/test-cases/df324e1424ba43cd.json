@@ -1,0 +1,472 @@
+{
+  "uid" : "df324e1424ba43cd",
+  "name" : "test_send_negative_sum_from_account_erc20",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_negative_sum_from_account_erc20",
+  "historyId" : "56f72685893e02235e13a169de712d39",
+  "time" : {
+    "start" : 1650871223439,
+    "stop" : 1650871223566,
+    "duration" : 127
+  },
+  "description" : "Send negative sum from account: ERC20",
+  "descriptionHtml" : "<p>Send negative sum from account: ERC20</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 1 == 0\n +  where 1 = <bound method ContractFunction.call of <Function balanceOf(address) bound to ('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91',)>>()\n +    where <bound method ContractFunction.call of <Function balanceOf(address) bound to ('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91',)>> = <Function balanceOf(address) bound to ('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91',)>.call\n +      where <Function balanceOf(address) bound to ('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91',)> = <Function balanceOf>('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91')\n +        where <Function balanceOf> = <web3.contract.ContractFunctions object at 0x7fea7ae301f0>.balanceOf\n +          where <web3.contract.ContractFunctions object at 0x7fea7ae301f0> = <web3._utils.datatypes.Contract object at 0x7fea7b22e370>.functions\n +        and   '0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91' = <eth_account.signers.local.LocalAccount object at 0x7fea7b297a00>.address\n +          where <eth_account.signers.local.LocalAccount object at 0x7fea7b297a00> = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fea7ad0fc10>.recipient_account",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fea7ad0fc10>\nerc20wrapper = (<web3._utils.datatypes.Contract object at 0x7fea7b22e370>, <eth_account.signers.local.LocalAccount object at 0x7fea7aed85e0>)\n\n    def test_send_negative_sum_from_account_erc20(self, erc20wrapper):\n        \"\"\"Send negative sum from account: ERC20\"\"\"\n        amount = -1\n    \n        contract, spl_owner = erc20wrapper\n    \n>       assert contract.functions.balanceOf(self.recipient_account.address).call() == 0\nE       AssertionError: assert 1 == 0\nE        +  where 1 = <bound method ContractFunction.call of <Function balanceOf(address) bound to ('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91',)>>()\nE        +    where <bound method ContractFunction.call of <Function balanceOf(address) bound to ('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91',)>> = <Function balanceOf(address) bound to ('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91',)>.call\nE        +      where <Function balanceOf(address) bound to ('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91',)> = <Function balanceOf>('0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91')\nE        +        where <Function balanceOf> = <web3.contract.ContractFunctions object at 0x7fea7ae301f0>.balanceOf\nE        +          where <web3.contract.ContractFunctions object at 0x7fea7ae301f0> = <web3._utils.datatypes.Contract object at 0x7fea7b22e370>.functions\nE        +        and   '0xa0294DBA140c7CE0B9E7F34947Cf734d3459EF91' = <eth_account.signers.local.LocalAccount object at 0x7fea7b297a00>.address\nE        +          where <eth_account.signers.local.LocalAccount object at 0x7fea7b297a00> = <integration.tests.basic.test_transfers.TestTransfer object at 0x7fea7ad0fc10>.recipient_account\n\nintegration/tests/basic/test_transfers.py:166: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1650870978443,
+      "stop" : 1650870978443,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1650870978443,
+      "stop" : 1650870978445,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1650870978445,
+      "stop" : 1650870979034,
+      "duration" : 589
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1650870979034,
+      "stop" : 1650870979035,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1650870979035,
+      "stop" : 1650870979035,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1650870979035,
+      "stop" : 1650870979035,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1650870979035,
+      "stop" : 1650870979035,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "erc20wrapper",
+    "time" : {
+      "start" : 1650871017115,
+      "stop" : 1650871093655,
+      "duration" : 76540
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650871207438,
+      "stop" : 1650871212491,
+      "duration" : 5053
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1650871207438,
+        "stop" : 1650871207443,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 1000 NEON from faucet for 0x1650Cd4FD6149D2eF64a106502E34291dcad6b2b",
+      "time" : {
+        "start" : 1650871207443,
+        "stop" : 1650871208158,
+        "duration" : 715
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.008169928420337923524768 NEON 60018.7885332 SOL",
+      "time" : {
+        "start" : 1650871212491,
+        "stop" : 1650871212491,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1650871223438,
+      "stop" : 1650871223438,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1650871223438,
+      "stop" : 1650871223438,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_env",
+    "time" : {
+      "start" : 1650871223438,
+      "stop" : 1650871223438,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1650871228042,
+      "stop" : 1650871232481,
+      "duration" : 4439
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.008169928447761284964768 NEON 60018.78221704 SOL",
+      "time" : {
+        "start" : 1650871232359,
+        "stop" : 1650871232359,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 1000 NEON",
+      "time" : {
+        "start" : 1650871232481,
+        "stop" : 1650871232481,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "erc20wrapper::0",
+    "time" : {
+      "start" : 1650871255702,
+      "stop" : 1650871255702,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1650871255715,
+      "stop" : 1650871255715,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az193-730"
+  }, {
+    "name" : "thread",
+    "value" : "1798-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 9,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 10
+      },
+      "items" : [ {
+        "uid" : "96bdd9eee940060f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/1005//#testresult/96bdd9eee940060f",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650866487799,
+          "stop" : 1650866487799,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "4ad3f6beff6f053",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/1001//#testresult/4ad3f6beff6f053",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650704570977,
+          "stop" : 1650704570977,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "7f2717526583ec71",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/997//#testresult/7f2717526583ec71",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650702715638,
+          "stop" : 1650702715638,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "8a996ece330b9d7",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/993//#testresult/8a996ece330b9d7",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650696853929,
+          "stop" : 1650696853929,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "ed595be01b04f94a",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/988//#testresult/ed595be01b04f94a",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650694484092,
+          "stop" : 1650694484092,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "404552809ee48aa",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/990//#testresult/404552809ee48aa",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650694428599,
+          "stop" : 1650694428599,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "6e7c60c72c4c5077",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/985//#testresult/6e7c60c72c4c5077",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650652233418,
+          "stop" : 1650652233418,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "e396db012504a90b",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/977//#testresult/e396db012504a90b",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650644572741,
+          "stop" : 1650644572741,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "47f91818fe60d649",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25j/973//#testresult/47f91818fe60d649",
+        "status" : "broken",
+        "statusDetails" : "_pytest.fixtures.FixtureLookupError: ('prepare_accounts', <FixtureRequest for <Function test_send_negative_sum_from_account_erc20>>)",
+        "time" : {
+          "start" : 1650633516175,
+          "stop" : 1650633516175,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "df324e1424ba43cd.json",
+  "parameterValues" : [ ]
+}
