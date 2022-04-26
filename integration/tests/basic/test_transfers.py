@@ -53,6 +53,7 @@ class TestTransfer(BaseMixin):
 
     def test_send_erc20_token_from_one_account_to_another(self, erc20wrapper):
         """Send erc20 token from one account to another"""
+        initial_amount = 6
         transfer_amount = 5
 
         contract, spl_owner = erc20wrapper
