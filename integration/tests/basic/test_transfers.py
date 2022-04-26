@@ -89,7 +89,7 @@ class TestTransfer(BaseMixin):
 
     def test_send_more_than_exist_on_account_erc20(self, erc20wrapper):
         """Send more than exist on account: ERC20"""
-        initial_amount = 0
+        initial_amount = 7
         amount = 1_000_000_000_000_000  # 10_000_000_000 + 1_000  # 1_000_000_000_000_000_000  # U64_MAX + 1_000
 
         contract, spl_owner = erc20wrapper
