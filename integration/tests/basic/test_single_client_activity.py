@@ -48,20 +48,6 @@ from integration.tests.basic.test_data.input_data import InputData
 25.	Too high gas_limit * gas_price > u64::max		
 26.	There are not enough Neons for gas fee		
 27.	There are not enough Neons for transfer
-
-Есть много известных вариантов, описать все не очень реалистично.
-Самые простые:
-Слишком маленький gas_limit
-Слишком большой gas_limit > u64::max
-Слишком большой gas_price > u64::max
-Слишком большой gas_limit * gas_price > u64::max
-Недостаточно неонов на оплату газа
-Недостаточно неонов на трансфер
-Размер эфировской транзакции больше лимита, лимит точно не известен, 256кб точно больше
-Размер солановской транзакции больше лимита, вызов другого контракта из контракта или erc20 wrapper увеличивает размер транзакции
-Выделение памяти в транзакции больше лимита, нужны специальные контракты
-Запись в storage больше лимита, лимит ~9мб
-stack overflow и stack underflow
 """
 
 FAUCET_TEST_DATA = [(1), (5), (999), (1_0000), (20_000)]
