@@ -6,6 +6,7 @@ from decimal import Decimal
 from eth_account import Account
 from typing import Any, Optional, Tuple, Union
 from integration.tests.base import BaseTests
+from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_client import JsonRpcClient
 from integration.tests.basic.model.model import AccountData, JsonRpcErrorResponse, JsonRpcResponse
@@ -103,7 +104,7 @@ class BaseMixin(BaseTests):
         with allure.step(f"Sending {amount} from {sender_account.address} to {recipient_account.address}"):
             with pytest.raises(Exception) as error_info:
                 tx = self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)
-            assert error_info, "Transaction not failed"
+            assert error_info, AssertMessage.TRX_NOT_FAILED.value
             if error_message:
                 assert error_message in str(error_info.value), f"Expected {error_message} to be in {error_info}"
             return tx

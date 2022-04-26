@@ -96,11 +96,11 @@ class TestTransfer(BaseMixin):
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
-        # with pytest.raises("exceptions.ContractLogicError") as error_info:
-        transfer_tx = self.web3_client.send_erc20(
-            spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
-        )
-        # assert None == error_info, f"Transaction failed: {error_info}"
+        with pytest.raises("exceptions.ContractLogicError") as error_info:
+            transfer_tx = self.web3_client.send_erc20(
+                spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+            )
+        assert error_info, AssertMessage.TRX_NOT_FAILED.value
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
@@ -123,7 +123,7 @@ class TestTransfer(BaseMixin):
 
     def test_zero_erc20(self, erc20wrapper):
         """Send zero: ERC20"""
-        initial_amount = 0
+        initial_amount = 5
         transfer_amount = 0
 
         contract, spl_owner = erc20wrapper
@@ -169,7 +169,7 @@ class TestTransfer(BaseMixin):
                 spl_owner, self.recipient_account, transfer_amount, contract.address, abi=contract.abi
             )
 
-        assert None == error_info, f"Transaction failed: {error_info}"
+        assert error_info, AssertMessage.TRX_NOT_FAILED.value
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
 
