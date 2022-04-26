@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from integration.tests.basic.helpers.basic import BaseMixin
+from integration.tests.basic.helpers.basic import WAITING_FOR_MS, BaseMixin
 from integration.tests.basic.test_data.input_data import InputData
 
 """
@@ -70,7 +70,7 @@ class TestSingleClient(BaseMixin):
             self.request_faucet_neon(account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    # @pytest.mark.skip(WAITING_FOR_MS)
+    @pytest.mark.skip(WAITING_FOR_MS)
     def test_check_tokens_in_wallet_spl(self):
         """Check tokens in wallet: spl"""
         assert 1 == 2
