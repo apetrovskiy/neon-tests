@@ -30,7 +30,7 @@ from integration.tests.basic.test_data.input_data import InputData
 	 - double request
 # 10.	Interact with simple contract
 # 11.	Deploy erc20 contract with tokens and mint this token
-# 12.	Verify implemented rpc calls work
+12.	Verify implemented rpc calls work
 # 13.	Speed up transaction by increase gas
 # 14.	Cancel transaction when gasprice setted very small for tx
 15.	Send token to an invalid address
