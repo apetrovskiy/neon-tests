@@ -21,7 +21,6 @@ U64_MAX = 18_446_744_073_709_551_615
 
 WRONG_TRANSFER_AMOUNT_DATA = [(11000_501), (10000_000.1)]
 TRANSFER_AMOUNT_DATA = [(0.01), (1), (1.1)]
-TRANSFER_INT_AMOUNT_DATA = [(1), (100)]
 
 GAS_LIMIT_AND_PRICE_DATA = (
     [1, None, ErrorMessage.GAS_LIMIT_REACHED.value],
@@ -52,19 +51,19 @@ class TestTransfer(BaseMixin):
         )
         self.assert_balance(self.recipient_account.address, recipient_balance + amount, rnd_dig=3)
 
-    @pytest.mark.parametrize("amount", TRANSFER_INT_AMOUNT_DATA)
-    def test_send_erc20_token_from_one_account_to_another(self, amount: Union[int, float], erc20wrapper):
+    def test_send_erc20_token_from_one_account_to_another(self, erc20wrapper):
         """Send erc20 token from one account to another"""
+        transfer_amount = 5
 
         contract, spl_owner = erc20wrapper
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
 
         transfer_tx = self.web3_client.send_erc20(
-            spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+            spl_owner, self.recipient_account, transfer_amount, contract.address, abi=contract.abi
         )
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == amount
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == transfer_amount
 
     # @pytest.mark.skip(WAITING_FOR_MS)
     def test_send_spl_wrapped_account_from_one_account_to_another(self):  # , erc20wrapper):
@@ -125,14 +124,14 @@ class TestTransfer(BaseMixin):
     def test_zero_erc20(self, erc20wrapper):
         """Send zero: ERC20"""
         initial_amount = 0
-        amount = 0
+        transfer_amount = 0
 
         contract, spl_owner = erc20wrapper
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
         transfer_tx = self.web3_client.send_erc20(
-            spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+            spl_owner, self.recipient_account, transfer_amount, contract.address, abi=contract.abi
         )
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
@@ -159,7 +158,7 @@ class TestTransfer(BaseMixin):
 
     def test_send_negative_sum_from_account_erc20(self, erc20wrapper):
         """Send negative sum from account: ERC20"""
-        amount = -1
+        transfer_amount = -1
 
         contract, spl_owner = erc20wrapper
 
@@ -167,7 +166,7 @@ class TestTransfer(BaseMixin):
 
         with pytest.raises(ValidationError) as error_info:
             transfer_tx = self.web3_client.send_erc20(
-                spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
+                spl_owner, self.recipient_account, transfer_amount, contract.address, abi=contract.abi
             )
 
         assert None == error_info, f"Transaction failed: {error_info}"
