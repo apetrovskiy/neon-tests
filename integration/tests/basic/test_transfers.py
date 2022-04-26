@@ -2,6 +2,8 @@ import allure
 from marshmallow import ValidationError
 import pytest
 from typing import Union
+
+import web3
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.basic import WAITING_FOR_ERC20, WAITING_FOR_MS, BaseMixin
@@ -53,18 +55,16 @@ class TestTransfer(BaseMixin):
 
     def test_send_erc20_token_from_one_account_to_another(self, erc20wrapper):
         """Send erc20 token from one account to another"""
-        initial_amount = 6
         transfer_amount = 5
 
         contract, spl_owner = erc20wrapper
-
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
+        initial_balance = contract.functions.balanceOf(self.recipient_account.address).call()
 
         transfer_tx = self.web3_client.send_erc20(
             spl_owner, self.recipient_account, transfer_amount, contract.address, abi=contract.abi
         )
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == transfer_amount
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_balance + transfer_amount
 
     # @pytest.mark.skip(WAITING_FOR_MS)
     def test_send_spl_wrapped_account_from_one_account_to_another(self):  # , erc20wrapper):
@@ -90,14 +90,14 @@ class TestTransfer(BaseMixin):
 
     def test_send_more_than_exist_on_account_erc20(self, erc20wrapper):
         """Send more than exist on account: ERC20"""
-        initial_amount = 7
-        amount = 1_000_000_000_000_000  # 10_000_000_000 + 1_000  # 1_000_000_000_000_000_000  # U64_MAX + 1_000
+        amount = 1_000_000_000_000_000
+        # 10_000_000_000 + 1_000  # 1_000_000_000_000_000_000  # U64_MAX + 1_000
 
         contract, spl_owner = erc20wrapper
+        initial_amount = contract.functions.balanceOf(self.recipient_account.address).call()
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
-
-        with pytest.raises("exceptions.ContractLogicError") as error_info:
+        # with pytest.raises("exceptions.ContractLogicError") as error_info:
+        with pytest.raises(Exception) as error_info:
             transfer_tx = self.web3_client.send_erc20(
                 spl_owner, self.recipient_account, amount, contract.address, abi=contract.abi
             )
@@ -124,18 +124,16 @@ class TestTransfer(BaseMixin):
 
     def test_zero_erc20(self, erc20wrapper):
         """Send zero: ERC20"""
-        initial_amount = 5
         transfer_amount = 0
 
         contract, spl_owner = erc20wrapper
-
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
+        initial_balance = contract.functions.balanceOf(self.recipient_account.address).call()
 
         transfer_tx = self.web3_client.send_erc20(
             spl_owner, self.recipient_account, transfer_amount, contract.address, abi=contract.abi
         )
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_balance
 
     def test_send_negative_sum_from_account_neon(self):
         """Send negative sum from account: neon"""
@@ -162,17 +160,16 @@ class TestTransfer(BaseMixin):
         transfer_amount = -1
 
         contract, spl_owner = erc20wrapper
+        initial_balance = contract.functions.balanceOf(self.recipient_account.address).call()
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
-
-        with pytest.raises(ValidationError) as error_info:
+        with pytest.raises(web3.exceptions.ValidationError) as error_info:
             transfer_tx = self.web3_client.send_erc20(
                 spl_owner, self.recipient_account, transfer_amount, contract.address, abi=contract.abi
             )
 
         assert error_info, AssertMessage.TRX_NOT_FAILED.value
 
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == 0
+        assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_balance
 
     def test_send_token_to_an_invalid_address(self):
         """Send token to an invalid address"""
