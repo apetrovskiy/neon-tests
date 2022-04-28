@@ -297,7 +297,6 @@ class TestTransfer(BaseMixin):
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_balance
 
-    @pytest.mark.skip(WAITING_FOR_MS)
     def test_send_negative_sum_from_account_erc20(self):
         """Send negative sum from account: ERC20"""
         erc20_balance = 1000
@@ -319,7 +318,7 @@ class TestTransfer(BaseMixin):
         # neon_balance_before = self.operator.get_neon_balance()
 
         # acc2 = self.web3_client.create_account()
-        with pytest.raises(web3.exceptions.ContractLogicError) as error_info:
+        with pytest.raises(web3.exceptions.ValidationError) as error_info:
             tx_receipt = self.web3_client.send_erc20(
                 self.sender_account,
                 self.recipient_account.address,
