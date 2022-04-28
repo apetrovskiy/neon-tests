@@ -316,7 +316,7 @@ class TestRpcCalls(BaseMixin):
         assert self.assert_result_object(actual_result), AssertMessage.DOES_NOT_CONTAIN_RESULT
 
     @pytest.mark.parametrize("quantity_tag,full_trx", TAGS_TEST_DATA)
-    def test_eth_get_block_by_umber_via_tags(self, quantity_tag: tp.Union[int, Tag], full_trx: bool):
+    def test_eth_get_block_by_number_via_tags(self, quantity_tag: tp.Union[int, Tag], full_trx: bool):
         """Verify implemented rpc calls work eth_getBlockByNumber"""
         params = RpcRequestParamsFactory.get_block_by_number(quantity_tag, full_trx)
         payloads = RpcRequestFactory.build_block_by_number(params=params)
