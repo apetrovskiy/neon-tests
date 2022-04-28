@@ -83,7 +83,8 @@ class TestTransfer(BaseMixin):
 
         # ERC20 balance
         assert (
-            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE - transfer_amount
+            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE - transfer_amount,
+            AssertMessage.CONTRACT_BALANCE_IS_WRONG.value,
         )
 
         # Neon balance
@@ -163,7 +164,9 @@ class TestTransfer(BaseMixin):
         assert error_info, AssertMessage.TRX_NOT_FAILED.value
 
         # ERC20 balance
-        assert contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
+        assert (
+            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
+        ), AssertMessage.CONTRACT_BALANCE_IS_WRONG.value
 
         # Neon balance
         assert initial_sender_neon_balance >= float(
@@ -186,61 +189,6 @@ class TestTransfer(BaseMixin):
             self.sender_account.address, sender_balance - self.calculate_trx_gas(tx_receipt=tx_receipt), rnd_dig=1
         )
         self.assert_balance(self.recipient_account.address, recipient_balance, rnd_dig=1)
-
-    # def test_zero_spl(self, erc20wrapper):
-    #     """Send zero: spl (with different precision)"""
-    #     transfer_amount = 0
-
-    #     contract, spl_owner = erc20wrapper
-    #     initial_balance = contract.functions.balanceOf(self.recipient_account.address).call()
-
-    #     transfer_tx = self.web3_client.send_erc20(
-    #         spl_owner, self.recipient_account, transfer_amount, contract.address, abi=contract.abi
-    #     )
-
-    #     assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_balance
-
-    # def test_zero_erc20(self):
-    #     """Send zero: ERC20"""
-
-    #     transfer_amount=0
-    #     initial_sender_neon_balance = float(
-    #         self.web3_client.fromWei(self.get_balance(self.sender_account.address), Unit.ETHER)
-    #     )
-    #     initial_recipient_neon_balance = float(
-    #         self.web3_client.fromWei(self.get_balance(self.recipient_account.address), Unit.ETHER)
-    #     )
-
-    #     contract, contract_deploy_tx = self.deploy_and_get_contract(
-    #         "ERC20", "0.6.6", self.sender_account, constructor_args=[DEFAULT_ERC20_BALANCE]
-    #     )
-    #     assert contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
-
-    #     tx_receipt = self.web3_client.send_erc20(
-    #         self.sender_account,
-    #         self.recipient_account.address,
-    #         transfer_amount,
-    #         contract_deploy_tx["contractAddress"],
-    #         abi=contract.abi,
-    #     )
-    #     # sol_balance_after = self.operator.get_solana_balance()
-    #     # neon_balance_after = self.operator.get_neon_balance()
-
-    #     # assert sol_balance_before > sol_balance_after
-    #     # assert neon_balance_after > neon_balance_before
-
-    #     # self.assert_profit(sol_balance_before - sol_balance_after, neon_balance_after - neon_balance_before)
-
-    #     # ERC20 balance
-    #     assert contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE -transfer_amount
-
-    #     # Neon balance
-    #     assert initial_sender_neon_balance >= float(
-    #         self.web3_client.fromWei(self.get_balance(self.sender_account.address), Unit.ETHER)
-    #     ), AssertMessage.BALANCE_HAS_INCREASED.value
-    #     assert initial_recipient_neon_balance >= float(
-    #         self.web3_client.fromWei(self.get_balance(self.recipient_account.address), Unit.ETHER)
-    #     ), AssertMessage.BALANCE_HAS_INCREASED.value
 
     def test_send_negative_sum_from_account_neon(self):
         """Send negative sum from account: neon"""
@@ -302,7 +250,9 @@ class TestTransfer(BaseMixin):
         assert error_info, AssertMessage.TRX_NOT_FAILED.value
 
         # ERC20 balance
-        assert contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
+        assert (
+            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
+        ), AssertMessage.CONTRACT_BALANCE_IS_WRONG.value
 
         # Neon balance
         assert initial_sender_neon_balance >= float(

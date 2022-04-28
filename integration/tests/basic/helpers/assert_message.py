@@ -15,3 +15,4 @@ class AssertMessage(Enum):
     TRX_NOT_FAILED = "Transaction has not failed"
     BALANCE_HAS_INCREASED = "Balance has increased"
     BALANCE_HAS_CHANGED = "Balance has changed"
+    CONTRACT_BALANCE_IS_WRONG = "Contract balance is wrong"

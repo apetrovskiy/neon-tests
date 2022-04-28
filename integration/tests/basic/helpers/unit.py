@@ -10,8 +10,5 @@ class Unit(Enum):
     MILLI_ETHER = "milliether"
     ETHER = "ether"
 
-    def __str__(self):
-        return self.value
-
     def lower(self):
         return self.value

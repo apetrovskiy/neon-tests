@@ -77,10 +77,6 @@ class BaseMixin(BaseTests):
         """Deploys an ERC-20 contract"""
         pass
 
-    # @allure.step("requesting faucet for ERC20")
-    # def request_faucet_erc20(self, wallet: str, amount: int):
-    #     self.faucet.request_sol(wallet, amount=amount)
-
     def process_transaction(
         self,
         sender_account: Account,
