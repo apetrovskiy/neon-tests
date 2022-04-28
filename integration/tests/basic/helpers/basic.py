@@ -9,6 +9,7 @@ from integration.tests.base import BaseTests
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.json_rpc_client import JsonRpcClient
+from integration.tests.basic.helpers.unit import Unit
 from integration.tests.basic.model.model import AccountData, JsonRpcErrorResponse, JsonRpcResponse
 from integration.tests.basic.test_data.input_data import InputData
 from utils import helpers
@@ -119,7 +120,7 @@ class BaseMixin(BaseTests):
 
     def assert_balance(self, address: str, expected_amount: float, rnd_dig: int = None):
         """Compares balance of an account with expectation"""
-        balance = float(self.web3_client.fromWei(self.get_balance(address), "ether"))
+        balance = float(self.web3_client.fromWei(self.get_balance(address), Unit.ETHER))
         self.check_balance(expected_amount, balance, rnd_dig=rnd_dig)
 
     @allure.step("deploying an ERC_20 contract")
@@ -129,7 +130,9 @@ class BaseMixin(BaseTests):
 
     @allure.step("calculating gas")
     def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> float:
-        gas_used_in_tx = tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(self.web3_client.gas_price(), "ether")
+        gas_used_in_tx = tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(
+            self.web3_client.gas_price(), Unit.ETHER
+        )
         return float(round(gas_used_in_tx, InputData.ROUND_DIGITS.value))
 
     @staticmethod
@@ -139,7 +142,9 @@ class BaseMixin(BaseTests):
 
     @allure.step("calculating gas")
     def calculate_trx_gas(self, tx_receipt: web3.types.TxReceipt) -> float:
-        gas_used_in_tx = tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(self.web3_client.gas_price(), "ether")
+        gas_used_in_tx = tx_receipt.cumulativeGasUsed * self.web3_client.fromWei(
+            self.web3_client.gas_price(), Unit.ETHER
+        )
         return float(round(gas_used_in_tx, InputData.ROUND_DIGITS.value))
 
     @staticmethod

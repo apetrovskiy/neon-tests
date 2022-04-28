@@ -3,6 +3,7 @@ import pytest
 import typing as tp
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
+from integration.tests.basic.helpers.unit import Unit
 from integration.tests.basic.model.model import TrxReceiptResponse, TrxResponse
 from integration.tests.basic.model.tags import Tag
 from integration.tests.basic.test_data.input_data import InputData
@@ -245,11 +246,13 @@ class TestRpcCalls(BaseMixin):
     def test_rpc_call_eth_send_raw_transaction(self):
         """Verify implemented rpc calls work eth_sendRawTransaction"""
 
-        recipient_balance = float(self.web3_client.fromWei(self.get_balance(self.recipient_account.address), "ether"))
+        recipient_balance = float(
+            self.web3_client.fromWei(self.get_balance(self.recipient_account.address), Unit.ETHER)
+        )
         transaction = {
             "from": self.sender_account.address,
             "to": self.recipient_account.address,
-            "value": self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, "ether"),
+            "value": self.web3_client.toWei(InputData.SAMPLE_AMOUNT.value, Unit.ETHER),
             "chainId": self.web3_client._chain_id,
             "gasPrice": self.web3_client.gas_price(),
             "gas": 0,
