@@ -185,31 +185,31 @@ class BaseMixin(BaseTests):
         return contract, contract_deploy_tx
 
     # TODO: probe
-    def deploy_contract(
-        self,
-        name: str,
-        version: str,
-        account: Account,  # "eth_account.signers.local.LocalAccount",
-        constructor_args: Optional[Any] = None,
-        gas: Optional[int] = 0,
-    ) -> "web3._utils.datatypes.Contract":
-        """contract deployments"""
+    # def deploy_contract(
+    #     self,
+    #     name: str,
+    #     version: str,
+    #     account: Account,  # "eth_account.signers.local.LocalAccount",
+    #     constructor_args: Optional[Any] = None,
+    #     gas: Optional[int] = 0,
+    # ) -> "web3._utils.datatypes.Contract":
+    #     """contract deployments"""
 
-        # contract_interface = self._compile_contract_interface(name, version)
-        contract_interface = helpers.get_contract_interface(name, version)
-        contract_deploy_tx = self._web3_client.deploy_contract(
-            account,
-            abi=contract_interface["abi"],
-            bytecode=contract_interface["bin"],
-            constructor_args=constructor_args,
-            gas=gas,
-        )
+    #     # contract_interface = self._compile_contract_interface(name, version)
+    #     contract_interface = helpers.get_contract_interface(name, version)
+    #     contract_deploy_tx = self._web3_client.deploy_contract(
+    #         account,
+    #         abi=contract_interface["abi"],
+    #         bytecode=contract_interface["bin"],
+    #         constructor_args=constructor_args,
+    #         gas=gas,
+    #     )
 
-        if not (contract_deploy_tx and contract_interface):
-            return None, None
+    #     if not (contract_deploy_tx and contract_interface):
+    #         return None, None
 
-        contract = self._web3_client.eth.contract(
-            address=contract_deploy_tx["contractAddress"], abi=contract_interface["abi"]
-        )
+    #     contract = self._web3_client.eth.contract(
+    #         address=contract_deploy_tx["contractAddress"], abi=contract_interface["abi"]
+    #     )
 
-        return contract, contract_deploy_tx
+    #     return contract, contract_deploy_tx
