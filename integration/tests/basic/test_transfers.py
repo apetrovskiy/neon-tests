@@ -6,7 +6,7 @@ from typing import Union
 import web3
 from integration.tests.basic.helpers.assert_message import AssertMessage
 from integration.tests.basic.helpers.assert_message import AssertMessage
-from integration.tests.basic.helpers.basic import WAITING_FOR_MS, BaseMixin
+from integration.tests.basic.helpers.basic import BaseMixin
 from integration.tests.basic.helpers.error_message import ErrorMessage
 from integration.tests.basic.helpers.rpc_request_factory import RpcRequestFactory
 from integration.tests.basic.model.model import AccountData
@@ -19,6 +19,7 @@ EIP55_INVALID_CHECKSUM = (
     "'Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.'"
 )
 U64_MAX = 18_446_744_073_709_551_615
+DEFAULT_ERC20_BALANCE = 1000
 
 
 WRONG_TRANSFER_AMOUNT_DATA = [(11000_501), (10000_000.1)]
@@ -57,8 +58,6 @@ class TestTransfer(BaseMixin):
     def test_send_erc20_token_from_one_account_to_another(self, transfer_amount: Union[int, float]):
         """Send erc20 token from one account to another"""
 
-        erc20_balance = 1000
-
         initial_sender_neon_balance = float(
             self.web3_client.fromWei(self.get_balance(self.sender_account.address), "ether")
         )
@@ -67,15 +66,9 @@ class TestTransfer(BaseMixin):
         )
 
         contract, contract_deploy_tx = self.deploy_and_get_contract(
-            "ERC20", "0.6.6", self.sender_account, constructor_args=[erc20_balance]
+            "ERC20", "0.6.6", self.sender_account, constructor_args=[DEFAULT_ERC20_BALANCE]
         )
-
-        assert contract.functions.balanceOf(self.sender_account.address).call() == erc20_balance
-
-        # sol_balance_before = self.operator.get_solana_balance()
-        # neon_balance_before = self.operator.get_neon_balance()
-
-        # acc2 = self.web3_client.create_account()
+        assert contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
 
         tx_receipt = self.web3_client.send_erc20(
             self.sender_account,
@@ -141,10 +134,8 @@ class TestTransfer(BaseMixin):
         assert error_info, AssertMessage.TRX_NOT_FAILED.value
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_amount
 
-    # @pytest.mark.skip(WAITING_FOR_MS)
     def test_send_more_than_exist_on_account_erc20(self):
         """Send more than exist on account: ERC20"""
-        erc20_balance = 1000
 
         initial_sender_neon_balance = float(
             self.web3_client.fromWei(self.get_balance(self.sender_account.address), "ether")
@@ -154,15 +145,10 @@ class TestTransfer(BaseMixin):
         )
 
         contract, contract_deploy_tx = self.deploy_and_get_contract(
-            "ERC20", "0.6.6", self.sender_account, constructor_args=[erc20_balance]
+            "ERC20", "0.6.6", self.sender_account, constructor_args=[DEFAULT_ERC20_BALANCE]
         )
+        assert contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
 
-        assert contract.functions.balanceOf(self.sender_account.address).call() == erc20_balance
-
-        # sol_balance_before = self.operator.get_solana_balance()
-        # neon_balance_before = self.operator.get_neon_balance()
-
-        # acc2 = self.web3_client.create_account()
         with pytest.raises(web3.exceptions.ContractLogicError) as error_info:
             tx_receipt = self.web3_client.send_erc20(
                 self.sender_account,
@@ -173,7 +159,6 @@ class TestTransfer(BaseMixin):
             )
 
         assert error_info, AssertMessage.TRX_NOT_FAILED.value
-        # assert contract.functions.balanceOf(self.recipient_account.address).call() == erc20_balance
 
         # sol_balance_after = self.operator.get_solana_balance()
         # neon_balance_after = self.operator.get_neon_balance()
@@ -218,10 +203,8 @@ class TestTransfer(BaseMixin):
 
         assert contract.functions.balanceOf(self.recipient_account.address).call() == initial_balance
 
-    # @pytest.mark.skip(WAITING_FOR_MS)
     def test_zero_erc20(self):
         """Send zero: ERC20"""
-        erc20_balance = 1000
 
         initial_sender_neon_balance = float(
             self.web3_client.fromWei(self.get_balance(self.sender_account.address), "ether")
@@ -231,15 +214,9 @@ class TestTransfer(BaseMixin):
         )
 
         contract, contract_deploy_tx = self.deploy_and_get_contract(
-            "ERC20", "0.6.6", self.sender_account, constructor_args=[erc20_balance]
+            "ERC20", "0.6.6", self.sender_account, constructor_args=[DEFAULT_ERC20_BALANCE]
         )
-
-        assert contract.functions.balanceOf(self.sender_account.address).call() == erc20_balance
-
-        # sol_balance_before = self.operator.get_solana_balance()
-        # neon_balance_before = self.operator.get_neon_balance()
-
-        # acc2 = self.web3_client.create_account()
+        assert contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
 
         tx_receipt = self.web3_client.send_erc20(
             self.sender_account,
@@ -299,7 +276,6 @@ class TestTransfer(BaseMixin):
 
     def test_send_negative_sum_from_account_erc20(self):
         """Send negative sum from account: ERC20"""
-        erc20_balance = 1000
 
         initial_sender_neon_balance = float(
             self.web3_client.fromWei(self.get_balance(self.sender_account.address), "ether")
@@ -309,15 +285,10 @@ class TestTransfer(BaseMixin):
         )
 
         contract, contract_deploy_tx = self.deploy_and_get_contract(
-            "ERC20", "0.6.6", self.sender_account, constructor_args=[erc20_balance]
+            "ERC20", "0.6.6", self.sender_account, constructor_args=[DEFAULT_ERC20_BALANCE]
         )
+        assert contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
 
-        assert contract.functions.balanceOf(self.sender_account.address).call() == erc20_balance
-
-        # sol_balance_before = self.operator.get_solana_balance()
-        # neon_balance_before = self.operator.get_neon_balance()
-
-        # acc2 = self.web3_client.create_account()
         with pytest.raises(web3.exceptions.ValidationError) as error_info:
             tx_receipt = self.web3_client.send_erc20(
                 self.sender_account,
