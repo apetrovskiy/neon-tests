@@ -1,0 +1,316 @@
+{
+  "uid" : "55e4468dfb0e46e9",
+  "name" : "test_send_token_to_self_erc20",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_token_to_self_erc20",
+  "historyId" : "50007ed1ed10057d039e4d361d6fd78b",
+  "time" : {
+    "start" : 1651256658153,
+    "stop" : 1651256658153,
+    "duration" : 0
+  },
+  "description" : "Send token to self: ERC20",
+  "descriptionHtml" : "<p>Send token to self: ERC20</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7f6d32a66820>\nfaucet = <utils.faucet.Faucet object at 0x7f6d32b8d250>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7f6d32b3a6a0>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client: NeonWeb3Client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request 5000 NEON from faucet for {acc.address}\"):\n>           faucet.request_neon(acc.address, 5000)\n\nintegration/tests/conftest.py:113: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.faucet.Faucet object at 0x7f6d32b8d250>\naddress = '0xa4e0C0017955c5DEf0E9C3Cfdb41bd119cDFD709', amount = 5000\n\n    def request_neon(self, address: str, amount: int = 100):\n        assert address.startswith(\"0x\")\n        url = urllib.parse.urljoin(self._url, \"request_neon\")\n        resp = self._session.post(url, json={\"amount\": amount, \"wallet\": address})\n>       assert resp.status_code == 200, resp.text\nE       AssertionError: <html>\r\nE       <head><title>502 Bad Gateway</title></head>\r\nE       <body>\r\nE       <center><h1>502 Bad Gateway</h1></center>\r\nE       <hr><center>nginx/1.18.0 (Ubuntu)</center>\r\nE       </body>\r\nE       </html>\n\nutils/faucet.py:16: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1651256571036,
+      "stop" : 1651256571037,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1651256571036,
+      "stop" : 1651256571036,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1651256571037,
+      "stop" : 1651256572053,
+      "duration" : 1016
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1651256572054,
+      "stop" : 1651256572054,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1651256572054,
+      "stop" : 1651256572054,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1651256572054,
+      "stop" : 1651256572054,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1651256572054,
+      "stop" : 1651256572054,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1651256573383,
+      "stop" : 1651256573557,
+      "duration" : 174
+    },
+    "status" : "failed",
+    "statusMessage" : "AssertionError: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 113, in prepare_account\n    faucet.request_neon(acc.address, 5000)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 16, in request_neon\n    assert resp.status_code == 200, resp.text\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1651256573383,
+        "stop" : 1651256573387,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    }, {
+      "name" : "Request 5000 NEON from faucet for 0xa4e0C0017955c5DEf0E9C3Cfdb41bd119cDFD709",
+      "time" : {
+        "start" : 1651256573387,
+        "stop" : 1651256573556,
+        "duration" : 169
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 113, in prepare_account\n    faucet.request_neon(acc.address, 5000)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 16, in request_neon\n    assert resp.status_code == 200, resp.text\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : true,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 2,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1651256658154,
+      "stop" : 1651256658154,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1651256658535,
+      "stop" : 1651256658535,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az129-187"
+  }, {
+    "name" : "thread",
+    "value" : "1849-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 6,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "b11faba2a5f1b0",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25n/1106//#testresult/b11faba2a5f1b0",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>",
+        "time" : {
+          "start" : 1651256052697,
+          "stop" : 1651256052697,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "2be1de1a87d899c6",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25n/1104//#testresult/2be1de1a87d899c6",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>",
+        "time" : {
+          "start" : 1651251379847,
+          "stop" : 1651251379847,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "55f584c6c8700aec",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25n/1102//#testresult/55f584c6c8700aec",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>",
+        "time" : {
+          "start" : 1651250971790,
+          "stop" : 1651250971790,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "deed667c207156e",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25n/1100//#testresult/deed667c207156e",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>",
+        "time" : {
+          "start" : 1651245305986,
+          "stop" : 1651245305986,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "2bf2f3c2c4332d74",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/release-stand/feature/25n/1098//#testresult/2bf2f3c2c4332d74",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>",
+        "time" : {
+          "start" : 1651242999037,
+          "stop" : 1651242999037,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "55e4468dfb0e46e9.json",
+  "parameterValues" : [ ]
+}
