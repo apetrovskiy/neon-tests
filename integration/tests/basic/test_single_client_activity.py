@@ -27,39 +27,6 @@ class TestSingleClient(BaseMixin):
             self.request_faucet_neon(account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
         self.assert_balance(account.address, InputData.FAUCET_1ST_REQUEST_AMOUNT.value)
 
-    def test_check_tokens_in_wallet_spl(self, erc20wrapper):
-        """Check tokens in wallet: spl"""
-
-        contract, spl_owner = erc20wrapper
-        # initial_spl_balance = contract.functions.balanceOf(self.recipient_account.address).call()
-        # initial_neon_balance = float(
-        #     self.web3_client.fromWei(self.get_balance(self.recipient_account.address), Unit.ETHER)
-        # )
-
-        # Spl balance
-        assert contract.functions.balanceOf(self.recipient_account.address).call() == 0# == initial_spl_balance
-
-        # Neon balance
-        # self.assert_balance(self.recipient_account.address, initial_neon_balance, rnd_dig=3)
-
-    def test_check_tokens_in_wallet_ERC20(self):
-        """Check tokens in wallet: ERC20"""
-
-        contract, contract_deploy_tx = self.deploy_and_get_contract(
-            "ERC20", "0.6.6", self.sender_account, constructor_args=[DEFAULT_ERC20_BALANCE]
-        )
-        initial_neon_balance = float(
-            self.web3_client.fromWei(self.get_balance(self.sender_account.address), Unit.ETHER)
-        )
-
-        # ERC20 balance
-        assert (
-            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
-        ), AssertMessage.CONTRACT_BALANCE_IS_WRONG.value
-
-        # Neon balance
-        self.assert_balance(self.sender_account.address, initial_neon_balance, rnd_dig=3)
-
     @pytest.mark.only_stands
     @pytest.mark.parametrize("amount", FAUCET_TEST_DATA)
     def test_verify_faucet_work_single_request(self, amount: int):
