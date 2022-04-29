@@ -182,10 +182,10 @@ class TestTransfer(BaseMixin):
         sender_balance, recipient_balance = self.get_initial_balances()
 
         self.process_transaction_with_failure(
-            self.sender_account,
-            self.recipient_account,
-            InputData.NEGATIVE_AMOUNT.value,
-            ErrorMessage.NEGATIVE_VALUE.value,
+            sender_account=self.sender_account,
+            recipient_account=self.recipient_account,
+            amount=InputData.NEGATIVE_AMOUNT.value,
+            error_message=ErrorMessage.NEGATIVE_VALUE.value,
         )
 
         self.assert_balance(self.sender_account.address, sender_balance, rnd_dig=1)
@@ -290,10 +290,10 @@ class TestTransfer(BaseMixin):
         balance_before = float(self.web3_client.fromWei(self.get_balance(self.sender_account.address), Unit.ETHER))
 
         self.process_transaction_with_failure(
-            sender_account,
-            INVALID_ADDRESS,
-            InputData.DEFAULT_TRANSFER_AMOUNT.value,
-            ENS_NAME_ERROR,
+            sender_account=sender_account,
+            recipient_account=INVALID_ADDRESS,
+            amount=InputData.DEFAULT_TRANSFER_AMOUNT.value,
+            error_message=ENS_NAME_ERROR,
         )
 
         balance_after = float(self.web3_client.fromWei(self.get_balance(self.sender_account.address), Unit.ETHER))
@@ -305,9 +305,9 @@ class TestTransfer(BaseMixin):
         recipient_address = AccountData(address=sender_account.address.replace("1", "2").replace("3", "4"))
 
         self.process_transaction_with_failure(
-            sender_account,
-            recipient_address,
-            InputData.DEFAULT_TRANSFER_AMOUNT.value,
+            sender_account=sender_account,
+            recipient_account=recipient_address,
+            amount=InputData.DEFAULT_TRANSFER_AMOUNT.value,
             error_message=EIP55_INVALID_CHECKSUM,
         )
 
@@ -368,8 +368,8 @@ class TestTransactionsValidation(BaseMixin):
         recipient_account = self.create_account_with_balance()
 
         self.process_transaction_with_failure(
-            sender_account,
-            recipient_account,
+            sender_account=sender_account,
+            recipient_account=recipient_account,
             amount=InputData.DEFAULT_TRANSFER_AMOUNT.value,
             gas=gas_limit,
             gas_price=gas_price,
@@ -432,9 +432,9 @@ class TestTransactionsValidation(BaseMixin):
 
         balance_before = float(self.web3_client.fromWei(self.get_balance(sender_account.address), Unit.ETHER))
         self.process_transaction_with_failure(
-            sender_account,
-            recipient_account,
-            amount,
+            sender_account=sender_account,
+            recipient_account=recipient_account,
+            amount=amount,
             error_message=ErrorMessage.INSUFFICIENT_FUNDS.value,
         )
 
@@ -449,9 +449,9 @@ class TestTransactionsValidation(BaseMixin):
         amount = 1.1
 
         self.process_transaction_with_failure(
-            sender_account,
-            recipient_account,
-            amount,
+            sender_account=sender_account,
+            recipient_account=recipient_account,
+            amount=amount,
             error_message=ErrorMessage.INSUFFICIENT_FUNDS.value,
         )
 
