@@ -1,0 +1,409 @@
+{
+  "uid" : "22faa3b801d42145",
+  "name" : "test_send_negative_sum_from_account_neon",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransfer#test_send_negative_sum_from_account_neon",
+  "historyId" : "b8f842096bc774361fb83c1b6571422c",
+  "time" : {
+    "start" : 1651251557585,
+    "stop" : 1651251557918,
+    "duration" : 333
+  },
+  "description" : "Send negative sum from account: neon",
+  "descriptionHtml" : "<p>Send negative sum from account: neon</p>\n",
+  "status" : "broken",
+  "statusMessage" : "re.error: multiple repeat at position 44",
+  "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f79f181d9a0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f79f1df4640>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7f79f1e18c40>\namount = -0.1, gas = 0, gas_price = None\nerror_message = 'Resulting wei value must be between 1 and 2**256 - 1'\n\n    def process_transaction_with_failure(\n        self,\n        sender_account: Account,\n        recipient_account: tp.Union[Account, AccountData],\n        amount: int,\n        gas: Optional[int] = 0,\n        gas_price: Optional[int] = None,\n        error_message: str = \"\",\n    ) -> tp.Union[web3.types.TxReceipt, None]:\n        \"\"\"Processes transaction, expects a failure\"\"\"\n        tx: tp.Union[web3.types.TxReceipt, None] = None\n        with allure.step(f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"):\n            with pytest.raises(Exception, match=error_message):\n>               tx = self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)\n\nintegration/tests/basic/helpers/basic.py:93: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.web3client.NeonWeb3Client object at 0x7f79f1e06ee0>\nfrom_ = <eth_account.signers.local.LocalAccount object at 0x7f79f1df4640>\nto = <eth_account.signers.local.LocalAccount object at 0x7f79f1e18c40>\namount = -0.1, gas = 0, gas_price = 455149632000\n\n    def send_neon(\n        self,\n        from_: eth_account.signers.local.LocalAccount,\n        to: tp.Union[str, eth_account.signers.local.LocalAccount],\n        amount: tp.Union[int, float, Decimal],\n        gas: tp.Optional[int] = 0,\n        gas_price: tp.Optional[int] = None,\n    ) -> web3.types.TxReceipt:\n        to_addr = to if isinstance(to, str) else to.address\n        gas_price = gas_price or self.gas_price()\n        transaction = {\n            \"from\": from_.address,\n            \"to\": to_addr,\n>           \"value\": web3.Web3.toWei(amount, \"ether\"),\n            \"chainId\": self._chain_id,\n            \"gasPrice\": gas_price or self.gas_price(),\n            \"gas\": gas,\n            \"nonce\": self._web3.eth.get_transaction_count(from_.address),\n        }\n\nutils/web3client.py:66: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nnumber = -0.1, unit = 'ether'\n\n    @staticmethod\n    @wraps(to_wei)\n    def toWei(number: Union[int, float, str, decimal.Decimal], unit: str) -> Wei:\n>       return cast(Wei, to_wei(number, unit))\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/main.py:205: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nnumber = -0.1, unit = 'ether'\n\n    def to_wei(number: Union[int, float, str, decimal.Decimal], unit: str) -> int:\n        \"\"\"\n        Takes a number of a unit and converts it to wei.\n        \"\"\"\n        if unit.lower() not in units:\n            raise ValueError(\n                \"Unknown unit.  Must be one of {0}\".format(\"/\".join(units.keys()))\n            )\n    \n        if is_integer(number) or is_string(number):\n            d_number = decimal.Decimal(value=number)\n        elif isinstance(number, float):\n            d_number = decimal.Decimal(value=str(number))\n        elif isinstance(number, decimal.Decimal):\n            d_number = number\n        else:\n            raise TypeError(\"Unsupported type.  Must be one of integer, float, or string\")\n    \n        s_number = str(number)\n        unit_value = units[unit.lower()]\n    \n        if d_number == decimal.Decimal(0):\n            return 0\n    \n        if d_number < 1 and \".\" in s_number:\n            with localcontext() as ctx:\n                multiplier = len(s_number) - s_number.index(\".\") - 1\n                ctx.prec = multiplier\n                d_number = decimal.Decimal(value=number, context=ctx) * 10 ** multiplier\n            unit_value /= 10 ** multiplier\n    \n        with localcontext() as ctx:\n            ctx.prec = 999\n            result_value = decimal.Decimal(value=d_number, context=ctx) * unit_value\n    \n        if result_value < MIN_WEI or result_value > MAX_WEI:\n>           raise ValueError(\"Resulting wei value must be between 1 and 2**256 - 1\")\nE           ValueError: Resulting wei value must be between 1 and 2**256 - 1\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/currency.py:100: ValueError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f79f181d9a0>\n\n    def test_send_negative_sum_from_account_neon(self):\n        \"\"\"Send negative sum from account: neon\"\"\"\n    \n        sender_balance, recipient_balance = self.get_initial_balances()\n    \n>       self.process_transaction_with_failure(\n            sender_account=self.sender_account,\n            recipient_account=self.recipient_account,\n            amount=InputData.NEGATIVE_AMOUNT.value,\n            error_message=ErrorMessage.NEGATIVE_VALUE.value,\n        )\n\nintegration/tests/basic/test_transfers.py:184: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:93: in process_transaction_with_failure\n    tx = self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/re.py:201: in search\n    return _compile(pattern, flags).search(string)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/re.py:304: in _compile\n    p = sre_compile.compile(pattern, flags)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_compile.py:764: in compile\n    p = sre_parse.parse(p, flags)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py:950: in parse\n    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py:443: in _parse_sub\n    itemsappend(_parse(source, state, verbose, nested + 1,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = <sre_parse.Tokenizer object at 0x7f79f17b5f70>\nstate = <sre_parse.State object at 0x7f79f17b5c70>, verbose = 0, nested = 1\nfirst = True\n\n    def _parse(source, state, verbose, nested, first=False):\n        # parse a simple pattern\n        subpattern = SubPattern(state)\n    \n        # precompute constants into local variables\n        subpatternappend = subpattern.append\n        sourceget = source.get\n        sourcematch = source.match\n        _len = len\n        _ord = ord\n    \n        while True:\n    \n            this = source.next\n            if this is None:\n                break # end of pattern\n            if this in \"|)\":\n                break # end of subpattern\n            sourceget()\n    \n            if verbose:\n                # skip whitespace and comments\n                if this in WHITESPACE:\n                    continue\n                if this == \"#\":\n                    while True:\n                        this = sourceget()\n                        if this is None or this == \"\\n\":\n                            break\n                    continue\n    \n            if this[0] == \"\\\\\":\n                code = _escape(source, this, state)\n                subpatternappend(code)\n    \n            elif this not in SPECIAL_CHARS:\n                subpatternappend((LITERAL, _ord(this)))\n    \n            elif this == \"[\":\n                here = source.tell() - 1\n                # character set\n                set = []\n                setappend = set.append\n    ##          if sourcematch(\":\"):\n    ##              pass # handle character classes\n                if source.next == '[':\n                    import warnings\n                    warnings.warn(\n                        'Possible nested set at position %d' % source.tell(),\n                        FutureWarning, stacklevel=nested + 6\n                    )\n                negate = sourcematch(\"^\")\n                # check remaining characters\n                while True:\n                    this = sourceget()\n                    if this is None:\n                        raise source.error(\"unterminated character set\",\n                                           source.tell() - here)\n                    if this == \"]\" and set:\n                        break\n                    elif this[0] == \"\\\\\":\n                        code1 = _class_escape(source, this)\n                    else:\n                        if set and this in '-&~|' and source.next == this:\n                            import warnings\n                            warnings.warn(\n                                'Possible set %s at position %d' % (\n                                    'difference' if this == '-' else\n                                    'intersection' if this == '&' else\n                                    'symmetric difference' if this == '~' else\n                                    'union',\n                                    source.tell() - 1),\n                                FutureWarning, stacklevel=nested + 6\n                            )\n                        code1 = LITERAL, _ord(this)\n                    if sourcematch(\"-\"):\n                        # potential range\n                        that = sourceget()\n                        if that is None:\n                            raise source.error(\"unterminated character set\",\n                                               source.tell() - here)\n                        if that == \"]\":\n                            if code1[0] is IN:\n                                code1 = code1[1][0]\n                            setappend(code1)\n                            setappend((LITERAL, _ord(\"-\")))\n                            break\n                        if that[0] == \"\\\\\":\n                            code2 = _class_escape(source, that)\n                        else:\n                            if that == '-':\n                                import warnings\n                                warnings.warn(\n                                    'Possible set difference at position %d' % (\n                                        source.tell() - 2),\n                                    FutureWarning, stacklevel=nested + 6\n                                )\n                            code2 = LITERAL, _ord(that)\n                        if code1[0] != LITERAL or code2[0] != LITERAL:\n                            msg = \"bad character range %s-%s\" % (this, that)\n                            raise source.error(msg, len(this) + 1 + len(that))\n                        lo = code1[1]\n                        hi = code2[1]\n                        if hi < lo:\n                            msg = \"bad character range %s-%s\" % (this, that)\n                            raise source.error(msg, len(this) + 1 + len(that))\n                        setappend((RANGE, (lo, hi)))\n                    else:\n                        if code1[0] is IN:\n                            code1 = code1[1][0]\n                        setappend(code1)\n    \n                set = _uniq(set)\n                # XXX: <fl> should move set optimization to compiler!\n                if _len(set) == 1 and set[0][0] is LITERAL:\n                    # optimization\n                    if negate:\n                        subpatternappend((NOT_LITERAL, set[0][1]))\n                    else:\n                        subpatternappend(set[0])\n                else:\n                    if negate:\n                        set.insert(0, (NEGATE, None))\n                    # charmap optimization can't be added here because\n                    # global flags still are not known\n                    subpatternappend((IN, set))\n    \n            elif this in REPEAT_CHARS:\n                # repeat previous item\n                here = source.tell()\n                if this == \"?\":\n                    min, max = 0, 1\n                elif this == \"*\":\n                    min, max = 0, MAXREPEAT\n    \n                elif this == \"+\":\n                    min, max = 1, MAXREPEAT\n                elif this == \"{\":\n                    if source.next == \"}\":\n                        subpatternappend((LITERAL, _ord(this)))\n                        continue\n    \n                    min, max = 0, MAXREPEAT\n                    lo = hi = \"\"\n                    while source.next in DIGITS:\n                        lo += sourceget()\n                    if sourcematch(\",\"):\n                        while source.next in DIGITS:\n                            hi += sourceget()\n                    else:\n                        hi = lo\n                    if not sourcematch(\"}\"):\n                        subpatternappend((LITERAL, _ord(this)))\n                        source.seek(here)\n                        continue\n    \n                    if lo:\n                        min = int(lo)\n                        if min >= MAXREPEAT:\n                            raise OverflowError(\"the repetition number is too large\")\n                    if hi:\n                        max = int(hi)\n                        if max >= MAXREPEAT:\n                            raise OverflowError(\"the repetition number is too large\")\n                        if max < min:\n                            raise source.error(\"min repeat greater than max repeat\",\n                                               source.tell() - here)\n                else:\n                    raise AssertionError(\"unsupported quantifier %r\" % (char,))\n                # figure out which item to repeat\n                if subpattern:\n                    item = subpattern[-1:]\n                else:\n                    item = None\n                if not item or item[0][0] is AT:\n                    raise source.error(\"nothing to repeat\",\n                                       source.tell() - here + len(this))\n                if item[0][0] in _REPEATCODES:\n>                   raise source.error(\"multiple repeat\",\n                                       source.tell() - here + len(this))\nE                   re.error: multiple repeat at position 44\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py:671: error",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : true,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1651251276948,
+      "stop" : 1651251276949,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1651251276948,
+      "stop" : 1651251276948,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1651251276949,
+      "stop" : 1651251277535,
+      "duration" : 586
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1651251277536,
+      "stop" : 1651251277536,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1651251277536,
+      "stop" : 1651251277536,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1651251277536,
+      "stop" : 1651251277536,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1651251277536,
+      "stop" : 1651251277536,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1651251508068,
+      "stop" : 1651251513078,
+      "duration" : 5010
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1651251508068,
+        "stop" : 1651251508072,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 5000 NEON from faucet for 0x6A83A42952493C16681b4B7048648FFBAd7a1936",
+      "time" : {
+        "start" : 1651251508072,
+        "stop" : 1651251508792,
+        "duration" : 720
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.008636324885941174932864 NEON 59058.63747128 SOL",
+      "time" : {
+        "start" : 1651251513078,
+        "stop" : 1651251513078,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1651251557585,
+      "stop" : 1651251557585,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1651251557585,
+      "stop" : 1651251557585,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_env",
+    "time" : {
+      "start" : 1651251557585,
+      "stop" : 1651251557585,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Send negative sum from account: neon",
+    "status" : "broken",
+    "statusMessage" : "re.error: multiple repeat at position 44",
+    "statusTrace" : "self = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f79f181d9a0>\nsender_account = <eth_account.signers.local.LocalAccount object at 0x7f79f1df4640>\nrecipient_account = <eth_account.signers.local.LocalAccount object at 0x7f79f1e18c40>\namount = -0.1, gas = 0, gas_price = None\nerror_message = 'Resulting wei value must be between 1 and 2**256 - 1'\n\n    def process_transaction_with_failure(\n        self,\n        sender_account: Account,\n        recipient_account: tp.Union[Account, AccountData],\n        amount: int,\n        gas: Optional[int] = 0,\n        gas_price: Optional[int] = None,\n        error_message: str = \"\",\n    ) -> tp.Union[web3.types.TxReceipt, None]:\n        \"\"\"Processes transaction, expects a failure\"\"\"\n        tx: tp.Union[web3.types.TxReceipt, None] = None\n        with allure.step(f\"Sending {amount} from {sender_account.address} to {recipient_account.address}\"):\n            with pytest.raises(Exception, match=error_message):\n>               tx = self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)\n\nintegration/tests/basic/helpers/basic.py:93: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.web3client.NeonWeb3Client object at 0x7f79f1e06ee0>\nfrom_ = <eth_account.signers.local.LocalAccount object at 0x7f79f1df4640>\nto = <eth_account.signers.local.LocalAccount object at 0x7f79f1e18c40>\namount = -0.1, gas = 0, gas_price = 455149632000\n\n    def send_neon(\n        self,\n        from_: eth_account.signers.local.LocalAccount,\n        to: tp.Union[str, eth_account.signers.local.LocalAccount],\n        amount: tp.Union[int, float, Decimal],\n        gas: tp.Optional[int] = 0,\n        gas_price: tp.Optional[int] = None,\n    ) -> web3.types.TxReceipt:\n        to_addr = to if isinstance(to, str) else to.address\n        gas_price = gas_price or self.gas_price()\n        transaction = {\n            \"from\": from_.address,\n            \"to\": to_addr,\n>           \"value\": web3.Web3.toWei(amount, \"ether\"),\n            \"chainId\": self._chain_id,\n            \"gasPrice\": gas_price or self.gas_price(),\n            \"gas\": gas,\n            \"nonce\": self._web3.eth.get_transaction_count(from_.address),\n        }\n\nutils/web3client.py:66: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nnumber = -0.1, unit = 'ether'\n\n    @staticmethod\n    @wraps(to_wei)\n    def toWei(number: Union[int, float, str, decimal.Decimal], unit: str) -> Wei:\n>       return cast(Wei, to_wei(number, unit))\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/main.py:205: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nnumber = -0.1, unit = 'ether'\n\n    def to_wei(number: Union[int, float, str, decimal.Decimal], unit: str) -> int:\n        \"\"\"\n        Takes a number of a unit and converts it to wei.\n        \"\"\"\n        if unit.lower() not in units:\n            raise ValueError(\n                \"Unknown unit.  Must be one of {0}\".format(\"/\".join(units.keys()))\n            )\n    \n        if is_integer(number) or is_string(number):\n            d_number = decimal.Decimal(value=number)\n        elif isinstance(number, float):\n            d_number = decimal.Decimal(value=str(number))\n        elif isinstance(number, decimal.Decimal):\n            d_number = number\n        else:\n            raise TypeError(\"Unsupported type.  Must be one of integer, float, or string\")\n    \n        s_number = str(number)\n        unit_value = units[unit.lower()]\n    \n        if d_number == decimal.Decimal(0):\n            return 0\n    \n        if d_number < 1 and \".\" in s_number:\n            with localcontext() as ctx:\n                multiplier = len(s_number) - s_number.index(\".\") - 1\n                ctx.prec = multiplier\n                d_number = decimal.Decimal(value=number, context=ctx) * 10 ** multiplier\n            unit_value /= 10 ** multiplier\n    \n        with localcontext() as ctx:\n            ctx.prec = 999\n            result_value = decimal.Decimal(value=d_number, context=ctx) * unit_value\n    \n        if result_value < MIN_WEI or result_value > MAX_WEI:\n>           raise ValueError(\"Resulting wei value must be between 1 and 2**256 - 1\")\nE           ValueError: Resulting wei value must be between 1 and 2**256 - 1\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/eth_utils/currency.py:100: ValueError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <integration.tests.basic.test_transfers.TestTransfer object at 0x7f79f181d9a0>\n\n    def test_send_negative_sum_from_account_neon(self):\n        \"\"\"Send negative sum from account: neon\"\"\"\n    \n        sender_balance, recipient_balance = self.get_initial_balances()\n    \n>       self.process_transaction_with_failure(\n            sender_account=self.sender_account,\n            recipient_account=self.recipient_account,\n            amount=InputData.NEGATIVE_AMOUNT.value,\n            error_message=ErrorMessage.NEGATIVE_VALUE.value,\n        )\n\nintegration/tests/basic/test_transfers.py:184: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nintegration/tests/basic/helpers/basic.py:93: in process_transaction_with_failure\n    tx = self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/re.py:201: in search\n    return _compile(pattern, flags).search(string)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/re.py:304: in _compile\n    p = sre_compile.compile(pattern, flags)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_compile.py:764: in compile\n    p = sre_parse.parse(p, flags)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py:950: in parse\n    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py:443: in _parse_sub\n    itemsappend(_parse(source, state, verbose, nested + 1,\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsource = <sre_parse.Tokenizer object at 0x7f79f17b5f70>\nstate = <sre_parse.State object at 0x7f79f17b5c70>, verbose = 0, nested = 1\nfirst = True\n\n    def _parse(source, state, verbose, nested, first=False):\n        # parse a simple pattern\n        subpattern = SubPattern(state)\n    \n        # precompute constants into local variables\n        subpatternappend = subpattern.append\n        sourceget = source.get\n        sourcematch = source.match\n        _len = len\n        _ord = ord\n    \n        while True:\n    \n            this = source.next\n            if this is None:\n                break # end of pattern\n            if this in \"|)\":\n                break # end of subpattern\n            sourceget()\n    \n            if verbose:\n                # skip whitespace and comments\n                if this in WHITESPACE:\n                    continue\n                if this == \"#\":\n                    while True:\n                        this = sourceget()\n                        if this is None or this == \"\\n\":\n                            break\n                    continue\n    \n            if this[0] == \"\\\\\":\n                code = _escape(source, this, state)\n                subpatternappend(code)\n    \n            elif this not in SPECIAL_CHARS:\n                subpatternappend((LITERAL, _ord(this)))\n    \n            elif this == \"[\":\n                here = source.tell() - 1\n                # character set\n                set = []\n                setappend = set.append\n    ##          if sourcematch(\":\"):\n    ##              pass # handle character classes\n                if source.next == '[':\n                    import warnings\n                    warnings.warn(\n                        'Possible nested set at position %d' % source.tell(),\n                        FutureWarning, stacklevel=nested + 6\n                    )\n                negate = sourcematch(\"^\")\n                # check remaining characters\n                while True:\n                    this = sourceget()\n                    if this is None:\n                        raise source.error(\"unterminated character set\",\n                                           source.tell() - here)\n                    if this == \"]\" and set:\n                        break\n                    elif this[0] == \"\\\\\":\n                        code1 = _class_escape(source, this)\n                    else:\n                        if set and this in '-&~|' and source.next == this:\n                            import warnings\n                            warnings.warn(\n                                'Possible set %s at position %d' % (\n                                    'difference' if this == '-' else\n                                    'intersection' if this == '&' else\n                                    'symmetric difference' if this == '~' else\n                                    'union',\n                                    source.tell() - 1),\n                                FutureWarning, stacklevel=nested + 6\n                            )\n                        code1 = LITERAL, _ord(this)\n                    if sourcematch(\"-\"):\n                        # potential range\n                        that = sourceget()\n                        if that is None:\n                            raise source.error(\"unterminated character set\",\n                                               source.tell() - here)\n                        if that == \"]\":\n                            if code1[0] is IN:\n                                code1 = code1[1][0]\n                            setappend(code1)\n                            setappend((LITERAL, _ord(\"-\")))\n                            break\n                        if that[0] == \"\\\\\":\n                            code2 = _class_escape(source, that)\n                        else:\n                            if that == '-':\n                                import warnings\n                                warnings.warn(\n                                    'Possible set difference at position %d' % (\n                                        source.tell() - 2),\n                                    FutureWarning, stacklevel=nested + 6\n                                )\n                            code2 = LITERAL, _ord(that)\n                        if code1[0] != LITERAL or code2[0] != LITERAL:\n                            msg = \"bad character range %s-%s\" % (this, that)\n                            raise source.error(msg, len(this) + 1 + len(that))\n                        lo = code1[1]\n                        hi = code2[1]\n                        if hi < lo:\n                            msg = \"bad character range %s-%s\" % (this, that)\n                            raise source.error(msg, len(this) + 1 + len(that))\n                        setappend((RANGE, (lo, hi)))\n                    else:\n                        if code1[0] is IN:\n                            code1 = code1[1][0]\n                        setappend(code1)\n    \n                set = _uniq(set)\n                # XXX: <fl> should move set optimization to compiler!\n                if _len(set) == 1 and set[0][0] is LITERAL:\n                    # optimization\n                    if negate:\n                        subpatternappend((NOT_LITERAL, set[0][1]))\n                    else:\n                        subpatternappend(set[0])\n                else:\n                    if negate:\n                        set.insert(0, (NEGATE, None))\n                    # charmap optimization can't be added here because\n                    # global flags still are not known\n                    subpatternappend((IN, set))\n    \n            elif this in REPEAT_CHARS:\n                # repeat previous item\n                here = source.tell()\n                if this == \"?\":\n                    min, max = 0, 1\n                elif this == \"*\":\n                    min, max = 0, MAXREPEAT\n    \n                elif this == \"+\":\n                    min, max = 1, MAXREPEAT\n                elif this == \"{\":\n                    if source.next == \"}\":\n                        subpatternappend((LITERAL, _ord(this)))\n                        continue\n    \n                    min, max = 0, MAXREPEAT\n                    lo = hi = \"\"\n                    while source.next in DIGITS:\n                        lo += sourceget()\n                    if sourcematch(\",\"):\n                        while source.next in DIGITS:\n                            hi += sourceget()\n                    else:\n                        hi = lo\n                    if not sourcematch(\"}\"):\n                        subpatternappend((LITERAL, _ord(this)))\n                        source.seek(here)\n                        continue\n    \n                    if lo:\n                        min = int(lo)\n                        if min >= MAXREPEAT:\n                            raise OverflowError(\"the repetition number is too large\")\n                    if hi:\n                        max = int(hi)\n                        if max >= MAXREPEAT:\n                            raise OverflowError(\"the repetition number is too large\")\n                        if max < min:\n                            raise source.error(\"min repeat greater than max repeat\",\n                                               source.tell() - here)\n                else:\n                    raise AssertionError(\"unsupported quantifier %r\" % (char,))\n                # figure out which item to repeat\n                if subpattern:\n                    item = subpattern[-1:]\n                else:\n                    item = None\n                if not item or item[0][0] is AT:\n                    raise source.error(\"nothing to repeat\",\n                                       source.tell() - here + len(this))\n                if item[0][0] in _REPEATCODES:\n>                   raise source.error(\"multiple repeat\",\n                                       source.tell() - here + len(this))\nE                   re.error: multiple repeat at position 44\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py:671: error",
+    "steps" : [ {
+      "name" : "Sending -0.1 from 0x7F61076E725F2C584aA937D499cc66f1bb36f857 to 0xD043a5a40841e1dD8f0DEE1C11563505E0EbED7e",
+      "time" : {
+        "start" : 1651251557784,
+        "stop" : 1651251557877,
+        "duration" : 93
+      },
+      "status" : "broken",
+      "statusMessage" : "re.error: multiple repeat at position 44\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/basic/helpers/basic.py\", line 93, in process_transaction_with_failure\n    tx = self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/python_api.py\", line 785, in __exit__\n    self.excinfo.match(self.match_expr)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/_code/code.py\", line 660, in match\n    assert re.search(regexp, str(self.value)), msg.format(regexp, str(self.value))\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/re.py\", line 201, in search\n    return _compile(pattern, flags).search(string)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/re.py\", line 304, in _compile\n    p = sre_compile.compile(pattern, flags)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_compile.py\", line 764, in compile\n    p = sre_parse.parse(p, flags)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py\", line 950, in parse\n    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py\", line 443, in _parse_sub\n    itemsappend(_parse(source, state, verbose, nested + 1,\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/sre_parse.py\", line 671, in _parse\n    raise source.error(\"multiple repeat\",\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1651251569850,
+      "stop" : 1651251574230,
+      "duration" : 4380
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.008636398016629669762944 NEON 59058.47820204 SOL",
+      "time" : {
+        "start" : 1651251574131,
+        "stop" : 1651251574131,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 5000 NEON",
+      "time" : {
+        "start" : 1651251574230,
+        "stop" : 1651251574230,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1651251598294,
+      "stop" : 1651251598294,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transfer tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransfer"
+  }, {
+    "name" : "host",
+    "value" : "fv-az190-149"
+  }, {
+    "name" : "thread",
+    "value" : "1861-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "11551acb9f3210d6",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25n/1101//#testresult/11551acb9f3210d6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651251216206,
+          "stop" : 1651251217046,
+          "duration" : 840
+        }
+      }, {
+        "uid" : "3e25162df33ae431",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25n/1099//#testresult/3e25162df33ae431",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651245525260,
+          "stop" : 1651245526101,
+          "duration" : 841
+        }
+      }, {
+        "uid" : "156355b3ffcc7972",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/feature/25n/1097//#testresult/156355b3ffcc7972",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651243248488,
+          "stop" : 1651243249329,
+          "duration" : 841
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "22faa3b801d42145.json",
+  "parameterValues" : [ ]
+}
