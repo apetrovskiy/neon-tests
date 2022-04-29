@@ -282,7 +282,7 @@ class TestTransfer(BaseMixin):
         )
 
         # Neon balance
-        self.assert_balance(self.sender_account.address, initial_sender_neon_balance, rnd_dig=1)
+        self.assert_balance(self.sender_account.address, initial_sender_neon_balance, rnd_dig=0)
 
     def test_send_token_to_an_invalid_address(self):
         """Send token to an invalid address"""
