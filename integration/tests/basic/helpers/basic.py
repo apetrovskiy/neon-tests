@@ -89,11 +89,11 @@ class BaseMixin(BaseTests):
         """Processes transaction, expects a failure"""
         tx: tp.Union[web3.types.TxReceipt, None] = None
         with allure.step(f"Sending {amount} from {sender_account.address} to {recipient_account.address}"):
-            with pytest.raises(Exception) as error_info:
+            with pytest.raises(Exception,match=error_message) as error_info:
                 tx = self.web3_client.send_neon(sender_account, recipient_account, amount, gas, gas_price)
             assert error_info, AssertMessage.TRX_NOT_FAILED.value
-            if error_message:
-                assert error_message in str(error_info.value), f"Expected {error_message} to be in {error_info}"
+            # if error_message:
+            #     assert error_message in str(error_info.value), f"Expected {error_message} to be in {error_info}"
             return tx
 
     def check_value_error_if_less_than_required(
