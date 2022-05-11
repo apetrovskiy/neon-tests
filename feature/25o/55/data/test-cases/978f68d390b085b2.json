@@ -1,0 +1,386 @@
+{
+  "uid" : "978f68d390b085b2",
+  "name" : "test_tx_interact_more_1kb_less_neon",
+  "fullName" : "integration.tests.economy.test_economics.TestEconomics#test_tx_interact_more_1kb_less_neon",
+  "historyId" : "7ed5204cc689e25a60d93bc45ee24cf5",
+  "time" : {
+    "start" : 1652255010305,
+    "stop" : 1652255018271,
+    "duration" : 7966
+  },
+  "description" : "Send to contract a big text (tx more than 1 kb) when less neon",
+  "descriptionHtml" : "<p>Send to contract a big text (tx more than 1 kb) when less neon</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Regex pattern 'The account balance is less than required' does not match \"{'code': -32000, 'message': 'insufficient funds for gas * price + value: address 0x94e7fe59ccce92f51d2f78a3e1269bd7aff197cd have 1000000000000000 want 7608954830862720'}\".",
+  "statusTrace" : "self = <integration.tests.economy.test_economics.TestEconomics object at 0x7f59cad733d0>\n\n    def test_tx_interact_more_1kb_less_neon(self):\n        \"\"\"Send to contract a big text (tx more than 1 kb) when less neon\"\"\"\n        contract, contract_deploy_tx = self.deploy_and_get_contract(\"Counter\", \"0.8.10\")\n    \n        acc2 = self.web3_client.create_account()\n        self.web3_client.send_neon(self.acc, acc2, 0.001)\n    \n        sol_balance_before_instruction = self.operator.get_solana_balance()\n        neon_balance_before_instruction = self.operator.get_neon_balance()\n    \n        instruction_tx = contract.functions.bigString(\n            \"But I must explain to you how all this mistaken idea of denouncing pleasure and \"\n            \"praising pain was born and I will give you a complete account of the system, and \"\n            \"expound the actual teachings of the great explorer of the truth, the master-builder \"\n            \"of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it\"\n            \" is pleasure, but because those who do not know how to pursue pleasure rationally\"\n            \" encounter consequences that are extremely painful. Nor again is there anyone who\"\n            \" loves or pursues or desires to obtain pain of itself, because it is pain, but\"\n            \" because occasionally circumstances occur in which toil and pain can procure him\"\n            \" some great pleasure. To take a trivial example, which of us ever undertakes laborious\"\n            \" physical exercise, except to obtain some advantage from it? But who has any right to\"\n            \" find fault with a man who chooses to enjoy a pleasure that has no annoying consequences,\"\n            \" or one who avoids a pain that produces no resultant pleasure? On the other hand,\"\n            \" we denounce with righteous indigna\"\n            \" some great pleasure. To take a trivial example, which of us ever undertakes laborious\"\n            \" physical exercise, except to obtain some advantage from it? But who has any right to\"\n        ).buildTransaction(\n            {\n                \"from\": acc2.address,\n                \"nonce\": self.web3_client.eth.get_transaction_count(acc2.address),\n                \"gasPrice\": self.web3_client.gas_price(),\n            }\n        )\n        with pytest.raises(ValueError, match=\"The account balance is less than required\"):\n>           instruction_receipt = self.web3_client.send_transaction(acc2, instruction_tx)\n\nintegration/tests/economy/test_economics.py:681: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.web3client.NeonWeb3Client object at 0x7f59caed4340>\naccount = <eth_account.signers.local.LocalAccount object at 0x7f59c95a74f0>\ntransaction = {'chainId': 111, 'data': '0x08650c7a0000000000000000000000000000000000000000000000000000000000000020000000000000000000...6f000000000000000000000000000000000000000000', 'from': '0x94E7FE59ccce92f51D2f78A3E1269bd7aFf197cd', 'gas': 25640, ...}\ngas = None\n\n    def send_transaction(\n        self, account: eth_account.signers.local.LocalAccount, transaction, gas: tp.Optional[int] = None\n    ):\n        if \"gasPrice\" not in transaction:\n            transaction[\"gasPrice\"] = (self.gas_price(),)\n    \n        if \"gas\" not in transaction:\n            transaction[\"gas\"] = self._web3.eth.estimate_gas(transaction)\n    \n        instruction_tx = self._web3.eth.account.sign_transaction(transaction, account.key)\n>       signature = self._web3.eth.send_raw_transaction(instruction_tx.rawTransaction)\n\nutils/web3client.py:150: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.eth.Eth object at 0x7f59cac64760>\ntransaction = HexBytes('0xf9056c8085451857297082642894d9f2eef7751ee9d8934d09d08a3df3652e5971e180b9050408650c7a0000000000000000000000...3e6cb15f6ee16b2baf6e94a814fe128ace65d38fd8309247789a01f61017f2db8c322ed33529c59088078d05af456ef23f8e086fadc551f5764b1')\n\n    def send_raw_transaction(self, transaction: Union[HexStr, bytes]) -> HexBytes:\n>       return self._send_raw_transaction(transaction)\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/eth.py:783: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nargs = (HexBytes('0xf9056c8085451857297082642894d9f2eef7751ee9d8934d09d08a3df3652e5971e180b9050408650c7a000000000000000000000...6cb15f6ee16b2baf6e94a814fe128ace65d38fd8309247789a01f61017f2db8c322ed33529c59088078d05af456ef23f8e086fadc551f5764b1'),)\nkwargs = {}, method_str = 'eth_sendRawTransaction'\nparams = ('0xf9056c8085451857297082642894d9f2eef7751ee9d8934d09d08a3df3652e5971e180b9050408650c7a000000000000000000000000000000...e6cb15f6ee16b2baf6e94a814fe128ace65d38fd8309247789a01f61017f2db8c322ed33529c59088078d05af456ef23f8e086fadc551f5764b1',)\nresponse_formatters = (Compose(<function apply_formatter_if at 0x7f59d161c160>, <function to_hexbytes at 0x7f59cda03b80>), <cyfunction identity at 0x7f59d08c6040>, <cyfunction identity at 0x7f59d08c6040>)\nresult_formatters = Compose(<function apply_formatter_if at 0x7f59d161c160>, <function to_hexbytes at 0x7f59cda03b80>)\nerror_formatters = <cyfunction identity at 0x7f59d08c6040>\nnull_result_formatters = <cyfunction identity at 0x7f59d08c6040>\n\n    def caller(*args: Any, **kwargs: Any) -> Union[TReturn, LogFilter]:\n        try:\n            (method_str, params), response_formatters = method.process_params(module, *args, **kwargs)  # noqa: E501\n        except _UseExistingFilter as err:\n            return LogFilter(eth_module=module, filter_id=err.filter_id)\n        result_formatters, error_formatters, null_result_formatters = response_formatters\n>       result = w3.manager.request_blocking(method_str,\n                                             params,\n                                             error_formatters,\n                                             null_result_formatters)\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/module.py:57: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f59cac64b80>\nmethod = 'eth_sendRawTransaction'\nparams = ('0xf9056c8085451857297082642894d9f2eef7751ee9d8934d09d08a3df3652e5971e180b9050408650c7a000000000000000000000000000000...e6cb15f6ee16b2baf6e94a814fe128ace65d38fd8309247789a01f61017f2db8c322ed33529c59088078d05af456ef23f8e086fadc551f5764b1',)\nerror_formatters = <cyfunction identity at 0x7f59d08c6040>\nnull_result_formatters = <cyfunction identity at 0x7f59d08c6040>\n\n    def request_blocking(\n        self,\n        method: Union[RPCEndpoint, Callable[..., RPCEndpoint]],\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        \"\"\"\n        Make a synchronous request using the provider\n        \"\"\"\n        response = self._make_request(method, params)\n>       return self.formatted_response(response,\n                                       params,\n                                       error_formatters,\n                                       null_result_formatters)\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:198: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <web3.manager.RequestManager object at 0x7f59cac64b80>\nresponse = {'error': {'code': -32000, 'message': 'insufficient funds for gas * price + value: address 0x94e7fe59ccce92f51d2f78a3e1269bd7aff197cd have 1000000000000000 want 7608954830862720'}, 'id': 880, 'jsonrpc': '2.0'}\nparams = ('0xf9056c8085451857297082642894d9f2eef7751ee9d8934d09d08a3df3652e5971e180b9050408650c7a000000000000000000000000000000...e6cb15f6ee16b2baf6e94a814fe128ace65d38fd8309247789a01f61017f2db8c322ed33529c59088078d05af456ef23f8e086fadc551f5764b1',)\nerror_formatters = <cyfunction identity at 0x7f59d08c6040>\nnull_result_formatters = <cyfunction identity at 0x7f59d08c6040>\n\n    def formatted_response(\n        self,\n        response: RPCResponse,\n        params: Any,\n        error_formatters: Optional[Callable[..., Any]] = None,\n        null_result_formatters: Optional[Callable[..., Any]] = None,\n    ) -> Any:\n        if \"error\" in response:\n            apply_error_formatters(error_formatters, response)\n>           raise ValueError(response[\"error\"])\nE           ValueError: {'code': -32000, 'message': 'insufficient funds for gas * price + value: address 0x94e7fe59ccce92f51d2f78a3e1269bd7aff197cd have 1000000000000000 want 7608954830862720'}\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/web3/manager.py:171: ValueError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <integration.tests.economy.test_economics.TestEconomics object at 0x7f59cad733d0>\n\n    def test_tx_interact_more_1kb_less_neon(self):\n        \"\"\"Send to contract a big text (tx more than 1 kb) when less neon\"\"\"\n        contract, contract_deploy_tx = self.deploy_and_get_contract(\"Counter\", \"0.8.10\")\n    \n        acc2 = self.web3_client.create_account()\n        self.web3_client.send_neon(self.acc, acc2, 0.001)\n    \n        sol_balance_before_instruction = self.operator.get_solana_balance()\n        neon_balance_before_instruction = self.operator.get_neon_balance()\n    \n        instruction_tx = contract.functions.bigString(\n            \"But I must explain to you how all this mistaken idea of denouncing pleasure and \"\n            \"praising pain was born and I will give you a complete account of the system, and \"\n            \"expound the actual teachings of the great explorer of the truth, the master-builder \"\n            \"of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it\"\n            \" is pleasure, but because those who do not know how to pursue pleasure rationally\"\n            \" encounter consequences that are extremely painful. Nor again is there anyone who\"\n            \" loves or pursues or desires to obtain pain of itself, because it is pain, but\"\n            \" because occasionally circumstances occur in which toil and pain can procure him\"\n            \" some great pleasure. To take a trivial example, which of us ever undertakes laborious\"\n            \" physical exercise, except to obtain some advantage from it? But who has any right to\"\n            \" find fault with a man who chooses to enjoy a pleasure that has no annoying consequences,\"\n            \" or one who avoids a pain that produces no resultant pleasure? On the other hand,\"\n            \" we denounce with righteous indigna\"\n            \" some great pleasure. To take a trivial example, which of us ever undertakes laborious\"\n            \" physical exercise, except to obtain some advantage from it? But who has any right to\"\n        ).buildTransaction(\n            {\n                \"from\": acc2.address,\n                \"nonce\": self.web3_client.eth.get_transaction_count(acc2.address),\n                \"gasPrice\": self.web3_client.gas_price(),\n            }\n        )\n        with pytest.raises(ValueError, match=\"The account balance is less than required\"):\n>           instruction_receipt = self.web3_client.send_transaction(acc2, instruction_tx)\nE           AssertionError: Regex pattern 'The account balance is less than required' does not match \"{'code': -32000, 'message': 'insufficient funds for gas * price + value: address 0x94e7fe59ccce92f51d2f78a3e1269bd7aff197cd have 1000000000000000 want 7608954830862720'}\".\n\nintegration/tests/economy/test_economics.py:681: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1652254692853,
+      "stop" : 1652254692855,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1652254692853,
+      "stop" : 1652254692853,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1652254692855,
+      "stop" : 1652254693442,
+      "duration" : 587
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1652254693442,
+      "stop" : 1652254693442,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1652254693442,
+      "stop" : 1652254693443,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1652254693442,
+      "stop" : 1652254693442,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "install_solcx_versions",
+    "time" : {
+      "start" : 1652254693443,
+      "stop" : 1652254694616,
+      "duration" : 1173
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1652254693443,
+      "stop" : 1652254693443,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_price",
+    "time" : {
+      "start" : 1652254694617,
+      "stop" : 1652254694912,
+      "duration" : 295
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "SOL price 61.23240786$",
+      "time" : {
+        "start" : 1652254694912,
+        "stop" : 1652254694912,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1652254694913,
+      "stop" : 1652254700195,
+      "duration" : 5282
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1652254694913,
+        "stop" : 1652254694928,
+        "duration" : 15
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 5000 NEON from faucet for 0x5Ff1a09FFE8d50C94E7c4B298Aa2Cf30617CA14B",
+      "time" : {
+        "start" : 1652254694928,
+        "stop" : 1652254695851,
+        "duration" : 923
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Operator initial balance: 0.000393827764 NEON 73890.05585816 SOL",
+      "time" : {
+        "start" : 1652254700195,
+        "stop" : 1652254700195,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1652255010304,
+      "stop" : 1652255010304,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1652255010304,
+      "stop" : 1652255010304,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "setup_sol_cost",
+    "time" : {
+      "start" : 1652255010305,
+      "stop" : 1652255010305,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "prepare_account::0",
+    "time" : {
+      "start" : 1652255082546,
+      "stop" : 1652255086966,
+      "duration" : 4420
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Operator end balance: 0.000393959699 NEON 73889.6526894 SOL",
+      "time" : {
+        "start" : 1652255086866,
+        "stop" : 1652255086866,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Account end balance: 4718.35351925641103488 NEON",
+      "time" : {
+        "start" : 1652255086965,
+        "stop" : 1652255086965,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1652255086973,
+      "stop" : 1652255086973,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Operator economy"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.economy"
+  }, {
+    "name" : "suite",
+    "value" : "test_economics"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestEconomics"
+  }, {
+    "name" : "host",
+    "value" : "fv-az132-271"
+  }, {
+    "name" : "thread",
+    "value" : "1815-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.economy.test_economics"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "978f68d390b085b2.json",
+  "parameterValues" : [ ]
+}
