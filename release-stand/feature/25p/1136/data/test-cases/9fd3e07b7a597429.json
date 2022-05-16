@@ -1,0 +1,261 @@
+{
+  "uid" : "9fd3e07b7a597429",
+  "name" : "test_eth_get_transaction_by_block_hash_and_index[params3-True]",
+  "fullName" : "integration.tests.basic.test_rpc_calls.TestRpcCalls#test_eth_get_transaction_by_block_hash_and_index",
+  "historyId" : "1bc5aa1c213d1659261ab72104bb49e0",
+  "time" : {
+    "start" : 1652691320124,
+    "stop" : 1652691320124,
+    "duration" : 0
+  },
+  "description" : "Verify implemented rpc calls work eth_getTransactionByBlockHashAndIndex",
+  "descriptionHtml" : "<p>Verify implemented rpc calls work eth_getTransactionByBlockHashAndIndex</p>\n",
+  "status" : "broken",
+  "statusMessage" : "busypie.awaiter.ConditionTimeoutError: Failed to meet condition of [HTTPStatus.OK == self.send_post_request(url, address, amount).status_code] within 60 seconds",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7f2312c70a00>\nfaucet = <utils.faucet.Faucet object at 0x7f2312b405e0>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7f2312c5b0a0>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client: NeonWeb3Client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request {NEON_AIRDROP_AMOUNT} NEON from faucet for {acc.address}\"):\n>           faucet.request_neon(acc.address, NEON_AIRDROP_AMOUNT)\n\nintegration/tests/conftest.py:114: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nutils/faucet.py:17: in request_neon\n    wait_at_most(MINUTE).until(lambda: HTTPStatus.OK == self.send_post_request(url, address, amount).status_code)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/condition.py:48: in until\n    return runner.run(self._wait_for(func, lambda f: f()))\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/runner.py:31: in run\n    raise thread.exception\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/runner.py:17: in run\n    self.result = runners.run(self.main, debug=self.debug)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/backports/asyncio/runners.py:42: in run\n    return loop.run_until_complete(main)\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/asyncio/base_events.py:647: in run_until_complete\n    return future.result()\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/awaiter.py:29: in wait_for\n    self._validate_wait_constraint(func, start_time)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <busypie.awaiter.AsyncConditionAwaiter object at 0x7f2312ca62e0>\ncondition_func = <function Faucet.request_neon.<locals>.<lambda> at 0x7f2312ce0670>\nstart_time = 1652691257.4225645\n\n    def _validate_wait_constraint(self, condition_func, start_time):\n        if (time.time() - start_time) > self._condition.wait_time_in_secs:\n>           raise busypie.ConditionTimeoutError(\n                self._condition.description or describe(condition_func), self._condition.wait_time_in_secs)\nE           busypie.awaiter.ConditionTimeoutError: Failed to meet condition of [HTTPStatus.OK == self.send_post_request(url, address, amount).status_code] within 60 seconds\n\n/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/awaiter.py:46: ConditionTimeoutError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1652691256299,
+      "stop" : 1652691256300,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1652691256299,
+      "stop" : 1652691256299,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1652691256300,
+      "stop" : 1652691257405,
+      "duration" : 1105
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1652691257406,
+      "stop" : 1652691257406,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1652691257406,
+      "stop" : 1652691257407,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1652691257406,
+      "stop" : 1652691257406,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1652691257407,
+      "stop" : 1652691257407,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1652691257407,
+      "stop" : 1652691317521,
+      "duration" : 60114
+    },
+    "status" : "broken",
+    "statusMessage" : "busypie.awaiter.ConditionTimeoutError: Failed to meet condition of [HTTPStatus.OK == self.send_post_request(url, address, amount).status_code] within 60 seconds\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 114, in prepare_account\n    faucet.request_neon(acc.address, NEON_AIRDROP_AMOUNT)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 17, in request_neon\n    wait_at_most(MINUTE).until(lambda: HTTPStatus.OK == self.send_post_request(url, address, amount).status_code)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/condition.py\", line 48, in until\n    return runner.run(self._wait_for(func, lambda f: f()))\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/runner.py\", line 31, in run\n    raise thread.exception\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/runner.py\", line 17, in run\n    self.result = runners.run(self.main, debug=self.debug)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/backports/asyncio/runners.py\", line 42, in run\n    return loop.run_until_complete(main)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/asyncio/base_events.py\", line 647, in run_until_complete\n    return future.result()\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/awaiter.py\", line 29, in wait_for\n    self._validate_wait_constraint(func, start_time)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/awaiter.py\", line 46, in _validate_wait_constraint\n    raise busypie.ConditionTimeoutError(\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1652691257407,
+        "stop" : 1652691257421,
+        "duration" : 14
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 10000 NEON from faucet for 0xFCe11436bEaa482374e51e39bbaaeabb7D27ce8D",
+      "time" : {
+        "start" : 1652691257421,
+        "stop" : 1652691317510,
+        "duration" : 60089
+      },
+      "status" : "broken",
+      "statusMessage" : "busypie.awaiter.ConditionTimeoutError: Failed to meet condition of [HTTPStatus.OK == self.send_post_request(url, address, amount).status_code] within 60 seconds\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 114, in prepare_account\n    faucet.request_neon(acc.address, NEON_AIRDROP_AMOUNT)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 17, in request_neon\n    wait_at_most(MINUTE).until(lambda: HTTPStatus.OK == self.send_post_request(url, address, amount).status_code)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/condition.py\", line 48, in until\n    return runner.run(self._wait_for(func, lambda f: f()))\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/runner.py\", line 31, in run\n    raise thread.exception\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/runner.py\", line 17, in run\n    self.result = runners.run(self.main, debug=self.debug)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/backports/asyncio/runners.py\", line 42, in run\n    return loop.run_until_complete(main)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/asyncio/base_events.py\", line 647, in run_until_complete\n    return future.result()\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/awaiter.py\", line 29, in wait_for\n    self._validate_wait_constraint(func, start_time)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/busypie/awaiter.py\", line 46, in _validate_wait_constraint\n    raise busypie.ConditionTimeoutError(\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1652691320125,
+      "stop" : 1652691320125,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1652691589982,
+      "stop" : 1652691589982,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: Json-RPC call tests"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_rpc_calls"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRpcCalls"
+  }, {
+    "name" : "host",
+    "value" : "fv-az447-957"
+  }, {
+    "name" : "thread",
+    "value" : "1822-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_rpc_calls"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "params",
+    "value" : "[]"
+  }, {
+    "name" : "raises",
+    "value" : "True"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "9fd3e07b7a597429.json",
+  "parameterValues" : [ "[]", "True" ]
+}
