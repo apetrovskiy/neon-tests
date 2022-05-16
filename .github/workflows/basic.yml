@@ -87,12 +87,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: "Install deps"
+        if: always()
         id: requirements
         uses: ./.github/actions/requirements
       - name: "Run basic tests"
         id: basic
         run: "./clickfile.py run basic -n ${{ env.NETWORK }}"
       - uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: "Allure results"
           path: allure-results
