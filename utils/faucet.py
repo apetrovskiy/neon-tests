@@ -1,7 +1,7 @@
 import requests
 import typing as tp
 import urllib.parse
-from busypie import wait_at_most, MINUTE, SECOND
+from busypie import wait_at_most, FIVE_SECONDS, TWO_MINUTES
 from http import HTTPStatus
 
 
@@ -13,9 +13,10 @@ class Faucet:
     def request_neon(self, address: str, amount: int = 100):
         assert address.startswith("0x")
         url = urllib.parse.urljoin(self._url, "request_neon")
-        wait_at_most(MINUTE).poll_interval(1, SECOND).until(
-            lambda: HTTPStatus.OK == self.send_post_request(url, address, amount).status_code
+        wait_at_most(TWO_MINUTES).poll_interval(FIVE_SECONDS).until(
+            self.send_post_request(url, address, amount).status_code
         )
 
-    def send_post_request(self, url: str, address: str, amount: int):
-        return self._session.post(url, json={"amount": amount, "wallet": address})
+    def send_post_request(self, url: str, address: str, amount: int) -> bool:
+        response = self._session.post(url, json={"amount": amount, "wallet": address})
+        return False if HttpStatus.OK != response.status_code else True
