@@ -2,6 +2,9 @@ import requests
 import typing as tp
 import urllib.parse
 from busypie import wait_at_most, FIVE_SECONDS, MINUTE
+
+from datetime import datetime
+
 from http import HTTPStatus
 
 
@@ -19,6 +22,7 @@ class Faucet:
 
     def send_post_request(self, url: str, address: str, amount: int) -> bool:
         response = self._session.post(url, json={"amount": amount, "wallet": address})
+        print(datetime.now())
         print(response)
         print(response.status_code)
         return True if HTTPStatus.OK == response.status_code else False
