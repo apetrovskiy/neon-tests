@@ -39,6 +39,10 @@ class BaseMixin(BaseTests):
             BaseMixin._recipient_account = account
         return BaseMixin._recipient_account
 
+    @pytest.fixture(autouse=True)
+    def prepare_account(self):
+        pass
+
     @staticmethod
     def assert_expected_raises(
         response: tp.Union[JsonRpcResponse, JsonRpcErrorResponse], err_message: str = None
