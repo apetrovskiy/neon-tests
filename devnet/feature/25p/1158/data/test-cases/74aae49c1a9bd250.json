@@ -1,0 +1,341 @@
+{
+  "uid" : "74aae49c1a9bd250",
+  "name" : "test_there_are_not_enough_neons_for_gas_fee",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransactionsValidation#test_there_are_not_enough_neons_for_gas_fee",
+  "historyId" : "725e3b16ac4a58c80a87f0c906efe9e4",
+  "time" : {
+    "start" : 1652701925615,
+    "stop" : 1652701925615,
+    "duration" : 0
+  },
+  "description" : "There are not enough Neons for gas fee",
+  "descriptionHtml" : "<p>There are not enough Neons for gas fee</p>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 0 == 10000\n +  where 0 = <bound method NeonWeb3Client.get_balance of <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>>(<eth_account.signers.local.LocalAccount object at 0x7f47c027f880>)\n +    where <bound method NeonWeb3Client.get_balance of <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>> = <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>.get_balance",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7f47c190c7c0>\nfaucet = <utils.faucet.Faucet object at 0x7f47c190caf0>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client: NeonWeb3Client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request {NEON_AIRDROP_AMOUNT} NEON from faucet for {acc.address}\"):\n            faucet.request_neon(acc.address, NEON_AIRDROP_AMOUNT)\n>           assert web3_client.get_balance(acc) == NEON_AIRDROP_AMOUNT\nE           assert 0 == 10000\nE            +  where 0 = <bound method NeonWeb3Client.get_balance of <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>>(<eth_account.signers.local.LocalAccount object at 0x7f47c027f880>)\nE            +    where <bound method NeonWeb3Client.get_balance of <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>> = <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>.get_balance\n\nintegration/tests/conftest.py:115: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1652701481670,
+      "stop" : 1652701481670,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1652701481670,
+      "stop" : 1652701481671,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1652701481671,
+      "stop" : 1652701482240,
+      "duration" : 569
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1652701482241,
+      "stop" : 1652701482241,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1652701482241,
+      "stop" : 1652701482241,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1652701482241,
+      "stop" : 1652701482241,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1652701482241,
+      "stop" : 1652701482241,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1652701924133,
+      "stop" : 1652701925565,
+      "duration" : 1432
+    },
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert 0 == 10000\n +  where 0 = <bound method NeonWeb3Client.get_balance of <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>>(<eth_account.signers.local.LocalAccount object at 0x7f47c027f880>)\n +    where <bound method NeonWeb3Client.get_balance of <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>> = <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>.get_balance\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 115, in prepare_account\n    assert web3_client.get_balance(acc) == NEON_AIRDROP_AMOUNT\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1652701924133,
+        "stop" : 1652701924137,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 10000 NEON from faucet for 0x4F3fbe64a76F85CE6302AF6B17043E1D20FDad28",
+      "time" : {
+        "start" : 1652701924137,
+        "stop" : 1652701925565,
+        "duration" : 1428
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: assert 0 == 10000\n +  where 0 = <bound method NeonWeb3Client.get_balance of <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>>(<eth_account.signers.local.LocalAccount object at 0x7f47c027f880>)\n +    where <bound method NeonWeb3Client.get_balance of <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>> = <utils.web3client.NeonWeb3Client object at 0x7f47c1838f10>.get_balance\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 115, in prepare_account\n    assert web3_client.get_balance(acc) == NEON_AIRDROP_AMOUNT\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1652701925616,
+      "stop" : 1652701925616,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1652701925638,
+      "stop" : 1652701925639,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az173-358"
+  }, {
+    "name" : "thread",
+    "value" : "1790-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "c82f8fe332b335c3",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1156//#testresult/c82f8fe332b335c3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652700035812,
+          "stop" : 1652700037479,
+          "duration" : 1667
+        }
+      }, {
+        "uid" : "8f0e7274c2ff337",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1154//#testresult/8f0e7274c2ff337",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652698288932,
+          "stop" : 1652698291081,
+          "duration" : 2149
+        }
+      }, {
+        "uid" : "dea296a5c79214b9",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1152//#testresult/dea296a5c79214b9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652697267969,
+          "stop" : 1652697270965,
+          "duration" : 2996
+        }
+      }, {
+        "uid" : "9489ec1f218588f1",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1150//#testresult/9489ec1f218588f1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652696231010,
+          "stop" : 1652696234012,
+          "duration" : 3002
+        }
+      }, {
+        "uid" : "1aeb500fcd12407f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1148//#testresult/1aeb500fcd12407f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652695158477,
+          "stop" : 1652695161188,
+          "duration" : 2711
+        }
+      }, {
+        "uid" : "375201f1ba34748f",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1146//#testresult/375201f1ba34748f",
+        "status" : "broken",
+        "statusDetails" : "TypeError: 'bool' object is not callable",
+        "time" : {
+          "start" : 1652694051231,
+          "stop" : 1652694051231,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "bf53560728d7a7ce",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1144//#testresult/bf53560728d7a7ce",
+        "status" : "broken",
+        "statusDetails" : "AttributeError: 'bool' object has no attribute 'status_code'",
+        "time" : {
+          "start" : 1652693651355,
+          "stop" : 1652693651355,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "435fc39adfa2cd09",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1142//#testresult/435fc39adfa2cd09",
+        "status" : "broken",
+        "statusDetails" : "NameError: name 'HttpStatus' is not defined",
+        "time" : {
+          "start" : 1652693149588,
+          "stop" : 1652693149588,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "74aae49c1a9bd250.json",
+  "parameterValues" : [ ]
+}
