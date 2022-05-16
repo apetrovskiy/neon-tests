@@ -78,9 +78,8 @@ class TestTransfer(BaseMixin):
 
         # ERC20 balance
         assert (
-            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE - transfer_amount,
-            AssertMessage.CONTRACT_BALANCE_IS_WRONG.value,
-        )
+            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE - transfer_amount
+        ), AssertMessage.CONTRACT_BALANCE_IS_WRONG.value
 
         # Neon balance
         self.assert_balance(
@@ -277,10 +276,8 @@ class TestTransfer(BaseMixin):
 
         # ERC20 balance
         assert (
-            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE - transfer_amount,
-            AssertMessage.CONTRACT_BALANCE_IS_WRONG.value,
-        )
-
+            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE - transfer_amount
+        ), AssertMessage.CONTRACT_BALANCE_IS_WRONG.value
         # Neon balance
         self.assert_balance(self.sender_account.address, initial_sender_neon_balance, rnd_dig=0)
 
