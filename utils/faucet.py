@@ -13,9 +13,7 @@ class Faucet:
     def request_neon(self, address: str, amount: int = 100):
         assert address.startswith("0x")
         url = urllib.parse.urljoin(self._url, "request_neon")
-        wait_at_most(2 * MINUTE).poll_interval(FIVE_SECONDS).until(
-            self.send_post_request(url, address, amount).status_code
-        )
+        wait_at_most(2 * MINUTE).poll_interval(FIVE_SECONDS).until(self.send_post_request(url, address, amount))
 
     def send_post_request(self, url: str, address: str, amount: int) -> bool:
         response = self._session.post(url, json={"amount": amount, "wallet": address})
