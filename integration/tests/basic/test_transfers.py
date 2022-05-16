@@ -254,6 +254,8 @@ class TestTransfer(BaseMixin):
             rnd_dig=1,
         )
 
+    # TODO: uncomment it
+    @pytest.mark.skip("temporarily")
     def test_send_token_to_self_erc20(self):
         """Send token to self: ERC20"""
 
