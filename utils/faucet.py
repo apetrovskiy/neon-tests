@@ -19,4 +19,4 @@ class Faucet:
 
     def send_post_request(self, url: str, address: str, amount: int) -> bool:
         response = self._session.post(url, json={"amount": amount, "wallet": address})
-        return False if HttpStatus.OK != response.status_code else True
+        return False if HTTPStatus.OK != response.status_code else True
