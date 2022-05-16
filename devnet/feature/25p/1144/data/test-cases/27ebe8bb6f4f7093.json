@@ -1,0 +1,285 @@
+{
+  "uid" : "27ebe8bb6f4f7093",
+  "name" : "test_generate_bad_sign[1000-18446744073709552-gas limit reached]",
+  "fullName" : "integration.tests.basic.test_transfers.TestTransactionsValidation#test_generate_bad_sign",
+  "historyId" : "97a12b6728c931209a50db40cf63b776",
+  "time" : {
+    "start" : 1652693651331,
+    "stop" : 1652693651331,
+    "duration" : 0
+  },
+  "description" : "Generate bad sign (when v, r, s over allowed size)\n        Too low gas_limit\n        Too high gas_limit > u64::max\n        Too high gas_limit > u64::max\n        Too high gas_price > u64::max\n        Too high gas_limit * gas_price > u64::max\n        ",
+  "descriptionHtml" : "<p>Generate bad sign (when v, r, s over allowed size)<br />\nToo low gas_limit<br />\nToo high gas_limit &gt; u64::max<br />\nToo high gas_limit &gt; u64::max<br />\nToo high gas_price &gt; u64::max<br />\nToo high gas_limit * gas_price &gt; u64::max</p>\n",
+  "status" : "broken",
+  "statusMessage" : "AttributeError: 'bool' object has no attribute 'status_code'",
+  "statusTrace" : "operator = <utils.operator.Operator object at 0x7f9c4287ff70>\nfaucet = <utils.faucet.Faucet object at 0x7f9c4287da60>\nweb3_client = <utils.web3client.NeonWeb3Client object at 0x7f9c428603d0>\n\n    @pytest.fixture(scope=\"class\")\n    def prepare_account(operator, faucet, web3_client: NeonWeb3Client):\n        \"\"\"Create new account for tests and save operator pre/post balances\"\"\"\n        with allure.step(\"Create account for tests\"):\n            acc = web3_client.eth.account.create()\n        with allure.step(f\"Request {NEON_AIRDROP_AMOUNT} NEON from faucet for {acc.address}\"):\n>           faucet.request_neon(acc.address, NEON_AIRDROP_AMOUNT)\n\nintegration/tests/conftest.py:114: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <utils.faucet.Faucet object at 0x7f9c4287da60>\naddress = '0x9f139eE80fBc02C3C240f0Fb3975eD6ee085B393', amount = 10000\n\n    def request_neon(self, address: str, amount: int = 100):\n        assert address.startswith(\"0x\")\n        url = urllib.parse.urljoin(self._url, \"request_neon\")\n        wait_at_most(2 * MINUTE).poll_interval(FIVE_SECONDS).until(\n>           self.send_post_request(url, address, amount).status_code\n        )\nE       AttributeError: 'bool' object has no attribute 'status_code'\n\nutils/faucet.py:17: AttributeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 0,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ {
+    "name" : "web3_client",
+    "time" : {
+      "start" : 1652693558234,
+      "stop" : 1652693558236,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "pytestconfig",
+    "time" : {
+      "start" : 1652693558234,
+      "stop" : 1652693558234,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "allure_environment",
+    "time" : {
+      "start" : 1652693558236,
+      "stop" : 1652693558980,
+      "duration" : 744
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "json_rpc_client",
+    "time" : {
+      "start" : 1652693558980,
+      "stop" : 1652693558980,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "operator",
+    "time" : {
+      "start" : 1652693558980,
+      "stop" : 1652693558980,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "faucet",
+    "time" : {
+      "start" : 1652693558980,
+      "stop" : 1652693558980,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "sol_client",
+    "time" : {
+      "start" : 1652693558981,
+      "stop" : 1652693558981,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "prepare_account",
+    "time" : {
+      "start" : 1652693649940,
+      "stop" : 1652693651262,
+      "duration" : 1322
+    },
+    "status" : "broken",
+    "statusMessage" : "AttributeError: 'bool' object has no attribute 'status_code'\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/pluggy/_callers.py\", line 39, in _multicall\n    res = hook_impl.function(*args)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 1126, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n  File \"/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/_pytest/fixtures.py\", line 925, in call_fixture_func\n    fixture_result = next(generator)\n  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 114, in prepare_account\n    faucet.request_neon(acc.address, NEON_AIRDROP_AMOUNT)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 17, in request_neon\n    self.send_post_request(url, address, amount).status_code\n",
+    "steps" : [ {
+      "name" : "Create account for tests",
+      "time" : {
+        "start" : 1652693649940,
+        "stop" : 1652693649944,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Request 10000 NEON from faucet for 0x9f139eE80fBc02C3C240f0Fb3975eD6ee085B393",
+      "time" : {
+        "start" : 1652693649944,
+        "stop" : 1652693651262,
+        "duration" : 1318
+      },
+      "status" : "broken",
+      "statusMessage" : "AttributeError: 'bool' object has no attribute 'status_code'\n",
+      "statusTrace" : "  File \"/home/runner/work/neon-tests/neon-tests/integration/tests/conftest.py\", line 114, in prepare_account\n    faucet.request_neon(acc.address, NEON_AIRDROP_AMOUNT)\n  File \"/home/runner/work/neon-tests/neon-tests/utils/faucet.py\", line 17, in request_neon\n    self.send_post_request(url, address, amount).status_code\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "prepare",
+    "time" : {
+      "start" : 1652693651331,
+      "stop" : 1652693651331,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "allure_environment::0",
+    "time" : {
+      "start" : 1652693651381,
+      "stop" : 1652693651381,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Basic: transactions validation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests.basic"
+  }, {
+    "name" : "suite",
+    "value" : "test_transfers"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestTransactionsValidation"
+  }, {
+    "name" : "host",
+    "value" : "fv-az173-358"
+  }, {
+    "name" : "thread",
+    "value" : "1796-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.basic.test_transfers"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "expected_message",
+    "value" : "'gas limit reached'"
+  }, {
+    "name" : "gas_limit",
+    "value" : "1000"
+  }, {
+    "name" : "gas_price",
+    "value" : "18446744073709552"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "36f6cfc0af5692ef",
+        "reportUrl" : "https://apetrovskiy.github.io/neon-tests/devnet/feature/25p/1142//#testresult/36f6cfc0af5692ef",
+        "status" : "broken",
+        "statusDetails" : "NameError: name 'HttpStatus' is not defined",
+        "time" : {
+          "start" : 1652693149562,
+          "stop" : 1652693149562,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "27ebe8bb6f4f7093.json",
+  "parameterValues" : [ "'gas limit reached'", "1000", "18446744073709552" ]
+}
