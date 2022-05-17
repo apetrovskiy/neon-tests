@@ -255,7 +255,7 @@ class TestTransfer(BaseMixin):
         )
 
     # TODO: uncomment it
-    @pytest.mark.skip("temporarily")
+    # @pytest.mark.skip("temporarily")
     def test_send_token_to_self_erc20(self):
         """Send token to self: ERC20"""
 
@@ -276,9 +276,9 @@ class TestTransfer(BaseMixin):
             abi=contract.abi,
         )
 
-        # ERC20 balance
+        # ERC20 balance (now the balance is the same as before the transfer)
         assert (
-            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE - transfer_amount
+            contract.functions.balanceOf(self.sender_account.address).call() == DEFAULT_ERC20_BALANCE
         ), AssertMessage.CONTRACT_BALANCE_IS_WRONG.value
         # Neon balance
         self.assert_balance(self.sender_account.address, initial_sender_neon_balance, rnd_dig=0)

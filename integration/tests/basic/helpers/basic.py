@@ -41,6 +41,7 @@ class BaseMixin(BaseTests):
 
     @pytest.fixture(autouse=True)
     def prepare_account(self):
+        """Prevents calling to a fixture with the same name from operators' tests"""
         pass
 
     @staticmethod
